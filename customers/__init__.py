@@ -37,7 +37,7 @@ class Player(BasePlayer):
     q5 = models.IntegerField()
     name = models.CharField(blank=True,
                             initial=None,
-                            verbose_name='Wie lautet Ihr erster Vorname? (Ihre Antworten können trotz Angabe Ihres ersten Vornamens nicht auf Sie persönlich zurückgeführt werden!)')
+                            verbose_name='Wie lautet Ihr erster Vorname?')
     age = models.IntegerField(verbose_name='Wie alt sind Sie?')
     gender = models.CharField(initial=None,
                               choices=['weiblich', 'männlich', 'nicht-binär'],
@@ -45,7 +45,7 @@ class Player(BasePlayer):
                               widget=widgets.RadioSelect())
     nationality = models.CharField(initial=None,
                                     choices=nationalities,
-                                    verbose_name='Was ist ihre Nationalität? (Falls Sie mehrere Nationalitäten haben, geben Sie bitte die Nationalität an, mit der Sie sich am meisten identifizieren.)')
+                                    verbose_name='Was ist ihre Nationalität? <br> <i>(Falls Sie mehrere Nationalitäten haben, geben Sie bitte die Nationalität an, mit der Sie sich am meisten identifizieren.)</i>')
 
 #    currentcountry = models.CharField(initial=None,
 #                                        verbose_name='In welchem Land wohnen Sie aktuell?',
@@ -83,6 +83,8 @@ class Player(BasePlayer):
                                    verbose_name='Bitte beschreiben Sie sich in 2-3 Sätzen. Gehen Sie dabei z.B. auf Ihre Hobbies, Interessen, Familie, etc. ein.')
     look = models.LongStringField(blank=False,
                                   verbose_name='Bitte beschreiben Sie Ihr Aussehen in 2-3 Sätzen. Gehen Sie dabei z.B. auf Ihre Haarfarbe, Augenfarbe, Größe, Brille(?), etc. ein.')
+    accept = models.BooleanField(blank=False,)
+
 
 # PAGES
 class consent_de(Page):
@@ -107,6 +109,11 @@ class risk_tool_instructions_de(Page):
 class risk_tool_de(Page):
     pass
 
+class risk_tool_accept_de(Page):
+    form_model = 'player'
+    form_fields = ['accept']	
+
+
 class end_de(Page):
     pass
 
@@ -118,5 +125,6 @@ page_sequence = [
     risk_survey_de,
     risk_tool_instructions_de,
     risk_tool_de,
+    risk_tool_accept_de,
     end_de
                    ]

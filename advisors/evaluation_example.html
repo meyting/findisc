@@ -16,28 +16,15 @@
 {{ block content }}
 
 <div class="profile ">
-<div class="profilecontent">
-    <div class="avatar">
-    {% if profile.gender == "weiblich" %}
-    {% if profile.nationality == "deutsch" %}
-    <img class="avatarimg" src="{% static "avatar/avatar_f_white.png" %}" />
-    {% elif profile.nationality != "deutsch" %}
-    <img class="avatarimg" src="{% static "avatar/avatar_f_black.png" %}" />
-    {% endif %}
-    {% elif profile.gender == "männlich" %}
-    {% if profile.nationality == "deutsch" %}
-    <img class="avatarimg" src="{% static "avatar/avatar_m_white.png" %}" />
-    {% elif profile.nationality != "deutsch" %}
-    <img class="avatarimg" src="{% static "avatar/avatar_m_black.png" %}" />
-    {% endif %}
-    {% endif %}
-</div>
-<div class="name">
-    <h3 style="text-align:center; vertical-align: middle; line-height:100px">{{ name }}</h5>
-</div>
-</div>
-</div>
-</div>
+    <div class="profilecontent">
+        <div class="avatar">
+        <img class="avatarimg" src="{% static picpath %}" />
+       </div>
+    <div class="name">
+        <h3 style="text-align:center; vertical-align: middle; line-height:100px">{{ name }}</h5>
+    </div>
+    </div>
+    </div>
 
     <br/>
 
@@ -55,8 +42,25 @@
         <td style = "width:20%;text-align:center;font-weight:bold"> Nationalität: </td>
         <td style = "width:20%;text-align:center"> {{ nationality }}</td>
     </tr>
+    <tr style="text-align:center" >
+        <td style = "width:20%;text-align:center;font-weight:bold"> Hochschulabschluss: </td>
+        <td style = "width:20%;text-align:center"> {{ education_school }}</td>
+    </tr>
+    <tr style="text-align:center" >
+        <td style = "width:20%;text-align:center;font-weight:bold"> Universitätsabschluss: </td>
+        <td style = "width:20%;text-align:center"> {{ education_uni }}</td>
+    </tr>
+    <tr style="text-align:center" >
+        <td style = "width:20%;text-align:center;font-weight:bold"> Beruf: </td>
+        <td style = "width:20%;text-align:center"> {{ profession }}</td>
+    </tr>
+    <tr style="text-align:center" >
+        <td style = "width:20%;text-align:center;font-weight:bold"> Religion: </td>
+        <td style = "width:20%;text-align:center"> {{ religion }}</td>
+    </tr>
     </table>
 <hr>
+<b>Kurzvorstellung:</b><br>
 <i>  "{{ introduction }}"</i>
 <hr>
 <table style="width:100%">

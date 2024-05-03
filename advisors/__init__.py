@@ -11,11 +11,16 @@ import random
 df = pd.read_excel('_static/global/clients.xlsx', keep_default_na=False, engine='openpyxl')
 df["gender"] = df["gender"].astype(str)
 df["nationality"] = df["nationality"].astype(str)
+df["religion"] = df["religion"].astype(str)
+df["education_uni"] = df["education_uni"].astype(str)
+df["education_school"] = df["education_school"].astype(str)
+df["profession"] = df["profession"].astype(str)
 df["introduction"] = df["introduction"].astype(str)
 df["age"] = df["age"].astype(int)
 df["riskgroup"] = df["riskgroup"].astype(int)
 df["riskgroup_text"] = df["riskgroup_text"].astype(str)
 df["id"] = df["id"].astype(int)
+df["idpic"] = df["id"].astype(str)
 
 
 choices = pd.read_excel('_static/global/choices.xlsx', engine = 'openpyxl') # can also index sheet by name or fetch all sheets
@@ -63,11 +68,11 @@ class Player(BasePlayer):
     riskgroup = models.IntegerField(blank=False)
     riskyshare = models.IntegerField(blank=False)
     offer = models.IntegerField()
-    best_advice = models.IntegerField()	
+    best_advice = models.IntegerField(verbose_name="Bei welcher Empfehlung sind sich sich am sichersten? <br> <i>(Bitte geben Sie den Namen des jeweiligen Kunden bzw. der jeweiligen Kundin ein.)</i>")	
 
     name = models.CharField(blank=True,
                             initial=None,
-                            verbose_name='Wie lautet Ihr erster Vorname? (Ihre Antworten können trotz Angabe Ihres ersten Vornamens nicht auf Sie persönlich zurückgeführt werden!)')
+                            verbose_name='Wie lautet Ihr erster Vorname?')
     age = models.IntegerField(verbose_name='Wie alt sind Sie?')
     gender = models.CharField(initial=None,
                               choices=['weiblich', 'männlich', 'nicht-binär'],
@@ -75,7 +80,7 @@ class Player(BasePlayer):
                               widget=widgets.RadioSelect())
     nationality = models.CharField(initial=None,
                                     choices=nationalities,
-                                    verbose_name='Was ist ihre Nationalität? (Falls Sie mehrere Nationalitäten haben, geben Sie bitte die Nationalität an, mit der Sie sich am meisten identifizieren.)')
+                                    verbose_name='Was ist ihre Nationalität? <br><i>(Falls Sie mehrere Nationalitäten haben, geben Sie bitte die Nationalität an, mit der Sie sich am meisten identifizieren.)</i>')
 
 #    currentcountry = models.CharField(initial=None,
 #                                        verbose_name='In welchem Land wohnen Sie aktuell?',
@@ -109,8 +114,6 @@ class Player(BasePlayer):
     party = models.CharField(initial = None,
                                 verbose_name = 'Welche Partei würden Sie wählen, wenn heute Bundestagswahl wäre?',
                                 choices = ['CDU/CSU', 'SPD', 'Grüne', 'FDP', 'Linke', 'AFD', 'weiß nicht', 'Sonstiges', 'bin Nichtwähler'],)
-    favmovie = models.CharField(initial = None,
-                                verbose_name = "Was ist Ihr Lieblingsfilm?")
     
     q1 = models.IntegerField(blank=False)
     q2 = models.IntegerField(blank=False)
@@ -147,17 +150,28 @@ class evaluation_example(Page):
         gender = profile["gender"]
         name = profile["name"]
         nationality = profile["nationality"]
+        religion = profile["religion"]
+        profession = profile["profession"]
+        education_school = profile["education_school"]
+        education_uni = profile["education_uni"]
         introduction = profile["introduction"]
         age = profile["age"]
         id = profile["id"]
+        idpic = profile["idpic"]
         return {
             'profile': profile,
             'id': id,
             'gender': gender,
             'nationality': nationality,
+            'profession': profession,
+            'education_school': education_school,
+            'education_uni': education_uni,
+            'nationality': nationality,
+            'religion': religion,
             'introduction': introduction,
             'age': age,
             'name':name,
+            'picpath': 'profilepics/' + idpic + '.PNG',
         }
 
     @staticmethod
@@ -192,21 +206,32 @@ class evaluation_example_2(Page):
         gender = profile["gender"]
         name = profile["name"]
         nationality = profile["nationality"]
+        religion = profile["religion"]
+        profession = profile["profession"]
+        education_school = profile["education_school"]
+        education_uni = profile["education_uni"]
         introduction = profile["introduction"]
         riskgroup = profile["riskgroup"]
         riskgroup_text = profile["riskgroup_text"]
         age = profile["age"]
         id = profile["id"]
+        idpic = profile["idpic"]
         return {
             'name':name,
             'profile': profile,
             'id': id,
             'gender': gender,
             'nationality': nationality,
-            'introduction': introduction,
+            'profession': profession,
+            'education_school': education_school,
+            'education_uni': education_uni,
+            'nationality': nationality,
+            'religion': religion,
             'riskgroup': riskgroup,
             'riskgroup_text': riskgroup_text,
+            'introduction': introduction,
             'age': age,
+            'picpath': 'profilepics/' + idpic + '.PNG',
         }
     
     @staticmethod
@@ -253,8 +278,13 @@ class evaluation_de(Page):
         gender = profile["gender"]
         nationality = profile["nationality"]
         introduction = profile["introduction"]
+        religion = profile["religion"]
+        profession = profile["profession"]
+        education_school = profile["education_school"]
+        education_uni = profile["education_uni"]
         age = profile["age"]
         id = profile["id"]
+        idpic = profile["idpic"]
         name = profile["name"]
         return {
             'name':name,
@@ -264,6 +294,12 @@ class evaluation_de(Page):
             'nationality': nationality,
             'introduction': introduction,
             'age': age,
+            'profession': profession,
+            'education_school': education_school,
+            'education_uni': education_uni,
+            'nationality': nationality,
+            'religion': religion,
+            'picpath': 'profilepics/' + idpic + '.PNG',
        }
     
     @staticmethod
@@ -301,20 +337,32 @@ class evaluation_de_2(Page):
         nationality = profile["nationality"]
         name = profile["name"]
         introduction = profile["introduction"]
+        religion = profile["religion"]
+        profession = profile["profession"]
+        education_school = profile["education_school"]
+        education_uni = profile["education_uni"]
         riskgroup = profile["riskgroup"]
         riskgroup_text = profile["riskgroup_text"]
         age = profile["age"]
         id = profile["id"]
+        idpic = profile["idpic"]
         return {
             'profile': profile,
             'id': id,
             'name':name,
             'gender': gender,
             'nationality': nationality,
+            'profession': profession,
+            'education_school': education_school,
+            'education_uni': education_uni,
+            'nationality': nationality,
+            'religion': religion,
             'introduction': introduction,
             'riskgroup': riskgroup,	
             'riskgroup_text': riskgroup_text,
-            'age': age,
+            'age': age, 
+            'picpath': 'profilepics/' + idpic + '.PNG',
+
        }
     
     @staticmethod
@@ -333,10 +381,6 @@ class evaluation_de_2(Page):
             q4= q4,
             q5= q5,
         )
-
-
-
-
 
 
 class payment_de(Page):
@@ -378,7 +422,7 @@ class payment_de(Page):
         id3 = profile3["id"]
         gender4 = profile4["gender"]
         nationality4 = profile4["nationality"]
-        name4 = profile1["name"]
+        name4 = profile4["name"]
         introduction4 = profile4["introduction"]
         riskgroup4 = profile4["riskgroup"]
         riskgroup_text4 = profile4["riskgroup_text"]
@@ -432,7 +476,7 @@ class iat_de(Page):
 class demos_de(Page):
     form_model = 'player'
     form_fields = ['name','age', 'gender', 'profession', 'fieldofstudy', 'occupation', 'nationality', 
-                   'education_school', 'education_uni','religion', 'party', 'favmovie']
+                   'education_school', 'education_uni','religion', 'party',]
 
     @staticmethod
     def is_displayed(player: Player):
@@ -446,11 +490,11 @@ class end_de(Page):
 page_sequence = [
     consent_de,
     instructions_de,
-    evaluation_example,
+    #evaluation_example,
     evaluation_example_2,
-    payment_instructions_de,
+    #payment_instructions_de,
     explanations_rt_de,
-    evaluation_de,
+    #evaluation_de,
     evaluation_de_2,
     payment_de,
     groupy_de,
