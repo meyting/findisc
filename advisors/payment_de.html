@@ -1,0 +1,72 @@
+{{ block title }}
+    Ihre beste Beratung
+{{ endblock }}
+{{ block content }}
+<p>
+    Hier sehen Sie nun nochmal eine Übersicht über alle eben beratenen Personen inklusive der von Ihnen gegebenen Empfehlungen:
+</p>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Geschlecht</th>
+        <th>Alter</th>
+        <th>Nationalität</th>
+        <th>Risikogruppe</th>
+        <th>Ihre Empfehlung</th>
+    </tr>
+    <tr>
+        <td>{{name1}}</td>
+        <td>{{gender1}}</td>
+        <td>{{age1}}</td>
+        <td>{{nationality1}}</td>
+        <td>{{riskgroup1}}</td>
+        <td>{{advice1}}</td>
+    </tr>
+    <tr>
+        <td>{{name2}}</td>
+        <td>{{gender2}}</td>
+        <td>{{age2}}</td>
+        <td>{{nationality2}}</td>
+        <td>{{riskgroup2}}</td>
+        <td>{{advice2}}</td>
+    </tr>
+    <tr>
+        <td>{{name3}}</td>
+        <td>{{gender3}}</td>
+        <td>{{age3}}</td>
+        <td>{{nationality3}}</td>
+        <td>{{riskgroup3}}</td>
+        <td>{{advice3}}</td>
+    </tr>
+    <tr>
+        <td>{{name4}}</td>
+        <td>{{gender4}}</td>
+        <td>{{age4}}</td>
+        <td>{{nationality4}}</td>
+        <td>{{riskgroup4}}</td>
+        <td>{{advice4}}</td>
+    </tr>
+</table>
+<hr>
+    {{ formfields }}
+
+    <br>
+    
+    {{ next_button }}
+
+{{ endblock }}
+
+{{ block styles}}
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+    padding: 8px;
+    text-align: left;
+}   
+
+</style>
+{{ endblock }}

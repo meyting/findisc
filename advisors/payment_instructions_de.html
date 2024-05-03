@@ -1,0 +1,16 @@
+{{ block title }}
+    Ihr möglicher Bonus
+{{ endblock }}
+{{ block content }}
+<p>
+    Nachdem Sie Ihre Beratungen abgeschlossen haben, zeigen wir Ihnen nochmal Personen und die von Ihnen gegebenen Empfehlungen.
+    Sie haben dann die Möglichkeit eine der Personen und Ihre dazugehörige Empfehlung für Ihre Bonuszahlung auszuwählen. 
+    Sie erhalten dann eine Bonuszahlung von {{C.bonus}}, wenn diese Person Ihre Empfehlung annimmt. 
+    Falls die Person Ihre Empfehlung ablehnt und sich für ein anderes Finanzprodukt entscheidet, bekommen Sie keinen Bonus.
+</p>
+
+    {{ formfields }}
+
+    {{ next_button }}
+
+{{ endblock }}
