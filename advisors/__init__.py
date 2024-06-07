@@ -19,8 +19,7 @@ df["introduction"] = df["introduction"].astype(str)
 df["age"] = df["age"].astype(int)
 df["riskgroup"] = df["riskgroup"].astype(int)
 df["riskgroup_text"] = df["riskgroup_text"].astype(str)
-df["id"] = df["id"].astype(int)
-df["idpic"] = df["id"].astype(str)
+df["prolificid_client"] = df["prolificid_client"].astype(str)
 df["income"] = df["income"].astype(str)
 
 df["q1_text"] = "Keine Antwort"
@@ -91,6 +90,10 @@ class C(BaseConstants):
 class Subsession(BaseSubsession):
     pass
 
+def select_unique_risky_shares(data, n):
+    unique_risky_shares = data.drop_duplicates(subset=['riskyshare']).sample(n=n)
+    return unique_risky_shares
+
 def creating_session(subsession: Subsession):
     import itertools
     variant_rt = itertools.cycle(['rt', 'nort'])
@@ -101,12 +104,10 @@ def creating_session(subsession: Subsession):
             else:
                 p.participant.variant_rt = next(variant_rt)
             p.participant.profiles = []
-            for i in range(0,C.NUM_ROUNDS+1):
-                selected_profiles_df = df[df.id==i]
-                print(i)
-                profiles = selected_profiles_df.to_dict(orient='records')
-                random.shuffle(profiles)
-                p.participant.profiles.append(profiles)
+            selected_profiles_df = select_unique_risky_shares(df, 11)
+            profiles = selected_profiles_df.to_dict(orient='records')
+            random.shuffle(profiles)
+            p.participant.profiles = profiles
 
             
 class Group(BaseGroup):
@@ -116,7 +117,7 @@ class Group(BaseGroup):
 class Player(BasePlayer):
     consent = models.BooleanField()
     riskgroup_example = models.IntegerField(blank=True)
-    riskyshare_example = models.IntegerField(blank=True,
+    advice_example = models.IntegerField(blank=True,
                                              choices=[
                                         [0, "0% Risikoanteil"],
                                         [10, "10% Risikoanteil"], 
@@ -130,14 +131,14 @@ class Player(BasePlayer):
                                         [90, "90% Risikoanteil"],
                                         [100, "100% Risikoanteil"]],
                                         verbose_name="""""")
-    riskyshare_certainty_example = models.IntegerField(blank=True,
+    advice_certainty_example = models.IntegerField(blank=True,
                                                choices=[[1, "sehr sicher"],
                                                         [2, "ziemlich sicher"],
                                                         [3, "ziemlich unsicher"], 
                                                         [4, "sehr unsicher"]],
                                         verbose_name="""""")
     riskgroup = models.IntegerField(blank=False)
-    riskyshare = models.IntegerField(choices=[
+    advice = models.IntegerField(choices=[
                                         [0, "0% Risikoanteil"],
                                         [10, "10% Risikoanteil"], 
                                         [20, "20% Risikoanteil"], 
@@ -151,7 +152,7 @@ class Player(BasePlayer):
                                         [100, "100% Risikoanteil"]
                                         ],
                                         verbose_name="""""")
-    riskyshare_certainty = models.IntegerField(blank=False,
+    advice_certainty = models.IntegerField(blank=False,
                                                choices=[[1, "sehr sicher"],
                                                         [2, "ziemlich sicher"],
                                                         [3, "ziemlich unsicher"], 
@@ -236,7 +237,7 @@ class risk_survey_de(Page):
 '''
 class evaluation_example_de(Page):
     form_model = 'player'
-    form_fields = ['riskgroup_example', 'riskyshare_example', 'offer', 'q1', 'q2', 'q3', 'q4', 'q5']
+    form_fields = ['riskgroup_example', 'advice_example', 'offer', 'q1', 'q2', 'q3', 'q4', 'q5']
 
     @staticmethod
     def is_displayed(player: Player):
@@ -304,7 +305,7 @@ class evaluation_example_de(Page):
     
 class evaluation_example_de_2(Page):
     form_model = 'player'
-    form_fields = ['riskyshare_example', 'offer', 'q1', 'q2', 'q3', 'q4', 'q5']
+    form_fields = ['advice_example', 'offer', 'q1', 'q2', 'q3', 'q4', 'q5']
 
     @staticmethod
     def is_displayed(player: Player):
@@ -377,7 +378,7 @@ class evaluation_example_de_2(Page):
 
 class evaluation_example_de_3(Page):
     form_model = 'player'
-    form_fields = ['riskyshare_example', 'offer', 'riskyshare_certainty_example']
+    form_fields = ['advice_example', 'offer', 'advice_certainty_example']
 
     @staticmethod
     def is_displayed(player: Player):
@@ -386,10 +387,11 @@ class evaluation_example_de_3(Page):
     @staticmethod
     def vars_for_template(player: Player):
         participant = player.participant
-        profile = participant.profiles[player.round_number-1][0]
+        profile = participant.profiles[player.round_number-1]
         gender = profile["gender"]
         name = profile["name"]
         nationality = profile["nationality"]
+        prolificid_client = profile["prolificid_client"]
         religion = profile["religion"]
         profession = profile["profession"]
         education_school = profile["education_school"]
@@ -409,8 +411,6 @@ class evaluation_example_de_3(Page):
         riskgroup = profile["riskgroup"]
         riskgroup_text = profile["riskgroup_text"]
         age = profile["age"]
-        id = profile["id"]
-        idpic = profile["idpic"]
         q1 = profile["q1"]
         q2 = profile["q2"]
         q3 = profile["q3"]
@@ -419,8 +419,8 @@ class evaluation_example_de_3(Page):
         return {
             'name':name,
             'profile': profile,
-            'id': id,
             'gender': gender,
+            'prolificid_client': prolificid_client,
             'q1_text': q1_text,
             'q2_text': q2_text,
             'q3_text': q3_text,
@@ -442,7 +442,7 @@ class evaluation_example_de_3(Page):
             'riskgroup_text': riskgroup_text,
             'introduction': introduction,
             'age': age,
-            'picpath': 'profilepics/' + idpic + '.JPG',
+            'picpath': 'profilepics/' + prolificid_client + '.JPG',
             'scalepath1': 'scales/scale' + str(q1) + '.png',
             'scalepath2': 'scales/scale' + str(q2) + '.png',
             'scalepath3': 'scales/scale' + str(q3) + '.png',
@@ -465,7 +465,7 @@ class explanations_rt_de(Page):
 '''
 class evaluation_de(Page):
     form_model = 'player'
-    form_fields = ['riskgroup', 'riskyshare', 'offer', 'q1', 'q2', 'q3', 'q4', 'q5']
+    form_fields = ['riskgroup', 'advice', 'offer', 'q1', 'q2', 'q3', 'q4', 'q5']
 
     @staticmethod
     def vars_for_template(player: Player):
@@ -532,7 +532,7 @@ class evaluation_de(Page):
 
 class evaluation_de_2(Page):
     form_model = 'player'
-    form_fields = ['riskyshare', 'offer', 'q1', 'q2', 'q3', 'q4', 'q5']
+    form_fields = ['advice', 'offer', 'q1', 'q2', 'q3', 'q4', 'q5']
 
     @staticmethod
     def vars_for_template(player: Player):
@@ -605,14 +605,15 @@ class evaluation_de_2(Page):
 
 class evaluation_de_3(Page):
     form_model = 'player'
-    form_fields = ['riskyshare', 'offer', 'riskyshare_certainty']
+    form_fields = ['advice', 'offer', 'advice_certainty']
 
     @staticmethod
     def vars_for_template(player: Player):
         participant = player.participant
         print(participant.profiles)
         print(player.round_number)
-        profile = participant.profiles[player.round_number][0]
+        profile = participant.profiles[player.round_number]
+        prolificid_client = profile["prolificid_client"]
         nationality = profile["nationality"]
         name = profile["name"]
         introduction = profile["introduction"]
@@ -635,8 +636,6 @@ class evaluation_de_3(Page):
         riskgroup = profile["riskgroup"]
         riskgroup_text = profile["riskgroup_text"]
         age = profile["age"]
-        id = profile["id"]
-        idpic = profile["idpic"]
         q1 = profile["q1"]
         q2 = profile["q2"]
         q3 = profile["q3"]
@@ -644,10 +643,10 @@ class evaluation_de_3(Page):
         q5 = profile["q5"]
         return {
             'profile': profile,
-            'id': id,
             'name':name,
             'nationality': nationality,
             'profession': profession,
+            'prolificid_client': prolificid_client,
             'q1_text': q1_text,
             'q2_text': q2_text,
             'q3_text': q3_text,
@@ -668,7 +667,7 @@ class evaluation_de_3(Page):
             'riskgroup': riskgroup,	
             'riskgroup_text': riskgroup_text,
             'age': age, 
-            'picpath': 'profilepics/' + idpic + '.JPG',
+            'picpath': 'profilepics/' + prolificid_client + '.JPG',
             'scalepath1': 'scales/scale' + str(q1) + '.png',
             'scalepath2': 'scales/scale' + str(q2) + '.png',
             'scalepath3': 'scales/scale' + str(q3) + '.png',
@@ -747,10 +746,10 @@ class payment_de(Page):
             'riskgroup4': riskgroup4,	
             'riskgroup_text4': riskgroup_text4,
             'age4': age4,
-            'advice1': player.in_round(1).riskyshare,
-            'advice2': player.in_round(2).riskyshare,
-            'advice3': player.in_round(3).riskyshare,
-            'advice4': player.in_round(4).riskyshare
+            'advice1': player.in_round(1).advice,
+            'advice2': player.in_round(2).advice,
+            'advice3': player.in_round(3).advice,
+            'advice4': player.in_round(4).advice
             }
 
     @staticmethod

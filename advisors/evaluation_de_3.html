@@ -234,11 +234,11 @@ Bitte geben Sie Ihre Anlageempfehlung für diesen Kunden ab:
 <table id="info" style="font-size:1.1rem; table-layout: fixed; width:100%; margin-left:auto; margin-right:auto;background-color:rgb(218, 241, 218)">
     <tr style="text-align:center" >
         <td style = "width:80%;text-align:center;font-weight:bold"> Welches Produkt würden Sie dieser Person empfehlen? </td>
-        <td style = "width:20%;text-align:right;font-weight:bold">         {%  formfield player.riskyshare %} </td>
+        <td style = "width:20%;text-align:right;font-weight:bold">         {%  formfield player.advice %} </td>
         <td style = "width:10%;text-align:left;"> </td>
     </tr>
-    {% if form.riskyshare.errors %}
-    {{ formfield_errors "riskyshare" }}
+    {% if form.advice.errors %}
+    {{ formfield_errors "advice" }}
     {% endif %}
 </table>
 </div>
@@ -247,11 +247,11 @@ Bitte geben Sie Ihre Anlageempfehlung für diesen Kunden ab:
     <table id="info" style="font-size:1.1rem; table-layout: fixed; width:100%; margin-left:auto; margin-right:auto;background-color:rgb(218, 241, 218)">
     <tr style="text-align:center" >
         <td style = "width:80%;text-align:center;font-weight:bold"> Wie sicher sind Sie sich bei Ihrer Empfehlung? </td>
-        <td style = "width:20%;text-align:right;font-weight:bold">         {%  formfield player.riskyshare_certainty %} </td>
+        <td style = "width:20%;text-align:right;font-weight:bold">         {%  formfield player.advice_certainty %} </td>
         <td style = "width:10%;text-align:left;"> </td>
     </tr>
-        {% if form.riskyshare_certainty.errors %}
-        {{ formfield_errors "riskyshare_certainty" }}
+        {% if form.advice_certainty.errors %}
+        {{ formfield_errors "advice_certainty" }}
         {% endif %}
     </tr>
     </table>
@@ -262,7 +262,7 @@ Bitte geben Sie Ihre Anlageempfehlung für diesen Kunden ab:
         {% next_button %}
     </div>
     <br>
-<input type="hidden" name="offer" value="{{id}}" id="offer"/>
+<input type="hidden" name="offer" value="{{prolificid_client}}" id="offer"/>
 
     {{ endblock }}
 

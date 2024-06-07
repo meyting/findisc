@@ -154,11 +154,11 @@
 <table id="info" style="font-size:1.1rem; table-layout: fixed; width:100%; margin-left:auto; margin-right:auto;background-color:rgb(218, 241, 218)">
     <tr style="text-align:center" >
         <td style = "width:80%;text-align:center;font-weight:bold"> Welches Produkt würden Sie dieser Person empfehlen? </td>
-        <td style = "width:20%;text-align:right;font-weight:bold">  <input name="riskyshare_example" class="rawfield"  class="disabled-input" disabled/> </td>
+        <td style = "width:20%;text-align:right;font-weight:bold">  <input name="advice_example" class="rawfield"  class="disabled-input" disabled/> </td>
         <td style = "width:10%;text-align:left;"> </td>
     </tr>
-    {% if form.riskyshare_example.errors %}
-    {{ formfield_errors "riskyshare_example" }}
+    {% if form.advice_example.errors %}
+    {{ formfield_errors "advice_example" }}
     {% endif %}
 </table>
 </div>
@@ -167,11 +167,11 @@
     <table id="info" style="font-size:1.1rem; table-layout: fixed; width:100%; margin-left:auto; margin-right:auto;background-color:rgb(218, 241, 218)">
     <tr style="text-align:center" >
         <td style = "width:80%;text-align:center;font-weight:bold"> Wie sicher sind Sie sich bei Ihrer Empfehlung? </td>
-        <td style = "width:20%;text-align:right;font-weight:bold">  <input name="riskyshare_certainty_example" class="rawfield"  class="disabled-input" disabled/> </td>
+        <td style = "width:20%;text-align:right;font-weight:bold">  <input name="advice_certainty_example" class="rawfield"  class="disabled-input" disabled/> </td>
         <td style = "width:10%;text-align:left;"> </td>
     </tr>
-        {% if form.riskyshare_certainty_example.errors %}
-        {{ formfield_errors "riskyshare_certainty_example" }}
+        {% if form.advice_certainty_example.errors %}
+        {{ formfield_errors "advice_certainty_example" }}
         {% endif %}
     </tr>
 </table>
@@ -262,11 +262,11 @@
 <table id="info" style="font-size:1.1rem; table-layout: fixed; width:100%; margin-left:auto; margin-right:auto;background-color:rgb(218, 241, 218)">
     <tr style="text-align:center" >
         <td style = "width:80%;text-align:center;font-weight:bold"> Welches Produkt würden Sie dieser Person empfehlen? </td>
-        <td style = "width:20%;text-align:right;font-weight:bold">  <input name="riskyshare_example" class="rawfield"  class="disabled-input" disabled/> </td>
+        <td style = "width:20%;text-align:right;font-weight:bold">  <input name="advice_example" class="rawfield"  class="disabled-input" disabled/> </td>
         <td style = "width:10%;text-align:left;"> </td>
     </tr>
-    {% if form.riskyshare_example.errors %}
-    {{ formfield_errors "riskyshare_example" }}
+    {% if form.advice_example.errors %}
+    {{ formfield_errors "advice_example" }}
     {% endif %}
 </table>
 </div>
@@ -275,11 +275,11 @@
     <table id="info" style="font-size:1.1rem; table-layout: fixed; width:100%; margin-left:auto; margin-right:auto;background-color:rgb(218, 241, 218)">
     <tr style="text-align:center" >
         <td style = "width:80%;text-align:center;font-weight:bold"> Wie sicher sind Sie sich bei Ihrer Empfehlung? </td>
-        <td style = "width:20%;text-align:right;font-weight:bold">  <input name="riskyshare_certainty_example" class="rawfield"  class="disabled-input" disabled/> </td>
+        <td style = "width:20%;text-align:right;font-weight:bold">  <input name="advice_certainty_example" class="rawfield"  class="disabled-input" disabled/> </td>
         <td style = "width:10%;text-align:left;"> </td>
     </tr>
-        {% if form.riskyshare_certainty_example.errors %}
-        {{ formfield_errors "riskyshare_certainty_example" }}
+        {% if form.advice_certainty_example.errors %}
+        {{ formfield_errors "advice_certainty_example" }}
         {% endif %}
     </tr>
 </table>
@@ -291,7 +291,7 @@
         {% next_button %}
     </div>
     <br>
-<input type="hidden" name="offer" value="{{id}}" id="offer"/>
+<input type="hidden" name="offer" value="{{prolificid_client}}" id="offer"/>
 
     {{ endblock }}
 
