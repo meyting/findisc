@@ -35,6 +35,8 @@ Ein paar Fragen zu Ihrer Person
     <div style="display: none;" id="profession">
          {%  formfield player.profession %}
     </div>
+    {%  formfield player.income %}
+
     <div style="display: none;" id="fieldofstudy">
         {%  formfield player.fieldofstudy %}
     </div>
@@ -74,6 +76,7 @@ function yesnoCheck(that) {
 {{ form.age.errors }}
 {{ form.name.errors }}
 {{ form.party.errors }}
+{{ form.income.errors }}
 {{ form.religion.errors }}
 {{ form.education_uni.errors }}
 {{ form.education_school.errors }}

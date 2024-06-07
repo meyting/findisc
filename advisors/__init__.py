@@ -21,7 +21,59 @@ df["riskgroup"] = df["riskgroup"].astype(int)
 df["riskgroup_text"] = df["riskgroup_text"].astype(str)
 df["id"] = df["id"].astype(int)
 df["idpic"] = df["id"].astype(str)
+df["income"] = df["income"].astype(str)
 
+df["q1_text"] = "Keine Antwort"
+df.loc[(df.q1==1),"q1_text"] = "Der Erhalt meiner Kapitalanlage ist mir gar nicht wichtig."
+df.loc[(df.q1==2),"q1_text"] = "Der Erhalt meiner Kapitalanlage ist mir eher nicht wichtig."
+df.loc[(df.q1==3),"q1_text"] = "Der Erhalt meiner Kapitalanlage ist mir eher wichtig."
+df.loc[(df.q1==4),"q1_text"] = "Der Erhalt meiner Kapitalanlage ist mir sehr wichtig."
+df["q2_text"] = "Keine Antwort"
+df.loc[(df.q2==1),"q2_text"] = "Um meinen Ertrag zu erhöhen ist mir viel wichtiger Risiken einzugehen, als eine zuverlässige Rendite zu bekommen."
+df.loc[(df.q2==2),"q2_text"] = "Um meinen Ertrag zu erhöhen ist mir eher wichtiger Risiken einzugehen, als eine zuverlässige Rendite zu bekommen."
+df.loc[(df.q2==3),"q2_text"] = "Um meinen Ertrag zu erhöhen ist mir eher wichtiger eine zuverlässige Rendite zu bekommen, als Risiken einzugehen."
+df.loc[(df.q2==4),"q2_text"] = "Um meinen Ertrag zu erhöhen ist mir viel wichtiger eine zuverlässige Rendite zu bekommen, als Risiken einzugehen."
+df["q3_text"] = "Keine Antwort"
+df.loc[(df.q3==1),"q3_text"] = "Kleinste Verluste machen mich gar nicht nervös."
+df.loc[(df.q3==2),"q3_text"] = "Kleinste Verluste machen mich eher nicht nervös."
+df.loc[(df.q3==3),"q3_text"] = "Kleinste Verluste machen mich bereits etwas nervös."
+df.loc[(df.q3==4),"q3_text"] = "Kleinste Verluste machen mich bereits sehr nervös."
+df["q4_text"] = "Keine Antwort"
+df.loc[(df.q4==1),"q4_text"] = "Finanzielle Risiken sind gar nicht reizvoll."
+df.loc[(df.q4==2),"q4_text"] = "Finanzielle Risiken sind eher nicht reizvoll."
+df.loc[(df.q4==3),"q4_text"] = "Finanzielle Risiken sind eher reizvoll."
+df.loc[(df.q4==4),"q4_text"] = "Finanzielle Risiken sind sehr reizvoll."
+df["q5_text"] = "Keine Antwort"
+df.loc[(df.q5==1),"q5_text"] = "Ich nehme den Verlust meines Vermögens nicht in Kauf wenn ich gleichzeitig die Chance habe, meine Gewinne zu erhöhen."
+df.loc[(df.q5==2),"q5_text"] = "Ich nehme den Verlust meines Vermögens eher nicht in Kauf wenn ich gleichzeitig die Chance habe, meine Gewinne zu erhöhen."
+df.loc[(df.q5==3),"q5_text"] = "Ich nehme den Verlust meines Vermögens eher in Kauf wenn ich gleichzeitig die Chance habe, meine Gewinne zu erhöhen."
+df.loc[(df.q5==4),"q5_text"] = "Ich nehme den Verlust meines Vermögens in Kauf wenn ich gleichzeitig die Chance habe, meine Gewinne zu erhöhen."
+
+df["q1_short"] = "Keine Antwort"
+df.loc[(df.q1==1),"q1_short"] = "gar nicht"
+df.loc[(df.q1==2),"q1_short"] = "eher nicht"
+df.loc[(df.q1==3),"q1_short"] = "eher"
+df.loc[(df.q1==4),"q1_short"] = "voll und ganz"
+df["q2_short"] = "Keine Antwort"
+df.loc[(df.q2==1),"q2_short"] = "gar nicht"
+df.loc[(df.q2==2),"q2_short"] = "eher nicht"
+df.loc[(df.q2==3),"q2_short"] = "eher"
+df.loc[(df.q2==4),"q2_short"] = "voll und ganz"
+df["q3_short"] = "Keine Antwort"
+df.loc[(df.q3==1),"q3_short"] = "gar nicht"
+df.loc[(df.q3==2),"q3_short"] = "eher nicht"
+df.loc[(df.q3==3),"q3_short"] = "eher"
+df.loc[(df.q3==4),"q3_short"] = "voll und ganz"
+df["q4_short"] = "Keine Antwort"
+df.loc[(df.q4==1),"q4_short"] = "gar nicht"
+df.loc[(df.q4==2),"q4_short"] = "eher nicht"
+df.loc[(df.q4==3),"q4_short"] = "eher"
+df.loc[(df.q4==4),"q4_short"] = "voll und ganz"
+df["q5_short"] = "Keine Antwort"
+df.loc[(df.q5==1),"q5_short"] = "gar nicht"
+df.loc[(df.q5==2),"q5_short"] = "eher nicht"
+df.loc[(df.q5==3),"q5_short"] = "eher"
+df.loc[(df.q5==4),"q5_short"] = "voll und ganz"
 
 choices = pd.read_excel('_static/global/choices.xlsx', engine = 'openpyxl') # can also index sheet by name or fetch all sheets
 countries = choices['Land'][0:197].tolist()
@@ -32,7 +84,7 @@ nationalities = choices['Nationalität'][0:199].tolist()
 class C(BaseConstants):
     NAME_IN_URL = 'advisors'
     PLAYERS_PER_GROUP = None
-    NUM_ROUNDS = 4
+    NUM_ROUNDS = 10
     bonus = cu(2)
 
 
@@ -64,9 +116,48 @@ class Group(BaseGroup):
 class Player(BasePlayer):
     consent = models.BooleanField()
     riskgroup_example = models.IntegerField(blank=True)
-    riskyshare_example = models.IntegerField(blank=True)
+    riskyshare_example = models.IntegerField(blank=True,
+                                             choices=[
+                                        [0, "0% Risikoanteil"],
+                                        [10, "10% Risikoanteil"], 
+                                        [20, "20% Risikoanteil"], 
+                                        [30, "30% Risikoanteil"], 
+                                        [40, "40% Risikoanteil"],
+                                        [50, "50% Risikoanteil"], 
+                                        [60, "60% Risikoanteil"], 
+                                        [70, "70% Risikoanteil"], 
+                                        [80, "80% Risikoanteil"], 
+                                        [90, "90% Risikoanteil"],
+                                        [100, "100% Risikoanteil"]],
+                                        verbose_name="""""")
+    riskyshare_certainty_example = models.IntegerField(blank=True,
+                                               choices=[[1, "sehr sicher"],
+                                                        [2, "ziemlich sicher"],
+                                                        [3, "ziemlich unsicher"], 
+                                                        [4, "sehr unsicher"]],
+                                        verbose_name="""""")
     riskgroup = models.IntegerField(blank=False)
-    riskyshare = models.IntegerField(blank=False)
+    riskyshare = models.IntegerField(choices=[
+                                        [0, "0% Risikoanteil"],
+                                        [10, "10% Risikoanteil"], 
+                                        [20, "20% Risikoanteil"], 
+                                        [30, "30% Risikoanteil"], 
+                                        [40, "40% Risikoanteil"],
+                                        [50, "50% Risikoanteil"], 
+                                        [60, "60% Risikoanteil"], 
+                                        [70, "70% Risikoanteil"], 
+                                        [80, "80% Risikoanteil"], 
+                                        [90, "90% Risikoanteil"],
+                                        [100, "100% Risikoanteil"]
+                                        ],
+                                        verbose_name="""""")
+    riskyshare_certainty = models.IntegerField(blank=False,
+                                               choices=[[1, "sehr sicher"],
+                                                        [2, "ziemlich sicher"],
+                                                        [3, "ziemlich unsicher"], 
+                                                        [4, "sehr unsicher"]],
+                                        verbose_name="""""")
+
     offer = models.IntegerField()
     best_advice = models.IntegerField(verbose_name="Bei welcher Empfehlung sind sich sich am sichersten? <br> <i>(Bitte geben Sie den Namen des jeweiligen Kunden bzw. der jeweiligen Kundin ein.)</i>")	
 
@@ -115,11 +206,11 @@ class Player(BasePlayer):
                                 verbose_name = 'Welche Partei würden Sie wählen, wenn heute Bundestagswahl wäre?',
                                 choices = ['CDU/CSU', 'SPD', 'Grüne', 'FDP', 'Linke', 'AFD', 'weiß nicht', 'Sonstiges', 'bin Nichtwähler'],)
     
-    q1 = models.IntegerField(blank=False)
-    q2 = models.IntegerField(blank=False)
-    q3 = models.IntegerField(blank=False)
-    q4 = models.IntegerField(blank=False)
-    q5 = models.IntegerField(blank=False)
+    q1_advisor = models.IntegerField(blank=False)
+    q2_advisor = models.IntegerField(blank=False)
+    q3_advisor = models.IntegerField(blank=False)
+    q4_advisor = models.IntegerField(blank=False)
+    q5_advisor = models.IntegerField(blank=False)
 
 # PAGES
 class consent_de(Page):
@@ -135,7 +226,15 @@ class instructions_de(Page):
     def is_displayed(player: Player):
         return player.round_number == 1
 
-class evaluation_example(Page):
+class risk_survey_de(Page):
+    form_model = 'player'
+    form_fields = ['q1_advisor', 'q2_advisor', 'q3_advisor', 'q4_advisor', 'q5_advisor']
+
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.round_number == 1
+'''
+class evaluation_example_de(Page):
     form_model = 'player'
     form_fields = ['riskgroup_example', 'riskyshare_example', 'offer', 'q1', 'q2', 'q3', 'q4', 'q5']
 
@@ -152,10 +251,16 @@ class evaluation_example(Page):
         nationality = profile["nationality"]
         religion = profile["religion"]
         profession = profile["profession"]
+        income = profile["income"]
         education_school = profile["education_school"]
         education_uni = profile["education_uni"]
         introduction = profile["introduction"]
         age = profile["age"]
+        q1_text = profile["q1_text"]
+        q2_text = profile["q2_text"]
+        q3_text = profile["q3_text"]
+        q4_text = profile["q4_text"]
+        q5_text = profile["q5_text"]
         id = profile["id"]
         idpic = profile["idpic"]
         return {
@@ -164,14 +269,20 @@ class evaluation_example(Page):
             'gender': gender,
             'nationality': nationality,
             'profession': profession,
+            'q1_text': q1_text,
+            'q2_text': q2_text,
+            'q3_text': q3_text,
+            'q4_text': q4_text,
+            'q5_text': q5_text,
             'education_school': education_school,
             'education_uni': education_uni,
             'nationality': nationality,
             'religion': religion,
+            'income': income,
             'introduction': introduction,
             'age': age,
             'name':name,
-            'picpath': 'profilepics/' + idpic + '.PNG',
+            'picpath': 'profilepics/' + idpic + '.JPG',
         }
 
     @staticmethod
@@ -191,7 +302,7 @@ class evaluation_example(Page):
             q5= q5,
         )
     
-class evaluation_example_2(Page):
+class evaluation_example_de_2(Page):
     form_model = 'player'
     form_fields = ['riskyshare_example', 'offer', 'q1', 'q2', 'q3', 'q4', 'q5']
 
@@ -209,6 +320,12 @@ class evaluation_example_2(Page):
         religion = profile["religion"]
         profession = profile["profession"]
         education_school = profile["education_school"]
+        income = profile["income"]
+        q1_text = profile["q1_text"]
+        q2_text = profile["q2_text"]
+        q3_text = profile["q3_text"]
+        q4_text = profile["q4_text"]
+        q5_text = profile["q5_text"]
         education_uni = profile["education_uni"]
         introduction = profile["introduction"]
         riskgroup = profile["riskgroup"]
@@ -220,18 +337,24 @@ class evaluation_example_2(Page):
             'name':name,
             'profile': profile,
             'id': id,
+            'q1_text': q1_text,
+            'q2_text': q2_text,
+            'q3_text': q3_text,
+            'q4_text': q4_text,
+            'q5_text': q5_text,
             'gender': gender,
             'nationality': nationality,
             'profession': profession,
             'education_school': education_school,
             'education_uni': education_uni,
+            'income':income,
             'nationality': nationality,
             'religion': religion,
             'riskgroup': riskgroup,
             'riskgroup_text': riskgroup_text,
             'introduction': introduction,
             'age': age,
-            'picpath': 'profilepics/' + idpic + '.PNG',
+            'picpath': 'profilepics/' + idpic + '.JPG',
         }
     
     @staticmethod
@@ -250,6 +373,84 @@ class evaluation_example_2(Page):
             q4= q4,
             q5= q5,
         )
+'''
+
+class evaluation_example_de_3(Page):
+    form_model = 'player'
+    form_fields = ['riskyshare_example', 'offer', 'riskyshare_certainty_example']
+
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.round_number == 1
+    
+    @staticmethod
+    def vars_for_template(player: Player):
+        participant = player.participant
+        profile = participant.profiles[player.round_number-1][0]
+        gender = profile["gender"]
+        name = profile["name"]
+        nationality = profile["nationality"]
+        religion = profile["religion"]
+        profession = profile["profession"]
+        education_school = profile["education_school"]
+        education_uni = profile["education_uni"]
+        income = profile["income"]
+        q1_text = profile["q1_text"]
+        q2_text = profile["q2_text"]
+        q3_text = profile["q3_text"]
+        q4_text = profile["q4_text"]
+        q5_text = profile["q5_text"]
+        q1_short = profile["q1_short"]
+        q2_short = profile["q2_short"]
+        q3_short = profile["q3_short"]
+        q4_short = profile["q4_short"]
+        q5_short = profile["q5_short"]
+        introduction = profile["introduction"]
+        riskgroup = profile["riskgroup"]
+        riskgroup_text = profile["riskgroup_text"]
+        age = profile["age"]
+        id = profile["id"]
+        idpic = profile["idpic"]
+        q1 = profile["q1"]
+        q2 = profile["q2"]
+        q3 = profile["q3"]
+        q4 = profile["q4"]
+        q5 = profile["q5"]
+        return {
+            'name':name,
+            'profile': profile,
+            'id': id,
+            'gender': gender,
+            'q1_text': q1_text,
+            'q2_text': q2_text,
+            'q3_text': q3_text,
+            'q4_text': q4_text,
+            'q5_text': q5_text,
+            'q1_short': q1_short,
+            'q2_short': q2_short,
+            'q3_short': q3_short,
+            'q4_short': q4_short,
+            'q5_short': q5_short,
+            'nationality': nationality,
+            'profession': profession,
+            'education_school': education_school,
+            'education_uni': education_uni,
+            'income':income,
+            'nationality': nationality,
+            'religion': religion,
+            'riskgroup': riskgroup,
+            'riskgroup_text': riskgroup_text,
+            'introduction': introduction,
+            'age': age,
+            'picpath': 'profilepics/' + idpic + '.JPG',
+            'scalepath1': 'scales/scale' + str(q1) + '.png',
+            'scalepath2': 'scales/scale' + str(q2) + '.png',
+            'scalepath3': 'scales/scale' + str(q3) + '.png',
+            'scalepath4': 'scales/scale' + str(q4) + '.png',
+            'scalepath5': 'scales/scale' + str(q5) + '.png',
+        }
+    
+
 
 class payment_instructions_de(Page):
     @staticmethod
@@ -261,10 +462,7 @@ class explanations_rt_de(Page):
     def is_displayed(player: Player):
         return player.round_number == 1
 
-
-
-
-
+'''
 class evaluation_de(Page):
     form_model = 'player'
     form_fields = ['riskgroup', 'riskyshare', 'offer', 'q1', 'q2', 'q3', 'q4', 'q5']
@@ -281,6 +479,12 @@ class evaluation_de(Page):
         religion = profile["religion"]
         profession = profile["profession"]
         education_school = profile["education_school"]
+        income = profile["income"]
+        q1_text = profile["q1_text"]
+        q2_text = profile["q2_text"]
+        q3_text = profile["q3_text"]
+        q4_text = profile["q4_text"]
+        q5_text = profile["q5_text"]
         education_uni = profile["education_uni"]
         age = profile["age"]
         id = profile["id"]
@@ -294,12 +498,18 @@ class evaluation_de(Page):
             'nationality': nationality,
             'introduction': introduction,
             'age': age,
+            'q1_text': q1_text,
+            'q2_text': q2_text,
+            'q3_text': q3_text,
+            'q4_text': q4_text,
+            'q5_text': q5_text,
+            'income': income,
             'profession': profession,
             'education_school': education_school,
             'education_uni': education_uni,
             'nationality': nationality,
             'religion': religion,
-            'picpath': 'profilepics/' + idpic + '.PNG',
+            'picpath': 'profilepics/' + idpic + '.JPG',
        }
     
     @staticmethod
@@ -318,9 +528,6 @@ class evaluation_de(Page):
             q4= q4,
             q5= q5,
         )
-
-
-
 
 
 class evaluation_de_2(Page):
@@ -339,6 +546,12 @@ class evaluation_de_2(Page):
         introduction = profile["introduction"]
         religion = profile["religion"]
         profession = profile["profession"]
+        income = profile["income"]
+        q1_text = profile["q1_text"]
+        q2_text = profile["q2_text"]
+        q3_text = profile["q3_text"]
+        q4_text = profile["q4_text"]
+        q5_text = profile["q5_text"]
         education_school = profile["education_school"]
         education_uni = profile["education_uni"]
         riskgroup = profile["riskgroup"]
@@ -353,15 +566,21 @@ class evaluation_de_2(Page):
             'gender': gender,
             'nationality': nationality,
             'profession': profession,
+            'q1_text': q1_text,
+            'q2_text': q2_text,
+            'q3_text': q3_text,
+            'q4_text': q4_text,
+            'q5_text': q5_text,
             'education_school': education_school,
             'education_uni': education_uni,
             'nationality': nationality,
+            'income': income,
             'religion': religion,
             'introduction': introduction,
             'riskgroup': riskgroup,	
             'riskgroup_text': riskgroup_text,
             'age': age, 
-            'picpath': 'profilepics/' + idpic + '.PNG',
+            'picpath': 'profilepics/' + idpic + '.JPG',
 
        }
     
@@ -381,7 +600,82 @@ class evaluation_de_2(Page):
             q4= q4,
             q5= q5,
         )
+'''
 
+
+class evaluation_de_3(Page):
+    form_model = 'player'
+    form_fields = ['riskyshare', 'offer', 'riskyshare_certainty']
+
+    @staticmethod
+    def vars_for_template(player: Player):
+        participant = player.participant
+        print(participant.profiles)
+        print(player.round_number)
+        profile = participant.profiles[player.round_number][0]
+        nationality = profile["nationality"]
+        name = profile["name"]
+        introduction = profile["introduction"]
+        religion = profile["religion"]
+        profession = profile["profession"]
+        gender = profile["gender"]
+        income = profile["income"]
+        q1_text = profile["q1_text"]
+        q2_text = profile["q2_text"]
+        q3_text = profile["q3_text"]
+        q4_text = profile["q4_text"]
+        q5_text = profile["q5_text"]
+        q1_short = profile["q1_short"]
+        q2_short = profile["q2_short"]
+        q3_short = profile["q3_short"]
+        q4_short = profile["q4_short"]
+        q5_short = profile["q5_short"]
+        education_school = profile["education_school"]
+        education_uni = profile["education_uni"]
+        riskgroup = profile["riskgroup"]
+        riskgroup_text = profile["riskgroup_text"]
+        age = profile["age"]
+        id = profile["id"]
+        idpic = profile["idpic"]
+        q1 = profile["q1"]
+        q2 = profile["q2"]
+        q3 = profile["q3"]
+        q4 = profile["q4"]
+        q5 = profile["q5"]
+        return {
+            'profile': profile,
+            'id': id,
+            'name':name,
+            'nationality': nationality,
+            'profession': profession,
+            'q1_text': q1_text,
+            'q2_text': q2_text,
+            'q3_text': q3_text,
+            'q4_text': q4_text,
+            'q5_text': q5_text,
+            'q1_short': q1_short,
+            'q2_short': q2_short,
+            'q3_short': q3_short,
+            'q4_short': q4_short,
+            'q5_short': q5_short,
+            'education_school': education_school,
+            'gender': gender,
+            'education_uni': education_uni,
+            'nationality': nationality,
+            'income': income,
+            'religion': religion,
+            'introduction': introduction,
+            'riskgroup': riskgroup,	
+            'riskgroup_text': riskgroup_text,
+            'age': age, 
+            'picpath': 'profilepics/' + idpic + '.JPG',
+            'scalepath1': 'scales/scale' + str(q1) + '.png',
+            'scalepath2': 'scales/scale' + str(q2) + '.png',
+            'scalepath3': 'scales/scale' + str(q3) + '.png',
+            'scalepath4': 'scales/scale' + str(q4) + '.png',
+            'scalepath5': 'scales/scale' + str(q5) + '.png',
+       }
+    
 
 class payment_de(Page):
     form_model = 'player'
@@ -490,12 +784,15 @@ class end_de(Page):
 page_sequence = [
     consent_de,
     instructions_de,
-    #evaluation_example,
-    evaluation_example_2,
+    risk_survey_de,
+    #evaluation_example_de,
+    #evaluation_example_de_2,
+    evaluation_example_de_3,
     #payment_instructions_de,
     explanations_rt_de,
     #evaluation_de,
-    evaluation_de_2,
+    #evaluation_de_2,
+    evaluation_de_3,
     payment_de,
     groupy_de,
     iat_de,

@@ -1,0 +1,462 @@
+{{ block title }}
+{{ endblock }}
+
+
+{{ block content }}
+<p>
+    {% if gender == "weiblich" %}
+    Hier sehen Sie nun ein Beispielprofil einer Kundin.
+{% elif gender == "männlich" %}
+    Hier sehen Sie nun ein Beispielprofil eines Kunden.
+{% endif %}
+    Auf dieser Seite müssen Sie <b>keine Eingabe</b> machen. 
+    Bitte schauen Sie sich die bereitgestellten Informationen an und machen Sie sich mit Ihrer Aufgabe vertraut - klicken Sie danach bitte auf "Weiter".
+</p>
+<div class="index-card">
+    <div class="grid-cell">
+        <div class="avatar">
+            <img class="avatarimg" src="{% static picpath %}"  />
+        </div>
+    </div>
+    <div class="grid-cell">
+        <div class="icon">
+            <img src="{% static 'icons/name.png' %}"  alt="Name" />
+        </div>
+        <div class="text">Name: </div>
+        <div class="text"><b>{{name}}</b> </div>
+    </div>
+    <div class="grid-cell">
+        <div class="icon">
+            <img src="{% static 'icons/nationality.png' %}"  alt="Nationalität" />
+        </div>
+        <div class="text">Nationalität: </div>
+        <div class="text"><b>{{nationality}}</b> </div>
+    </div>
+    <div class="grid-cell">
+        <div class="icon">
+            <img src="{% static 'icons/age.jpg' %}"  alt="Alter" />
+        </div>
+        <div class="text">Alter: </div>
+        <div class="text"><b>{{age}} Jahre</b> </div>
+    </div>
+    <div class="grid-cell">
+        <div class="icon">
+            <img src="{% static 'icons/degree.webp' %}"  alt="Schulabschluss" />
+        </div>
+        <div class="text">Schulabschluss: </div>
+        <div class="text"><b>{{education_school}}</b> </div>
+    </div>
+    <div class="grid-cell">
+        <div class="icon">
+            <img src="{% static 'icons/profession.jpg' %}"  alt="Beruf" />
+        </div>
+        <div class="text">Beruf: </div>
+        <div class="text"><b>{{profession}}</b> </div>
+    </div>
+    <div class="grid-cell">
+        <div class="icon">
+            <img src="{% static 'icons/income.png' %}"  alt="Einkommen" />
+        </div>
+        <div class="text">Einkommen/Monat: </div>
+        <div class="text"><b>{{income}}</b> </div>
+    </div>
+    <div class="grid-cell">
+        <div class="icon">
+            <img src="{% static 'icons/religion.png' %}"  alt="Religion" />
+        </div>
+        <div class="text">Religion: </div>
+        <div class="text"><b>{{religion}}</b> </div>
+    </div>
+</div>
+<br>
+
+<!--
+<div class="index-card-back">
+    <div class="grid-row-back">
+        <div class="icon-cell-back">
+            <img src="{% static 'icons/intro.png' %}"  alt="Kurzvorstellung" class="icon-back"/>
+        </div>
+        <div class="text-cell-back">
+            <div class="text">{{introduction}}</div>
+        </div>
+    </div>
+    <div class="grid-row-back">
+        <div class="icon-cell-back">
+            <img src="{% static 'icons/capital.png' %}"  alt="Kapitalanlage" class="icon-back"/>
+        </div>
+        <div class="scale-cell-back">
+            <img src="{% static scalepath1 %}"  alt={{ q1_text }} class="icon-back"/>
+            <img src="{% static 'icons/information-button.png' %}" class="info-icon"/>
+            <span class="tooltip">{{ name }} hat dem statement "Der Erhalt meiner Kapitalanlage ist mir wichtig." {{q1_short}} zugestimmt.</span>
+        </div>
+        <div class="text-cell-back">
+            <div class="text">{{q1_text}}</div>
+        </div>
+    </div>
+    <div class="grid-row-back">
+        <div class="icon-cell-back">
+            <img src="{% static 'icons/safe.webp' %}"  alt="Rendite" class="icon-back"/>
+        </div>
+        <div class="scale-cell-back">
+            <img src="{% static scalepath2 %}"  alt={{ q2_text }} class="icon-back"/>
+            <img src="{% static 'icons/information-button.png' %}" class="info-icon"/>
+            <span class="tooltip">{{ name }} hat dem statement "Mir ist eine zuverlässige Rendite wichtiger als Risiken einzugehen, um meinen Ertrag zu erhöhen." {{q2_short}} zugestimmt.</span>
+        </div>
+        <div class="text-cell-back">
+            <div class="text">{{q2_text}}</div>
+        </div>
+    </div>
+    <div class="grid-row-back">
+        <div class="icon-cell-back">
+            <img src="{% static 'icons/loss.png' %}"  alt="Verluste" class="icon-back"/>
+        </div>
+        <div class="scale-cell-back">
+            <img src="{% static scalepath3 %}"  alt={{ q3_text }} class="icon-back"/>
+            <img src="{% static 'icons/information-button.png' %}" class="info-icon"/>
+            <span class="tooltip">{{ name }} hat dem statement "Selbst kleinste Verluste machen mich bereits nervös." {{q3_short}} zugestimmt.</span>
+        </div>
+        <div class="text-cell-back">
+            <div class="text">{{q3_text}}</div>
+        </div>
+
+    </div>
+    <div class="grid-row-back">
+        <div class="icon-cell-back">
+            <img src="{% static 'icons/risk.png' %}"  alt="Risiken" class="icon-back"/>
+        </div>  
+        <div class="scale-cell-back">
+            <img src="{% static scalepath4 %}"  alt={{ q4_text }} class="icon-back"/>
+            <img src="{% static 'icons/information-button.png' %}" class="info-icon"/>
+            <span class="tooltip">{{ name }} hat dem statement "Finanzielle Risiken sind reizvoll: Nur wer viel wagt kann auch viel gewinnen." {{q4_short}} zugestimmt.</span>
+        </div>
+        <div class="text-cell-back">
+            <div class="text">{{q4_text}}</div>
+        </div>
+
+    </div>
+    <div class="grid-row-back">
+        <div class="icon-cell-back">
+            <img src="{% static 'icons/chance.jpg' %}"  alt="Chance" class="icon-back"/>
+        </div>
+        <div class="scale-cell-back">
+            <img src="{% static scalepath5 %}"  alt={{ q5_text }} class="icon-back"/>
+            <img src="{% static 'icons/information-button.png' %}" class="info-icon"/>
+            <span class="tooltip">{{ name }} hat dem statement "Ich nehme den Verlust meines Vermögens in Kauf wenn ich gleichzeitig die Chance habe, meine Gewinne zu erhöhen." {{q5_short}} zugestimmt.</span>
+        </div>
+        <div class="text-cell-back">
+            <div class="text">{{q5_text}}</div>
+        </div>
+    </div>
+</div>
+
+<br>
+<div class="advice">
+<table id="info" style="font-size:1.1rem; table-layout: fixed; width:100%; margin-left:auto; margin-right:auto;background-color:rgb(218, 241, 218)">
+    <tr style="text-align:center" >
+        <td style = "width:80%;text-align:center;font-weight:bold"> Welches Produkt würden Sie dieser Person empfehlen? </td>
+        <td style = "width:20%;text-align:right;font-weight:bold">  <input name="riskyshare_example" class="rawfield"  class="disabled-input" disabled/> </td>
+        <td style = "width:10%;text-align:left;"> </td>
+    </tr>
+    {% if form.riskyshare_example.errors %}
+    {{ formfield_errors "riskyshare_example" }}
+    {% endif %}
+</table>
+</div>
+<br>
+<div class="advice">
+    <table id="info" style="font-size:1.1rem; table-layout: fixed; width:100%; margin-left:auto; margin-right:auto;background-color:rgb(218, 241, 218)">
+    <tr style="text-align:center" >
+        <td style = "width:80%;text-align:center;font-weight:bold"> Wie sicher sind Sie sich bei Ihrer Empfehlung? </td>
+        <td style = "width:20%;text-align:right;font-weight:bold">  <input name="riskyshare_certainty_example" class="rawfield"  class="disabled-input" disabled/> </td>
+        <td style = "width:10%;text-align:left;"> </td>
+    </tr>
+        {% if form.riskyshare_certainty_example.errors %}
+        {{ formfield_errors "riskyshare_certainty_example" }}
+        {% endif %}
+    </tr>
+</table>
+</div>
+-->
+
+
+<div class="index-card-back">
+    <div class="grid-row-back">
+        <div class="icon-cell-back">
+            <img src="{% static 'icons/intro.png' %}"  alt="Kurzvorstellung" class="icon-back"/>
+        </div>
+        <div class="text-cell-back">
+            <div class="text">{{introduction}}</div>
+        </div>
+    </div>
+    <div class="grid-row-back">
+        <div class="icon-cell-back">
+            <img src="{% static 'icons/capital.png' %}"  alt="Kapitalanlage" class="icon-back"/>
+        </div>
+        <div class="scale-cell-back">
+            <img src="{% static scalepath1 %}"  alt={{ q1_text }} class="icon-back"/>
+            <img src="{% static 'icons/information-button.png' %}" class="info-icon"/>
+            <span class="tooltip">{{ name }} hat dem statement "Der Erhalt meiner Kapitalanlage ist mir wichtig." {{q1_short}} zugestimmt.</span>
+        </div>
+        <div class="text-cell-back">
+            <div class="text">Bedeutung des Erhalts der Kapitalanlage</div>
+        </div>
+    </div>
+    <div class="grid-row-back">
+        <div class="icon-cell-back">
+            <img src="{% static 'icons/safe.webp' %}"  alt="Rendite" class="icon-back"/>
+        </div>
+        <div class="scale-cell-back">
+            <img src="{% static scalepath2 %}"  alt={{ q2_text }} class="icon-back"/>
+            <img src="{% static 'icons/information-button.png' %}" class="info-icon"/>
+            <span class="tooltip">{{ name }} hat dem statement "Mir ist eine zuverlässige Rendite wichtiger als Risiken einzugehen, um meinen Ertrag zu erhöhen." {{q2_short}} zugestimmt.</span>
+        </div>
+        <div class="text-cell-back">
+            <div class="text">Bedeutung von zuverlässiger Rendite vs. hohes Rendite-Risiko Profil</div>
+        </div>
+    </div>
+    <div class="grid-row-back">
+        <div class="icon-cell-back">
+            <img src="{% static 'icons/loss.png' %}"  alt="Verluste" class="icon-back"/>
+        </div>
+        <div class="scale-cell-back">
+            <img src="{% static scalepath3 %}"  alt={{ q3_text }} class="icon-back"/>
+            <img src="{% static 'icons/information-button.png' %}" class="info-icon"/>
+            <span class="tooltip">{{ name }} hat dem statement "Selbst kleinste Verluste machen mich bereits nervös." {{q3_short}} zugestimmt.</span>
+        </div>
+        <div class="text-cell-back">
+            <div class="text">Nervosität bei kleinsten Verlusten</div>
+        </div>
+
+    </div>
+    <div class="grid-row-back">
+        <div class="icon-cell-back">
+            <img src="{% static 'icons/risk.png' %}"  alt="Risiken" class="icon-back"/>
+        </div>  
+        <div class="scale-cell-back">
+            <img src="{% static scalepath4 %}"  alt={{ q4_text }} class="icon-back"/>
+            <img src="{% static 'icons/information-button.png' %}" class="info-icon"/>
+            <span class="tooltip">{{ name }} hat dem statement "Finanzielle Risiken sind reizvoll: Nur wer viel wagt kann auch viel gewinnen." {{q4_short}} zugestimmt.</span>
+        </div>
+        <div class="text-cell-back">
+            <div class="text">Reiz finanzieller Risiken: Wagen & Gewinnen</div>
+        </div>
+
+    </div>
+    <div class="grid-row-back">
+        <div class="icon-cell-back">
+            <img src="{% static 'icons/chance.jpg' %}"  alt="Chance" class="icon-back"/>
+        </div>
+        <div class="scale-cell-back">
+            <img src="{% static scalepath5 %}"  alt={{ q5_text }} class="icon-back"/>
+            <img src="{% static 'icons/information-button.png' %}" class="info-icon"/>
+            <span class="tooltip">{{ name }} hat dem statement "Ich nehme den Verlust meines Vermögens in Kauf wenn ich gleichzeitig die Chance habe, meine Gewinne zu erhöhen." {{q5_short}} zugestimmt.</span>
+        </div>
+        <div class="text-cell-back">
+            <div class="text">Verluste in Kauf nehmen für hohe Gewinnchancen</div>
+        </div>
+    </div>
+</div>
+
+<br>
+<div class="advice">
+<table id="info" style="font-size:1.1rem; table-layout: fixed; width:100%; margin-left:auto; margin-right:auto;background-color:rgb(218, 241, 218)">
+    <tr style="text-align:center" >
+        <td style = "width:80%;text-align:center;font-weight:bold"> Welches Produkt würden Sie dieser Person empfehlen? </td>
+        <td style = "width:20%;text-align:right;font-weight:bold">  <input name="riskyshare_example" class="rawfield"  class="disabled-input" disabled/> </td>
+        <td style = "width:10%;text-align:left;"> </td>
+    </tr>
+    {% if form.riskyshare_example.errors %}
+    {{ formfield_errors "riskyshare_example" }}
+    {% endif %}
+</table>
+</div>
+<br>
+<div class="advice">
+    <table id="info" style="font-size:1.1rem; table-layout: fixed; width:100%; margin-left:auto; margin-right:auto;background-color:rgb(218, 241, 218)">
+    <tr style="text-align:center" >
+        <td style = "width:80%;text-align:center;font-weight:bold"> Wie sicher sind Sie sich bei Ihrer Empfehlung? </td>
+        <td style = "width:20%;text-align:right;font-weight:bold">  <input name="riskyshare_certainty_example" class="rawfield"  class="disabled-input" disabled/> </td>
+        <td style = "width:10%;text-align:left;"> </td>
+    </tr>
+        {% if form.riskyshare_certainty_example.errors %}
+        {{ formfield_errors "riskyshare_certainty_example" }}
+        {% endif %}
+    </tr>
+</table>
+</div>
+
+<br>
+
+    <div class="center">
+        {% next_button %}
+    </div>
+    <br>
+<input type="hidden" name="offer" value="{{id}}" id="offer"/>
+
+    {{ endblock }}
+
+
+
+
+{% block styles %}
+<style>
+
+.advice{
+    width: 100%;
+    background-color:rgb(218, 241, 218);
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.index-card {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 50px;
+    width: 100%;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.backside{
+    width: 100%;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.grid-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.avatar {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatarimg {
+    width: 80%;
+    height: auto;
+    border-radius: 50%;
+}
+
+.icon img {
+    width: 30%;
+    height: auto;
+}
+
+
+.icon-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.icon {
+    width: 80%;
+    height: auto;
+    margin-bottom: 5px; /* Adjust spacing between icon and text */
+}
+
+.icon-back {
+    width: 40%;
+    height: auto;
+    margin-bottom: 5px; /* Adjust spacing between icon and text */
+}
+
+.text {
+    margin-top: -5px;
+    font-size: 20px;
+    vertical-align: top;
+}
+
+.index-card-back {
+    display: grid;
+    grid-template-rows: repeat(6, 1fr);
+    gap: 10px;
+    width: 100%;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.grid-row-back {
+    display: flex;
+    align-items: center;
+}
+
+.icon-cell-back {
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.text-cell-back {
+    width: 80%;
+    display: flex;
+    align-items: center;
+}
+
+.scale-cell-back {
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    position: relative; /* Ensure the tooltip is positioned relative to this container */
+}
+
+.info-icon {
+    width: 10px; /* Adjust size as needed */
+    height: 10px; /* Adjust size as needed */
+    margin-left: 5px;
+    margin-bottom: 5px; /* Adjust to position the icon slightly higher */
+    cursor: pointer;
+}
+
+
+.tooltip {
+    visibility: hidden;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%; /* Position the tooltip above the icon */
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    width: 300px; /* Adjust width as needed */
+}
+
+.tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%; /* Bottom of the tooltip */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+}
+
+.scale-cell-back:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+
+    </style>
+{{ endblock }}

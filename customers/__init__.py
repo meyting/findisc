@@ -16,7 +16,9 @@ class C(BaseConstants):
     NAME_IN_URL = 'customers'
     PLAYERS_PER_GROUP = None
     NUM_ROUNDS = 1
-
+    budget = 1000
+    Anlagehorizont = 10
+    Auszahlungsfaktor = 100
 
 class Subsession(BaseSubsession):
     pass
@@ -66,6 +68,11 @@ class Player(BasePlayer):
                                     blank = True,
                                     verbose_name='Was studieren Sie?',
                                     )
+    income = models.CharField(initial=None,
+                                    blank = True,
+                                    verbose_name='Wie hoch ist ihr monatliches Einkommen?',
+                                    choices = ['weniger als 1000€', '1000-1999€', '2000-2999€', '3000-3999€', 'mehr als 4000€']
+                                    )
     occupation=models.IntegerField(initial=None)
     profession = models.CharField(initial = None,
                                   blank = True,
@@ -96,12 +103,15 @@ class background_de(Page):
 
 class personal_de(Page):
     form_model = 'player'
-    form_fields = ['name','age', 'gender', 'profession', 'fieldofstudy', 'occupation', 'nationality', 
+    form_fields = ['name','age', 'gender', 'profession', 'fieldofstudy', 'occupation', 'nationality', 'income',
                    'education_school', 'education_uni','religion', 'party', 'intro', 'look']
 
 class risk_survey_de(Page):
     form_model = 'player'
     form_fields = ['q1','q2','q3','q4','q5']
+
+class risk_tool_payment_de(Page):
+    pass
 
 class risk_tool_instructions_de(Page):
     pass
@@ -123,6 +133,7 @@ page_sequence = [
     personal_de,
     background_de,
     risk_survey_de,
+    risk_tool_payment_de,
     risk_tool_instructions_de,
     risk_tool_de,
     risk_tool_accept_de,
