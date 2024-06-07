@@ -5,68 +5,194 @@
 <p>
     Hier sehen Sie nun nochmal eine Übersicht über alle eben beratenen Personen inklusive der von Ihnen gegebenen Empfehlungen:
 </p>
+<br>
+<form id="recommendationForm">
 <table>
-    <tr>
-        <th>Name</th>
-        <th>Geschlecht</th>
-        <th>Alter</th>
-        <th>Nationalität</th>
-        <th>Risikogruppe</th>
-        <th>Ihre Empfehlung</th>
+    <tr style="border-bottom: 1pt solid;">
+        <th>    
+        </th>
+        <th><h5>Name</h5></td>
+        <th><h5>Ihre Empfehlung</h5></th>
+        <th><h5>Beste Empfehlungen</h5></th>
     </tr>
-    <tr>
+    <tr style="border-bottom: 1pt solid;">
+        <td> 
+                <img class="avatarimg" src="{% static picpath1 %}"  />
+        </td>
         <td>{{name1}}</td>
-        <td>{{gender1}}</td>
-        <td>{{age1}}</td>
-        <td>{{nationality1}}</td>
-        <td>{{riskgroup1}}</td>
-        <td>{{advice1}}</td>
+        <td style="text-align: center; padding-right:10%">{{advice1}}</td>
+        <td style="text-align: center;"><input type="checkbox" name="best_advice" value="{{prolificid_client1}}" class="beste-empfehlung"></td>
     </tr>
-    <tr>
+    <tr style="border-bottom: 1pt solid;">
+        <td>
+            <img class="avatarimg" src="{% static picpath2 %}"  />
+        </td>
         <td>{{name2}}</td>
-        <td>{{gender2}}</td>
-        <td>{{age2}}</td>
-        <td>{{nationality2}}</td>
-        <td>{{riskgroup2}}</td>
-        <td>{{advice2}}</td>
+        <td style="text-align: center; padding-right:10%">{{advice2}}</td>
+        <td style="text-align: center;"><input type="checkbox" name="best_advice" value="{{prolificid_client2}}" class="beste-empfehlung"></td>
     </tr>
-    <tr>
+    <tr style="border-bottom: 1pt solid;">
+        <td>
+            <img class="avatarimg" src="{% static picpath3 %}"  />
+        </td>
         <td>{{name3}}</td>
-        <td>{{gender3}}</td>
-        <td>{{age3}}</td>
-        <td>{{nationality3}}</td>
-        <td>{{riskgroup3}}</td>
-        <td>{{advice3}}</td>
+        <td style="text-align: center; padding-right:10%">{{advice3}}</td>
+        <td style="text-align: center;"><input type="checkbox" name="best_advice" value="{{prolificid_client3}}" class="beste-empfehlung"></td>
     </tr>
-    <tr>
+    <tr style="border-bottom: 1pt solid;">
+        <td>
+            <img class="avatarimg" src="{% static picpath4 %}"  />
+        </td>
         <td>{{name4}}</td>
-        <td>{{gender4}}</td>
-        <td>{{age4}}</td>
-        <td>{{nationality4}}</td>
-        <td>{{riskgroup4}}</td>
-        <td>{{advice4}}</td>
+        <td style="text-align: center; padding-right:10%">{{advice4}}</td>
+        <td style="text-align: center;"><input type="checkbox" name="best_advice" value="{{prolificid_client4}}" class="beste-empfehlung"></td>
+    </tr>
+    <tr style="border-bottom: 1pt solid;">
+        <td>
+            <img class="avatarimg" src="{% static picpath5 %}"  />
+        </td>
+        <td>{{name5}}</td>
+        <td style="text-align: center; padding-right:10%">{{advice5}}</td>
+        <td style="text-align: center;"><input type="checkbox" name="best_advice" value="{{prolificid_client5}}" class="beste-empfehlung"></td>
+    </tr>
+    <tr style="border-bottom: 1pt solid;">
+        <td>
+            <img class="avatarimg" src="{% static picpath6 %}"  />
+        </td>
+        <td>{{name6}}</td>
+        <td style="text-align: center; padding-right:10%">{{advice6}}</td>
+        <td style="text-align: center;"><input type="checkbox" name="best_advice" value="{{prolificid_client6}}" class="beste-empfehlung"></td>
+    </tr>
+    <tr style="border-bottom: 1pt solid;">
+        <td>
+            <img class="avatarimg" src="{% static picpath7 %}"  />
+        </td>
+        <td>{{name7}}</td>
+        <td style="text-align: center; padding-right:10%">{{advice7}}</td>
+        <td style="text-align: center;"><input type="checkbox" name="best_advice" value="{{prolificid_client7}}" class="beste-empfehlung"></td>
+    </tr>
+    <tr style="border-bottom: 1pt solid;">
+        <td>
+            <img class="avatarimg" src="{% static picpath8 %}"  />
+        </td>
+        <td>{{name8}}</td>
+        <td style="text-align: center; padding-right:10%">{{advice8}}</td>
+        <td style="text-align: center;"><input type="checkbox" name="best_advice" value="{{prolificid_client8}}" class="beste-empfehlung"></td>
+    </tr>
+    <tr style="border-bottom: 1pt solid;">
+        <td>
+            <img class="avatarimg" src="{% static picpath9 %}"  />
+        </td>
+        <td>{{name9}}</td>
+        <td style="text-align: center; padding-right:10%">{{advice9}}</td>
+        <td style="text-align: center;"><input type="checkbox" name="best_advice" value="{{prolificid_client9}}" class="beste-empfehlung"></td>
+    </tr>
+    <tr style="border-bottom: 1pt solid;">
+        <td>
+            <img class="avatarimg" src="{% static picpath10 %}"  />
+        </td>
+        <td>{{name10}}</td>
+        <td style="text-align: center; padding-right:10%">{{advice10}}</td>
+        <td style="text-align: center;"><input type="checkbox" name="best_advice" value="{{prolificid_client10}}" class="beste-empfehlung"></td>
     </tr>
 </table>
-<hr>
-{%  formfield player.best_advice %}
-
+<input type="hidden" name="selected_best_advice" id="selected_best_advice" value="">
     <br>
     
-    {{ next_button }}
+    <div class="center">
+        <button id="next-button" class="button" disabled>Weiter</button>
+    </div>
+
+</form>
 
 {{ endblock }}
 
 {{ block styles}}
 <style>
+    
+    .center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50px;
+    }
+    
     table {
         width: 100%;
-        border-collapse: collapse;
+    }
+    td {
+        width:25%;
+        padding: 8px;
+        text-align: left;
+        font-size: large;
+    }   
+
+    .avatarimg {
+        width: 25%;
+        height: auto;
+        border-radius: 50%;
     }
 
-    th, td {
-    padding: 8px;
-    text-align: left;
-}   
-
+    .advice{
+        width: 100%;
+        background-color:rgb(218, 241, 218);
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
 </style>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        let nextButton = document.getElementById('next-button');
+        let hiddenField = document.getElementById('selected_best_advice');
+    
+        function enablenextbutton() {
+            if (nextButton) {
+                nextButton.disabled = false;
+                nextButton.classList.remove('disabled-button');
+                nextButton.classList.add('enabled-button');
+                nextButton.classList.add('btn-primary');
+                nextButton.classList.add('otree-btn-next');
+                nextButton.classList.add('btn');
+            } else {
+                console.error('Next button not found in the DOM.');
+            }
+        }
+    
+        function updateHiddenField() {
+            const checkedCheckboxes = document.querySelectorAll('.beste-empfehlung:checked');
+            const selectedValues = Array.from(checkedCheckboxes).map(cb => cb.value);
+            hiddenField.value = selectedValues.join(',');
+        }
+    
+        const checkboxes = document.querySelectorAll('.beste-empfehlung');
+    
+        checkboxes.forEach(cb => {
+            cb.addEventListener('change', (e) => {
+                const checkedCheckboxes = document.querySelectorAll('.beste-empfehlung:checked');
+                if (checkedCheckboxes.length > 5) {
+                    e.target.checked = false;
+                    alert('Bitte wählen Sie nicht mehr als 5 Personen aus.');
+                }
+                updateHiddenField();
+                if (checkedCheckboxes.length === 5) {
+                    enablenextbutton();
+                    updateHiddenField();
+                } if (checkedCheckboxes.length < 5) {
+                    nextButton.disabled = true;
+                    nextButton.classList.remove('btn-primary');
+                    nextButton.classList.remove('otree-btn-next');
+                    nextButton.classList.remove('btn');
+                }
+            });
+        });
+    
+        // Initialize the hidden field and button state
+        updateHiddenField();
+    });
+    </script>
+    
+    
+    
 {{ endblock }}

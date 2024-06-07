@@ -91,7 +91,8 @@ class Subsession(BaseSubsession):
     pass
 
 def select_unique_risky_shares(data, n):
-    unique_risky_shares = data.drop_duplicates(subset=['riskyshare']).sample(n=n)
+    shuffled_data = data.sample(frac=1).reset_index(drop=True)
+    unique_risky_shares = shuffled_data.drop_duplicates(subset=['riskyshare']).sample(n=n)
     return unique_risky_shares
 
 def creating_session(subsession: Subsession):
@@ -160,7 +161,8 @@ class Player(BasePlayer):
                                         verbose_name="""""")
 
     offer = models.IntegerField()
-    best_advice = models.IntegerField(verbose_name="Bei welcher Empfehlung sind sich sich am sichersten? <br> <i>(Bitte geben Sie den Namen des jeweiligen Kunden bzw. der jeweiligen Kundin ein.)</i>")	
+    best_advice = models.IntegerField(verbose_name="""""")	
+    selected_best_advice = models.StringField(verbose_name="""""")
 
     name = models.CharField(blank=True,
                             initial=None,
@@ -678,78 +680,94 @@ class evaluation_de_3(Page):
 
 class payment_de(Page):
     form_model = 'player'
-    form_fields = ['best_advice']
+    form_fields = ['best_advice', 'selected_best_advice']
 
     @staticmethod
     def vars_for_template(player: Player):
         participant = player.participant
         print(participant.profiles)
         print(player.round_number)
-        profile1 = participant.profiles[1][0]
-        profile2 = participant.profiles[2][0]
-        profile3 = participant.profiles[3][0]
-        profile4 = participant.profiles[4][0]
-        gender1 = profile1["gender"]
-        nationality1 = profile1["nationality"]
+        profile1 = participant.profiles[1]
+        profile2 = participant.profiles[2]
+        profile3 = participant.profiles[3]
+        profile4 = participant.profiles[4]
+        profile5 = participant.profiles[5]
+        profile6 = participant.profiles[6]
+        profile7 = participant.profiles[7]
+        profile8 = participant.profiles[8]
+        profile9 = participant.profiles[9]
+        profile10 = participant.profiles[10]
+        prolificid_client1 = profile1["prolificid_client"]
+        prolificid_client2 = profile2["prolificid_client"]
+        prolificid_client3 = profile3["prolificid_client"]
+        prolificid_client4 = profile4["prolificid_client"]
+        prolificid_client5 = profile5["prolificid_client"]
+        prolificid_client6 = profile6["prolificid_client"]
+        prolificid_client7 = profile7["prolificid_client"]
+        prolificid_client8 = profile8["prolificid_client"]
+        prolificid_client9 = profile9["prolificid_client"]
+        prolificid_client10 = profile10["prolificid_client"]
         name1 = profile1["name"]
-        introduction1 = profile1["introduction"]
-        riskgroup1 = profile1["riskgroup"]
-        riskgroup_text1 = profile1["riskgroup_text"]
-        age1 = profile1["age"]
-        id1 = profile1["id"]
-        gender2 = profile2["gender"]
-        nationality2 = profile2["nationality"]
         name2 = profile2["name"]
-        introduction2 = profile2["introduction"]
-        riskgroup2 = profile2["riskgroup"]
-        riskgroup_text2 = profile2["riskgroup_text"]
-        age2 = profile2["age"]
-        id2 = profile2["id"]
-        gender3 = profile3["gender"]
-        nationality3 = profile3["nationality"]
         name3 = profile3["name"]
-        introduction3 = profile3["introduction"]
-        riskgroup3 = profile3["riskgroup"]
-        riskgroup_text3 = profile3["riskgroup_text"]
-        age3 = profile3["age"]
-        id3 = profile3["id"]
-        gender4 = profile4["gender"]
-        nationality4 = profile4["nationality"]
         name4 = profile4["name"]
-        introduction4 = profile4["introduction"]
-        riskgroup4 = profile4["riskgroup"]
-        riskgroup_text4 = profile4["riskgroup_text"]
-        age4 = profile4["age"]
-        id4 = profile4["id"]
+        name5 = profile5["name"]
+        name6 = profile6["name"]
+        name7 = profile7["name"]
+        name8 = profile8["name"]
+        name9 = profile9["name"]
+        name10 = profile10["name"]
+        prolificid_client1 = profile1["prolificid_client"]
+        prolificid_client2 = profile2["prolificid_client"]
+        prolificid_client3 = profile3["prolificid_client"]
+        prolificid_client4 = profile4["prolificid_client"]
+        prolificid_client5 = profile5["prolificid_client"]
+        prolificid_client6 = profile6["prolificid_client"]
+        prolificid_client7 = profile7["prolificid_client"]
+        prolificid_client8 = profile8["prolificid_client"]
+        prolificid_client9 = profile9["prolificid_client"]
+        prolificid_client10 = profile10["prolificid_client"]
         return {
-            'gender1': gender1,
+            'picpath1': 'profilepics/' + prolificid_client1 + '.JPG',
+            'picpath2': 'profilepics/' + prolificid_client2 + '.JPG',
+            'picpath3': 'profilepics/' + prolificid_client3 + '.JPG',
+            'picpath4': 'profilepics/' + prolificid_client4 + '.JPG',
+            'picpath5': 'profilepics/' + prolificid_client5 + '.JPG',
+            'picpath6': 'profilepics/' + prolificid_client6 + '.JPG',
+            'picpath7': 'profilepics/' + prolificid_client7 + '.JPG',
+            'picpath8': 'profilepics/' + prolificid_client8 + '.JPG',
+            'picpath9': 'profilepics/' + prolificid_client9 + '.JPG',
+            'picpath10': 'profilepics/' + prolificid_client10 + '.JPG',
             'name1': name1,
-            'nationality1': nationality1,
-            'riskgroup1': riskgroup1,	
-            'riskgroup_text1': riskgroup_text1,
-            'age1': age1,
-            'gender2': gender2,
             'name2': name2,
-            'nationality2': nationality2,
-            'riskgroup2': riskgroup2,	
-            'riskgroup_text2': riskgroup_text2,
-            'age2': age2,
-            'gender3': gender3,
             'name3': name3,
-            'nationality3': nationality3,
-            'riskgroup3': riskgroup3,	
-            'riskgroup_text3': riskgroup_text3,
-            'age3': age3,
-            'gender4': gender4,
             'name4': name4,
-            'nationality4': nationality4,
-            'riskgroup4': riskgroup4,	
-            'riskgroup_text4': riskgroup_text4,
-            'age4': age4,
+            'name5': name5,
+            'name6': name6,
+            'name7': name7,
+            'name8': name8,
+            'name9': name9,
+            'name10': name10,
+            'prolificid_client1': prolificid_client1,
+            'prolificid_client2': prolificid_client2,
+            'prolificid_client3': prolificid_client3,
+            'prolificid_client4': prolificid_client4,
+            'prolificid_client5': prolificid_client5,
+            'prolificid_client6': prolificid_client6,
+            'prolificid_client7': prolificid_client7,
+            'prolificid_client8': prolificid_client8,
+            'prolificid_client9': prolificid_client9,
+            'prolificid_client10': prolificid_client10,
             'advice1': player.in_round(1).advice,
             'advice2': player.in_round(2).advice,
             'advice3': player.in_round(3).advice,
-            'advice4': player.in_round(4).advice
+            'advice4': player.in_round(4).advice,
+            'advice5': player.in_round(5).advice,
+            'advice6': player.in_round(6).advice,
+            'advice7': player.in_round(7).advice,
+            'advice8': player.in_round(8).advice,
+            'advice9': player.in_round(9).advice,
+            'advice10': player.in_round(10).advice
             }
 
     @staticmethod
