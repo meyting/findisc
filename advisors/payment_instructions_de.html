@@ -3,10 +3,11 @@
 {{ endblock }}
 {{ block content }}
 <p>
-    Nachdem Sie Ihre Beratungen abgeschlossen haben, zeigen wir Ihnen nochmal Ihre Kundinnen und Kunden und die von Ihnen jeweils gegebenen Empfehlungen.
-    Sie haben dann die Möglichkeit eine der Personen und Ihre dazugehörige Empfehlung für Ihre Bonuszahlung auszuwählen. 
-    Sie erhalten dann eine Bonuszahlung von {{C.bonus}}, wenn diese Person Ihre Empfehlung annimmt. 
-    Falls die Person Ihre Empfehlung ablehnt und sich für ein anderes Finanzprodukt entscheidet, bekommen Sie keinen Bonus.
+    Nachdem Sie Ihre Beratungen nun abgeschlossen haben, zeigen wir Ihnen jetzt nochmal Ihre Kundinnen und Kunden und die von Ihnen jeweils gegebenen Empfehlungen.
+    Sie haben gleich die Möglichkeit {{C.numberselections}} Ihrer KundInnen auszuwählen. 
+    Wählen Sie die Personen bei der sie denken, dass Ihre Empfehlung am nächsten an der eigenen Einschätzung der jeweiligen Person sind.
+    Eine der von Ihnen ausgewählten Personen wird im Anschluss zufällig ausgewählt.
+    Wenn Ihre Empfehlung für diese Person nicht mehr als 10% von der von uns gemessenen Präferenz der Person abweicht, erhalten Sie eine Bonuszahlung von {{C.bonus}}.
 </p>
 
     {{ formfields }}

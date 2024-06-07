@@ -85,6 +85,7 @@ class C(BaseConstants):
     PLAYERS_PER_GROUP = None
     NUM_ROUNDS = 10
     bonus = cu(2)
+    numberselections = 5
 
 
 class Subsession(BaseSubsession):
@@ -228,7 +229,7 @@ class instructions_de(Page):
     @staticmethod
     def is_displayed(player: Player):
         return player.round_number == 1
-
+ 
 class risk_survey_de(Page):
     form_model = 'player'
     form_fields = ['q1_advisor', 'q2_advisor', 'q3_advisor', 'q4_advisor', 'q5_advisor']
@@ -454,10 +455,6 @@ class evaluation_example_de_3(Page):
     
 
 
-class payment_instructions_de(Page):
-    @staticmethod
-    def is_displayed(player: Player):
-        return player.round_number == 1
 
 class explanations_rt_de(Page):
     @staticmethod
@@ -678,6 +675,12 @@ class evaluation_de_3(Page):
        }
     
 
+class payment_instructions_de(Page):  
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.round_number == C.NUM_ROUNDS
+
+
 class payment_de(Page):
     form_model = 'player'
     form_fields = ['best_advice', 'selected_best_advice']
@@ -802,14 +805,10 @@ page_sequence = [
     consent_de,
     instructions_de,
     risk_survey_de,
-    #evaluation_example_de,
-    #evaluation_example_de_2,
     evaluation_example_de_3,
-    #payment_instructions_de,
     explanations_rt_de,
-    #evaluation_de,
-    #evaluation_de_2,
     evaluation_de_3,
+    payment_instructions_de,
     payment_de,
     groupy_de,
     iat_de,
