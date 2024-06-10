@@ -230,13 +230,17 @@ class instructions_de(Page):
     def is_displayed(player: Player):
         return player.round_number == 1
  
-class risk_survey_de(Page):
+     
+class risk_survey_de_2(Page):
     form_model = 'player'
     form_fields = ['q1_advisor', 'q2_advisor', 'q3_advisor', 'q4_advisor', 'q5_advisor']
 
     @staticmethod
     def is_displayed(player: Player):
         return player.round_number == 1
+    
+
+        
 '''
 class evaluation_example_de(Page):
     form_model = 'player'
@@ -804,7 +808,7 @@ class end_de(Page):
 page_sequence = [
     consent_de,
     instructions_de,
-    risk_survey_de,
+    risk_survey_de_2,
     evaluation_example_de_3,
     explanations_rt_de,
     evaluation_de_3,

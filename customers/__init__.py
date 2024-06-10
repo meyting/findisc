@@ -106,7 +106,7 @@ class personal_de(Page):
     form_fields = ['name','age', 'gender', 'profession', 'fieldofstudy', 'occupation', 'nationality', 'income',
                    'education_school', 'education_uni','religion', 'party', 'intro', 'look']
 
-class risk_survey_de(Page):
+class risk_survey_de_2(Page):
     form_model = 'player'
     form_fields = ['q1','q2','q3','q4','q5']
 
@@ -132,7 +132,7 @@ page_sequence = [
     consent_de,
     personal_de,
     background_de,
-    risk_survey_de,
+    risk_survey_de_2,
     risk_tool_payment_de,
     risk_tool_instructions_de,
     risk_tool_de,

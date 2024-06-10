@@ -149,80 +149,92 @@ Bitte geben Sie Ihre Anlageempfehlung für diesen Kunden ab:
 </div>
 -->
 
+
 <div class="index-card-back">
-    <div class="grid-row-back">
+    <div class="grid-row-back" style="border-bottom: solid 0.5pt grey;">
         <div class="icon-cell-back">
             <img src="{% static 'icons/intro.png' %}"  alt="Kurzvorstellung" class="icon-back"/>
         </div>
-        <div class="text-cell-back">
-            <div class="text">{{introduction}}</div>
+        <div class="intro">
+            <div class="text">"{{introduction}}"</div>
         </div>
+    </div>
+    <div class="grid-row-back-headline">
+        <div class="risksurvey_headline1">
+            <div class="headline"><b>Aussage</b></div>
+        </div>
+        <div class="risksurvey_headline2">
+            <div class="headline"><b>Zustimmung</b></div>
+      </div>
     </div>
     <div class="grid-row-back">
         <div class="icon-cell-back">
             <img src="{% static 'icons/capital.png' %}"  alt="Kapitalanlage" class="icon-back"/>
         </div>
+        <div class="text-cell-back">
+            <!--<div class="text">Bedeutung des Erhalts der Kapitalanlage</div>-->
+            <div class="text">Der Erhalt meiner Kapitalanlage ist mir wichtig.</div>
+        </div>        
         <div class="scale-cell-back">
             <img src="{% static scalepath1 %}"  alt={{ q1_text }} class="icon-back"/>
             <img src="{% static 'icons/information-button.png' %}" class="info-icon"/>
             <span class="tooltip">{{ name }} hat dem statement "Der Erhalt meiner Kapitalanlage ist mir wichtig." {{q1_short}} zugestimmt.</span>
-        </div>
-        <div class="text-cell-back">
-            <div class="text">Bedeutung des Erhalts der Kapitalanlage</div>
         </div>
     </div>
     <div class="grid-row-back">
         <div class="icon-cell-back">
             <img src="{% static 'icons/safe.webp' %}"  alt="Rendite" class="icon-back"/>
         </div>
+        <div class="text-cell-back">
+            <!--<div class="text">Bedeutung von zuverlässiger Rendite vs. hohes Rendite-Risiko Profil</div>-->
+            <div class="text">Mir ist eine zuverlässige Rendite wichtiger als Risiken einzugehen, um meinen Ertrag zu erhöhen.</div>
+        </div>
         <div class="scale-cell-back">
             <img src="{% static scalepath2 %}"  alt={{ q2_text }} class="icon-back"/>
             <img src="{% static 'icons/information-button.png' %}" class="info-icon"/>
             <span class="tooltip">{{ name }} hat dem statement "Mir ist eine zuverlässige Rendite wichtiger als Risiken einzugehen, um meinen Ertrag zu erhöhen." {{q2_short}} zugestimmt.</span>
-        </div>
-        <div class="text-cell-back">
-            <div class="text">Bedeutung von zuverlässiger Rendite vs. hohes Rendite-Risiko Profil</div>
         </div>
     </div>
     <div class="grid-row-back">
         <div class="icon-cell-back">
             <img src="{% static 'icons/loss.png' %}"  alt="Verluste" class="icon-back"/>
         </div>
+        <div class="text-cell-back">
+            <!--<div class="text">Nervosität bei kleinsten Verlusten</div>-->
+            <div class="text">Selbst kleinste Verluste machen mich bereits nervös.</div>
+        </div>
         <div class="scale-cell-back">
             <img src="{% static scalepath3 %}"  alt={{ q3_text }} class="icon-back"/>
             <img src="{% static 'icons/information-button.png' %}" class="info-icon"/>
             <span class="tooltip">{{ name }} hat dem statement "Selbst kleinste Verluste machen mich bereits nervös." {{q3_short}} zugestimmt.</span>
         </div>
-        <div class="text-cell-back">
-            <div class="text">Nervosität bei kleinsten Verlusten</div>
-        </div>
-
     </div>
     <div class="grid-row-back">
         <div class="icon-cell-back">
             <img src="{% static 'icons/risk.png' %}"  alt="Risiken" class="icon-back"/>
         </div>  
+        <div class="text-cell-back">
+            <!--<div class="text">Reiz finanzieller Risiken: Wagen & Gewinnen</div>-->
+            <div class="text">Finanzielle Risiken sind reizvoll: Nur wer viel wagt kann auch viel gewinnen.</div>
+        </div>
         <div class="scale-cell-back">
             <img src="{% static scalepath4 %}"  alt={{ q4_text }} class="icon-back"/>
             <img src="{% static 'icons/information-button.png' %}" class="info-icon"/>
             <span class="tooltip">{{ name }} hat dem statement "Finanzielle Risiken sind reizvoll: Nur wer viel wagt kann auch viel gewinnen." {{q4_short}} zugestimmt.</span>
         </div>
-        <div class="text-cell-back">
-            <div class="text">Reiz finanzieller Risiken: Wagen & Gewinnen</div>
-        </div>
-
     </div>
     <div class="grid-row-back">
         <div class="icon-cell-back">
             <img src="{% static 'icons/chance.jpg' %}"  alt="Chance" class="icon-back"/>
         </div>
+        <div class="text-cell-back">
+            <!--<div class="text">Verluste in Kauf nehmen für hohe Gewinnchancen</div>-->
+            <div class="text">Ich nehme den Verlust meines Vermögens in Kauf wenn ich gleichzeitig die Chance habe, meine Gewinne zu erhöhen.</div>
+        </div>        
         <div class="scale-cell-back">
             <img src="{% static scalepath5 %}"  alt={{ q5_text }} class="icon-back"/>
             <img src="{% static 'icons/information-button.png' %}" class="info-icon"/>
             <span class="tooltip">{{ name }} hat dem statement "Ich nehme den Verlust meines Vermögens in Kauf wenn ich gleichzeitig die Chance habe, meine Gewinne zu erhöhen." {{q5_short}} zugestimmt.</span>
-        </div>
-        <div class="text-cell-back">
-            <div class="text">Verluste in Kauf nehmen für hohe Gewinnchancen</div>
         </div>
     </div>
 </div>
@@ -246,7 +258,7 @@ Bitte geben Sie Ihre Anlageempfehlung für diesen Kunden ab:
 <div class="advice">
     <table id="info" style="font-size:1.1rem; table-layout: fixed; width:100%; margin-left:auto; margin-right:auto;background-color:rgb(218, 241, 218)">
     <tr style="text-align:center" >
-        <td style = "width:80%;text-align:center;font-weight:bold"> Wie sicher sind Sie sich bei Ihrer Empfehlung? </td>
+        <td style = "width:80%;text-align:center;font-weight:bold"> Wie überzeugt sind Sie von Ihrer Empfehlung? </td>
         <td style = "width:20%;text-align:right;font-weight:bold">         {%  formfield player.advice_certainty %} </td>
         <td style = "width:10%;text-align:left;"> </td>
     </tr>
@@ -350,6 +362,18 @@ Bitte geben Sie Ihre Anlageempfehlung für diesen Kunden ab:
     font-size: 20px;
     vertical-align: top;
 }
+.grid-row-back-headline {
+    display: flex;
+    align-items: center;
+    padding-top:2%;
+}
+
+.headline {
+    margin-top: -20px;
+    margin-bottom: -20px;
+    font-size: 20px;
+    vertical-align: top;
+}
 
 .index-card-back {
     display: grid;
@@ -366,6 +390,12 @@ Bitte geben Sie Ihre Anlageempfehlung für diesen Kunden ab:
     align-items: center;
 }
 
+.intro{
+    width: 80%;
+    display: flex;
+    align-items: center;
+}
+
 .icon-cell-back {
     width: 20%;
     display: flex;
@@ -374,12 +404,13 @@ Bitte geben Sie Ihre Anlageempfehlung für diesen Kunden ab:
 }
 
 .text-cell-back {
-    width: 80%;
+    width: 50%;
     display: flex;
     align-items: center;
 }
+
 .scale-cell-back {
-    width: 20%;
+    width: 30%;
     display: flex;
     justify-content: center;
     position: relative; /* Ensure the tooltip is positioned relative to this container */
@@ -393,6 +424,19 @@ Bitte geben Sie Ihre Anlageempfehlung für diesen Kunden ab:
     cursor: pointer;
 }
 
+.risksurvey_headline1 {
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.risksurvey_headline2 {
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 .tooltip {
     visibility: hidden;
@@ -426,6 +470,5 @@ Bitte geben Sie Ihre Anlageempfehlung für diesen Kunden ab:
     visibility: visible;
     opacity: 1;
 }
-
     </style>
 {{ endblock }}
