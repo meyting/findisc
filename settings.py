@@ -3,12 +3,14 @@ from os import environ
 SESSION_CONFIGS = [
      dict(
          name='advisors',
-         app_sequence=['advisors'],
+         app_sequence=['advisors'],	
          num_demo_participants=10,
      ),
     dict(
          name='customers',
-         app_sequence=['customers'],
+         app_sequence=['customers_pre_risk_tool',
+                        'riskToolOtreeApp',
+                        'customers_post_risk_tool'],
          num_demo_participants=10,
      ),
 ]
@@ -31,7 +33,7 @@ ROOMS = [
     ),
 ]
 
-PARTICIPANT_FIELDS = ["variant_rt", "profiles"]
+PARTICIPANT_FIELDS = ["variant", "profiles"]
 SESSION_FIELDS = []
 
 # ISO-639 code
@@ -51,3 +53,5 @@ ADMIN_PASSWORD = 'findisc'
 DEMO_PAGE_INTRO_HTML = """ """
 
 SECRET_KEY = '8515273728031'
+DEBUG = 0
+

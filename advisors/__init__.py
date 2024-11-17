@@ -81,10 +81,11 @@ years = [int(year) for year in years]
 nationalities = choices['Nationalität'][0:199].tolist()
 
 class C(BaseConstants):
-    NAME_IN_URL = 'advisors'
+    NAME_IN_URL = 'adv1'
     PLAYERS_PER_GROUP = None
     NUM_ROUNDS = 10
     bonus = cu(2)
+    fixedfee = cu(1)
     numberselections = 5
 
 
@@ -98,13 +99,13 @@ def select_unique_risky_shares(data, n):
 
 def creating_session(subsession: Subsession):
     import itertools
-    variant_rt = itertools.cycle(['rt', 'nort'])
+    variant = itertools.cycle(['bel', 'pat', 'verypat '])
     if subsession.round_number == 1:
         for p in subsession.get_players():
-            if 'variant_rt' in subsession.session.config:
-                p.participant.variant_rt = subsession.session.config['variant_rt']
+            if 'variant' in subsession.session.config:
+                p.participant.variant = subsession.session.config['variant']
             else:
-                p.participant.variant_rt = next(variant_rt)
+                p.participant.variant = next(variant)
             p.participant.profiles = []
             selected_profiles_df = select_unique_risky_shares(df, 11)
             profiles = selected_profiles_df.to_dict(orient='records')
@@ -226,6 +227,13 @@ class consent_de(Page):
         return player.round_number == 1
     
 class instructions_de(Page):
+    @staticmethod
+    def vars_for_template(player: Player):
+        participant = player.participant
+        return {
+            'variant': participant.variant,
+        }
+
     @staticmethod
     def is_displayed(player: Player):
         return player.round_number == 1
@@ -460,10 +468,6 @@ class evaluation_example_de_3(Page):
 
 
 
-class explanations_rt_de(Page):
-    @staticmethod
-    def is_displayed(player: Player):
-        return player.round_number == 1
 
 '''
 class evaluation_de(Page):
@@ -605,6 +609,16 @@ class evaluation_de_2(Page):
         )
 '''
 
+
+class risk_tool_de(Page):
+    @staticmethod
+    def live_method(player, data):
+        player.finalDecisionValue = str(data['final-decision-value'])
+    
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.round_number == 1
+ 
 
 class evaluation_de_3(Page):
     form_model = 'player'
@@ -809,8 +823,8 @@ page_sequence = [
     consent_de,
     instructions_de,
     risk_survey_de_2,
+    risk_tool_de,
     evaluation_example_de_3,
-    explanations_rt_de,
     evaluation_de_3,
     payment_instructions_de,
     payment_de,

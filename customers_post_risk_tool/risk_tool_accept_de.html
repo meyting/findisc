@@ -1,0 +1,25 @@
+
+{{ block title }}
+<div class="welcome-container">
+    Ihr Anlagevorschlag
+{{ endblock }}
+
+{{ block content }}
+<p><b style="color:red">
+    Was wird ausgezahlt?
+        Das Ergebnis des Tools oder haben die Leute hier nochmal die Gelegenheit zu entscheiden, ob sie den Vorschlag annehmen oder nicht?
+
+        Wenn ersteres, dann brauchen wir diese Seite nicht und die Umfrage endet hier.
+        
+        Wenn letzteres, dann sagen wir hier was der Vorschlag war und fragen auf dieser Seite ob sie das annehmen wollen oder nochmal verändern wollen (zb anhand eines sliders).
+        Das ist aber dann vl doppelt gemoppelt, weil sie ja schon die Möglichkeit hatten den Vorschlag zu verändern.
+</b>
+</p>
+<br>
+
+
+    {% next_button %}
+
+
+{% endblock %}
+

@@ -1,0 +1,31 @@
+{{ block title }}
+{{ endblock }}
+
+{{ block content }}
+
+    <link rel="stylesheet" crossorigin href="{{ static 'resources/main.min.css' }}">
+
+    <div id="menu">
+        <div class="button-box navigation-button-box" id="navigation">
+            <button id="navigation-button-prev" type="button">Zurück</button>
+            <button id="navigation-button-next" type="button">Weiter</button>
+        </div>
+    </div>
+    <div id="risktools">
+        <div id="parent-box-1" class="parent-box"></div>
+        <div id="parent-box-2" class="parent-box hide"></div>
+        <div id="parent-box-3" class="parent-box hide"></div>
+        <div id="parent-box-4" class="parent-box hide"></div>
+        <div id="parent-box-5" class="parent-box hide"></div>
+        <div id="parent-box-6" class="parent-box hide"></div>
+        <div id="parent-box-7" class="parent-box hide"></div>
+        <div id="parent-box-8" class="parent-box hide"></div>
+        <div id="parent-box-9" class="parent-box hide"></div>
+    </div>
+
+    <script type="module" crossorigin src="{{ static 'resources/main.min.js' }}"></script>
+    <script crossorigin src="{{ static 'resources/seedrandom.min.js' }}"></script>
+
+    {{ next_button }}
+
+{{ endblock }}

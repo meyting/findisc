@@ -11,6 +11,8 @@
 </p>
 
 <h5>Ihre mögliche Bonuszahlung</h5>
+
+{% if variant == "bel" %}
 <p>
     Ihr Ziel sollte es sein, eine Anlageberatung zu geben, die den Risiko-Präferenzen der Person möglichst genau entspricht.
     Dazu haben wir vorher die Risiko-Präferenzen der jeweiligen Personen anhand eines interaktiven Risiko-Tools gemessen.
@@ -19,7 +21,19 @@
     Eine der von Ihnen ausgewählten Personen wird im Anschluss zufällig ausgewählt.
     Wenn Ihre Empfehlung für diese Person nicht mehr als 10% von der von uns gemessenen Präferenz für diese Person, abweicht erhalten Sie eine Bonuszahlung von {{C.bonus}}.
 </p>
-
+{% elif variant == "pat" %}
+<p>
+    Ihr Ziel sollte es sein, eine Anlageberatung zu geben, die den Risiko-Präferenzen der Person möglichst genau entspricht.
+    Dazu haben wir vorher die Risiko-Präferenzen der jeweiligen Personen anhand eines interaktiven Risiko-Tools gemessen.
+    Für Ihre Empfehlungen erhalten Sie eine fixe Bezahlung von {{ C.fixedfee }}, unabhängig davon, inwiefern Ihre Empfehlung den Präferenzen der Personen entspricht. 
+</p>
+{% elif variant == "verypat" %}
+<p>
+    Ihr Ziel sollte es sein, eine Anlageberatung zu geben, die den Risiko-Präferenzen der Person möglichst genau entspricht.
+    Dazu haben wir vorher die Risiko-Präferenzen der jeweiligen Personen anhand eines interaktiven Risiko-Tools gemessen.
+    Für Ihre Empfehlungen erhalten Sie eine fixe Bezahlung von {{ C.fixedfee }}, unabhängig davon, inwiefern Ihre Empfehlung den Präferenzen der Personen entspricht. 
+</p>
+{% endif %}
 
 <p>
     Auf der nächsten Seite sehen Sie zunächst ein paar Fragen, die wir den Personen gestellt haben.

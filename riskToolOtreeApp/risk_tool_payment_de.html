@@ -1,20 +1,23 @@
 
 {{ block title }}
-    Risikotool - Ihre Auszahlung
+    Ihre Anlageentscheidung
 {{ endblock }}
 
 {{ block content }}
+<b style="color:red"> TO REVISE </b>
 <p> 
     Nun möchten wir Ihnen mit Hilfe eines interaktiven Programms die Risiken bei verschiedenen Anlagemöglichkeiten veranschaulichen und Ihnen helfen Ihre persönliche Risikoeinstellung, also das Risiko-Ertrags-Profil, mit dem Sie sich wohlfühlen zu ermitteln.
 </p>
 <p>
     Bitte verfolgen Sie dazu die folgenden Informationen und die anschließende Simulation aufmerksam.
-    Jeder zehnte Teilnehmende wird den tatsächlichen Wert des simulierten Portfolios am Ende des Anlagezeitraums geteilt durch {{ C.Auszahlungsfaktor }} ausgezahlt bekommen: würde sich der Anlagebetrag von {{ C.budget }} Euro über die {{ C.Anlagehorizont }} Jahre nicht verändernt, würde die Auszahlung folglich 50 Euro betragen.
+    Jeder zehnte Teilnehmende wird den tatsächlichen Wert des simulierten Portfolios am Ende des Anlagezeitraums geteilt durch {{ C.Auszahlungsfaktor }} ausgezahlt bekommen: würde sich der Anlagebetrag von {{ C.budget_string }} Euro über die {{ C.Anlagehorizont }} Jahre nicht verändern, würde die Auszahlung folglich {{ Auszahlung }} Euro betragen.
     Für die Auszahlung wird nach Ihrer Entscheidung eine Kapitalmarktsimulation basierend auf historischen Erträgen (Renditen) durchgeführt.
     Das Ergebnis dieser Simulation bestimmt die Höhe Ihrer Auszahlung, falls Sie ausgewählt werden.
     Die Auszahlung erfolgt innerhalb eines Monats nach Ihrer Teilnahme.
 </p>
-
+<p>
+    Bitte klicken Sie auf "Weiter", um fortzufahren und sich mit dem interaktiven Programm vertraut zu machen.
+</p>
 <br>
     {% next_button %}
 

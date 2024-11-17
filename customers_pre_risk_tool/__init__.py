@@ -13,17 +13,14 @@ nationalities = choices['Nationalität'][0:199].tolist()
 
 
 class C(BaseConstants):
-    NAME_IN_URL = 'customers'
+    NAME_IN_URL = 'c1'
     PLAYERS_PER_GROUP = None
     NUM_ROUNDS = 1
-    budget = 1000
+    budget = "10.000"
     Anlagehorizont = 10
-    Auszahlungsfaktor = 100
+
 
 class Subsession(BaseSubsession):
-    pass
-
-def creating_session(subsession: Subsession):
     pass
 
 class Group(BaseGroup):
@@ -90,7 +87,6 @@ class Player(BasePlayer):
                                    verbose_name='Bitte beschreiben Sie sich in 2-3 Sätzen. Gehen Sie dabei z.B. auf Ihre Hobbies, Interessen, Familie, etc. ein.')
     look = models.LongStringField(blank=False,
                                   verbose_name='Bitte beschreiben Sie Ihr Aussehen in 2-3 Sätzen. Gehen Sie dabei z.B. auf Ihre Haarfarbe, Augenfarbe, Größe, Brille(?), etc. ein.')
-    accept = models.BooleanField(blank=False,)
 
 
 # PAGES
@@ -110,22 +106,10 @@ class risk_survey_de_2(Page):
     form_model = 'player'
     form_fields = ['q1','q2','q3','q4','q5']
 
-class risk_tool_payment_de(Page):
-    pass
 
-class risk_tool_instructions_de(Page):
-    pass
+class bridge(Page):
+    pass  
 
-class risk_tool_de(Page):
-    pass
-
-class risk_tool_accept_de(Page):
-    form_model = 'player'
-    form_fields = ['accept']	
-
-
-class end_de(Page):
-    pass
 
 
 page_sequence = [
@@ -133,9 +117,4 @@ page_sequence = [
     personal_de,
     background_de,
     risk_survey_de_2,
-    risk_tool_payment_de,
-    risk_tool_instructions_de,
-    risk_tool_de,
-    risk_tool_accept_de,
-    end_de
                    ]
