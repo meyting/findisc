@@ -4,21 +4,27 @@
 {{ endblock }}
 
 {{ block content }}
-<b style="color:red"> TO REVISE </b>
 <p> 
-    Nun möchten wir Ihnen mit Hilfe eines interaktiven Programms die Risiken bei verschiedenen Anlagemöglichkeiten veranschaulichen und Ihnen helfen Ihre persönliche Risikoeinstellung, also das Risiko-Ertrags-Profil, mit dem Sie sich wohlfühlen zu ermitteln.
+    Nun möchten wir Ihnen mit Hilfe eines interaktiven Programms die Risiken bei verschiedenen Anlagemöglichkeiten veranschaulichen, bevor Sie anschließend eine Anlageentscheidung treffen.
 </p>
 <p>
-    Bitte verfolgen Sie dazu die folgenden Informationen und die anschließende Simulation aufmerksam.
-    Jeder zehnte Teilnehmende wird den tatsächlichen Wert des simulierten Portfolios am Ende des Anlagezeitraums geteilt durch {{ C.Auszahlungsfaktor }} ausgezahlt bekommen: würde sich der Anlagebetrag von {{ C.budget_string }} Euro über die {{ C.Anlagehorizont }} Jahre nicht verändern, würde die Auszahlung folglich {{ Auszahlung }} Euro betragen.
-    Für die Auszahlung wird nach Ihrer Entscheidung eine Kapitalmarktsimulation basierend auf historischen Erträgen (Renditen) durchgeführt.
-    Das Ergebnis dieser Simulation bestimmt die Höhe Ihrer Auszahlung, falls Sie ausgewählt werden.
+    Stellen Sie sich dazu vor, dass Sie {{ C.budget_string }} Euro über einen Zeitraum von {{ C.Anlagehorizont }} Jahren anlegen möchten.
+    Sie können das Geld in zwei verschiedene Anlageformen investieren: in risikobehaftete Aktien oder in risikofreie Anleihen.
+    Sie können das Geld in einer der beiden Anlageformen investieren oder in beide Anlageformen gleichzeitig. 
+    Sie können auch entscheiden, wie viel Geld Sie in jede Anlageform investieren möchten.
+</p>
+<!-- Ihnen helfen Ihre persönliche Risikoeinstellung, also das Risiko-Ertrags-Profil, mit dem Sie sich wohlfühlen zu ermitteln.-->
+
+<b> Wichtig: </b>
+<p>
+    Jede/r zehnte Teilnehmende dieser Studie wird den tatsächlichen Wert des simulierten Portfolios nach einem Anlagezeitraum von {{ C.Anlagehorizont }} Jahren in Cent ausgezahlt bekommen.
+    Ein Endwert des simulierten Portfolios von z.B. {{ C.budget_string }} Euro enspricht also einer Auszahlung von {{ Auszahlung }} Euro.
+    Die Simulation basiert auf historischen Erträgen (Renditen) breit gestreuter Anlagen.
     Die Auszahlung erfolgt innerhalb eines Monats nach Ihrer Teilnahme.
 </p>
 <p>
     Bitte klicken Sie auf "Weiter", um fortzufahren und sich mit dem interaktiven Programm vertraut zu machen.
 </p>
-<br>
     {% next_button %}
 
 {% endblock %}
