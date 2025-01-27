@@ -33,7 +33,7 @@ ROOMS = [
     ),
 ]
 
-PARTICIPANT_FIELDS = ["variant", "profiles"]
+PARTICIPANT_FIELDS = ["variant", "profiles", "suggestion"]
 SESSION_FIELDS = []
 
 # ISO-639 code

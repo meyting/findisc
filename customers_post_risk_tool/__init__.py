@@ -27,7 +27,13 @@ class Player(BasePlayer):
 # PAGES
 
 class risk_tool_accept_de(Page):
-    pass
+    @staticmethod
+    def vars_for_template(player: Player):
+        suggestion = player.participant.suggestion
+        return {
+            'suggestion' : suggestion,
+        }
+    
 #    form_model = 'player'
 #    form_fields = ['accept']	
 
