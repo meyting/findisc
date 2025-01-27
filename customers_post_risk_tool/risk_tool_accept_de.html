@@ -8,7 +8,7 @@
 
 <p>
     In einem anderen Teil unserer Studie werden TeilnehmerInnen gebeten auf Basis anonymisierter Informationen über Sie eine Anlageempfehlung für Sie abzugeben.
-    Diese anderen TeilnehmerInne sind entweder professionelle FinanzberaterInnen oder nicht.
+    TREATMENT: Diese anderen TeilnehmerInnen sind entweder professionelle FinanzberaterInnen oder nicht.
 </p>
 <p>
     Auf dieser Seite fragen wir Sie ob Sie die jeweilige Empfehlung annehmen würden oder nicht.
@@ -24,16 +24,74 @@
 <p>
     Am Ende wird ein Teil aller TeilnehmerInnen ausgewählt und Entscheidung umgesetzt...wenn angenommen, bekommen Sie Wert des Portfolios, wenn abgelehnt bekommen Sie Ausgangswert von 100 Euro.
 </p>
+
+
+
+
 <p>
     Stairwise Strategy Method mit Fragen, ob Sie 100% risky share annehmen würden oder lieber 0%, wenn 0%: 50% oder 0%, wenn 0%: 30% oder 0%, wenn 50%: 75% oder 0%, etc
 
 
 </p>
-<br>
+<input type="hidden" name="accept" id="accept" value="">
+
+<!-- Button container for 0% and 100% initially -->
+<div class="button-container" id="button-container">
+    <button type="button" onclick="handleClick('left')">0%</button>
+    <button type="button" onclick="handleClick('right')">10%</button>
+</div>
+
+<script>
+    // Initialize button values
+    let leftValue = 0;
+    let rightValue = 10; // Initially set the right value to 10%
+
+    function handleClick(button) {
+        const buttonContainer = document.getElementById('button-container');
+        const leftButton = document.querySelector('.button-container button:nth-child(1)');
+        const rightButton = document.querySelector('.button-container button:nth-child(2)');
+
+        if (button === 'right') {
+            rightValue = Math.min(100, rightValue + 10); // Increase right value by 10%
+            rightButton.textContent = `${rightValue}%`; // Update the right button's text
+        }
+
+        if (button === 'left') {
+            // Hide buttons and show the maximum accepted risk text
+            buttonContainer.innerHTML = `<p>Maximum accepted risk = ${rightValue-10}%</p>`;
+            
+            // Update the hidden input value
+            document.getElementById('accept').value = rightValue;
+        }
+    }
+</script>
 
 
-    {% next_button %}
+{% next_button %}
 
+
+
+<style>
+    .button-container {
+        display: flex;
+        gap: 25%;
+        justify-content: center;
+        align-items: center;
+        
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 25px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    button:hover {
+        background-color: #d0d0d0;
+    }
+</style>
 
 {% endblock %}
-
