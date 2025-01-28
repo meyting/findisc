@@ -99,7 +99,7 @@ def select_unique_risky_shares(data, n):
 
 def creating_session(subsession: Subsession):
     import itertools
-    variant = itertools.cycle(['bel', 'pat', 'verypat '])
+    variant = itertools.cycle(['bel', 'pat', 'verypat', 'pat_accept', 'verypat_accept'])
     if subsession.round_number == 1:
         for p in subsession.get_players():
             if 'variant' in subsession.session.config:
@@ -122,17 +122,17 @@ class Player(BasePlayer):
     riskgroup_example = models.IntegerField(blank=True)
     advice_example = models.IntegerField(blank=True,
                                              choices=[
-                                        [0, "0% Risikoanteil"],
-                                        [10, "10% Risikoanteil"], 
-                                        [20, "20% Risikoanteil"], 
-                                        [30, "30% Risikoanteil"], 
-                                        [40, "40% Risikoanteil"],
-                                        [50, "50% Risikoanteil"], 
-                                        [60, "60% Risikoanteil"], 
-                                        [70, "70% Risikoanteil"], 
-                                        [80, "80% Risikoanteil"], 
-                                        [90, "90% Risikoanteil"],
-                                        [100, "100% Risikoanteil"]],
+                                        [0, "Portfolio mit 0% Risikoanteil"],
+                                        [10, "Portfolio mit 10% Risikoanteil"], 
+                                        [20, "Portfolio mit 20% Risikoanteil"], 
+                                        [30, "Portfolio mit 30% Risikoanteil"], 
+                                        [40, "Portfolio mit 40% Risikoanteil"],
+                                        [50, "Portfolio mit 50% Risikoanteil"], 
+                                        [60, "Portfolio mit 60% Risikoanteil"], 
+                                        [70, "Portfolio mit 70% Risikoanteil"], 
+                                        [80, "Portfolio mit 80% Risikoanteil"], 
+                                        [90, "Portfolio mit 90% Risikoanteil"],
+                                        [100, "Portfolio mit 100% Risikoanteil"]],
                                         verbose_name="""""")
     advice_certainty_example = models.IntegerField(blank=True,
                                                choices=[[1, "sehr sicher"],
@@ -142,17 +142,17 @@ class Player(BasePlayer):
                                         verbose_name="""""")
     riskgroup = models.IntegerField(blank=False)
     advice = models.IntegerField(choices=[
-                                        [0, "0% Risikoanteil"],
-                                        [10, "10% Risikoanteil"], 
-                                        [20, "20% Risikoanteil"], 
-                                        [30, "30% Risikoanteil"], 
-                                        [40, "40% Risikoanteil"],
-                                        [50, "50% Risikoanteil"], 
-                                        [60, "60% Risikoanteil"], 
-                                        [70, "70% Risikoanteil"], 
-                                        [80, "80% Risikoanteil"], 
-                                        [90, "90% Risikoanteil"],
-                                        [100, "100% Risikoanteil"]
+                                        [0, "Portfolio mit 0% Risikoanteil"],
+                                        [10, "Portfolio mit 10% Risikoanteil"], 
+                                        [20, "Portfolio mit 20% Risikoanteil"], 
+                                        [30, "Portfolio mit 30% Risikoanteil"], 
+                                        [40, "Portfolio mit 40% Risikoanteil"],
+                                        [50, "Portfolio mit 50% Risikoanteil"], 
+                                        [60, "Portfolio mit 60% Risikoanteil"], 
+                                        [70, "Portfolio mit 70% Risikoanteil"], 
+                                        [80, "Portfolio mit 80% Risikoanteil"], 
+                                        [90, "Portfolio mit 90% Risikoanteil"],
+                                        [100, "Portfolio mit 100% Risikoanteil"]
                                         ],
                                         verbose_name="""""")
     advice_certainty = models.IntegerField(blank=False,
@@ -247,8 +247,31 @@ class risk_survey_de_2(Page):
     def is_displayed(player: Player):
         return player.round_number == 1
     
-
-        
+'''
+    @staticmethod
+    def error_message(player, values):
+        questions = dict(
+            q1_advisor=None,
+            q2_advisor=None,
+            q3_advisor=None,
+            q4_advisor=None,
+            q5_advisor=None
+        )
+        error_messages = dict()
+        for field_name in questions:
+            if values[field_name] == questions[field_name]:
+                if field_name == 'q1_advisor':
+                    error_messages[field_name] = 'Bitte geben Sie an, wie sehr sie der ersten Aussage zustimmen.'
+                elif field_name == 'q2_advisor':
+                    error_messages[field_name] = 'Bitte geben Sie an, wie sehr sie der zweiten Aussage zustimmen.'
+                elif field_name == 'q3_advisor':
+                    error_messages[field_name] = 'Bitte geben Sie an, wie sehr sie der dritten Aussage zustimmen.'
+                elif field_name == 'q4_advisor':
+                    error_messages[field_name] = 'Bitte geben Sie an, wie sehr sie der vierten Aussage zustimmen.'
+                elif field_name == 'q5_advisor':
+                    error_messages[field_name] = 'Bitte geben Sie an, wie sehr sie der fünften Aussage zustimmen.'
+                return error_messages
+'''        
 '''
 class evaluation_example_de(Page):
     form_model = 'player'

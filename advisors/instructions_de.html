@@ -1,44 +1,53 @@
 {{ block title }}
-    Hintergrund
+Hintergrund
 {{ endblock }}
-
 {{ block content }}
+<hr>
+<p><i>Bitte lesen Sie die nachfolgenden Erklärungen gründlich durch.</i></p>
+<hr>
 <p>
-    Auf den folgenden Seiten stellen wir Ihnen verschiedene Personen vor, die finanziellen Rat benötigen um eine Anlageentscheidung zu treffen.
-    Diese Personen haben an einer vorherigen Umfrage teilgenommen und einige Fragen zu sich und Ihrer Risikobereitschaft beantwortet.
-    Ihre Aufgabe ist es, diese Personen zu beraten, indem Sie die Informationen, die Sie über die Personen und die Anlagemöglichkeiten erhalten, nutzen.
-    Sie werden gebeten, eine Anlageempfehlung zu geben, welchen Anteil des Geldes die Ihnen jeweils vorliegende Person in eine risikobehaftete Anlage investieren sollte und welchen Anteil sie in eine risikolose Anlage investieren sollte.
+    Im Folgenden stellen wir Ihnen verschiedene Personen vor, denen Sie bei einer Anlageentscheidung helfen sollen.
+    Diese Personen haben an einer vorherigen Umfrage teilgenommen und einige Fragen zu sich und ihrer Risikobereitschaft beantwortet.
+    Ihre Aufgabe ist es, diese Personen zu beraten.
+    Dabei können Sie die Informationen nutzen, die Sie über die Personen und die Anlagemöglichkeiten erhalten.
+    Die Empfehlung bezieht sich darauf, wie ein zu investierender Betrag zwischen einer risikobehafteten und einer risikolosen Anlage aufgeteilt werden soll.
 </p>
-
+<p>
+    Jeder Ihnen im Folgenden angezeigte Person haben wir im Vorfeld zu dieser Studie einige Fragen gestellt.
+    Außerdem wurde die jeweilige Risikoneigung anhand eines interaktiven Tools gemessen.
+    Bevor Sie gleich Ihre Empfehlungen abgeben sollen, können Sie sich zunächst mit den gestellten Fragen sowie dem interaktiven Tool vertraut machen.
+</p>
 <h5>Ihre mögliche Bonuszahlung</h5>
-<b style="color:red"> TO REVISE ACCORDING TO TREATMENT</b>
+
 {% if variant == "bel" %}
 <p>
-    Ihr Ziel sollte es sein, eine Anlageberatung zu geben, die den Risikoneigungen der Person möglichst genau entspricht.
-    Dazu haben wir vorher die Risikoneigung der jeweiligen Personen anhand eines interaktiven Programms gemessen.
-    Nachdem Sie Ihre Beratungen abgeschlossen haben, zeigen wir Ihnen jetzt nochmal Ihre Kundinnen und Kunden und die von Ihnen jeweils gegebenen Empfehlungen.
-    Sie haben dann die Möglichkeit {{C.numberselections}} Ihrer KundInnen auszuwählen. 
-    Eine der von Ihnen ausgewählten Personen wird im Anschluss zufällig ausgewählt.
-    Wenn Ihre Empfehlung für diese Person nicht mehr als 10% von der von uns gemessenen Präferenz für diese Person, abweicht erhalten Sie eine Bonuszahlung von {{C.bonus}}.
+    Nachdem Sie Ihre Beratungen abgeschlossen haben, haben Sie die Möglichkeit {{C.numberselections}} der beratenen Personen auszuwählen. 
+    Aus dieser Gruppe wird im Anschluss eine Person zufällig ausgewählt.
+    Wenn die tatsächliche Risikoneigung dieser Person der von Ihnen abgegebenen Empfehlung entspricht, erhalten Sie eine Bonuszahlung von {{C.bonus}}.
+    (Konkret darf Ihre Empfehlung um nicht mehr als 10% von der tatsächlichen Risikoneigung abweichen.)
 </p>
 {% elif variant == "pat" %}
 <p>
-    Ihr Ziel sollte es sein, eine Anlageberatung zu geben, die den Risiko-Präferenzen der Person möglichst genau entspricht.
-    Dazu haben wir vorher die Risiko-Präferenzen der jeweiligen Personen anhand eines interaktiven Risiko-Tools gemessen.
     Für Ihre Empfehlungen erhalten Sie eine fixe Bezahlung von {{ C.fixedfee }}, unabhängig davon, inwiefern Ihre Empfehlung den Präferenzen der Personen entspricht. 
 </p>
 {% elif variant == "verypat" %}
 <p>
-    Ihr Ziel sollte es sein, eine Anlageberatung zu geben, die den Risiko-Präferenzen der Person möglichst genau entspricht.
-    Dazu haben wir vorher die Risiko-Präferenzen der jeweiligen Personen anhand eines interaktiven Risiko-Tools gemessen.
     Für Ihre Empfehlungen erhalten Sie eine fixe Bezahlung von {{ C.fixedfee }}, unabhängig davon, inwiefern Ihre Empfehlung den Präferenzen der Personen entspricht. 
 </p>
-{% endif %}
-
+{% elif variant == "pat_accept" %}
 <p>
-    Auf der nächsten Seite sehen Sie zunächst ein paar Fragen, die wir den Personen gestellt haben.
-    Wir bitten Sie, diese Fragen zu beantworten, um sich mit diesen vertraut zu machen.
+    Eine Ihrer Empfehlungen wird im Anschluss an diese Umfrage für Ihre Bezahlung ausgewählt.
+    Konkret befragen wir die Person, für die die jeweilige Empfehlung abgegeben haben, ob sie Ihre Empfehlung annimmt.
+    Wenn die Person Ihre Empfehlung annimmt, erhalten Sie eine Bonuszahlung von {{C.bonus}}.
+    Wenn die Person Ihre Empfehlung ablehnt, erhalten Sie keine Bonuszahlung. 
 </p>
+{% elif variant == "verypat_accept" %}
+<p>
+    Eine Ihrer Empfehlungen wird im Anschluss an diese Umfrage für Ihre Bezahlung ausgewählt.
+    Konkret befragen wir die Person, für die die jeweilige Empfehlung abgegeben haben, ob sie Ihre Empfehlung annimmt.
+    Wenn die Person Ihre Empfehlung annimmt, erhalten Sie eine Bonuszahlung von {{C.bonus}}.
+    Wenn die Person Ihre Empfehlung ablehnt, erhalten Sie keine Bonuszahlung. </p>
+{% endif %}
 
 
 

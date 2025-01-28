@@ -6,8 +6,9 @@
 
 {{ block content }}
 <p>
-    Wir haben allen Kundinnen und Kunden folgende Fragen gestellt und bitte Sie einmal dieselben zu beantworten um sich mit diesen vertraut zu machen.
-    Bitte geben Sie zu jeder der folgenden 5 Aussagen an, wie sehr sie ihr zustimmen.
+    Wir haben allen Kundinnen und Kunden folgende Fragen gestellt.
+    Bitte beantworten Sie diese selbst, um sich vertraut zu machen.
+    Geben Sie dazu zu jeder der folgenden 5 Aussagen an, wie sehr sie ihr zustimmen.
     Klicken Sie dafür jeweils die entsprechende Anzahl an Boxen an.
 </p>
 
@@ -26,7 +27,9 @@
         </div>
         <div class="text-cell-back">
             <!--<div class="text">Bedeutung des Erhalts der Kapitalanlage</div>-->
-            <div class="text">Der Erhalt meiner Kapitalanlage ist mir wichtig.</div>
+            <div class="text">Der Erhalt meiner Kapitalanlage ist mir wichtig.<br>
+                <div id="q1_advisor_error" class="error-message"></div>
+            </div>
         </div>        
         <div class="scale-cell-back">
             <div class="radio-group" id="q1">
@@ -39,6 +42,7 @@
                 <label for="q1_radio3" data-tooltip="stimme eher zu"></label>
                 <input type="radio" id="q1_radio4" name="q1_advisor"  value="4" onclick="updateButtons('q1', 4)">
                 <label for="q1_radio4" data-tooltip="stimme voll und ganz zu"></label>
+                <div id="q1_advisor_error" class="error-message"></div>
                 </div>
         </div>
     </div>
@@ -49,12 +53,14 @@
         </div>
         <div class="text-cell-back">
             <!--<div class="text">Bedeutung von zuverlässiger Rendite vs. hohes Rendite-Risiko Profil</div>-->
-            <div class="text">Mir ist eine zuverlässige Rendite wichtiger als Risiken einzugehen, um meinen Ertrag zu erhöhen.</div>
+            <div class="text">Mir ist eine zuverlässige Rendite wichtiger als Risiken einzugehen, um meinen Ertrag zu erhöhen.<br>
+                <div id="q2_advisor_error" class="error-message"></div>
+            </div>
         </div>
         <div class="scale-cell-back">
             <div class="radio-group" id="q2">
                 <div class="radio-buttons">
-                <input type="radio" id="q2_radio1" name="q2_advisor"  value="1" onclick="updateButtons('q2', 1)">
+                <input type="radio" id="q2_radio1" name="q2_advisor"  value="1" onclick="updateButtons('q2', 1)" >
                 <label for="q2_radio1" data-tooltip="stimme gar nicht zu"></label>
                 <input type="radio" id="q2_radio2" name="q2_advisor"  value="2" onclick="updateButtons('q2', 2)">
                 <label for="q2_radio2"  data-tooltip="stimme eher nicht zu"></label>
@@ -62,6 +68,7 @@
                 <label for="q2_radio3" data-tooltip="stimme eher zu"></label>
                 <input type="radio" id="q2_radio4" name="q2_advisor"  value="4" onclick="updateButtons('q2', 4)">
                 <label for="q2_radio4" data-tooltip="stimme voll und ganz zu"></label>
+                <div id="q2_advisor_error" class="error-message"></div>
                 </div>
             </div>
         </div>
@@ -72,12 +79,14 @@
         </div>
         <div class="text-cell-back">
             <!--<div class="text">Nervosität bei kleinsten Verlusten</div>-->
-            <div class="text">Selbst kleinste Verluste machen mich bereits nervös.</div>
+            <div class="text">Selbst kleinste Verluste machen mich bereits nervös.<br>
+                <div id="q3_advisor_error" class="error-message"></div>
+            </div>
         </div>
         <div class="scale-cell-back">
             <div class="radio-group" id="q3">
                <div class="radio-buttons">
-                <input type="radio" id="q3_radio1" name="q3_advisor"  value="1" onclick="updateButtons('q3', 1)">
+                <input type="radio" id="q3_radio1" name="q3_advisor"  value="1" onclick="updateButtons('q3', 1)" >
                 <label for="q3_radio1" data-tooltip="stimme gar nicht zu"></label>
                 <input type="radio" id="q3_radio2" name="q3_advisor"  value="2" onclick="updateButtons('q3', 2)">
                 <label for="q3_radio2" data-tooltip="stimme eher nicht zu"></label>
@@ -85,6 +94,7 @@
                 <label for="q3_radio3" data-tooltip="stimme eher zu"></label>
                 <input type="radio" id="q3_radio4" name="q3_advisor"  value="4" onclick="updateButtons('q3', 4)">
                 <label for="q3_radio4" data-tooltip="stimme voll und ganz zu"></label>
+                <div id="q3_advisor_error" class="error-message"></div>
                 </div>
             </div>
         </div>
@@ -95,12 +105,15 @@
         </div>  
         <div class="text-cell-back">
             <!--<div class="text">Reiz finanzieller Risiken: Wagen & Gewinnen</div>-->
-            <div class="text">Finanzielle Risiken sind reizvoll: Nur wer viel wagt kann auch viel gewinnen.</div>
+            <div class="text">Finanzielle Risiken sind reizvoll: Nur wer viel wagt kann auch viel gewinnen.<br>
+                <div id="q4_advisor_error" class="error-message"></div>
+
+            </div>
         </div>
         <div class="scale-cell-back">
             <div class="radio-group" id="q4">
                 <div class="radio-buttons">
-                <input type="radio" id="q4_radio1" name="q4_advisor"  value="1" onclick="updateButtons('q4', 1)">
+                <input type="radio" id="q4_radio1" name="q4_advisor"  value="1" onclick="updateButtons('q4', 1)" >
                 <label for="q4_radio1" data-tooltip="stimme gar nicht zu"></label>
                 <input type="radio" id="q4_radio2" name="q4_advisor"  value="2" onclick="updateButtons('q4', 2)">
                 <label for="q4_radio2" data-tooltip="stimme eher nicht zu"></label>
@@ -108,6 +121,7 @@
                 <label for="q4_radio3" data-tooltip="stimme eher zu"></label>
                 <input type="radio" id="q4_radio4" name="q4_advisor"  value="4" onclick="updateButtons('q4', 4)">
                 <label for="q4_radio4" data-tooltip="stimme voll und ganz zu"></label>
+                <div id="q4_advisor_error" class="error-message"></div>
                 </div>
             </div>
         </div>
@@ -118,12 +132,14 @@
         </div>
         <div class="text-cell-back">
             <!--<div class="text">Verluste in Kauf nehmen für hohe Gewinnchancen</div>-->
-            <div class="text">Ich nehme den Verlust meines Vermögens in Kauf wenn ich gleichzeitig die Chance habe, meine Gewinne zu erhöhen.</div>
+            <div class="text">Ich nehme den Verlust meines Vermögens in Kauf wenn ich gleichzeitig die Chance habe, meine Gewinne zu erhöhen. <br>
+                <div id="q5_advisor_error" class="error-message"></div>
+            </div>
         </div>        
         <div class="scale-cell-back">
             <div class="radio-group" id="q5">
                 <div class="radio-buttons">
-                <input type="radio" id="q5_radio1" name="q5_advisor"  value="1" onclick="updateButtons('q5', 1)">
+                <input type="radio" id="q5_radio1" name="q5_advisor"  value="1" onclick="updateButtons('q5', 1)" >
                 <label for="q5_radio1" data-tooltip="stimme gar nicht zu"></label>
                 <input type="radio" id="q5_radio2" name="q5_advisor"  value="2" onclick="updateButtons('q5', 2)">
                 <label for="q5_radio2" data-tooltip="stimme eher nicht zu"></label>
@@ -151,13 +167,24 @@
 {{ formfield_errors 'q5_advisor' }}
 
 <br>
-    {% next_button %}
+
+    <div class="hidden" id="next-button">
+        {% next_button %}
+    </div>
 
 {% endblock %}
 
 {% block styles %}
 <style>
-    
+.hidden {
+    display: none;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.9em;
+}
+
 .icon-back {
     width: 40%;
     height: auto;
@@ -310,6 +337,33 @@ function updateButtons(groupId, selectedIndex) {
         }
     });
 }
+
+
+const questions = ['q1_advisor', 'q2_advisor', 'q3_advisor', 'q4_advisor', 'q5_advisor'];
+const nextButton = document.getElementById('next-button');
+
+// Check if all questions have answers selected
+function checkCompletion() {
+  const allAnswered = questions.every(question => {
+    return document.querySelector(`input[name='${question}']:checked`);
+  });
+
+  if (allAnswered) {
+    nextButton.classList.remove('hidden');
+  } else {
+    nextButton.classList.add('hidden');
+  }
+}
+
+// Attach change event listeners to all radio buttons
+questions.forEach(question => {
+  const radios = document.querySelectorAll(`input[name='${question}']`);
+  radios.forEach(radio => {
+    radio.addEventListener('change', checkCompletion);
+  });
+});
+
+
 
 </script>
 {% endblock %}

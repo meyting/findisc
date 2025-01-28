@@ -272,8 +272,13 @@
 <div class="advice">
 <table id="info" style="font-size:1.1rem; table-layout: fixed; width:100%; margin-left:auto; margin-right:auto;background-color:rgb(218, 241, 218)">
     <tr style="text-align:center" >
-        <td style = "width:80%;text-align:center;font-weight:bold"> Welches Produkt würden Sie dieser Person empfehlen? </td>
-        <td style = "width:20%;text-align:right;font-weight:bold">  <input name="advice_example" class="rawfield"  class="disabled-input" disabled/> </td>
+        <td style = "width:70%;text-align:center;font-weight:bold" class="product">
+            <div class="scale-cell-back" style="width:100%""> Welches Produkt würden Sie dieser Person empfehlen?             
+            <img src="{% static 'icons/information-button.png' %}" class="info-icon"/>
+            <span class="tooltip">Welchen Anteil risikobehafteter Anlagen empfehlen Sie {{ name }}?</span>
+            </div>
+        </td>
+        <td style = "width:30%;text-align:right;font-weight:bold">  <input name="advice_example" class="rawfield" placeholder="Beispielprofil" class="disabled-input" disabled/> </td>
         <td style = "width:10%;text-align:left;"> </td>
     </tr>
     {% if form.advice_example.errors %}
@@ -285,8 +290,8 @@
 <div class="advice">
     <table id="info" style="font-size:1.1rem; table-layout: fixed; width:100%; margin-left:auto; margin-right:auto;background-color:rgb(218, 241, 218)">
     <tr style="text-align:center" >
-        <td style = "width:80%;text-align:center;font-weight:bold"> Wie überzeugt sind Sie von Ihrer Empfehlung? </td>
-        <td style = "width:20%;text-align:right;font-weight:bold">  <input name="advice_certainty_example" class="rawfield"  class="disabled-input" disabled/> </td>
+        <td style = "width:70%;text-align:center;font-weight:bold"> Wie überzeugt sind Sie von Ihrer Empfehlung? </td>
+        <td style = "width:30%;text-align:right;font-weight:bold">  <input name="advice_certainty_example" class="rawfield"  placeholder="Beispielprofil"  class="disabled-input" disabled/> </td>
         <td style = "width:10%;text-align:left;"> </td>
     </tr>
         {% if form.advice_certainty_example.errors %}
@@ -311,6 +316,16 @@
 
 {% block styles %}
 <style>
+.rawfield::placeholder {
+  text-align: center; /* Center the placeholder */
+  color: gray;
+}
+
+.rawfield {
+  width: 200px; /* Set desired width */
+  padding: 5px;
+  text-align: center; /* Center the text content */
+}
 
 .advice{
     width: 100%;
@@ -500,6 +515,10 @@
     opacity: 1;
 }
 
+.product:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
 
     </style>
 {{ endblock }}

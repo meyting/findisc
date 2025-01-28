@@ -148,13 +148,18 @@ Klicken Sie dafür jeweils die entsprechende Anzahl an Boxen an.
 <br>
 
 
+<div class="hidden" id="next-button">
     {% next_button %}
+</div>
 
 {% endblock %}
 
 {% block styles %}
 <style>
-    
+.hidden {
+    display: none;
+}
+
 .icon-back {
     width: 40%;
     height: auto;
@@ -307,6 +312,29 @@ function updateButtons(groupId, selectedIndex) {
         }
     });
 }
+const questions = ['q1', 'q2', 'q3', 'q4', 'q5'];
+const nextButton = document.getElementById('next-button');
+
+// Check if all questions have answers selected
+function checkCompletion() {
+  const allAnswered = questions.every(question => {
+    return document.querySelector(`input[name='${question}']:checked`);
+  });
+
+  if (allAnswered) {
+    nextButton.classList.remove('hidden');
+  } else {
+    nextButton.classList.add('hidden');
+  }
+}
+
+// Attach change event listeners to all radio buttons
+questions.forEach(question => {
+  const radios = document.querySelectorAll(`input[name='${question}']`);
+  radios.forEach(radio => {
+    radio.addEventListener('change', checkCompletion);
+  });
+});
 
 </script>
 {% endblock %}
