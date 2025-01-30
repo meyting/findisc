@@ -260,6 +260,11 @@ class risk_tool_de(Page):
         return player.round_number == 1
  
 
+class risk_tool_placeholder(Page):
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.round_number == 1
+    
 
 class evaluation_example_de_3(Page):
     form_model = 'player'
@@ -557,6 +562,7 @@ page_sequence = [
     instructions_de,
     risk_survey_de_2,
     #risk_tool_de,
+    risk_tool_de_placeholder,
     evaluation_example_de_3,
     evaluation_de_3,
     payment_instructions_de,
