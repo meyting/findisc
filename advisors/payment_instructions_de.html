@@ -2,13 +2,42 @@
     Ihr möglicher Bonus
 {{ endblock }}
 {{ block content }}
+
+
+{% if variant == "bel" %}
 <p>
-    Nachdem Sie Ihre Beratungen nun abgeschlossen haben, zeigen wir Ihnen nochmals die von Ihnen gegebenen Empfehlungen.
-    Sie haben dabei die Möglichkeit {{C.numberselections}} Personen auszuwählen.
-    Eine dieser Personen {{C.numberselections}} wird im Anschluss zufällig ausgewählt.
+    Zur Erinnerung: Eine Ihrer Empfehlungen wird im Anschluss an diese Umfrage für Ihre Bezahlung ausgewählt.
+    Auf der nächsten Seite haben Sie die Möglichkeit {{C.numberselections}} Ihrer abgegebenen Empfehlungen auszuwählen. 
+    Eine dieser {{C.numberselections}} Empfehlungen wird im Anschluss zufällig ausgewählt.
     Wenn die tatsächliche Risikoneigung dieser Person der von Ihnen abgegebenen Empfehlung entspricht, erhalten Sie eine Bonuszahlung von {{C.bonus}}.
     (Konkret darf Ihre Empfehlung um nicht mehr als 10% von der tatsächlichen Risikoneigung abweichen.)
 </p>
+{% elif variant == "pat" %}
+<p>
+    Zur Erinnerung: Für die Abgabe ihrer Empfehlungen erhalten Sie einen fixen Bonus von {{ C.fixedfee }}.
+</p>
+{% elif variant == "verypat" %}
+<p>
+    Zur Erinnerung: Für die Abgabe ihrer Empfehlungen erhalten Sie einen fixen Bonus von {{ C.fixedfee }}.
+</p>
+{% elif variant == "pat_accept" %}
+<p>
+    Zur Erinnerung: Eine Ihrer Empfehlungen wird im Anschluss an diese Umfrage für Ihre Bezahlung ausgewählt.
+    Auf der nächsten Seite haben Sie die Möglichkeit {{C.numberselections}} Ihrer abgegebenen Empfehlungen auszuwählen. 
+    Eine dieser {{C.numberselections}} Empfehlungen wird im Anschluss zufällig ausgewählt.
+    Konkret befragen wir die Person, für die Sie die jeweilige Empfehlung abgegeben haben, ob sie Ihre Empfehlung annimmt.
+    Wenn die Person Ihre Empfehlung annimmt, erhalten Sie eine Bonuszahlung von {{C.bonus}}. 
+    Wenn die Person Ihre Empfehlung ablehnt, erhalten Sie keine Bonuszahlung.
+</p>
+{% elif variant == "verypat_accept" %}
+<p>
+    Zur Erinnerung: Eine Ihrer Empfehlungen wird im Anschluss an diese Umfrage für Ihre Bezahlung ausgewählt.
+    Auf der nächsten Seite haben Sie die Möglichkeit {{C.numberselections}} Ihrer abgegebenen Empfehlungen auszuwählen. 
+    Eine dieser {{C.numberselections}} Empfehlungen wird im Anschluss zufällig ausgewählt.
+    Konkret befragen wir die Person, für die Sie die jeweilige Empfehlung abgegeben haben, ob sie Ihre Empfehlung annimmt.
+    Wenn die Person Ihre Empfehlung annimmt, erhalten Sie eine Bonuszahlung von {{C.bonus}}. 
+    Wenn die Person Ihre Empfehlung ablehnt, erhalten Sie keine Bonuszahlung.
+{% endif %}
 
 <br>
     {{ next_button }}

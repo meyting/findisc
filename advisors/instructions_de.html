@@ -13,7 +13,7 @@ Hintergrund
     Die Empfehlung bezieht sich darauf, wie ein zu investierender Betrag zwischen einer risikobehafteten und einer risikolosen Anlage aufgeteilt werden soll.
 </p>
 <p>
-    Jeder Ihnen im Folgenden angezeigte Person haben wir im Vorfeld zu dieser Studie einige Fragen gestellt.
+    Jeder Ihnen im Folgenden angezeigten Person haben wir im Vorfeld zu dieser Studie einige Fragen gestellt.
     Außerdem wurde die jeweilige Risikoneigung anhand eines interaktiven Tools gemessen.
     Bevor Sie gleich Ihre Empfehlungen abgeben sollen, können Sie sich zunächst mit den gestellten Fragen sowie dem interaktiven Tool vertraut machen.
 </p>
@@ -21,32 +21,31 @@ Hintergrund
 
 {% if variant == "bel" %}
 <p>
-    Nachdem Sie Ihre Beratungen abgeschlossen haben, haben Sie die Möglichkeit {{C.numberselections}} der beratenen Personen auszuwählen. 
-    Aus dieser Gruppe wird im Anschluss eine Person zufällig ausgewählt.
+    Eine Ihrer Empfehlungen wird im Anschluss an diese Umfrage für Ihre Bezahlung ausgewählt.
     Wenn die tatsächliche Risikoneigung dieser Person der von Ihnen abgegebenen Empfehlung entspricht, erhalten Sie eine Bonuszahlung von {{C.bonus}}.
     (Konkret darf Ihre Empfehlung um nicht mehr als 10% von der tatsächlichen Risikoneigung abweichen.)
 </p>
 {% elif variant == "pat" %}
 <p>
-    Für Ihre Empfehlungen erhalten Sie eine fixe Bezahlung von {{ C.fixedfee }}, unabhängig davon, inwiefern Ihre Empfehlung den Präferenzen der Personen entspricht. 
+    Für die Abgabe ihrer Empfehlungen erhalten Sie einen fixen Bonus von {{ C.fixedfee }}.
 </p>
 {% elif variant == "verypat" %}
 <p>
-    Für Ihre Empfehlungen erhalten Sie eine fixe Bezahlung von {{ C.fixedfee }}, unabhängig davon, inwiefern Ihre Empfehlung den Präferenzen der Personen entspricht. 
+    Für die Abgabe ihrer Empfehlungen erhalten Sie einen fixen Bonus von {{ C.fixedfee }}.
 </p>
 {% elif variant == "pat_accept" %}
 <p>
     Eine Ihrer Empfehlungen wird im Anschluss an diese Umfrage für Ihre Bezahlung ausgewählt.
-    Konkret befragen wir die Person, für die die jeweilige Empfehlung abgegeben haben, ob sie Ihre Empfehlung annimmt.
-    Wenn die Person Ihre Empfehlung annimmt, erhalten Sie eine Bonuszahlung von {{C.bonus}}.
-    Wenn die Person Ihre Empfehlung ablehnt, erhalten Sie keine Bonuszahlung. 
+    Konkret befragen wir die Person, für die Sie die jeweilige Empfehlung abgegeben haben, ob sie Ihre Empfehlung annimmt.
+    Wenn die Person Ihre Empfehlung annimmt, erhalten Sie eine Bonuszahlung von {{C.bonus}}. 
+    Wenn die Person Ihre Empfehlung ablehnt, erhalten Sie keine Bonuszahlung.
 </p>
 {% elif variant == "verypat_accept" %}
 <p>
     Eine Ihrer Empfehlungen wird im Anschluss an diese Umfrage für Ihre Bezahlung ausgewählt.
-    Konkret befragen wir die Person, für die die jeweilige Empfehlung abgegeben haben, ob sie Ihre Empfehlung annimmt.
-    Wenn die Person Ihre Empfehlung annimmt, erhalten Sie eine Bonuszahlung von {{C.bonus}}.
-    Wenn die Person Ihre Empfehlung ablehnt, erhalten Sie keine Bonuszahlung. </p>
+    Konkret befragen wir die Person, für die Sie die jeweilige Empfehlung abgegeben haben, ob sie Ihre Empfehlung annimmt.
+    Wenn die Person Ihre Empfehlung annimmt, erhalten Sie eine Bonuszahlung von {{C.bonus}}. 
+    Wenn die Person Ihre Empfehlung ablehnt, erhalten Sie keine Bonuszahlung.
 {% endif %}
 
 

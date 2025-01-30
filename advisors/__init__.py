@@ -719,7 +719,7 @@ class evaluation_de_3(Page):
 class payment_instructions_de(Page):  
     @staticmethod
     def is_displayed(player: Player):
-        return player.round_number == C.NUM_ROUNDS
+        return player.round_number == C.NUM_ROUNDS & player.participant.variant != 'pat' & player.participant.variant != 'verypat'
 
 
 class payment_de(Page):
