@@ -70,113 +70,6 @@
 </div>
 <br>
 
-<!--
-<div class="index-card-back">
-    <div class="grid-row-back">
-        <div class="icon-cell-back">
-            <img src="{% static 'icons/intro.png' %}"  alt="Kurzvorstellung" class="icon-back"/>
-        </div>
-        <div class="text-cell-back">
-            <div class="text">{{introduction}}</div>
-        </div>
-    </div>
-    <div class="grid-row-back">
-        <div class="icon-cell-back">
-            <img src="{% static 'icons/capital.png' %}"  alt="Kapitalanlage" class="icon-back"/>
-        </div>
-        <div class="scale-cell-back">
-            <img src="{% static scalepath1 %}"  alt={{ q1_text }} class="icon-back"/>
-            <img src="{% static 'icons/information-button.png' %}" class="info-icon"/>
-            <span class="tooltip">{{ name }} hat dem statement "Der Erhalt meiner Kapitalanlage ist mir wichtig." {{q1_short}} zugestimmt.</span>
-        </div>
-        <div class="text-cell-back">
-            <div class="text">{{q1_text}}</div>
-        </div>
-    </div>
-    <div class="grid-row-back">
-        <div class="icon-cell-back">
-            <img src="{% static 'icons/safe.webp' %}"  alt="Rendite" class="icon-back"/>
-        </div>
-        <div class="scale-cell-back">
-            <img src="{% static scalepath2 %}"  alt={{ q2_text }} class="icon-back"/>
-            <img src="{% static 'icons/information-button.png' %}" class="info-icon"/>
-            <span class="tooltip">{{ name }} hat dem statement "Mir ist eine zuverlässige Rendite wichtiger als Risiken einzugehen, um meinen Ertrag zu erhöhen." {{q2_short}} zugestimmt.</span>
-        </div>
-        <div class="text-cell-back">
-            <div class="text">{{q2_text}}</div>
-        </div>
-    </div>
-    <div class="grid-row-back">
-        <div class="icon-cell-back">
-            <img src="{% static 'icons/loss.png' %}"  alt="Verluste" class="icon-back"/>
-        </div>
-        <div class="scale-cell-back">
-            <img src="{% static scalepath3 %}"  alt={{ q3_text }} class="icon-back"/>
-            <img src="{% static 'icons/information-button.png' %}" class="info-icon"/>
-            <span class="tooltip">{{ name }} hat dem statement "Selbst kleinste Verluste machen mich bereits nervös." {{q3_short}} zugestimmt.</span>
-        </div>
-        <div class="text-cell-back">
-            <div class="text">{{q3_text}}</div>
-        </div>
-
-    </div>
-    <div class="grid-row-back">
-        <div class="icon-cell-back">
-            <img src="{% static 'icons/risk.png' %}"  alt="Risiken" class="icon-back"/>
-        </div>  
-        <div class="scale-cell-back">
-            <img src="{% static scalepath4 %}"  alt={{ q4_text }} class="icon-back"/>
-            <img src="{% static 'icons/information-button.png' %}" class="info-icon"/>
-            <span class="tooltip">{{ name }} hat dem statement "Finanzielle Risiken sind reizvoll: Nur wer viel wagt kann auch viel gewinnen." {{q4_short}} zugestimmt.</span>
-        </div>
-        <div class="text-cell-back">
-            <div class="text">{{q4_text}}</div>
-        </div>
-
-    </div>
-    <div class="grid-row-back">
-        <div class="icon-cell-back">
-            <img src="{% static 'icons/chance.jpg' %}"  alt="Chance" class="icon-back"/>
-        </div>
-        <div class="scale-cell-back">
-            <img src="{% static scalepath5 %}"  alt={{ q5_text }} class="icon-back"/>
-            <img src="{% static 'icons/information-button.png' %}" class="info-icon"/>
-            <span class="tooltip">{{ name }} hat dem statement "Ich nehme den Verlust meines Vermögens in Kauf wenn ich gleichzeitig die Chance habe, meine Gewinne zu erhöhen." {{q5_short}} zugestimmt.</span>
-        </div>
-        <div class="text-cell-back">
-            <div class="text">{{q5_text}}</div>
-        </div>
-    </div>
-</div>
-
-<br>
-<div class="advice">
-<table id="info" style="font-size:1.1rem; table-layout: fixed; width:100%; margin-left:auto; margin-right:auto;background-color:rgb(218, 241, 218)">
-    <tr style="text-align:center" >
-        <td style = "width:80%;text-align:center;font-weight:bold"> Welches Produkt würden Sie dieser Person empfehlen? </td>
-        <td style = "width:20%;text-align:right;font-weight:bold">  <input name="advice_example" class="rawfield"  class="disabled-input" disabled/> </td>
-        <td style = "width:10%;text-align:left;"> </td>
-    </tr>
-    {% if form.advice_example.errors %}
-    {{ formfield_errors "advice_example" }}
-    {% endif %}
-</table>
-</div>
-<br>
-<div class="advice">
-    <table id="info" style="font-size:1.1rem; table-layout: fixed; width:100%; margin-left:auto; margin-right:auto;background-color:rgb(218, 241, 218)">
-    <tr style="text-align:center" >
-        <td style = "width:80%;text-align:center;font-weight:bold"> Wie sicher sind Sie sich bei Ihrer Empfehlung? </td>
-        <td style = "width:20%;text-align:right;font-weight:bold">  <input name="advice_certainty_example" class="rawfield"  class="disabled-input" disabled/> </td>
-        <td style = "width:10%;text-align:left;"> </td>
-    </tr>
-        {% if form.advice_certainty_example.errors %}
-        {{ formfield_errors "advice_certainty_example" }}
-        {% endif %}
-    </tr>
-</table>
-</div>
--->
 
 
 <div class="index-card-back">
@@ -267,6 +160,15 @@
         </div>
     </div>
 </div>
+<br>
+
+
+{% if variant == "verypat" or variant == "verypat_accept" %}
+<div class="index-card-risktool">
+            <div class="text" style="color:red">TODO WENN RISK TOOL DA: Das interaktive Tool hat für {{name}} ein Portfolio mit X% Risikoanteil gemessen.</div>
+</div>
+{% endif %}
+
 
 <br>
 <div class="advice">
@@ -422,6 +324,14 @@
 .index-card-back {
     display: grid;
     grid-template-rows: repeat(6, 1fr);
+    gap: 10px;
+    width: 100%;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.index-card-risktool {
     gap: 10px;
     width: 100%;
     background-color: white;

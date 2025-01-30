@@ -217,6 +217,7 @@ class Player(BasePlayer):
     q4_advisor = models.IntegerField(blank=False)
     q5_advisor = models.IntegerField(blank=False)
 
+    risktoolresult = models.FloatField()
 # PAGES
 class consent_de(Page):
     form_model = 'player'
@@ -247,6 +248,18 @@ class risk_survey_de_2(Page):
     def is_displayed(player: Player):
         return player.round_number == 1
     
+
+class risk_tool_de(Page):
+    @staticmethod
+    def live_method(player, data):
+        player.finalDecisionValue = str(data['final-decision-value'])
+
+
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.round_number == 1
+ 
+
 
 class evaluation_example_de_3(Page):
     form_model = 'player'
@@ -288,7 +301,10 @@ class evaluation_example_de_3(Page):
         q3 = profile["q3"]
         q4 = profile["q4"]
         q5 = profile["q5"]
+        #risktoolresult = player.risktoolresult*100
         return {
+        #    'risktoolresult': risktoolresult,
+            'variant': participant.variant,
             'name':name,
             'profile': profile,
             'gender': gender,
@@ -326,15 +342,6 @@ class evaluation_example_de_3(Page):
 
 
 
-class risk_tool_de(Page):
-    @staticmethod
-    def live_method(player, data):
-        player.finalDecisionValue = str(data['final-decision-value'])
-    
-    @staticmethod
-    def is_displayed(player: Player):
-        return player.round_number == 1
- 
 
 class evaluation_de_3(Page):
     form_model = 'player'
@@ -374,7 +381,10 @@ class evaluation_de_3(Page):
         q3 = profile["q3"]
         q4 = profile["q4"]
         q5 = profile["q5"]
+        #risktoolresult = player.risktoolresult*100
         return {
+        #    'risktoolresult': risktoolresult,
+            'variant': participant.variant,
             'profile': profile,
             'name':name,
             'nationality': nationality,

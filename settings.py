@@ -2,7 +2,38 @@ from os import environ
 
 SESSION_CONFIGS = [
      dict(
-         name='advisors',
+         name='advisors_norisktool',
+         app_sequence=['advisors'],	
+         num_demo_participants=10,
+         variant='bel'
+     ),
+    dict(
+         name='advisors_noriskttool_implement',
+         app_sequence=['advisors'],	
+         num_demo_participants=10,
+         variant='pat'
+
+     ),
+    dict(
+         name='advisors_risktool_implement',
+         app_sequence=['advisors'],	
+         num_demo_participants=10,
+         variant='verypat'
+     ),
+    dict(
+         name='advisors_norisktool_accept',
+         app_sequence=['advisors'],	
+         num_demo_participants=10,
+         variant='pat_accept'
+     ),
+    dict(
+         name='advisors_risktool_accept',
+         app_sequence=['advisors'],	
+         num_demo_participants=10,
+         variant='verypat_accept'
+     ),
+    dict(
+         name='advisors_random',
          app_sequence=['advisors'],	
          num_demo_participants=10,
      ),
