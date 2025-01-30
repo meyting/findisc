@@ -562,7 +562,7 @@ page_sequence = [
     instructions_de,
     risk_survey_de_2,
     #risk_tool_de,
-    risk_tool_de_placeholder,
+    risk_tool_placeholder,
     evaluation_example_de_3,
     evaluation_de_3,
     payment_instructions_de,
