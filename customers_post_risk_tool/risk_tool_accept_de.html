@@ -21,8 +21,10 @@
 
 <p>
     Erinnern Sie sich: Das empfohlene Portfolio besteht aus zwei verschiedenen Anlageformen: risikobehafteten Aktien oder risikofreien Anleihen.
-    Der Anteil, der in risikolose Anleihen investiert wird, wird sicher mit 2% verzinst.
-    Der Anteil, der in die breit gestreute Anlage investiert wird, wird im Durchschnitt mit <b style="color:red">TODO: X</b>% verzinst, unterliegt aber Schwankungen.
+<!--
+    Der Anteil, der in risikolose Anleihen investiert wird, wird sicher mit 2% pro Jahr verzinst.
+    Der Anteil, der in die breit gestreute Anlage investiert wird, wird im Durchschnitt mit ca. 8% pro Jahr verzinst, unterliegt aber Schwankungen.
+-->
 </p>
 <p>
     Bitte geben Sie nun an, welchen Anteil an risikobehafteten Aktien Sie jeweils bevorzugen würden.
@@ -36,14 +38,10 @@
 
 
 
-<p>
-
-
-</p>
 <input type="hidden" name="accept" id="accept" value="">
 
-<p>
-    <b>Wenn Sie die Wahl zwischen einem Portfolio mit X% oder Y% risikobehafteter Aktien hätten, welches würden Sie bevorzugen?</b>
+<p id="question">
+    <b>Wenn Sie die Wahl zwischen einem Portfolio mit <span id="X"></span> oder <span id="Y"></span> risikobehafteter Aktien hätten, welches würden Sie bevorzugen?</b>
 </p>
 <br>
 <!-- Button container for 0% and 100% initially -->
@@ -58,6 +56,10 @@
     let leftValue = 0;
     let rightValue = 10; // Initially set the right value to 10%
 
+    // Update span values initially
+    document.getElementById('X').textContent = `${leftValue}%`;
+    document.getElementById('Y').textContent = `${rightValue}%`;
+
     function handleClick(button) {
         const buttonContainer = document.getElementById('button-container');
         const leftButton = document.querySelector('.button-container button:nth-child(1)');
@@ -66,6 +68,7 @@
         if (button === 'right') {
             rightValue = Math.min(100, rightValue + 10); // Increase right value by 10%
             rightButton.textContent = `${rightValue}%`; // Update the right button's text
+            document.getElementById('X').textContent = `${rightValue}%`; // Update the right button's text
         }
 
         if (button === 'left') {
@@ -74,13 +77,19 @@
             }
             else {
             // Hide buttons and show the maximum accepted risk text
-                buttonContainer.innerHTML = `<p>Der maximale Anteil an risikobehafteten Aktien, den Sie einem risikolosen Portfolio bevorzugen würden beträgt <b>${rightValue-10}%</b>.</p>`;
+                buttonContainer.innerHTML = `<p>Der maximale Anteil an risikobehafteten Aktien, den Sie gegenüber einem risikolosen Portfolio bevorzugen würden beträgt <b>${rightValue-10}%</b>.</p>`;
             }
+            document.getElementById('question').classList.add('hidden');
             document.getElementById('next_button').classList.remove('hidden');
             // Update the hidden input value
             document.getElementById('accept').value = rightValue-10;       
         
-        }}
+        }
+            // Update span values
+        document.getElementById('X').textContent = `${leftValue}%`;
+        document.getElementById('Y').textContent = `${rightValue}%`;
+    
+    }
 </script>
 
 <br>

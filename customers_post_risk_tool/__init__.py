@@ -21,7 +21,7 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    accept = models.BooleanField(blank=False,)
+    accept = models.IntegerField(blank=False,)
 
 
 # PAGES
@@ -34,8 +34,8 @@ class risk_tool_accept_de(Page):
             'suggestion' : suggestion,
         }
     
-#    form_model = 'player'
-#    form_fields = ['accept']	
+    form_model = 'player'
+    form_fields = ['accept']	
 
 class end_de(Page):
     pass
