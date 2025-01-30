@@ -561,8 +561,6 @@ page_sequence = [
     evaluation_de_3,
     payment_instructions_de,
     payment_de,
-    groupy_de,
-    iat_de,
     demos_de,
     end_de
                    ]
