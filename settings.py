@@ -57,6 +57,42 @@ SESSION_CONFIG_DEFAULTS = dict(
 
 ROOMS = [
     dict(
+        name='advisors_1',
+        display_name='advisors_1',
+        # participant_label_file='_rooms/your_study.txt',
+        # use_secure_urls=True,
+    ),
+        dict(
+        name='advisors_2',
+        display_name='advisors_2',
+        # participant_label_file='_rooms/your_study.txt',
+        # use_secure_urls=True,
+    ),
+        dict(
+        name='advisors_3',
+        display_name='advisors_3',
+        # participant_label_file='_rooms/your_study.txt',
+        # use_secure_urls=True,
+    ),
+        dict(
+        name='advisors_4',
+        display_name='advisors_4',
+        # participant_label_file='_rooms/your_study.txt',
+        # use_secure_urls=True,
+    ),
+        dict(
+        name='advisors_5',
+        display_name='advisors_5',
+        # participant_label_file='_rooms/your_study.txt',
+        # use_secure_urls=True,
+    ),
+        dict(
+        name='clients',
+        display_name='clients',
+        # participant_label_file='_rooms/your_study.txt',
+        # use_secure_urls=True,
+    ),
+        dict(
         name='pilot',
         display_name='pilot',
         # participant_label_file='_rooms/your_study.txt',
