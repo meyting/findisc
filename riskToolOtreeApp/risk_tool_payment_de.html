@@ -7,24 +7,38 @@
 <p> 
     Nun möchten wir Ihnen mit Hilfe eines interaktiven Programms die Risiken bei verschiedenen Anlagemöglichkeiten veranschaulichen, bevor Sie anschließend eine Anlageentscheidung treffen.
 </p>
+<hr>
 <p>
     Stellen Sie sich dazu vor, dass Sie {{ C.budget_string }} Euro über einen Zeitraum von {{ C.Anlagehorizont }} Jahren anlegen möchten.
-    Sie können das Geld in zwei verschiedene Anlageformen investieren: in risikobehaftete Aktien oder in risikofreie Anleihen.
-    Sie können das Geld in einer der beiden Anlageformen investieren oder in beide Anlageformen gleichzeitig. 
-    Sie können auch entscheiden, wie viel Geld Sie in jede Anlageform investieren möchten.
-</p>
+    Sie können das Geld in zwei verschiedene Anlageformen investieren:
+    <ul>
+    <li> <b>Ein klassisches Sparkonto</b> - eine sichere Anlageform mit niedrigen, aber stabilen Zinsen.</li>
+    <li> <b>Eine Investition in einen ETF (börsengehandelter Indexfonds) am Aktienmarkt</b> –  dadurch profitieren Sie von möglichen Kurssteigerungen und Dividenden, gehen aber auch das Risiko ein, dass der Wert Ihrer Anlage schwankt oder zwischenzeitlich sinkt.</li>
+    </ul>
+    Sie können entscheiden, <b>wie Sie Ihr Geld zwischen diesen beiden Möglichkeiten aufteilen</b> – von alles in eine der beiden Varianten bis hin zu jeder Mischung dazwischen.
+    Um Ihnen eine bessere Vorstellung davon zu geben, wie sich verschiedene Aufteilungen auf Ihr Endvermögen auswirken, haben wir ein <b>simuliertes Anlagetool</b> entwickelt.
+    Dieses zeigt Ihnen, welche Ergebnisse in der Vergangenheit mit ähnlichen Investitionen erzielt wurden.
+
+    </p>
 <!-- Ihnen helfen Ihre persönliche Risikoeinstellung, also das Risiko-Ertrags-Profil, mit dem Sie sich wohlfühlen zu ermitteln.-->
+<hr>
 
 <b> Wichtig: </b>
 <p>
     Jede/r zehnte Teilnehmende dieser Studie wird den tatsächlichen Wert des simulierten Portfolios nach einem Anlagezeitraum von {{ C.Anlagehorizont }} Jahren in Cent ausgezahlt bekommen.
-    Ein Endwert des simulierten Portfolios von z.B. {{ C.budget_string }} Euro enspricht also einer Auszahlung von {{ Auszahlung }} Euro.
-    Die Simulation basiert auf historischen Erträgen (Renditen) breit gestreuter Anlagen.
-    Die Auszahlung erfolgt innerhalb eines Monats nach Ihrer Teilnahme.
+</p>
+<p>
+    Beispiel: Wenn Ihr simuliertes Endvermögen {{ C.budget_string }} Euro beträgt, erhalten Sie {{ Auszahlung }} Euro ausgezahlt.
+    <ul>
+        <li> Die Simulation basiert auf realen historischen Marktdaten.</li>
+        <li> Die Auszahlung erfolgt innerhalb eines Monats nach Ihrer Teilnahme.</li>
+    </ul>
+
 </p>
 <p>
     Bitte klicken Sie auf "Weiter", um fortzufahren und sich mit dem interaktiven Programm vertraut zu machen.
 </p>
+<br>
     {% next_button %}
 
 {% endblock %}

@@ -87,7 +87,10 @@ class C(BaseConstants):
     bonus = cu(2)
     fixedfee = cu(1)
     numberselections = 5
-
+    Auszahlungsfaktor = 100
+    budget = 10000
+    budget_string = "10.000"
+    Anlagehorizont = 10
 
 class Subsession(BaseSubsession):
     pass
@@ -142,17 +145,17 @@ class Player(BasePlayer):
                                         verbose_name="""""")
     riskgroup = models.IntegerField(blank=False)
     advice = models.IntegerField(choices=[
-                                        [0, "Portfolio mit 0% Risikoanteil"],
-                                        [10, "Portfolio mit 10% Risikoanteil"], 
-                                        [20, "Portfolio mit 20% Risikoanteil"], 
-                                        [30, "Portfolio mit 30% Risikoanteil"], 
-                                        [40, "Portfolio mit 40% Risikoanteil"],
-                                        [50, "Portfolio mit 50% Risikoanteil"], 
-                                        [60, "Portfolio mit 60% Risikoanteil"], 
-                                        [70, "Portfolio mit 70% Risikoanteil"], 
-                                        [80, "Portfolio mit 80% Risikoanteil"], 
-                                        [90, "Portfolio mit 90% Risikoanteil"],
-                                        [100, "Portfolio mit 100% Risikoanteil"]
+                                        [0, "Portfolio mit 0% Risikoanteil (ETF)"],
+                                        [10, "Portfolio mit 10% Risikoanteil (ETF)"], 
+                                        [20, "Portfolio mit 20% Risikoanteil (ETF)"], 
+                                        [30, "Portfolio mit 30% Risikoanteil (ETF)"], 
+                                        [40, "Portfolio mit 40% Risikoanteil (ETF)"],
+                                        [50, "Portfolio mit 50% Risikoanteil (ETF)"], 
+                                        [60, "Portfolio mit 60% Risikoanteil (ETF)"], 
+                                        [70, "Portfolio mit 70% Risikoanteil (ETF)"], 
+                                        [80, "Portfolio mit 80% Risikoanteil (ETF)"], 
+                                        [90, "Portfolio mit 90% Risikoanteil (ETF)"],
+                                        [100, "Portfolio mit 100% Risikoanteil (ETF)"]
                                         ],
                                         verbose_name="""""")
     advice_certainty = models.IntegerField(blank=False,
@@ -249,22 +252,33 @@ class risk_survey_de_2(Page):
         return player.round_number == 1
     
 
+
+class risk_tool_explanations(Page):
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.round_number == 1
+    
+    @staticmethod
+    def vars_for_template(player):
+        return {
+            'Auszahlung': int(C.budget / C.Auszahlungsfaktor),
+        }
+    
 class risk_tool_de(Page):
     @staticmethod
     def live_method(player, data):
         player.finalDecisionValue = str(data['final-decision-value'])
 
-
     @staticmethod
     def is_displayed(player: Player):
         return player.round_number == 1
- 
-
+    
 class risk_tool_placeholder(Page):
     @staticmethod
     def is_displayed(player: Player):
         return player.round_number == 1
     
+
 
 class evaluation_example_de_3(Page):
     form_model = 'player'
@@ -561,6 +575,7 @@ page_sequence = [
     consent_de,
     instructions_de,
     risk_survey_de_2,
+    risk_tool_explanations,
     #risk_tool_de,
     risk_tool_placeholder,
     evaluation_example_de_3,
