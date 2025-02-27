@@ -30,6 +30,15 @@ class Player(BasePlayer):
 
 
 # PAGES
+
+class risk_tool_intro_de(Page):
+    
+    @staticmethod
+    def vars_for_template(player):
+        return {
+            'Auszahlung': int(C.budget / C.Auszahlungsfaktor),
+        }
+    
 class risk_tool_payment_de(Page):
     
     @staticmethod
@@ -49,6 +58,7 @@ class risk_tool_de(Page):
 
 
 page_sequence = [
+                risk_tool_intro_de,
                 risk_tool_payment_de,
                 risk_tool_de,
                 ]
