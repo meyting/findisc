@@ -53,22 +53,27 @@ Ein paar Fragen zu Ihrer Person
 
 
 
+    {{ formfield_errors 'occupation' }}
+    {{ formfield_errors 'profession' }}
+    {{ formfield_errors 'fieldofstudy' }}
+    {{ formfield_errors 'income' }}
+    {{ formfield_errors 'party' }}
+    {{ formfield_errors 'religion' }}
+    {{ formfield_errors 'intro' }}
+    {{ formfield_errors 'look' }}
+    {{ formfield_errors 'age'}}
+    {{ formfield_errors 'name'}}
+    {{ formfield_errors 'education_school'}}
+    {{ formfield_errors 'education_uni'}}
+    {{ formfield_errors 'party'}}
+    {{ formfield_errors 'age'}}
+    {{ formfield_errors 'nationality'}}
 
+    
 {% endblock %}
 
-{{ form.occupation.errors }}
-{{ form.fieldofstudy.errors }}
-{{ form.profession.errors }}
-{{ form.age.errors }}
-{{ form.name.errors }}
-{{ form.party.errors }}
-{{ form.income.errors }}
-{{ form.religion.errors }}
-{{ form.education_uni.errors }}
-{{ form.education_school.errors }}
-{{ form.nationality.errors }}
-{{ form.intro.errors }}
-{{ form.look.errors }}
+
+
 
 {% block scripts %}
 <script>
@@ -86,10 +91,4 @@ function yesnoCheck(that) {
     }
 };
 </script>
-
-
-
 {% endblock %}
-
-
-
