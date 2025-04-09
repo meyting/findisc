@@ -25,8 +25,8 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    finalDecisionValue = models.StringField()
-    pass
+    clickstream = models.StringField()
+    risky_share_end = models.FloatField()
 
 
 # PAGES
@@ -47,12 +47,18 @@ class risk_tool_payment_de(Page):
             'Auszahlung': int(C.budget / C.Auszahlungsfaktor),
         }
 
-class risk_tool_de(Page):
-    @staticmethod
-    def live_method(player, data):
-        player.finalDecisionValue = str(data['final-decision-value'])
-    pass
+class risk_tool(Page):
+    form_model = 'player'
+    form_fields = ['risky_share_end','clickstream']
 
+    @staticmethod
+    def js_vars(player):
+        return dict(
+            risky_share_start=0.1,      # 0.0 - 1.0
+            draws=500,                  # 0 - 1000
+            y_axis=None,                # 'draws' | 'bins' | 'fixed'
+            y_axis_fixed_value=0        # 0 - 1000
+        )
 
 
 
@@ -60,5 +66,5 @@ class risk_tool_de(Page):
 page_sequence = [
                 risk_tool_intro_de,
                 risk_tool_payment_de,
-                risk_tool_de,
+                risk_tool,
                 ]
