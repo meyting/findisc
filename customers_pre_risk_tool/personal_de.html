@@ -51,8 +51,12 @@ Ein paar Fragen zu Ihrer Person
 
     {% next_button %}
 
-    
-    {{ form.occupation.errors }}
+
+
+
+{% endblock %}
+
+{{ form.occupation.errors }}
 {{ form.fieldofstudy.errors }}
 {{ form.profession.errors }}
 {{ form.age.errors }}
@@ -65,8 +69,6 @@ Ein paar Fragen zu Ihrer Person
 {{ form.nationality.errors }}
 {{ form.intro.errors }}
 {{ form.look.errors }}
-
-{% endblock %}
 
 {% block scripts %}
 <script>
