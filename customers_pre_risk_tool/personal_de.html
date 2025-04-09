@@ -50,6 +50,22 @@ Ein paar Fragen zu Ihrer Person
 <br />
 
     {% next_button %}
+
+    
+    {{ form.occupation.errors }}
+{{ form.fieldofstudy.errors }}
+{{ form.profession.errors }}
+{{ form.age.errors }}
+{{ form.name.errors }}
+{{ form.party.errors }}
+{{ form.income.errors }}
+{{ form.religion.errors }}
+{{ form.education_uni.errors }}
+{{ form.education_school.errors }}
+{{ form.nationality.errors }}
+{{ form.intro.errors }}
+{{ form.look.errors }}
+
 {% endblock %}
 
 {% block scripts %}
@@ -70,19 +86,7 @@ function yesnoCheck(that) {
 </script>
 
 
-{{ form.occupation.errors }}
-{{ form.fieldofstudy.errors }}
-{{ form.profession.errors }}
-{{ form.age.errors }}
-{{ form.name.errors }}
-{{ form.party.errors }}
-{{ form.income.errors }}
-{{ form.religion.errors }}
-{{ form.education_uni.errors }}
-{{ form.education_school.errors }}
-{{ form.nationality.errors }}
-{{ form.intro.errors }}
-{{ form.look.errors }}
+
 {% endblock %}
 
 
