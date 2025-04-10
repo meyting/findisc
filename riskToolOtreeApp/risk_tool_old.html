@@ -6,17 +6,29 @@
 <style>
   /* ATTENTION: This uses Google Fonts. We can replace this with a local font if needed for privacy. */
   @import url('https://fonts.googleapis.com/css2?family=Encode+Sans:wdth,wght@75..125,100..900&display=swap');
+
 </style>
 {{ endblock }}
 
+{{ block header }}
+{{ endblock }}
+
 {{ block scripts }}
+
 <script type="text/javascript">
   // Initialisation
   // ==============
-  const risky_share_start = 0.5;  // 0.0 to 1.0
-  const draws = 0;                // 0 to 1000
-  const y_axis_fixed_value = 25;  // 0 to 1000
-  const y_axis_config = 'draws';  // 'draws' | 'bins' | 'fixed'
+  window.risky_share_start = js_vars.risky_share_start;
+  console.log(risky_share_start)
+  console.log(window.risky_share_start)
+  window.draws = js_vars.draws;
+  window.y_axis_fixed_value = js_vars.y_axis_fixed_value;
+  window.y_axis_config = js_vars.y_axis_config;
+
+  //const risky_share_start = 0.1;  // 0.0 to 1.0
+  //const draws = 100;                // 0 to 1000
+  //const y_axis_fixed_value = 25;  // 0 to 1000
+  //const y_axis_config = 'draws';  // 'draws' | 'bins' | 'fixed'
   // `draws`: y-axis is zoomed according to the number of draws, close in the beginning, farther apart later.
   // `bins`: y-axis is zoomed according to the tallest bin.
   // `fixed`: y-axis is fixed to the value of `y_axis_fixed_value`.
@@ -24,27 +36,23 @@
   // Your question:
   // Ist es überhaupt möglich, dass das tool je nach Wert der y-axis Variable dann eben die unterschiedliche y-axis hat?
   // Ja, das ist möglich. Das Tool kann mit den Variablen so konfiguriert werden, wie mit den Schiebreglern auch.
-
-  // Submit nach Beendigung
-  // ======================
-  function risk_tool_submit({ risky_share_end, clickstream }) {
-    if (window.confirm("Sie haben ihre Aufteilung final festgelegt? Nach der Bestätigung können Sie Ihre Aufteilung nicht mehr ändern.")) {
-      console.log('risky_share_end', risky_share_end);
-      console.log('clickstream', clickstream);
-      document.getElementById("risky_share_end").value = risky_share_end;
-      document.getElementById("clickstream").value = clickstream;
-      window.document.forms[0].submit();
-  }};
 </script>
 <script type="text/javascript" src="{% static 'global/risktool/index.js' %}"></script>
+<script type="text/javascript">
+ // After you have loaded ./dist/index.js, you can use the following variables:
+
+ console.log('risky_share_end', risky_share_end);
+ console.log('clickstream', clickstream);
+</script>
 {{ endblock }}
 
 {{ block content }}
 <input type="hidden" name="risky_share_end" id="risky_share_end" value="">
 <input type="hidden" name="clickstream" id="clickstream" value="">
 
-<div style="position: relative; left: -160px;">
-  <svg
+{{ formfield_errors 'risky_share_end' }}
+{{ formfield_errors 'clickstream' }}
+<svg
    width="1280"
    height="720"
    viewBox="0 0 1280 720"
@@ -52,6 +60,7 @@
    id="svg1"
    inkscape:version="1.4 (e7c3feb100, 2024-10-09)"
    sodipodi:docname="risk-tool.svg"
+   style="position: relative; left: -160px;"
    xml:space="preserve"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -1233,5 +1242,5 @@
          height="74.029495"
          x="-20"
          y="245.97052" /></g></g></svg>
-</div>
+
 {{ endblock }}
