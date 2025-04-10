@@ -2,7 +2,7 @@
 {{ endblock }}
 
 {{ block styles }}
-<link rel="stylesheet" href="{% static "global/risktool/index.css" %}">
+<link rel="stylesheet" href="{% static 'global/risktool/index.css' %}">
 <style>
   /* ATTENTION: This uses Google Fonts. We can replace this with a local font if needed for privacy. */
   @import url('https://fonts.googleapis.com/css2?family=Encode+Sans:wdth,wght@75..125,100..900&display=swap');
@@ -18,11 +18,12 @@
 <script type="text/javascript">
   // Initialisation
   // ==============
-  let risky_share_start = js_vars.risky_share_start;
+  window.risky_share_start = js_vars.risky_share_start;
   console.log(risky_share_start)
-  let draws = js_vars.draws;
-  let y_axis_fixed_value = js_vars.y_axis_fixed_value;
-  let y_axis_config = js_vars.y_axis_config;
+  console.log(window.risky_share_start)
+  window.draws = js_vars.draws;
+  window.y_axis_fixed_value = js_vars.y_axis_fixed_value;
+  window.y_axis_config = js_vars.y_axis_config;
 
   //const risky_share_start = 0.1;  // 0.0 to 1.0
   //const draws = 100;                // 0 to 1000
@@ -36,7 +37,7 @@
   // Ist es überhaupt möglich, dass das tool je nach Wert der y-axis Variable dann eben die unterschiedliche y-axis hat?
   // Ja, das ist möglich. Das Tool kann mit den Variablen so konfiguriert werden, wie mit den Schiebreglern auch.
 </script>
-<script type="text/javascript" src="{% static "global/risktool/index.js" %}"></script>
+<script type="text/javascript" src="{% static 'global/risktool/index.js' %}"></script>
 <script type="text/javascript">
  // After you have loaded ./dist/index.js, you can use the following variables:
 
@@ -59,6 +60,7 @@
    id="svg1"
    inkscape:version="1.4 (e7c3feb100, 2024-10-09)"
    sodipodi:docname="risk-tool.svg"
+   style="position: relative; left: -160px;"
    xml:space="preserve"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -548,8 +550,7 @@
      id="layer1"
      style="display:inline"><g
        id="plot-area"
-       class="transition-transform"
-       style="stroke-width:0.999928"
+       style="stroke-width:1"
        transform="matrix(0.02,0,0,-1,160,580)"
        vector-effect="non-scaling-stroke"
        clip-path="url(#plot-area__clip-path)"><rect

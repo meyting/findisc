@@ -55,9 +55,9 @@ class risk_tool(Page):
     def js_vars(player):
         return dict(
             risky_share_start=0.1,      # 0.0 - 1.0
-            draws=500,                  # 0 - 1000
-            y_axis=None,                # 'draws' | 'bins' | 'fixed'
-            y_axis_fixed_value=0        # 0 - 1000
+            draws=0,                  # 0 - 1000
+            y_axis='draws',                # 'draws' | 'bins' | 'fixed'
+            y_axis_fixed_value=30        # 0 - 1000
         )
 
 
