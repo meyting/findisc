@@ -1,0 +1,96 @@
+{{ block title }}
+Zum Schluss haben wir noch ein paar Fragen zu Ihrer Person
+{{ endblock }}
+
+{{ block content }}
+<hr>
+<p>
+    <i>Die Antworten auf die folgenden Fragen dienen ebenfalls als Grundlage für die Erstellung Ihres KI-generierten Profils.
+    Ihre Daten werden anonymisiert und vertraulich behandelt. </i>
+</p>
+<hr>
+
+       {%  formfield player.name %}
+       {%  formfield player.age %}
+       {%  formfield player.gender %}
+<hr>
+       {%  formfield player.nationality %}
+
+<hr>
+       {%  formfield player.attention_check %}
+       {%  formfield player.education_school %}
+       {%  formfield player.education_uni %}
+
+    <label for="occupation"> Was trifft überwiegend auf Sie zu?</label>
+    <select onchange="yesnoCheck(this);" name="occupation" id="occ" class="form-control">
+        <option selected value> --------- </option>
+        <option  value="0">Schüler/in</option >
+        <option  value="1">Student/in</option >
+        <option  value="2">erwerbs- bzw. berufstätig (inkl. Auszubildende, Personen in Elternzeit oder Arbeitsteilzeit)</option>
+        <option  value="3">Rentner/in, Pensionär/in</option >
+        <option  value="4">Hausfrau/-mann</option >
+        <option  value="5">arbeitslos</option >
+        <option  value="6">Sonstiges</option >
+    </select>
+<br>
+    <div style="display: none;" id="profession">
+         {%  formfield player.profession %}
+    </div>
+    {%  formfield player.income %}
+
+    <div style="display: none;" id="fieldofstudy">
+        {%  formfield player.fieldofstudy %}
+    </div>
+<hr>
+       {%  formfield player.party %}
+       {%  formfield player.religion %}
+
+
+<hr>
+
+{%  formfield player.distract %}
+
+<br />
+
+    {% next_button %}
+
+
+
+    {{ formfield_errors 'occupation' }}
+    {{ formfield_errors 'profession' }}
+    {{ formfield_errors 'fieldofstudy' }}
+    {{ formfield_errors 'income' }}
+    {{ formfield_errors 'party' }}
+    {{ formfield_errors 'religion' }}
+    {{ formfield_errors 'age'}}
+    {{ formfield_errors 'name'}}
+    {{ formfield_errors 'education_school'}}
+    {{ formfield_errors 'education_uni'}}
+    {{ formfield_errors 'party'}}
+    {{ formfield_errors 'age'}}
+    {{ formfield_errors 'nationality'}}
+    {{ formfield_errors 'distract'}}
+
+    
+{% endblock %}
+
+
+
+
+{% block scripts %}
+<script>
+function yesnoCheck(that) {
+    if (that.value == "1") {
+        document.getElementById("fieldofstudy").style.display = "block";
+        document.getElementById("profession").style.display = "none";
+    }
+    else if (that.value == "2") {
+        document.getElementById("profession").style.display = "block";
+        document.getElementById("fieldofstudy").style.display = "none";
+    } else {
+        document.getElementById("profession").style.display = "none";
+        document.getElementById("fieldofstudy").style.display = "none";
+    }
+};
+</script>
+{% endblock %}

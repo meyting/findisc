@@ -25,7 +25,7 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    clickstream = models.StringField()
+    clickstream = models.StringField(blank=True)
     risky_share_end = models.FloatField()
 
 

@@ -45,14 +45,14 @@
 <input type="hidden" name="accept" id="accept" value="">
 
 <p id="question">
-    <b>Wenn Sie die Wahl zwischen einem Portfolio mit <span id="X"></span> oder <span id="Y"></span> Investitionen in einen ETF hätten, welches würden Sie bevorzugen?</b>
+    <b>Wenn Sie über den Anteil Ihres Portfolios entscheiden können, den Sie statt ins Sparbuch in einen ETF investieren, welchen Anteil würden Sie bevorzugen?</b>
 </p>
 <br>
 <!-- Button container for 0% and 100% initially -->
 <div class="button-container" id="button-container">
-    <button type="button" onclick="handleClick('left')">0%</button> 
+    <button type="button" onclick="handleClick('left')">0% in den ETF und 100% ins Sparbuch</button> 
     oder
-    <button type="button" onclick="handleClick('right')">10%</button>
+    <button type="button" onclick="handleClick('right')">10% in den ETF und 90% ins Sparbuch</button>
 </div>
 
 <script>
@@ -61,8 +61,8 @@
     let rightValue = 10; // Initially set the right value to 10%
 
     // Update span values initially
-    document.getElementById('X').textContent = `${leftValue}%`;
-    document.getElementById('Y').textContent = `${rightValue}%`;
+    //document.getElementById('X').textContent = `${leftValue}%`;
+    //document.getElementById('Y').textContent = `${rightValue}%`;
 
     function handleClick(button) {
         const buttonContainer = document.getElementById('button-container');
@@ -71,8 +71,8 @@
 
         if (button === 'right') {
             rightValue = Math.min(100, rightValue + 10); // Increase right value by 10%
-            rightButton.textContent = `${rightValue}%`; // Update the right button's text
-            document.getElementById('X').textContent = `${rightValue}%`; // Update the right button's text
+            rightButton.textContent = `${rightValue}% in den ETF und ${100-rightValue}% ins Sparbuch`; // Update the right button's text
+            //document.getElementById('X').textContent = `${rightValue}`; // Update the right button's text
         }
 
         if (button === 'left') {
@@ -81,7 +81,7 @@
             }
             else {
             // Hide buttons and show the maximum accepted risk text
-                buttonContainer.innerHTML = `<p>Der maximale Anteil an risikobehafteten Aktien, den Sie gegenüber einem risikolosen Portfolio bevorzugen würden beträgt <b>${rightValue-10}%</b>.</p>`;
+                buttonContainer.innerHTML = `<p>Der maximale Anteil an risikobehafteten Aktien (Anteil in einen ETF), den Sie gegenüber einem risikolosen Portfolio bevorzugen würden beträgt <b>${rightValue-10}%</b>.</p>`;
             }
             document.getElementById('question').classList.add('hidden');
             document.getElementById('next_button').classList.remove('hidden');
@@ -90,9 +90,9 @@
         
         }
             // Update span values
-        document.getElementById('X').textContent = `${leftValue}%`;
-        document.getElementById('Y').textContent = `${rightValue}%`;
-    
+        //document.getElementById('X').textContent = `${leftValue}%`;
+        //document.getElementById('Y').textContent = `${rightValue}%`;
+        
     }
 </script>
 
