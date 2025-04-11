@@ -68,11 +68,18 @@
         const buttonContainer = document.getElementById('button-container');
         const leftButton = document.querySelector('.button-container button:nth-child(1)');
         const rightButton = document.querySelector('.button-container button:nth-child(2)');
-
+        console.log(rightValue);
         if (button === 'right') {
-            rightValue = Math.min(100, rightValue + 10); // Increase right value by 10%
+            rightValue = Math.min(110, rightValue + 10); // Increase right value by 10%
             rightButton.textContent = `${rightValue}% in den ETF und ${100-rightValue}% ins Sparbuch`; // Update the right button's text
             //document.getElementById('X').textContent = `${rightValue}`; // Update the right button's text
+            if (rightValue === 110) {
+                buttonContainer.innerHTML = `<p>Sie bevorzugen ein vollständig risikobehaftetes Portfolio.</p>`;
+                document.getElementById('question').classList.add('hidden');
+                document.getElementById('next_button').classList.remove('hidden');
+                document.getElementById('accept').value = rightValue; 
+                rightValue === 100; 
+                    } 
         }
 
         if (button === 'left') {
