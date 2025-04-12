@@ -11,6 +11,7 @@ Letzte Fragen
        {%  formfield player.nationality %}
 
 <hr>
+       {%  formfield player.attention_check %}
        {%  formfield player.education_school %}
        {%  formfield player.education_uni %}
 
@@ -35,8 +36,10 @@ Letzte Fragen
 <hr>
        {%  formfield player.party %}
        {%  formfield player.religion %}
-<hr>
-<br />
+       <hr>
+
+       {%  formfield player.distract %}
+       <br />
 
     {% next_button %}
 {% endblock %}
@@ -60,6 +63,7 @@ function yesnoCheck(that) {
 
 
 {{ form.occupation.errors }}
+
 {% endblock %}
 
 

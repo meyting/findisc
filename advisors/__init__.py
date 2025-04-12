@@ -213,7 +213,22 @@ class Player(BasePlayer):
     party = models.CharField(initial = None,
                                 verbose_name = 'Welche Partei würden Sie wählen, wenn heute Bundestagswahl wäre?',
                                 choices = ['CDU/CSU', 'SPD', 'Grüne', 'FDP', 'Linke', 'AFD', 'weiß nicht', 'Sonstiges', 'bin Nichtwähler'],)
-    
+
+    distract = models.CharField(initial = None,
+                                verbose_name = 'Hand aufs Herz: Können wir Ihre Daten bedenkenlos analysieren oder waren Sie während der Umfrage durch irgendwelche Einflüsse abgelenkt? <i>(Die Antwort auf diese Frage hat keinerlei Auswirkungen auf Ihre Auszahlung.)',
+                                choices = [[1, 'Ich war sehr aufmerksam und gar nicht abgelenkt.'],
+                                          [2, 'Ich war größstenteils aufmerksam und fast gar nicht abgelenkt.'],
+                                          [3, 'Ich war eher nicht so aufmerksam, sondern etwas abgelenkt.'],
+                                          [4, 'Ich war gar nicht aufmerksam, sondern ziemlich abgelenkt.']],)
+    attention_check = models.CharField(
+        initial=None,
+        choices=[
+            ['false1', 'blau'], ['true', 'orange'], ['false2', 'rot'], ['false3', 'gelb'], ['false4', 'grün'], ['false5', 'schwarz']
+        ],
+        label='Es ist wichtig für uns, dass sie aufmerksam sind. Bitte klicken Sie in der nachfolgenden Liste auf die zweite Option von oben.',
+        widget=widgets.RadioSelect(),
+    )
+
     q1_advisor = models.IntegerField(blank=False)
     q2_advisor = models.IntegerField(blank=False)
     q3_advisor = models.IntegerField(blank=False)
@@ -560,7 +575,7 @@ class iat_de(Page):
 class demos_de(Page):
     form_model = 'player'
     form_fields = ['name','age', 'gender', 'profession', 'fieldofstudy', 'occupation', 'nationality', 
-                   'education_school', 'education_uni','religion', 'party',]
+                   'education_school', 'education_uni','religion', 'party', 'distract', 'attention_check']
 
     @staticmethod
     def is_displayed(player: Player):
