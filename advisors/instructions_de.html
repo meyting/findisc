@@ -20,28 +20,32 @@ Hintergrund
 
 {% if variant == "bel" %}
 <p>
-    Eine Ihrer Empfehlungen wird im Anschluss an diese Umfrage für Ihre Bezahlung ausgewählt.
+    Eine Ihrer Empfehlungen wird im Anschluss an diese Umfrage für Ihre Bezahlung zufällig ausgewählt.
     Wenn Ihre Empfehlung der tatsächlichen Risikoneigung der jeweiligen Person entspricht, erhalten Sie eine Bonuszahlung von {{C.bonus}}.
     (Konkret darf Ihre Empfehlung um nicht mehr als 10% von der tatsächlichen Risikoneigung abweichen.)
 </p>
 {% elif variant == "pat" %}
 <p>
+    Eine Ihrer Empfehlungen wird im Anschluss an diese Umfrage zufällig ausgewählt.
+    In einem von 100 Fällen, wird die ausgewählte Empfehlung für die jeweilige Person in die Realität umgesetzt.
     Für die Abgabe ihrer Empfehlungen erhalten Sie einen fixen Bonus von {{ C.fixedfee }}.
 </p>
 {% elif variant == "verypat" %}
 <p>
+    Eine Ihrer Empfehlungen wird im Anschluss an diese Umfrage zufällig ausgewählt.
+    In einem von 100 Fällen, wird die ausgewählte Empfehlung für die jeweilige Person (in Cent) in die Realität umgesetzt.
     Für die Abgabe ihrer Empfehlungen erhalten Sie einen fixen Bonus von {{ C.fixedfee }}.
 </p>
 {% elif variant == "pat_accept" %}
 <p>
-    Eine Ihrer Empfehlungen wird im Anschluss an diese Umfrage für Ihre Bezahlung ausgewählt.
+    Eine Ihrer Empfehlungen wird im Anschluss an diese Umfrage für Ihre Bezahlung zufällig ausgewählt.
     Konkret haben wir die Person, für die Sie die jeweilige Empfehlung abgegeben haben, vorab gefragt, welche Empfehlungen sie annehmen würde.
     Wenn die Person Ihre Empfehlung annehmen würde, erhalten Sie eine Bonuszahlung von {{C.bonus}}. 
     Falls nicht, erhalten Sie keine Bonuszahlung.
 </p>
 {% elif variant == "verypat_accept" %}
 <p>
-    Eine Ihrer Empfehlungen wird im Anschluss an diese Umfrage für Ihre Bezahlung ausgewählt.
+    Eine Ihrer Empfehlungen wird im Anschluss an diese Umfrage für Ihre Bezahlung zufällig ausgewählt.
     Konkret haben wir die Person, für die Sie die jeweilige Empfehlung abgegeben haben, vorab gefragt, welche Empfehlungen sie annehmen würde.
     Wenn die Person Ihre Empfehlung annehmen würde, erhalten Sie eine Bonuszahlung von {{C.bonus}}. 
     Falls nicht, erhalten Sie keine Bonuszahlung.
