@@ -81,9 +81,9 @@ class Player(BasePlayer):
                                 choices = ['CDU/CSU', 'SPD', 'Grüne', 'FDP', 'Linke', 'AFD', 'weiß nicht', 'Sonstiges', 'bin Nichtwähler'],)
 
     distract = models.CharField(initial = None,
-                                verbose_name = 'Hand aufs Herz: Können wir Ihre Daten bedenkenlos analysieren oder waren Sie während der Umfrage durch irgendwelche Einflüsse abgelenkt? <i>(Die Antwort auf diese Frage hat keinerlei Auswirkungen auf Ihre Auszahlung.)',
+                                verbose_name = 'Hand aufs Herz: Können wir Ihre Daten bedenkenlos analysieren oder waren Sie während der Umfrage durch irgendwelche Einflüsse abgelenkt? <i>(Die Antwort auf diese Frage hat keinerlei Auswirkungen auf Ihre Auszahlung.)</i>',
                                 choices = [[1, 'Ich war sehr aufmerksam und gar nicht abgelenkt.'],
-                                          [2, 'Ich war größstenteils aufmerksam und fast gar nicht abgelenkt.'],
+                                          [2, 'Ich war größtenteils aufmerksam und fast gar nicht abgelenkt.'],
                                           [3, 'Ich war eher nicht so aufmerksam, sondern etwas abgelenkt.'],
                                           [4, 'Ich war gar nicht aufmerksam, sondern ziemlich abgelenkt.']],)
     attention_check = models.CharField(
@@ -95,6 +95,28 @@ class Player(BasePlayer):
         widget=widgets.RadioSelect(),
     )
 
+    easy = models.CharField(
+        initial=None,
+        choices=[
+            [1, 'sehr einfach'], [2, 'eher einfach'], [3, 'eher schwierig'], [4, 'sehr schwierig']
+        ],
+        verbose_name='Wie einfach fanden Sie es, diese Umfrage auszufüllen?',
+        widget=widgets.RadioSelect(),
+    )    
+    understood = models.CharField(
+        initial=None,
+        choices = [[1, 'Ich habe komplett verstanden, was gefragt war.'],
+                   [2, 'Ich habe größtenteils verstanden, was gefragt war.'],
+                   [3, 'Ich habe eher nicht verstanden, was gefragt war.'],
+                   [4, 'Ich habe nicht verstanden, was gefragt war.']],
+        verbose_name='Haben Sie vollständig verstanden, was von Ihnen verlangt wurde?',
+        widget=widgets.RadioSelect(),
+    )
+    feedback = models.LongStringField(
+        initial=None,
+        label='Falls Sie noch weiteres Feedback zu dieser Umfrage haben, sagen Sie uns gerne hier Bescheid - vielen Dank!',
+        blank=True,
+    )
 # PAGES
 
 class risk_tool_accept_de2(Page):
@@ -113,7 +135,7 @@ class risk_tool_accept_de2(Page):
 class personal_de(Page):
     form_model = 'player'
     form_fields = ['name','age', 'gender', 'profession', 'fieldofstudy', 'occupation', 'nationality', 'income', 'attention_check',
-                   'education_school', 'education_uni','religion', 'party', 'distract']
+                   'education_school', 'education_uni','religion', 'party', 'distract', 'easy', 'understood', 'feedback']
 
 
 class end_de(Page):

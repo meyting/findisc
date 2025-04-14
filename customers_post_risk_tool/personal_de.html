@@ -50,6 +50,13 @@ Zum Schluss haben wir noch ein paar Fragen zu Ihrer Person
 
 {%  formfield player.distract %}
 
+<hr>
+<p>Es wäre super, wenn Sie uns noch kurz Feedback zu unserer Umfrage geben könnten. Speziell:</p>
+
+{%  formfield player.easy %}
+{%  formfield player.understood %}
+{%  formfield player.feedback %}
+<br />
 <br />
 
     {% next_button %}
@@ -70,6 +77,9 @@ Zum Schluss haben wir noch ein paar Fragen zu Ihrer Person
     {{ formfield_errors 'age'}}
     {{ formfield_errors 'nationality'}}
     {{ formfield_errors 'distract'}}
+    {{ formfield_errors 'easy'}}
+    {{ formfield_errors 'understood'}}
+    {{ formfield_errors 'feedback'}}
 
     
 {% endblock %}
