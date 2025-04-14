@@ -236,6 +236,9 @@ class Player(BasePlayer):
     q5_advisor = models.IntegerField(blank=False)
 
     risktoolresult = models.FloatField()
+
+    prolific_id = models.StringField(default=str(" "))
+
 # PAGES
 class consent_de(Page):
     form_model = 'player'
@@ -244,6 +247,10 @@ class consent_de(Page):
     @staticmethod
     def is_displayed(player: Player):
         return player.round_number == 1
+    
+    @staticmethod
+    def before_next_page(self, timeout_happened):
+        self.prolific_id = self.participant.label
     
 class instructions_de(Page):
     @staticmethod

@@ -46,12 +46,17 @@ class Player(BasePlayer):
     look = models.LongStringField(blank=False,
                                   verbose_name='Bitte beschreiben Sie Ihr Aussehen in 2-3 Sätzen. Gehen Sie dabei z.B. auf Ihre Haarfarbe, Augenfarbe, Größe, Brille(?), etc. ein.')
 
+    prolific_id = models.StringField(default=str(" "))
+
     
 # PAGES
 class consent_de(Page):
     form_model = 'player'
     form_fields = ['consent']
 
+    @staticmethod
+    def before_next_page(self, timeout_happened):
+        self.prolific_id = self.participant.label
 
 class background_de(Page):
     pass
