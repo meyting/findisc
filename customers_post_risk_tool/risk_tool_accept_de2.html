@@ -10,13 +10,16 @@
     Sie können nun entscheiden, ob Sie die jeweilige Empfehlung annehmen würden oder nicht.
 </p>
 
+
+<!--
 <p>
-{% if suggestion == 'laymansuggestion' %}
+    {% if suggestion == 'laymansuggestion' %}
     <b>Diese anderen TeilnehmerInnen sind keine professionellen FinanzberaterInnen</b>.
 {% elif suggestion == 'expertsuggestion' %}
     <b>Diese anderen TeilnehmerInnen sind professionelle FinanzberaterInnen</b>.
 {% endif %}
 </p>
+-->
 
 <p>
     Erinnern Sie sich, das empfohlene Portfolio besteht aus zwei verschiedenen Anlageformen:
@@ -279,7 +282,7 @@
     function askAboutLowerBound() {
         if (currentValue < 10) {
             lowerbound = currentValue +10;
-            valueBox.textContent = `Sie würden einen ETF-Anteil zwischen ${lowerbound}% und ${upperbound}% akzeptieren`;
+            valueBox.textContent = `Sie würden einen ETF-Anteil zwischen ${lowerbound}% und ${upperbound}% akzeptieren.`;
             finalize(10);
         } else if (currentValue >= 10) {
             console.log('Asking about lower bound');

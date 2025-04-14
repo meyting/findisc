@@ -120,12 +120,12 @@ class Player(BasePlayer):
 # PAGES
 
 class risk_tool_accept_de2(Page):
-    @staticmethod
-    def vars_for_template(player: Player):
-        suggestion = player.participant.suggestion
-        return {
-            'suggestion' : suggestion,
-        }
+    #@staticmethod
+    #def vars_for_template(player: Player):
+    #    suggestion = player.participant.suggestion
+    #    return {
+    #        'suggestion' : suggestion,
+    #    }
     
     form_model = 'player'
     form_fields = ['lowerbound', 'upperbound']	

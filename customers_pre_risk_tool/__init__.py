@@ -17,14 +17,15 @@ class Subsession(BaseSubsession):
     pass
 
 def creating_session(subsession: Subsession):
-    import itertools
-    suggestion = itertools.cycle(['expertsuggestion', 'laymnsuggestion'])
-    if subsession.round_number == 1:
-        for p in subsession.get_players():
-            if 'suggestion' in subsession.session.config:
-                p.participant.suggestion = subsession.session.config['suggestion']
-            else:
-                p.participant.suggestion = next(suggestion)
+    pass
+    #import itertools
+    #suggestion = itertools.cycle(['expertsuggestion', 'laymansuggestion'])
+    #if subsession.round_number == 1:
+    #    for p in subsession.get_players():
+    #        if 'suggestion' in subsession.session.config:
+    #            p.participant.suggestion = subsession.session.config['suggestion']
+    #        else:
+    #            p.participant.suggestion = next(suggestion)
 
 
 
