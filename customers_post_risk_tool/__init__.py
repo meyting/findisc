@@ -27,7 +27,8 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    accept = models.IntegerField(blank=False,)
+    lowerbound = models.IntegerField(blank=False,)
+    upperbound = models.IntegerField(blank=False,)
 
     name = models.CharField(blank=True,
                             initial=None,
@@ -96,7 +97,7 @@ class Player(BasePlayer):
 
 # PAGES
 
-class risk_tool_accept_de(Page):
+class risk_tool_accept_de2(Page):
     @staticmethod
     def vars_for_template(player: Player):
         suggestion = player.participant.suggestion
@@ -105,7 +106,7 @@ class risk_tool_accept_de(Page):
         }
     
     form_model = 'player'
-    form_fields = ['accept']	
+    form_fields = ['lowerbound', 'upperbound']	
 
 
 
@@ -121,7 +122,7 @@ class end_de(Page):
 
 
 page_sequence = [
-    risk_tool_accept_de,
+    risk_tool_accept_de2,
     personal_de,
     end_de
     
