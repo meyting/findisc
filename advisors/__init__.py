@@ -84,7 +84,7 @@ class C(BaseConstants):
     NAME_IN_URL = 'adv1'
     PLAYERS_PER_GROUP = None
     NUM_ROUNDS = 10
-    bonus = cu(2)
+    bonus = cu(1)
     fixedfee = cu(1)
     numberselections = 5
     Auszahlungsfaktor = 100
