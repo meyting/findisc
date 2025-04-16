@@ -145,7 +145,7 @@ endif
         // Rejecting higher values
                     if (currentValue === upperbound -10) {
                         lowerbound = currentValue + 10;
-                        valueBox.textContent = `Sie würden nur einen ETF-Anteil von ${lowerbound}% akzeptieren.`;
+                        valueBox.textContent = `Sie würden einen ETF-Anteil von ${lowerbound}% akzeptieren.`;
                     } else {
                         lowerbound = currentValue + 10;
                         valueBox.textContent = `Sie würden einen ETF-Anteil zwischen ${lowerbound}% und ${upperbound}% akzeptieren.`;
@@ -179,7 +179,7 @@ endif
                         console.log(lowerbound);
                         lowerbound = currentValue + 10;
                         if (lowerbound !== null && lowerbound === upperbound) {
-                                valueBox.textContent = `Sie würden nur einen ETF-Anteil von ${lowerbound}% akzeptieren.`;
+                                valueBox.textContent = `Sie würden einen ETF-Anteil von ${lowerbound}% akzeptieren.`;
                             } else {
                                 valueBox.textContent = `Sie würden einen ETF-Anteil zwischen ${lowerbound}% und ${upperbound}% akzeptieren.`;
                             }
@@ -198,7 +198,7 @@ endif
                             updateValueBox();
                         } else {
                             lowerbound = currentValue
-                            valueBox.textContent = `Sie würden nur einen ETF-Anteil von ${lowerbound}% akzeptieren.`;
+                            valueBox.textContent = `Sie würden einen ETF-Anteil von ${lowerbound}% akzeptieren.`;
                             finalize(currentValue);
                         }
                      } else if (acceptcount >=2) {
@@ -224,7 +224,7 @@ endif
                         console.log(upperbound);
                         console.log(lowerbound);
                         if (lowerbound === upperbound) {
-                                valueBox.textContent = `Sie würden nur einen ETF-Anteil von ${lowerbound}% akzeptieren.`;
+                                valueBox.textContent = `Sie würden einen ETF-Anteil von ${lowerbound}% akzeptieren.`;
                         } else {
                         valueBox.textContent = `Sie würden einen ETF-Anteil zwischen ${lowerbound}% und ${upperbound}% akzeptieren.`;
                         }
@@ -250,7 +250,7 @@ endif
                         } else {
                             upperbound = currentValue;
                             if (lowerbound === upperbound) {
-                                valueBox.textContent = `Sie würden nur einen ETF-Anteil von ${lowerbound}% akzeptieren.`;
+                                valueBox.textContent = `Sie würden einen ETF-Anteil von ${lowerbound}% akzeptieren.`;
                             } else {
                             valueBox.textContent = `Sie würden einen ETF-Anteil zwischen ${lowerbound}% und ${upperbound}% akzeptieren.`
                             finalize(currentValue);
