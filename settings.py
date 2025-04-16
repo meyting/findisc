@@ -22,7 +22,7 @@ SESSION_CONFIGS = [
      ),
     dict(
          name='advisors_norisktool_accept',
-         app_sequence=['advisors'],	
+         app_sequence=['advisors'],   	
          num_demo_participants=10,
          variant='pat_accept'
      ),
@@ -100,7 +100,7 @@ ROOMS = [
     ),
 ]
 
-PARTICIPANT_FIELDS = ["variant", "profiles", "suggestion"]
+PARTICIPANT_FIELDS = ["variant", "profiles", "suggestion", "group"]
 SESSION_FIELDS = []
 
 # ISO-639 code

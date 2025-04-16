@@ -91,6 +91,7 @@ class C(BaseConstants):
     budget = 10000
     budget_string = "10.000"
     Anlagehorizont = 10
+    groupybudget = cu(1)
 
 class Subsession(BaseSubsession):
     pass
@@ -103,12 +104,14 @@ def select_unique_risky_shares(data, n):
 def creating_session(subsession: Subsession):
     import itertools
     variant = itertools.cycle(['bel', 'pat', 'verypat', 'pat_accept', 'verypat_accept'])
+    groups = itertools.cycle(['circle', 'triangle',])
     if subsession.round_number == 1:
         for p in subsession.get_players():
             if 'variant' in subsession.session.config:
                 p.participant.variant = subsession.session.config['variant']
             else:
                 p.participant.variant = next(variant)
+            p.participant.group = next(groups)
             p.participant.profiles = []
             selected_profiles_df = select_unique_risky_shares(df, 11)
             profiles = selected_profiles_df.to_dict(orient='records')
@@ -238,6 +241,8 @@ class Player(BasePlayer):
     risktoolresult = models.FloatField()
 
     prolific_id = models.StringField(default=str(" "))
+
+    groupy = models.FloatField()
 
 # PAGES
 class consent_de(Page):
@@ -568,11 +573,6 @@ class payment_de(Page):
     @staticmethod
     def is_displayed(player: Player):
         return player.round_number == C.NUM_ROUNDS
-    
-class groupy_de(Page):
-    @staticmethod
-    def is_displayed(player: Player):
-        return player.round_number == C.NUM_ROUNDS
 
 class iat_de(Page):
     @staticmethod
@@ -584,6 +584,27 @@ class demos_de(Page):
     form_fields = ['name','age', 'gender', 'profession', 'fieldofstudy', 'occupation', 'nationality', 
                    'education_school', 'education_uni','religion', 'party', 'distract', 'attention_check']
 
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.round_number == C.NUM_ROUNDS
+    
+class groupy_de(Page):
+    form_model = 'player'
+    form_fields = ['groupy']
+
+    @staticmethod
+    def vars_for_template(player: Player):
+        participant = player.participant
+        return {
+            'group': participant.group,
+        }
+
+    @staticmethod
+    def error_message(player, values):
+        if values['groupy'] is None:
+            return 'Bitte klicken Sie auf den Slider um eine Entscheidung zu treffen.'
+        return None
+    
     @staticmethod
     def is_displayed(player: Player):
         return player.round_number == C.NUM_ROUNDS
@@ -605,5 +626,6 @@ page_sequence = [
     payment_instructions_de,
     payment_de,
     demos_de,
+    groupy_de,
     end_de
                    ]
