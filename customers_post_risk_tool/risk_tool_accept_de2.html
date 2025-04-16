@@ -145,7 +145,7 @@ endif
         // Rejecting higher values
                     if (currentValue === upperbound -10) {
                         lowerbound = currentValue + 10;
-                        valueBox.textContent = `Sie würden nur einen ETF-Anteil von ${lowrebound}% akzeptieren.`;
+                        valueBox.textContent = `Sie würden nur einen ETF-Anteil von ${lowerbound}% akzeptieren.`;
                     } else {
                         lowerbound = currentValue + 10;
                         valueBox.textContent = `Sie würden einen ETF-Anteil zwischen ${lowerbound}% und ${upperbound}% akzeptieren.`;
