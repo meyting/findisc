@@ -131,7 +131,7 @@ endif
                 if (action === 'accept') {
                 console.log('Accepting in reverse mode');
                 // Accepting higher values
-                    if (currentValue > 10) {
+                    if (currentValue > 0) {
                         currentValue = Math.min(100, currentValue - 10);
                         updateValueBox();
                     } else {
@@ -160,7 +160,7 @@ endif
                 if (action === 'reject') {
                     // Accepting higher values
                     if (acceptcount === 0) {
-                        if (currentValue > 10) {
+                        if (currentValue > 0) {
                             console.log('Rejecting in forward mode');
                             currentValue = Math.min(100, currentValue - 10);
                             updateValueBox();
@@ -193,7 +193,7 @@ endif
                         upperbound = currentValue;
                         console.log(upperbound, "UPPUERBOUSFA");
                     // Move to reverse mode after first rejection
-                        if (currentValue > 10) {
+                        if (currentValue > 0) {
                             currentValue = Math.min(100, currentValue - 10);
                             updateValueBox();
                         } else {
@@ -204,7 +204,7 @@ endif
                      } else if (acceptcount >=2) {
                         lowerbound = currentValue;
                     // Move to reverse mode after first rejection
-                        if (currentValue > 10) {
+                        if (currentValue > 0) {
                             currentValue = Math.min(100, currentValue - 10);
                             updateValueBox();
                         } else {

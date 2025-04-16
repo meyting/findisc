@@ -37,6 +37,25 @@ Zum Schluss haben wir noch ein paar Fragen zu Ihrer Person
          {%  formfield player.profession %}
     </div>
     {%  formfield player.income %}
+    <br>
+    <p>Bitte geben Sie alles Geldanlagen an, die Sie aktuell besitzen oder in der Vergangenheit einmal besessen haben:</p>
+    <label>
+      <input type="checkbox" name="finpart" value="sparkonto" class="finpart">
+      <span class="finpartoptions">Ein Sparkonto</span>
+    </label><br>
+    <label>
+      <input type="checkbox" name="finpart" value="aktien" class="finpart">
+      <span class="finpartoptions">Aktien (einzeln oder als ETFs/Fonds)</span>
+    </label><br>
+    <label>
+      <input type="checkbox" name="finpart" value="anleihen" class="finpart">
+      <span class="finpartoptions">Anleihen (einzeln oder als ETFs/Fonds)</span>
+    </label><br>
+    <label>
+      <input type="checkbox" name="finpart" value="krypto" class="finpart">
+      <span class="finpartoptions">Krypto</span>
+    </label><br>
+
 
     <div style="display: none;" id="fieldofstudy">
         {%  formfield player.fieldofstudy %}
@@ -103,4 +122,21 @@ function yesnoCheck(that) {
     }
 };
 </script>
+{% endblock %}
+
+{% block styles %}
+<style>
+.finpart {
+    cursor: pointer;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.finpartoptions {
+    position: relative;
+      top: -5px; /* Adjust this value to control vertical shift */
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+</style>
 {% endblock %}

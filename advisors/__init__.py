@@ -244,6 +244,8 @@ class Player(BasePlayer):
 
     groupy = models.FloatField()
 
+    finpart = models.CharField()
+
 # PAGES
 class consent_de(Page):
     form_model = 'player'
@@ -582,7 +584,7 @@ class iat_de(Page):
 class demos_de(Page):
     form_model = 'player'
     form_fields = ['name','age', 'gender', 'profession', 'fieldofstudy', 'occupation', 'nationality', 
-                   'education_school', 'education_uni','religion', 'party', 'distract', 'attention_check']
+                   'education_school', 'education_uni','religion', 'party', 'distract', 'attention_check', 'finpart']
 
     @staticmethod
     def is_displayed(player: Player):
