@@ -117,7 +117,7 @@ class Player(BasePlayer):
         label='Falls Sie noch weiteres Feedback zu dieser Umfrage haben, sagen Sie uns gerne hier Bescheid - vielen Dank!',
         blank=True,
     )
-    selected_finpart = models.CharField()
+    selected_finpart = models.CharField(blank=True)
 # PAGES
 
 class risk_tool_accept_de2(Page):
