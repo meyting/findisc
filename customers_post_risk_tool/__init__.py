@@ -117,6 +117,7 @@ class Player(BasePlayer):
         label='Falls Sie noch weiteres Feedback zu dieser Umfrage haben, sagen Sie uns gerne hier Bescheid - vielen Dank!',
         blank=True,
     )
+    selected_finpart = models.CharField()
 # PAGES
 
 class risk_tool_accept_de2(Page):
@@ -135,7 +136,7 @@ class risk_tool_accept_de2(Page):
 class personal_de(Page):
     form_model = 'player'
     form_fields = ['name','age', 'gender', 'profession', 'fieldofstudy', 'occupation', 'nationality', 'income', 'attention_check',
-                   'education_school', 'education_uni','religion', 'party', 'distract', 'easy', 'understood', 'feedback']
+                   'education_school', 'education_uni','religion', 'party', 'distract', 'easy', 'understood', 'feedback','selected_finpart']
 
 
 class end_de(Page):

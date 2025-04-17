@@ -40,19 +40,19 @@ Zum Schluss haben wir noch ein paar Fragen zu Ihrer Person
     <br>
     <p>Bitte geben Sie alles Geldanlagen an, die Sie aktuell besitzen oder in der Vergangenheit einmal besessen haben:</p>
     <label>
-      <input type="checkbox" name="finpart" value="sparkonto" class="finpart">
+      <input type="checkbox" name="finpart" value="sparkonto" class="finpartclass">
       <span class="finpartoptions">Ein Sparkonto</span>
     </label><br>
     <label>
-      <input type="checkbox" name="finpart" value="aktien" class="finpart">
+      <input type="checkbox" name="finpart" value="aktien" class="finpartclass">
       <span class="finpartoptions">Aktien (einzeln oder als ETFs/Fonds)</span>
     </label><br>
     <label>
-      <input type="checkbox" name="finpart" value="anleihen" class="finpart">
+      <input type="checkbox" name="finpart" value="anleihen" class="finpartclass">
       <span class="finpartoptions">Anleihen (einzeln oder als ETFs/Fonds)</span>
     </label><br>
     <label>
-      <input type="checkbox" name="finpart" value="krypto" class="finpart">
+      <input type="checkbox" name="finpart" value="krypto" class="finpartclass">
       <span class="finpartoptions">Krypto</span>
     </label><br>
 
@@ -100,6 +100,8 @@ Zum Schluss haben wir noch ein paar Fragen zu Ihrer Person
     {{ formfield_errors 'understood'}}
     {{ formfield_errors 'feedback'}}
 
+    <input type="hidden" name="selected_finpart" id="selected_finpart" value="">
+
     
 {% endblock %}
 
@@ -121,12 +123,37 @@ function yesnoCheck(that) {
         document.getElementById("fieldofstudy").style.display = "none";
     }
 };
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+        let hiddenField = document.getElementById('selected_finpart');
+        
+        function updateHiddenField() {
+            const checkedCheckboxes = document.querySelectorAll('.finpartclass:checked');
+            const selectedValues = Array.from(checkedCheckboxes).map(cb => cb.value);
+            hiddenField.value = selectedValues.join(',');
+            console.log(selectedValues);
+            console.log('Hidden field updated:', hiddenField.value); // Debugging line
+        }
+    
+    // Attach event listeners to checkboxes
+    const checkboxes = document.querySelectorAll('.finpartclass');
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', updateHiddenField);
+    });
+  
+        // Initialize the hidden field and button state
+        updateHiddenField();
+
+    });
+
+    
+
 </script>
 {% endblock %}
 
 {% block styles %}
 <style>
-.finpart {
+.finpartclass {
     cursor: pointer;
     width: 1.5rem;
     height: 1.5rem;

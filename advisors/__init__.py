@@ -169,7 +169,6 @@ class Player(BasePlayer):
                                         verbose_name="""""")
 
     offer = models.IntegerField()
-    best_advice = models.IntegerField(verbose_name="""""")	
     selected_best_advice = models.StringField(verbose_name="""""")
 
     name = models.CharField(blank=True,
@@ -482,7 +481,7 @@ class payment_instructions_de(Page):
 
 class payment_de(Page):
     form_model = 'player'
-    form_fields = ['best_advice', 'selected_best_advice']
+    form_fields = ['selected_best_advice']
 
     @staticmethod
     def vars_for_template(player: Player):
