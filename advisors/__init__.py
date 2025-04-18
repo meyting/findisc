@@ -243,8 +243,14 @@ class Player(BasePlayer):
 
     groupy = models.FloatField()
 
-    finpart = models.CharField()
+    selected_finpart = models.CharField(blank=True)
 
+    income = models.CharField(initial=None,
+                                    blank = True,
+                                    verbose_name='Wie hoch ist ihr monatliches Einkommen?',
+                                    choices = ['weniger als 1000€', '1000-1999€', '2000-2999€', '3000-3999€', 'mehr als 4000€']
+                                    )
+    
     clickstream = models.StringField(blank=True)
     risky_share_end = models.FloatField()
 
@@ -590,8 +596,8 @@ class iat_de(Page):
     
 class demos_de(Page):
     form_model = 'player'
-    form_fields = ['name','age', 'gender', 'profession', 'fieldofstudy', 'occupation', 'nationality', 
-                   'education_school', 'education_uni','religion', 'party', 'distract', 'attention_check', 'finpart']
+    form_fields = ['name','age', 'gender', 'profession', 'fieldofstudy', 'occupation', 'nationality', 'income',
+                   'education_school', 'education_uni','religion', 'party', 'distract', 'attention_check', 'selected_finpart']
 
     @staticmethod
     def is_displayed(player: Player):

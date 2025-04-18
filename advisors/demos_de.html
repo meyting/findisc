@@ -30,6 +30,29 @@ Fast geschafft!
     <div style="display: none;" id="profession">
          {%  formfield player.profession %}
     </div>
+    {%  formfield player.income %}
+
+    <br>
+    <p>Bitte geben Sie alle Geldanlagen an, die Sie aktuell besitzen oder in der Vergangenheit einmal besessen haben:</p>
+    <label>
+      <input type="checkbox" name="finpart" value="sparkonto" class="finpartclass">
+      <span class="finpartoptions">Ein Sparkonto</span>
+    </label><br>
+    <label>
+      <input type="checkbox" name="finpart" value="aktien" class="finpartclass">
+      <span class="finpartoptions">Aktien (einzeln oder als ETFs/Fonds)</span>
+    </label><br>
+    <label>
+      <input type="checkbox" name="finpart" value="anleihen" class="finpartclass">
+      <span class="finpartoptions">Anleihen (einzeln oder als ETFs/Fonds)</span>
+    </label><br>
+    <label>
+      <input type="checkbox" name="finpart" value="krypto" class="finpartclass">
+      <span class="finpartoptions">Krypto</span>
+    </label><br>
+
+
+
     <div style="display: none;" id="fieldofstudy">
         {%  formfield player.fieldofstudy %}
     </div>
@@ -42,6 +65,9 @@ Fast geschafft!
        <br />
 
     {% next_button %}
+
+    <input type="hidden" name="selected_finpart" id="selected_finpart" value="">
+
 {% endblock %}
 
 {% block scripts %}
@@ -59,6 +85,29 @@ function yesnoCheck(that) {
         document.getElementById("fieldofstudy").style.display = "none";
     }
 };
+
+
+document.addEventListener('DOMContentLoaded', (event) => {
+        let hiddenField = document.getElementById('selected_finpart');
+        
+        function updateHiddenField() {
+            const checkedCheckboxes = document.querySelectorAll('.finpartclass:checked');
+            const selectedValues = Array.from(checkedCheckboxes).map(cb => cb.value);
+            hiddenField.value = selectedValues.join(',');
+            console.log(selectedValues);
+            console.log('Hidden field updated:', hiddenField.value); // Debugging line
+        }
+    
+    // Attach event listeners to checkboxes
+    const checkboxes = document.querySelectorAll('.finpartclass');
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', updateHiddenField);
+    });
+  
+        // Initialize the hidden field and button state
+        updateHiddenField();
+
+    });
 </script>
 
 
@@ -66,5 +115,21 @@ function yesnoCheck(that) {
 
 {% endblock %}
 
+{% block styles %}
+<style>
+.finpartclass {
+    cursor: pointer;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.finpartoptions {
+    position: relative;
+      top: -5px; /* Adjust this value to control vertical shift */
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+</style>
+{% endblock %}
 
 
