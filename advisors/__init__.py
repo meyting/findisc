@@ -245,6 +245,10 @@ class Player(BasePlayer):
 
     finpart = models.CharField()
 
+    clickstream = models.StringField(blank=True)
+    risky_share_end = models.FloatField()
+
+
 # PAGES
 class consent_de(Page):
     form_model = 'player'
@@ -292,19 +296,23 @@ class risk_tool_explanations(Page):
             'Auszahlung': int(C.budget / C.Auszahlungsfaktor),
         }
     
-class risk_tool_de(Page):
+class risk_tool(Page):
+    form_model = 'player'
+    form_fields = ['risky_share_end','clickstream']
+
     @staticmethod
-    def live_method(player, data):
-        player.finalDecisionValue = str(data['final-decision-value'])
+    def js_vars(player):
+        return dict(
+            risky_share_start=0.1,      # 0.0 - 1.0
+            draws=0,                  # 0 - 1000
+            y_axis='draws',                # 'draws' | 'bins' | 'fixed'
+            y_axis_fixed_value=30        # 0 - 1000
+        )
 
     @staticmethod
     def is_displayed(player: Player):
         return player.round_number == 1
     
-class risk_tool_placeholder(Page):
-    @staticmethod
-    def is_displayed(player: Player):
-        return player.round_number == 1
     
 
 
@@ -620,8 +628,7 @@ page_sequence = [
     instructions_de,
     risk_survey_de_2,
     risk_tool_explanations,
-    #risk_tool_de,
-    risk_tool_placeholder,
+    risk_tool,
     evaluation_example_de_3,
     evaluation_de_3,
     payment_instructions_de,

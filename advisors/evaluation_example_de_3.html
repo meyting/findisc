@@ -3,14 +3,28 @@
 
 
 {{ block content }}
+
+<p class="instructions" id="instructions">
+    Nun zu Ihrer Aufgabe. Sie sollen nun den nachfolgenden Kunden und Kundinnen eine Anlageempfehlung geben. 
+    Dabei können Sie die Informationen nutzen, die Sie über die Personen erhalten.
+    Wie in dem interaktiven Tool gezeigt, bezieht sich Ihre Empfehlung darauf, wie ein zu investierender Betrag zwischen einer Investition in einen risikobehafteten ETF und einer Anlage in ein risikoloses Sparkonto aufgeteilt werden soll.
 <p>
+
+    <p id="container">
+        <b class="openbox" id="openbox">
+            <button type="button" class="button_normal"> Weiter</button>
+        </b>
+    </p>
+    <div class="infobox hidden" id="infobox">
+<hr>
+</p>
     {% if gender == "weiblich" %}
-    Hier sehen Sie nun ein Beispielprofil einer Kundin.
+    Hier sehen Sie nun ein <b>Beispielprofil</b> einer Kundin.
 {% elif gender == "männlich" %}
-    Hier sehen Sie nun ein Beispielprofil eines Kunden.
+    Hier sehen Sie nun ein <b>Beispielprofil</b> eines Kunden.
 {% endif %}
     Auf dieser Seite müssen Sie <b>keine Eingabe</b> machen. 
-    Bitte schauen Sie sich die bereitgestellten Informationen an und machen Sie sich mit Ihrer Aufgabe vertraut - klicken Sie danach bitte auf "Weiter".
+    Bitte schauen Sie sich die bereitgestellten Informationen an und machen Sie sich mit Ihrer Aufgabe vertraut - klicken Sie danach bitte auf "Weiter", um mit der ersten Empfehlung zu beginnen.
 </p>
 <div class="index-card">
     <div class="grid-cell">
@@ -210,6 +224,7 @@
     </div>
     <br>
 <input type="hidden" name="offer" value="{{prolificid_client}}" id="offer"/>
+</div>
 
     {{ endblock }}
 
@@ -218,6 +233,44 @@
 
 {% block styles %}
 <style>
+    
+.container {
+    display: block;
+    margin: 10px auto;
+}
+
+.hidden {
+    display:none;
+}
+
+.button_normal{
+        background-color: #0B60DB;
+        border: none;
+        border-radius: 7px;
+        color: white;
+        padding: 7px 14px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+}
+
+.openbox {
+    cursor: pointer;
+    margin: 15px 0;
+}
+
+.button {
+    border-radius: 7px;
+    padding: 7px 14px;
+}
+
 .rawfield::placeholder {
   text-align: center; /* Center the placeholder */
   color: gray;
@@ -432,3 +485,14 @@
 
     </style>
 {{ endblock }}
+
+
+{{ block scripts }}
+<script>
+    document.getElementById("openbox").addEventListener("click", function(){
+        document.getElementById("infobox").classList.remove("hidden");
+        document.getElementById("container").classList.add("hidden");
+});
+</script>
+{{ endblock }}
+
