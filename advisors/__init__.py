@@ -23,56 +23,56 @@ df["prolificid"] = df["prolificid"].astype(str)
 df["income"] = df["income"].astype(str)
 
 df["q1_text"] = "Keine Antwort"
-df.loc[(df.q1==1),"q1_text"] = "Der Erhalt meiner Kapitalanlage ist mir gar nicht wichtig."
-df.loc[(df.q1==2),"q1_text"] = "Der Erhalt meiner Kapitalanlage ist mir eher nicht wichtig."
-df.loc[(df.q1==3),"q1_text"] = "Der Erhalt meiner Kapitalanlage ist mir eher wichtig."
-df.loc[(df.q1==4),"q1_text"] = "Der Erhalt meiner Kapitalanlage ist mir sehr wichtig."
+df.loc[(df["capital"]==1),"q1_text"] = "Der Erhalt meiner Kapitalanlage ist mir gar nicht wichtig."
+df.loc[(df["capital"]==2),"q1_text"] = "Der Erhalt meiner Kapitalanlage ist mir eher nicht wichtig."
+df.loc[(df["capital"]==3),"q1_text"] = "Der Erhalt meiner Kapitalanlage ist mir eher wichtig."
+df.loc[(df["capital"]==4),"q1_text"] = "Der Erhalt meiner Kapitalanlage ist mir sehr wichtig."
 df["q2_text"] = "Keine Antwort"
-df.loc[(df.q2==1),"q2_text"] = "Um meinen Ertrag zu erhöhen ist mir viel wichtiger Risiken einzugehen, als eine zuverlässige Rendite zu bekommen."
-df.loc[(df.q2==2),"q2_text"] = "Um meinen Ertrag zu erhöhen ist mir eher wichtiger Risiken einzugehen, als eine zuverlässige Rendite zu bekommen."
-df.loc[(df.q2==3),"q2_text"] = "Um meinen Ertrag zu erhöhen ist mir eher wichtiger eine zuverlässige Rendite zu bekommen, als Risiken einzugehen."
-df.loc[(df.q2==4),"q2_text"] = "Um meinen Ertrag zu erhöhen ist mir viel wichtiger eine zuverlässige Rendite zu bekommen, als Risiken einzugehen."
+df.loc[(df["return"]==1),"q2_text"] = "Um meinen Ertrag zu erhöhen ist mir viel wichtiger Risiken einzugehen, als eine zuverlässige Rendite zu bekommen."
+df.loc[(df["return"]==2),"q2_text"] = "Um meinen Ertrag zu erhöhen ist mir eher wichtiger Risiken einzugehen, als eine zuverlässige Rendite zu bekommen."
+df.loc[(df["return"]==3),"q2_text"] = "Um meinen Ertrag zu erhöhen ist mir eher wichtiger eine zuverlässige Rendite zu bekommen, als Risiken einzugehen."
+df.loc[(df["return"]==4),"q2_text"] = "Um meinen Ertrag zu erhöhen ist mir viel wichtiger eine zuverlässige Rendite zu bekommen, als Risiken einzugehen."
 df["q3_text"] = "Keine Antwort"
-df.loc[(df.q3==1),"q3_text"] = "Kleinste Verluste machen mich gar nicht nervös."
-df.loc[(df.q3==2),"q3_text"] = "Kleinste Verluste machen mich eher nicht nervös."
-df.loc[(df.q3==3),"q3_text"] = "Kleinste Verluste machen mich bereits etwas nervös."
-df.loc[(df.q3==4),"q3_text"] = "Kleinste Verluste machen mich bereits sehr nervös."
+df.loc[(df["losses"]==1),"q3_text"] = "Kleinste Verluste machen mich gar nicht nervös."
+df.loc[(df["losses"]==2),"q3_text"] = "Kleinste Verluste machen mich eher nicht nervös."
+df.loc[(df["losses"]==3),"q3_text"] = "Kleinste Verluste machen mich bereits etwas nervös."
+df.loc[(df["losses"]==4),"q3_text"] = "Kleinste Verluste machen mich bereits sehr nervös."
 df["q4_text"] = "Keine Antwort"
-df.loc[(df.q4==1),"q4_text"] = "Finanzielle Risiken sind gar nicht reizvoll."
-df.loc[(df.q4==2),"q4_text"] = "Finanzielle Risiken sind eher nicht reizvoll."
-df.loc[(df.q4==3),"q4_text"] = "Finanzielle Risiken sind eher reizvoll."
-df.loc[(df.q4==4),"q4_text"] = "Finanzielle Risiken sind sehr reizvoll."
+df.loc[(df["risks"]==1),"q4_text"] = "Finanzielle Risiken sind gar nicht reizvoll."
+df.loc[(df["risks"]==2),"q4_text"] = "Finanzielle Risiken sind eher nicht reizvoll."
+df.loc[(df["risks"]==3),"q4_text"] = "Finanzielle Risiken sind eher reizvoll."
+df.loc[(df["risks"]==4),"q4_text"] = "Finanzielle Risiken sind sehr reizvoll."
 df["q5_text"] = "Keine Antwort"
-df.loc[(df.q5==1),"q5_text"] = "Ich nehme den Verlust meines Vermögens nicht in Kauf wenn ich gleichzeitig die Chance habe, meine Gewinne zu erhöhen."
-df.loc[(df.q5==2),"q5_text"] = "Ich nehme den Verlust meines Vermögens eher nicht in Kauf wenn ich gleichzeitig die Chance habe, meine Gewinne zu erhöhen."
-df.loc[(df.q5==3),"q5_text"] = "Ich nehme den Verlust meines Vermögens eher in Kauf wenn ich gleichzeitig die Chance habe, meine Gewinne zu erhöhen."
-df.loc[(df.q5==4),"q5_text"] = "Ich nehme den Verlust meines Vermögens in Kauf wenn ich gleichzeitig die Chance habe, meine Gewinne zu erhöhen."
+df.loc[(df["chance"]==1),"q5_text"] = "Ich nehme den Verlust meines Vermögens nicht in Kauf wenn ich gleichzeitig die Chance habe, meine Gewinne zu erhöhen."
+df.loc[(df["chance"]==2),"q5_text"] = "Ich nehme den Verlust meines Vermögens eher nicht in Kauf wenn ich gleichzeitig die Chance habe, meine Gewinne zu erhöhen."
+df.loc[(df["chance"]==3),"q5_text"] = "Ich nehme den Verlust meines Vermögens eher in Kauf wenn ich gleichzeitig die Chance habe, meine Gewinne zu erhöhen."
+df.loc[(df["chance"]==4),"q5_text"] = "Ich nehme den Verlust meines Vermögens in Kauf wenn ich gleichzeitig die Chance habe, meine Gewinne zu erhöhen."
 
 df["q1_short"] = "Keine Antwort"
-df.loc[(df.q1==1),"q1_short"] = "gar nicht"
-df.loc[(df.q1==2),"q1_short"] = "eher nicht"
-df.loc[(df.q1==3),"q1_short"] = "eher"
-df.loc[(df.q1==4),"q1_short"] = "voll und ganz"
+df.loc[(df["capital"]==1),"q1_short"] = "gar nicht"
+df.loc[(df["capital"]==2),"q1_short"] = "eher nicht"
+df.loc[(df["capital"]==3),"q1_short"] = "eher"
+df.loc[(df["capital"]==4),"q1_short"] = "voll und ganz"
 df["q2_short"] = "Keine Antwort"
-df.loc[(df.q2==1),"q2_short"] = "gar nicht"
-df.loc[(df.q2==2),"q2_short"] = "eher nicht"
-df.loc[(df.q2==3),"q2_short"] = "eher"
-df.loc[(df.q2==4),"q2_short"] = "voll und ganz"
+df.loc[(df["return"]==1),"q2_short"] = "gar nicht"
+df.loc[(df["return"]==2),"q2_short"] = "eher nicht"
+df.loc[(df["return"]==3),"q2_short"] = "eher"
+df.loc[(df["return"]==4),"q2_short"] = "voll und ganz"
 df["q3_short"] = "Keine Antwort"
-df.loc[(df.q3==1),"q3_short"] = "gar nicht"
-df.loc[(df.q3==2),"q3_short"] = "eher nicht"
-df.loc[(df.q3==3),"q3_short"] = "eher"
-df.loc[(df.q3==4),"q3_short"] = "voll und ganz"
+df.loc[(df["losses"]==1),"q3_short"] = "gar nicht"
+df.loc[(df["losses"]==2),"q3_short"] = "eher nicht"
+df.loc[(df["losses"]==3),"q3_short"] = "eher"
+df.loc[(df["losses"]==4),"q3_short"] = "voll und ganz"
 df["q4_short"] = "Keine Antwort"
-df.loc[(df.q4==1),"q4_short"] = "gar nicht"
-df.loc[(df.q4==2),"q4_short"] = "eher nicht"
-df.loc[(df.q4==3),"q4_short"] = "eher"
-df.loc[(df.q4==4),"q4_short"] = "voll und ganz"
+df.loc[(df["risks"]==1),"q4_short"] = "gar nicht"
+df.loc[(df["risks"]==2),"q4_short"] = "eher nicht"
+df.loc[(df["risks"]==3),"q4_short"] = "eher"
+df.loc[(df["risks"]==4),"q4_short"] = "voll und ganz"
 df["q5_short"] = "Keine Antwort"
-df.loc[(df.q5==1),"q5_short"] = "gar nicht"
-df.loc[(df.q5==2),"q5_short"] = "eher nicht"
-df.loc[(df.q5==3),"q5_short"] = "eher"
-df.loc[(df.q5==4),"q5_short"] = "voll und ganz"
+df.loc[(df["chance"]==1),"q5_short"] = "gar nicht"
+df.loc[(df["chance"]==2),"q5_short"] = "eher nicht"
+df.loc[(df["chance"]==3),"q5_short"] = "eher"
+df.loc[(df["chance"]==4),"q5_short"] = "voll und ganz"
 
 choices = pd.read_excel('_static/global/choices.xlsx', engine = 'openpyxl') # can also index sheet by name or fetch all sheets
 countries = choices['Land'][0:197].tolist()
@@ -360,11 +360,11 @@ class evaluation_example_de_3(Page):
         #riskgroup = profile["riskgroup"]
         #riskgroup_text = profile["riskgroup_text"]
         age = profile["age"]
-        q1 = profile["q1"]
-        q2 = profile["q2"]
-        q3 = profile["q3"]
-        q4 = profile["q4"]
-        q5 = profile["q5"]
+        q1 = profile["capital"]
+        q2 = profile["return"]
+        q3 = profile["losses"]
+        q4 = profile["risks"]
+        q5 = profile["chance"]
         #risktoolresult = player.risktoolresult*100
         return {
         #    'risktoolresult': risktoolresult,
@@ -417,7 +417,7 @@ class evaluation_de_3(Page):
         print(participant.profiles)
         print(player.round_number)
         profile = participant.profiles[player.round_number]
-        prolificid_client = profile["prolificid_client"]
+        prolificid_client = profile["prolificid"]
         nationality = profile["nationality"]
         name = profile["name"]
         introduction = profile["introduction"]
@@ -440,11 +440,11 @@ class evaluation_de_3(Page):
         #riskgroup = profile["riskgroup"]
         #riskgroup_text = profile["riskgroup_text"]
         age = profile["age"]
-        q1 = profile["q1"]
-        q2 = profile["q2"]
-        q3 = profile["q3"]
-        q4 = profile["q4"]
-        q5 = profile["q5"]
+        q1 = profile["capital"]
+        q2 = profile["return"]
+        q3 = profile["losses"]
+        q4 = profile["risks"]
+        q5 = profile["chance"]
         #risktoolresult = player.risktoolresult*100
         return {
         #    'risktoolresult': risktoolresult,
@@ -515,16 +515,16 @@ class payment_de(Page):
         profile8 = participant.profiles[8]
         profile9 = participant.profiles[9]
         profile10 = participant.profiles[10]
-        prolificid_client1 = profile1["prolificid_client"]
-        prolificid_client2 = profile2["prolificid_client"]
-        prolificid_client3 = profile3["prolificid_client"]
-        prolificid_client4 = profile4["prolificid_client"]
-        prolificid_client5 = profile5["prolificid_client"]
-        prolificid_client6 = profile6["prolificid_client"]
-        prolificid_client7 = profile7["prolificid_client"]
-        prolificid_client8 = profile8["prolificid_client"]
-        prolificid_client9 = profile9["prolificid_client"]
-        prolificid_client10 = profile10["prolificid_client"]
+        prolificid_client1 = profile1["prolificid"]
+        prolificid_client2 = profile2["prolificid"]
+        prolificid_client3 = profile3["prolificid"]
+        prolificid_client4 = profile4["prolificid"]
+        prolificid_client5 = profile5["prolificid"]
+        prolificid_client6 = profile6["prolificid"]
+        prolificid_client7 = profile7["prolificid"]
+        prolificid_client8 = profile8["prolificid"]
+        prolificid_client9 = profile9["prolificid"]
+        prolificid_client10 = profile10["prolificid"]
         name1 = profile1["name"]
         name2 = profile2["name"]
         name3 = profile3["name"]
@@ -535,27 +535,27 @@ class payment_de(Page):
         name8 = profile8["name"]
         name9 = profile9["name"]
         name10 = profile10["name"]
-        prolificid_client1 = profile1["prolificid_client"]
-        prolificid_client2 = profile2["prolificid_client"]
-        prolificid_client3 = profile3["prolificid_client"]
-        prolificid_client4 = profile4["prolificid_client"]
-        prolificid_client5 = profile5["prolificid_client"]
-        prolificid_client6 = profile6["prolificid_client"]
-        prolificid_client7 = profile7["prolificid_client"]
-        prolificid_client8 = profile8["prolificid_client"]
-        prolificid_client9 = profile9["prolificid_client"]
-        prolificid_client10 = profile10["prolificid_client"]
+        prolificid_client1 = profile1["prolificid"]
+        prolificid_client2 = profile2["prolificid"]
+        prolificid_client3 = profile3["prolificid"]
+        prolificid_client4 = profile4["prolificid"]
+        prolificid_client5 = profile5["prolificid"]
+        prolificid_client6 = profile6["prolificid"]
+        prolificid_client7 = profile7["prolificid"]
+        prolificid_client8 = profile8["prolificid"]
+        prolificid_client9 = profile9["prolificid"]
+        prolificid_client10 = profile10["prolificid"]
         return {
-            'picpath1': 'profilepics/' + prolificid_client1 + '.jpg',
-            'picpath2': 'profilepics/' + prolificid_client2 + '.jpg',
-            'picpath3': 'profilepics/' + prolificid_client3 + '.jpg',
-            'picpath4': 'profilepics/' + prolificid_client4 + '.jpg',
-            'picpath5': 'profilepics/' + prolificid_client5 + '.jpg',
-            'picpath6': 'profilepics/' + prolificid_client6 + '.jpg',
-            'picpath7': 'profilepics/' + prolificid_client7 + '.jpg',
-            'picpath8': 'profilepics/' + prolificid_client8 + '.jpg',
-            'picpath9': 'profilepics/' + prolificid_client9 + '.jpg',
-            'picpath10': 'profilepics/' + prolificid_client10 + '.jpg',
+            'picpath1': 'profilepics/' + prolificid_client1 + '.png',
+            'picpath2': 'profilepics/' + prolificid_client2 + '.png',
+            'picpath3': 'profilepics/' + prolificid_client3 + '.png',
+            'picpath4': 'profilepics/' + prolificid_client4 + '.png',
+            'picpath5': 'profilepics/' + prolificid_client5 + '.png',
+            'picpath6': 'profilepics/' + prolificid_client6 + '.png',
+            'picpath7': 'profilepics/' + prolificid_client7 + '.png',
+            'picpath8': 'profilepics/' + prolificid_client8 + '.png',
+            'picpath9': 'profilepics/' + prolificid_client9 + '.png',
+            'picpath10': 'profilepics/' + prolificid_client10 + '.png',
             'name1': name1,
             'name2': name2,
             'name3': name3,
