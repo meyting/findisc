@@ -222,7 +222,7 @@ class Player(BasePlayer):
     distract = models.CharField(initial = None,
                                 verbose_name = 'Hand aufs Herz: Können wir Ihre Daten bedenkenlos analysieren oder waren Sie während der Umfrage durch irgendwelche Einflüsse abgelenkt? <i>(Die Antwort auf diese Frage hat keinerlei Auswirkungen auf Ihre Auszahlung.)',
                                 choices = [[1, 'Ich war sehr aufmerksam und gar nicht abgelenkt.'],
-                                          [2, 'Ich war größstenteils aufmerksam und fast gar nicht abgelenkt.'],
+                                          [2, 'Ich war größtenteils aufmerksam und fast gar nicht abgelenkt.'],
                                           [3, 'Ich war eher nicht so aufmerksam, sondern etwas abgelenkt.'],
                                           [4, 'Ich war gar nicht aufmerksam, sondern ziemlich abgelenkt.']],)
     attention_check = models.CharField(
