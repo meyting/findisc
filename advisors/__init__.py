@@ -8,7 +8,7 @@ Your app description
 import pandas as pd
 import random
 
-df = pd.read_excel('_static/global/clients.xlsx', keep_default_na=False, engine='openpyxl')
+df = pd.read_excel('_static/global/profiles.xlsx', keep_default_na=False, engine='openpyxl')
 df["gender"] = df["gender"].astype(str)
 df["nationality"] = df["nationality"].astype(str)
 df["religion"] = df["religion"].astype(str)
