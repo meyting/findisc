@@ -12,14 +12,14 @@ df = pd.read_excel('_static/global/clients.xlsx', keep_default_na=False, engine=
 df["gender"] = df["gender"].astype(str)
 df["nationality"] = df["nationality"].astype(str)
 df["religion"] = df["religion"].astype(str)
-df["education_uni"] = df["education_uni"].astype(str)
-df["education_school"] = df["education_school"].astype(str)
+df["uni"] = df["uni"].astype(str)
+df["school"] = df["school"].astype(str)
 df["profession"] = df["profession"].astype(str)
-df["introduction"] = df["introduction"].astype(str)
+df["intro"] = df["intro"].astype(str)
 df["age"] = df["age"].astype(int)
-df["riskgroup"] = df["riskgroup"].astype(int)
-df["riskgroup_text"] = df["riskgroup_text"].astype(str)
-df["prolificid_client"] = df["prolificid_client"].astype(str)
+#df["riskgroup"] = df["riskgroup"].astype(int)
+#df["riskgroup_text"] = df["riskgroup_text"].astype(str)
+df["prolificid"] = df["prolificid"].astype(str)
 df["income"] = df["income"].astype(str)
 
 df["q1_text"] = "Keine Antwort"
@@ -113,7 +113,10 @@ def creating_session(subsession: Subsession):
                 p.participant.variant = next(variant)
             p.participant.group = next(groups)
             p.participant.profiles = []
-            selected_profiles_df = select_unique_risky_shares(df, 11)
+            selected_profiles_male = select_unique_risky_shares(df[df["gender"] == "male"], 5)
+            selected_profiles_female = select_unique_risky_shares(df[df["gender"] == "female"], 5)
+            selected_profiles_df = pd.concat([selected_profiles_male, selected_profiles_female])
+            selected_profiles_df = selected_profiles_df.sample(frac=1).reset_index(drop=True)
             profiles = selected_profiles_df.to_dict(orient='records')
             random.shuffle(profiles)
             p.participant.profiles = profiles
@@ -337,11 +340,11 @@ class evaluation_example_de_3(Page):
         gender = profile["gender"]
         name = profile["name"]
         nationality = profile["nationality"]
-        prolificid_client = profile["prolificid_client"]
+        prolificid_client = profile["prolificid"]
         religion = profile["religion"]
         profession = profile["profession"]
-        education_school = profile["education_school"]
-        education_uni = profile["education_uni"]
+        education_school = profile["school"]
+        education_uni = profile["uni"]
         income = profile["income"]
         q1_text = profile["q1_text"]
         q2_text = profile["q2_text"]
@@ -353,9 +356,9 @@ class evaluation_example_de_3(Page):
         q3_short = profile["q3_short"]
         q4_short = profile["q4_short"]
         q5_short = profile["q5_short"]
-        introduction = profile["introduction"]
-        riskgroup = profile["riskgroup"]
-        riskgroup_text = profile["riskgroup_text"]
+        introduction = profile["intro"]
+        #riskgroup = profile["riskgroup"]
+        #riskgroup_text = profile["riskgroup_text"]
         age = profile["age"]
         q1 = profile["q1"]
         q2 = profile["q2"]
@@ -387,11 +390,11 @@ class evaluation_example_de_3(Page):
             'income':income,
             'nationality': nationality,
             'religion': religion,
-            'riskgroup': riskgroup,
-            'riskgroup_text': riskgroup_text,
+            #'riskgroup': riskgroup,
+            #'riskgroup_text': riskgroup_text,
             'introduction': introduction,
             'age': age,
-            'picpath': 'profilepics/' + prolificid_client + '.jpg',
+            'picpath': 'profilepics/' + prolificid_client + '.png',
             'scalepath1': 'scales/scale' + str(q1) + '.png',
             'scalepath2': 'scales/scale' + str(q2) + '.png',
             'scalepath3': 'scales/scale' + str(q3) + '.png',
@@ -434,8 +437,8 @@ class evaluation_de_3(Page):
         q5_short = profile["q5_short"]
         education_school = profile["education_school"]
         education_uni = profile["education_uni"]
-        riskgroup = profile["riskgroup"]
-        riskgroup_text = profile["riskgroup_text"]
+        #riskgroup = profile["riskgroup"]
+        #riskgroup_text = profile["riskgroup_text"]
         age = profile["age"]
         q1 = profile["q1"]
         q2 = profile["q2"]
@@ -468,10 +471,10 @@ class evaluation_de_3(Page):
             'income': income,
             'religion': religion,
             'introduction': introduction,
-            'riskgroup': riskgroup,	
-            'riskgroup_text': riskgroup_text,
+            #'riskgroup': riskgroup,	
+            #'riskgroup_text': riskgroup_text,
             'age': age, 
-            'picpath': 'profilepics/' + prolificid_client + '.jpg',
+            'picpath': 'profilepics/' + prolificid_client + '.png',
             'scalepath1': 'scales/scale' + str(q1) + '.png',
             'scalepath2': 'scales/scale' + str(q2) + '.png',
             'scalepath3': 'scales/scale' + str(q3) + '.png',
