@@ -18,9 +18,9 @@
     <div class="infobox hidden" id="infobox">
 <hr>
 </p>
-    {% if gender == "weiblich" %}
+    {% if gender == "female" %}
     Hier sehen Sie nun ein <b>Beispielprofil</b> einer Kundin.
-{% elif gender == "männlich" %}
+{% elif gender == "male" %}
     Hier sehen Sie nun ein <b>Beispielprofil</b> eines Kunden.
 {% endif %}
     Auf dieser Seite müssen Sie <b>keine Eingabe</b> machen. 
@@ -64,8 +64,20 @@
         <div class="icon">
             <img src="{% static 'icons/profession.jpg' %}"  alt="Beruf" />
         </div>
+    {% if occupation == 1 %}
+        <div class="text">Beruf: </div>
+        {% if gender == "female" %}
+        <div class="text"><b>Studentin<br>({{fieldofstudy}})</b> </div>
+        {% elif gender == "male" %}
+        <div class="text"><b>Student<br>({{fieldofstudy}})</b></div>
+        {% endif %}
+    {% elif occupation == 2 %}
         <div class="text">Beruf: </div>
         <div class="text"><b>{{profession}}</b> </div>
+    {% else %}
+        <div class="text">Tätigkeit: </div>
+        <div class="text"><b>{{occupation_text}}</b> </div>
+    {% endif %}
     </div>
     <div class="grid-cell">
         <div class="icon">

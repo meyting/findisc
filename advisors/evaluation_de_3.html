@@ -4,9 +4,9 @@
 
 {{ block content }}
 <p>
-    {% if gender == "weiblich" %}
+    {% if gender == "female" %}
     Bitte geben Sie Ihre Anlageempfehlung für diese Kundin ab:
-{% elif gender == "männlich" %}
+{% elif gender == "male" %}
 Bitte geben Sie Ihre Anlageempfehlung für diesen Kunden ab:
 {% endif %}
 </p>
@@ -49,8 +49,20 @@ Bitte geben Sie Ihre Anlageempfehlung für diesen Kunden ab:
         <div class="icon">
             <img src="{% static 'icons/profession.jpg' %}"  alt="Beruf" />
         </div>
+    {% if occupation == 1 %}
+        <div class="text">Beruf: </div>
+        {% if gender == "female" %}
+        <div class="text"><b>Studentin<br>({{fieldofstudy}})</b> </div>
+        {% elif gender == "male" %}
+        <div class="text"><b>Student<br>({{fieldofstudy}})</b></div>
+        {% endif %}
+    {% elif occupation == 2 %}
         <div class="text">Beruf: </div>
         <div class="text"><b>{{profession}}</b> </div>
+    {% else %}
+        <div class="text">Tätigkeit: </div>
+        <div class="text"><b>{{occupation_text}}</b> </div>
+    {% endif %}
     </div>
     <div class="grid-cell">
         <div class="icon">

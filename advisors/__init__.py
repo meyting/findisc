@@ -22,6 +22,7 @@ df["age"] = df["age"].astype(int)
 #df["riskgroup_text"] = df["riskgroup_text"].astype(str)
 df["prolificid"] = df["prolificid"].astype(str)
 df["income"] = df["income"].astype(str)
+df["occupation_text"] = df["occupation_text"].astype(str)
 
 df["q1_text"] = "Keine Antwort"
 df.loc[(df["capital"]==1),"q1_text"] = "Der Erhalt meiner Kapitalanlage ist mir gar nicht wichtig."
@@ -361,6 +362,9 @@ class evaluation_example_de_3(Page):
         q4_short = profile["q4_short"]
         q5_short = profile["q5_short"]
         introduction = profile["intro"]
+        occupation = profile["occupation"]
+        occupation_text = profile["occupation_text"]
+        fieldofstudy = profile["fieldofstudy"]
         #riskgroup = profile["riskgroup"]
         #riskgroup_text = profile["riskgroup_text"]
         age = profile["age"]
@@ -395,6 +399,9 @@ class evaluation_example_de_3(Page):
             'income':income,
             'nationality': nationality,
             'religion': religion,
+            'fieldofstudy' : fieldofstudy,
+            'occupation': occupation,
+            'occupation_text': occupation_text,
             #'riskgroup': riskgroup,
             #'riskgroup_text': riskgroup_text,
             'introduction': introduction,
@@ -442,6 +449,9 @@ class evaluation_de_3(Page):
         q5_short = profile["q5_short"]
         education_school = profile["school"]
         education_uni = profile["uni"]
+        occupation = profile["occupation"]
+        occupation_text = profile["occupation_text"]
+        fieldofstudy = profile["fieldofstudy"]
         #riskgroup = profile["riskgroup"]
         #riskgroup_text = profile["riskgroup_text"]
         age = profile["age"]
@@ -476,6 +486,9 @@ class evaluation_de_3(Page):
             'income': income,
             'religion': religion,
             'introduction': introduction,
+            'occupation': occupation,
+            'occupation_text': occupation_text,
+            'fieldofstudy' : fieldofstudy,
             #'riskgroup': riskgroup,	
             #'riskgroup_text': riskgroup_text,
             'age': age, 
