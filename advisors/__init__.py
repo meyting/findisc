@@ -365,7 +365,7 @@ class evaluation_example_de_3(Page):
         occupation = profile["occupation"]
         occupation_text = profile["occupation_text"]
         fieldofstudy = profile["fieldofstudy"]
-        risktoolresult = int(profile["riskyshare"]*100)
+        risktoolresult = int(round(profile["riskyshare"]*100, 0))
         #riskgroup = profile["riskgroup"]
         #riskgroup_text = profile["riskgroup_text"]
         age = profile["age"]
@@ -454,7 +454,7 @@ class evaluation_de_3(Page):
         occupation = profile["occupation"]
         occupation_text = profile["occupation_text"]
         fieldofstudy = profile["fieldofstudy"]
-        risktoolresult = int(profile["riskyshare"]*100)
+        risktoolresult = int(round(profile["riskyshare"]*100, 0))
         #riskgroup = profile["riskgroup"]
         #riskgroup_text = profile["riskgroup_text"]
         age = profile["age"]
@@ -515,7 +515,7 @@ class payment_instructions_de(Page):
 
     @staticmethod
     def is_displayed(player: Player):
-        return player.round_number == C.NUM_ROUNDS and player.participant.variant != 'pat' and player.participant.variant != 'verypat'
+        return player.round_number == C.NUM_ROUNDS 
 
 
 class payment_de(Page):
