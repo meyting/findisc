@@ -365,6 +365,7 @@ class evaluation_example_de_3(Page):
         occupation = profile["occupation"]
         occupation_text = profile["occupation_text"]
         fieldofstudy = profile["fieldofstudy"]
+        risktoolresult = int(profile["riskyshare"]*100)
         #riskgroup = profile["riskgroup"]
         #riskgroup_text = profile["riskgroup_text"]
         age = profile["age"]
@@ -405,6 +406,7 @@ class evaluation_example_de_3(Page):
             #'riskgroup': riskgroup,
             #'riskgroup_text': riskgroup_text,
             'introduction': introduction,
+            'risktoolresult': risktoolresult,
             'age': age,
             'picpath': 'profilepics/' + prolificid_client + '.png',
             'scalepath1': 'scales/scale' + str(q1) + '.png',
@@ -452,6 +454,7 @@ class evaluation_de_3(Page):
         occupation = profile["occupation"]
         occupation_text = profile["occupation_text"]
         fieldofstudy = profile["fieldofstudy"]
+        risktoolresult = int(profile["riskyshare"]*100)
         #riskgroup = profile["riskgroup"]
         #riskgroup_text = profile["riskgroup_text"]
         age = profile["age"]
@@ -489,6 +492,7 @@ class evaluation_de_3(Page):
             'occupation': occupation,
             'occupation_text': occupation_text,
             'fieldofstudy' : fieldofstudy,
+            'risktoolresult': risktoolresult,
             #'riskgroup': riskgroup,	
             #'riskgroup_text': riskgroup_text,
             'age': age, 

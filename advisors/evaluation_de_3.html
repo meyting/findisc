@@ -178,7 +178,7 @@ Bitte geben Sie Ihre Anlageempfehlung für diesen Kunden ab:
 
 {% if variant == "verypat" or variant == "verypat_accept" %}
 <div class="index-card-risktool">
-            <div class="text" style="color:red">TODO WENN RISK TOOL DA: Das interaktive Tool hat für {{name}} ein Portfolio mit X% Risikoanteil gemessen.</div>
+    <div class="text" style="text-align:center">{{name}} hat mithilfe des interaktiven Tools ein Portfolio mit {{ risktoolresult }}% Risikoanteil gewählt.</div>
 </div>
 {% endif %}
 
