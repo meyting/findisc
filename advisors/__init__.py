@@ -248,7 +248,8 @@ class Player(BasePlayer):
 
     risktoolresult = models.FloatField()
 
-    prolific_id = models.StringField(default=str(" "))
+    #prolific_id = models.StringField(default=str(" "))
+    bilendi_id = models.StringField(default=str(" "))
 
     groupy = models.FloatField()
 
@@ -264,6 +265,7 @@ class Player(BasePlayer):
     risky_share_end = models.FloatField()
 
     screener = models.BooleanField(blank=False)
+
 # PAGES
 class consent_de(Page):
     form_model = 'player'
@@ -274,17 +276,13 @@ class consent_de(Page):
         return player.round_number == 1
     
     @staticmethod
-    def before_next_page(self, timeout_happened):
-        self.prolific_id = self.participant.label
-        #self.bilendi_id = self.participant.label
+    def before_next_page(player, timeout_happened):
+        # player.prolific_id = player.participant.label
+        player.bilendi_id = player.m
 
 class start_de(Page):
     form_model = 'player'
     form_fields = ['screener']
-
-    @staticmethod
-    def before_next_page(self, timeout_happened):
-        self.prolific_id = self.participant.label
         
     @staticmethod
     def is_displayed(player: Player):
