@@ -93,6 +93,12 @@ ROOMS = [
         #use_secure_urls=True,
     ),
         dict(
+        name='adrandmbil',
+        display_name='adrandmbil',
+        # participant_label_file='_rooms/your_study.txt',
+        #use_secure_urls=True,
+    ),
+        dict(
         name='pilot',
         display_name='pilot',
         # participant_label_file='_rooms/your_study.txt',

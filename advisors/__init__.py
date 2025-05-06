@@ -105,7 +105,8 @@ def select_unique_risky_shares(data, n):
 
 def creating_session(subsession: Subsession):
     import itertools
-    variant = itertools.cycle(['bel', 'pat', 'verypat', 'pat_accept', 'verypat_accept'])
+    #variant = itertools.cycle(['bel', 'pat', 'verypat', 'pat_accept', 'verypat_accept']) 
+    variant = itertools.cycle(['bel', 'pat', 'verypat']) # for bilendi
     groups = itertools.cycle(['circle', 'triangle',])
     if subsession.round_number == 1:
         for p in subsession.get_players():
