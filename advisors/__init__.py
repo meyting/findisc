@@ -278,7 +278,7 @@ class consent_de(Page):
     @staticmethod
     def before_next_page(player, timeout_happened):
         # player.prolific_id = player.participant.label
-        player.bilendi_id = player.m
+        player.bilendi_id = player.participant.label
 
 class start_de(Page):
     form_model = 'player'
