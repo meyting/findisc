@@ -5,12 +5,35 @@
 
 {{ block content }}
 
-<label for="screener"> <b>Sind Sie aktuell als Finanzberater/in tätig?</b></label>
+<label for="screener"> 
+    <b>
+        Arbeiten Sie hauptberuflich in der Beratung von Finanzprodukten?
+        Bitte wählen Sie die Antwortmöglichkeit, die am besten zu Ihnen passt.
+    </b>
+</label>
 <br>
 <br>
-<input type="radio" class="radiobutton" name="screener" value="0"> Nein <br> 
-<input type="radio" class="radiobutton" name="screener" value="1"> Ja
-
+<table style="width:80%; margin:auto">
+    <tr>
+        <td style="width:10%"><input type="radio" class="radiobutton" name="screener" value="3"></td>
+        <td style="width:90%">Ja, ich arbeite in der Finanzberatung und verkaufe/vermittle Finanzprodukte über persönliche Beratung an KundInnen.</td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td style="width:10%"><input type="radio" class="radiobutton" name="screener" value="2"></td>
+        <td style="width:90%">Nein, aber ich arbeite nebenberuflich in der Beratung von Finanzprodukten über persönliche Beratung an KundInnen.</td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td style="width:10%"><input type="radio" class="radiobutton" name="screener" value="1"></td>
+        <td style="width:90%">Nein, ich habe in der Vergangenheit in der Beratung von Finanzprodukten gearbeitet, mache beruflich aber inzwischen etwas Anderes.</td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td style="width:10%"><input type="radio" class="radiobutton" name="screener" value="0"></td>
+        <td style="width:90%">Nein.</td>
+    </tr>
+</table>
 <br> <br>
 
     <button id="next-button" class="nxt">Weiter</button>
