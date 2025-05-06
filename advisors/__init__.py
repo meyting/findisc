@@ -275,6 +275,7 @@ class consent_de(Page):
     @staticmethod
     def before_next_page(self, timeout_happened):
         self.prolific_id = self.participant.label
+        #self.bilendi_id = self.participant.label
     
 class instructions_de(Page):
     @staticmethod
