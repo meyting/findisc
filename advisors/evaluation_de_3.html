@@ -178,7 +178,8 @@ Bitte geben Sie Ihre Anlageempfehlung für diesen Kunden ab:
 
 {% if variant == "verypat" or variant == "verypat_accept" %}
 <div class="index-card-risktool">
-    <div class="text" style="text-align:center">Die von {{name}} im interaktiven Tool gewählte Verteilung entspricht einem Risikoanteil von {{ risktoolresult }}%.</div>
+    <div class="text" style="text-align:center">{{name}} hat im interaktiven Tool eine Verteilung gewählt. 
+        Diese Verteilung ergibt sich bei einem Risikoanteil von {{ risktoolresult }}%.</div>
 </div>
 {% endif %}
 
@@ -188,7 +189,7 @@ Bitte geben Sie Ihre Anlageempfehlung für diesen Kunden ab:
 <table id="info" style="font-size:1.1rem; table-layout: fixed; width:100%; margin-left:auto; margin-right:auto;background-color:rgb(218, 241, 218)">
     <tr style="text-align:center" >
         <td style = "width:70%;text-align:center;font-weight:bold" class="product">
-        <div class="scale-cell-back" style="width:100%""> Welches Produkt würden Sie dieser Person empfehlen?             
+        <div class="scale-cell-back" style="width:100%"> Welches Produkt würden Sie dieser Person empfehlen?             
             <img src="{% static 'icons/information-button.png' %}" class="info-icon"/>
             <span class="tooltip">Welchen Anteil risikobehafteter Anlagen empfehlen Sie {{ name }}?</span>
             </div>

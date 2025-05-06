@@ -263,7 +263,7 @@ class Player(BasePlayer):
     clickstream = models.StringField(blank=True)
     risky_share_end = models.FloatField()
 
-
+    screener = models.BooleanField(blank=False)
 # PAGES
 class consent_de(Page):
     form_model = 'player'
@@ -277,6 +277,18 @@ class consent_de(Page):
     def before_next_page(self, timeout_happened):
         self.prolific_id = self.participant.label
         #self.bilendi_id = self.participant.label
+
+class start_de(Page):
+    form_model = 'player'
+    form_fields = ['screener']
+
+    @staticmethod
+    def before_next_page(self, timeout_happened):
+        self.prolific_id = self.participant.label
+        
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.round_number == 1
     
 class instructions_de(Page):
     @staticmethod
@@ -658,6 +670,7 @@ class end_de(Page):
 
 page_sequence = [
     consent_de,
+    start_de,
     instructions_de,
     risk_survey_de_2,
     risk_tool_explanations,

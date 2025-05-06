@@ -1,0 +1,63 @@
+
+{{ block title }}
+
+{{ endblock }}
+
+{{ block content }}
+
+<label for="screener"> <b>Sind Sie aktuell als Finanzberater/in tätig?</b></label>
+<br>
+<br>
+<input type="radio" class="radiobutton" name="screener" value="0"> Nein <br> 
+<input type="radio" class="radiobutton" name="screener" value="1"> Ja
+
+<br> <br>
+
+    <button id="next-button" class="nxt">Weiter</button>
+
+{{ endblock }}
+
+
+{% block styles %}
+<style>
+    .radiobutton{
+        cursor: pointer;
+        width: 2em;
+    }
+    
+    .nxt{
+        background-color: #0B60DB;
+        border: none;
+        border-radius: 7px;
+        color: white;
+        padding: 7px 14px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.getElementById("next-button").addEventListener("click", function(event) {
+        event.preventDefault();  // Stop the form from submitting immediately
+
+        var selected = document.querySelector('input[name="screener"]:checked');
+        if (selected && selected.value === "0") {
+            window.location.href = "https://survey.maximiles.com/screenout?p=147417_db7ec15f&m=%SPM_PANELIST_ID%";
+        } else {
+            // Let oTree submit the form if value is not 0
+            document.querySelector('form').submit();
+        }
+    });
+</script>
+
+{% endblock %}
