@@ -57,46 +57,46 @@ SESSION_CONFIG_DEFAULTS = dict(
 
 ROOMS = [
     dict(
-        name='advisors_1',
-        display_name='advisors_1',
+        name='adaccunrt',
+        display_name='adaccunrt',
         # participant_label_file='_rooms/your_study.txt',
-        # use_secure_urls=True,
+        use_secure_urls=True,
     ),
         dict(
-        name='advisors_2',
-        display_name='advisors_2',
+        name='adimplnrt',
+        display_name='adimplnrt',
         # participant_label_file='_rooms/your_study.txt',
-        # use_secure_urls=True,
+        use_secure_urls=True,
     ),
         dict(
-        name='advisors_3',
-        display_name='advisors_3',
+        name='adimplrt',
+        display_name='adimplrt',
         # participant_label_file='_rooms/your_study.txt',
-        # use_secure_urls=True,
+        use_secure_urls=True,
     ),
         dict(
-        name='advisors_4',
-        display_name='advisors_4',
+        name='adaccenrt',
+        display_name='adaccenrt',
         # participant_label_file='_rooms/your_study.txt',
-        # use_secure_urls=True,
+        use_secure_urls=True,
     ),
         dict(
-        name='advisors_5',
-        display_name='advisors_5',
+        name='adaccert',
+        display_name='adaccert',
         # participant_label_file='_rooms/your_study.txt',
-        # use_secure_urls=True,
+        use_secure_urls=True,
     ),
         dict(
         name='clients',
         display_name='clients',
         # participant_label_file='_rooms/your_study.txt',
-        # use_secure_urls=True,
+        use_secure_urls=True,
     ),
         dict(
         name='pilot',
         display_name='pilot',
         # participant_label_file='_rooms/your_study.txt',
-        # use_secure_urls=True,
+        use_secure_urls=True,
     ),
 ]
 
