@@ -16,31 +16,31 @@ Fast geschafft!
 <br>
 <table style="width:80%">
     <tr>
-        <td style="width:5%"><input type="radio" class="radiobutton" name="attention_check" value="false" style="cursor: pointer;"></td>
+        <td style="width:5%"><input type="radio" class="radiobutton" name="attention_check" value="false" style="cursor: pointer;  transform: scale(1.3); margin: 5px;"></td>
         <td style="width:95%">blau</td>
     </tr>
     <tr>
-        <td style="width:5%"><input type="radio" class="radiobutton" name="attention_check" value="true" style="cursor: pointer;"></td>
+        <td style="width:5%"><input type="radio" class="radiobutton" name="attention_check" value="true" style="cursor: pointer; transform: scale(1.3); margin: 5px;"></td>
         <td style="width:95%">orange</td>
     </tr>
     <tr>
-        <td style="width:5%"><input type="radio" class="radiobutton" name="attention_check" value="false" style="cursor: pointer;"></td>
+        <td style="width:5%"><input type="radio" class="radiobutton" name="attention_check" value="false" style="cursor: pointer; transform: scale(1.3); margin: 5px;"></td>
         <td style="width:95%">rot</td>
     </tr>
     <tr>
-        <td style="width:5%"><input type="radio" class="radiobutton" name="attention_check" value="false" style="cursor: pointer;"></td>
+        <td style="width:5%"><input type="radio" class="radiobutton" name="attention_check" value="false" style="cursor: pointer; transform: scale(1.3); margin: 5px;"></td>
         <td style="width:95%">gelb</td>
     </tr>
     <tr>
-        <td style="width:5%"><input type="radio" class="radiobutton" name="attention_check" value="false" style="cursor: pointer;"></td>
+        <td style="width:5%"><input type="radio" class="radiobutton" name="attention_check" value="false" style="cursor: pointer; transform: scale(1.3); margin: 5px;"></td>
         <td style="width:95%">grün</td>
     </tr>
     <tr>
-        <td style="width:5%"><input type="radio" class="radiobutton" name="attention_check" value="false" style="cursor: pointer;"></td>
+        <td style="width:5%"><input type="radio" class="radiobutton" name="attention_check" value="false" style="cursor: pointer; transform: scale(1.3); margin: 5px;"></td>
         <td style="width:95%">schwarz</td>
     </tr>
 </table>
-<br> <br>
+<br> 
 
     {%  formfield player.education_school %}
     {%  formfield player.education_uni %}
@@ -94,7 +94,7 @@ Fast geschafft!
        {%  formfield player.distract %}
        <br />
 
-    {% next_button %}
+       <button id="next-button" class="nxt">Weiter</button>
 
     <input type="hidden" name="selected_finpart" id="selected_finpart" value="">
 
@@ -152,6 +152,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
         event.preventDefault();  // Stop the form from submitting immediately
 
         var selected = document.querySelector('input[name="attention_check"]:checked');
+        console.log(selected);
+        console.log(selected.value);
         if (selected && selected.value === "false") {
             window.location.href = "https://survey.maximiles.com/screenout?p=147417_db7ec15f&m=" + bilendi_id;
         } else {
@@ -176,6 +178,25 @@ document.addEventListener('DOMContentLoaded', (event) => {
       top: -5px; /* Adjust this value to control vertical shift */
       display: inline-block;
       margin-bottom: 8px;
+    }
+
+
+    .nxt{
+        background-color: #0B60DB;
+        border: none;
+        border-radius: 7px;
+        color: white;
+        padding: 7px 14px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 </style>
 {% endblock %}
