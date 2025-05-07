@@ -99,12 +99,13 @@ Fast geschafft!
     <input type="hidden" name="selected_finpart" id="selected_finpart" value="">
 
     
-{{ form.occupation.errors }}
 
 
 {% endblock %}
 
 {% block scripts %}
+{{ form.occupation.errors }}
+
 <script>
 function yesnoCheck(that) {
     if (that.value == "1") {
@@ -151,7 +152,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         event.preventDefault();  // Stop the form from submitting immediately
 
         var selected = document.querySelector('input[name="attention_check"]:checked');
-        if (selected && selected.value === "0") {
+        if (selected && selected.value === "false") {
             window.location.href = "https://survey.maximiles.com/screenout?p=147417_db7ec15f&m=" + bilendi_id;
         } else {
             // Let oTree submit the form if value is not 0
