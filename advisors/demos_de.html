@@ -11,9 +11,39 @@ Fast geschafft!
        {%  formfield player.nationality %}
 
 <hr>
-       {%  formfield player.attention_check %}
-       {%  formfield player.education_school %}
-       {%  formfield player.education_uni %}
+<label for="attention_check">Es ist wichtig für uns, dass sie aufmerksam sind. Bitte klicken Sie in der nachfolgenden Liste auf die zweite Option von oben.</label>
+<br>
+<br>
+<table style="width:80%">
+    <tr>
+        <td style="width:5%"><input type="radio" class="radiobutton" name="attention_check" value="false" style="cursor: pointer;"></td>
+        <td style="width:95%">blau</td>
+    </tr>
+    <tr>
+        <td style="width:5%"><input type="radio" class="radiobutton" name="attention_check" value="true" style="cursor: pointer;"></td>
+        <td style="width:95%">orange</td>
+    </tr>
+    <tr>
+        <td style="width:5%"><input type="radio" class="radiobutton" name="attention_check" value="false" style="cursor: pointer;"></td>
+        <td style="width:95%">rot</td>
+    </tr>
+    <tr>
+        <td style="width:5%"><input type="radio" class="radiobutton" name="attention_check" value="false" style="cursor: pointer;"></td>
+        <td style="width:95%">gelb</td>
+    </tr>
+    <tr>
+        <td style="width:5%"><input type="radio" class="radiobutton" name="attention_check" value="false" style="cursor: pointer;"></td>
+        <td style="width:95%">grün</td>
+    </tr>
+    <tr>
+        <td style="width:5%"><input type="radio" class="radiobutton" name="attention_check" value="false" style="cursor: pointer;"></td>
+        <td style="width:95%">schwarz</td>
+    </tr>
+</table>
+<br> <br>
+
+    {%  formfield player.education_school %}
+    {%  formfield player.education_uni %}
 
     <label for="occupation"> Was trifft überwiegend auf Sie zu?</label>
     <select onchange="yesnoCheck(this);" name="occupation" id="occ" class="form-control">
@@ -68,6 +98,10 @@ Fast geschafft!
 
     <input type="hidden" name="selected_finpart" id="selected_finpart" value="">
 
+    
+{{ form.occupation.errors }}
+
+
 {% endblock %}
 
 {% block scripts %}
@@ -108,12 +142,25 @@ document.addEventListener('DOMContentLoaded', (event) => {
         updateHiddenField();
 
     });
+
+
+
+    let bilendi_id = js_vars.bilendi_id;
+
+    document.getElementById("next-button").addEventListener("click", function(event) {
+        event.preventDefault();  // Stop the form from submitting immediately
+
+        var selected = document.querySelector('input[name="attention_check"]:checked');
+        if (selected && selected.value === "0") {
+            window.location.href = "https://survey.maximiles.com/screenout?p=147417_db7ec15f&m=" + bilendi_id;
+        } else {
+            // Let oTree submit the form if value is not 0
+            document.querySelector('form').submit();
+        }
+    });
 </script>
-
-
-{{ form.occupation.errors }}
-
 {% endblock %}
+
 
 {% block styles %}
 <style>

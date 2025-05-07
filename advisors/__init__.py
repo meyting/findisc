@@ -231,14 +231,7 @@ class Player(BasePlayer):
                                           [2, 'Ich war größtenteils aufmerksam und fast gar nicht abgelenkt.'],
                                           [3, 'Ich war eher nicht so aufmerksam, sondern etwas abgelenkt.'],
                                           [4, 'Ich war gar nicht aufmerksam, sondern ziemlich abgelenkt.']],)
-    attention_check = models.CharField(
-        initial=None,
-        choices=[
-            ['false1', 'blau'], ['true', 'orange'], ['false2', 'rot'], ['false3', 'gelb'], ['false4', 'grün'], ['false5', 'schwarz']
-        ],
-        label='Es ist wichtig für uns, dass sie aufmerksam sind. Bitte klicken Sie in der nachfolgenden Liste auf die zweite Option von oben.',
-        widget=widgets.RadioSelect(),
-    )
+    attention_check = models.CharField()
 
     q1_advisor = models.IntegerField(blank=False)
     q2_advisor = models.IntegerField(blank=False)
@@ -645,6 +638,12 @@ class demos_de(Page):
     @staticmethod
     def is_displayed(player: Player):
         return player.round_number == C.NUM_ROUNDS
+    
+    @staticmethod
+    def js_vars(player: Player):
+        return dict(
+            bilendi_id=player.participant.label
+        )
     
 class groupy_de(Page):
     form_model = 'player'
