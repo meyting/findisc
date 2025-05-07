@@ -180,9 +180,9 @@ class Player(BasePlayer):
     offer = models.CharField()
     selected_best_advice = models.StringField(verbose_name="""""")
 
-    name = models.CharField(blank=True,
-                            initial=None,
-                            verbose_name='Wie lautet Ihr erster Vorname?')
+    #name = models.CharField(blank=True,
+    #                        initial=None,
+    #                        verbose_name='Wie lautet Ihr erster Vorname?')
     age = models.IntegerField(verbose_name='Wie alt sind Sie?')
     gender = models.CharField(initial=None,
                               choices=['weiblich', 'männlich', 'nicht-binär'],
@@ -632,7 +632,8 @@ class iat_de(Page):
     
 class demos_de(Page):
     form_model = 'player'
-    form_fields = ['name','age', 'gender', 'profession', 'fieldofstudy', 'occupation', 'nationality', 'income',
+    form_fields = [#'name',
+        'age', 'gender', 'profession', 'fieldofstudy', 'occupation', 'nationality', 'income',
                    'education_school', 'education_uni','religion', 'party', 'distract', 'attention_check', 'selected_finpart']
 
     @staticmethod
