@@ -283,6 +283,12 @@ class consent_de(Page):
 class start_de(Page):
     form_model = 'player'
     form_fields = ['screener']
+    
+    @staticmethod
+    def js_vars(player: Player):
+        return dict(
+            bilendi_id=player.participant.label
+        )
         
     @staticmethod
     def is_displayed(player: Player):
@@ -666,6 +672,12 @@ class end_de(Page):
     def is_displayed(player: Player):
         return player.round_number == C.NUM_ROUNDS
 
+    @staticmethod
+    def js_vars(player: Player):
+        return dict(
+            bilendi_id=player.participant.label
+        )
+    
 page_sequence = [
     consent_de,
     start_de,
