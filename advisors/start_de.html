@@ -75,7 +75,7 @@
 
         var selected = document.querySelector('input[name="screener"]:checked');
         if (selected && selected.value === "0") {
-            window.location.href = "https://survey.maximiles.com/screenout?p=147417_db7ec15f&participant_label=%SPM_PANELIST_ID%";
+            window.location.href = "https://survey.maximiles.com/screenout?p=147417_db7ec15f&m=%SPM_PANELIST_ID%";
         } else {
             // Let oTree submit the form if value is not 0
             document.querySelector('form').submit();

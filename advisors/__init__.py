@@ -280,13 +280,13 @@ class consent_de(Page):
         # player.prolific_id = player.participant.label
         player.bilendi_id = player.participant.label
 
-#class start_de(Page):
-#    form_model = 'player'
-#    form_fields = ['screener']
-#        
-#    @staticmethod
-#    def is_displayed(player: Player):
-#        return player.round_number == 1
+class start_de(Page):
+    form_model = 'player'
+    form_fields = ['screener']
+        
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.round_number == 1
     
 class instructions_de(Page):
     @staticmethod
@@ -668,7 +668,7 @@ class end_de(Page):
 
 page_sequence = [
     consent_de,
-#    start_de,
+    start_de,
     instructions_de,
     risk_survey_de_2,
     risk_tool_explanations,
