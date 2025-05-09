@@ -257,7 +257,7 @@ class Player(BasePlayer):
     clickstream = models.StringField(blank=True)
     risky_share_end = models.FloatField()
 
-    screener = models.BooleanField(blank=False)
+    screener = models.IntegerField(blank=False)
 
 # PAGES
 class consent_de(Page):
