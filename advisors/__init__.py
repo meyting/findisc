@@ -260,7 +260,7 @@ class Player(BasePlayer):
     screener = models.IntegerField(blank=False)
 
 # PAGES
-class consent_de(Page):
+class consent_en(Page):
     form_model = 'player'
     form_fields = ['consent']
 
@@ -273,7 +273,7 @@ class consent_de(Page):
         # player.prolific_id = player.participant.label
         player.bilendi_id = player.participant.label
 
-class start_de(Page):
+class start_en(Page):
     form_model = 'player'
     form_fields = ['screener']
     
@@ -287,7 +287,7 @@ class start_de(Page):
     def is_displayed(player: Player):
         return player.round_number == 1
     
-class instructions_de(Page):
+class instructions_en(Page):
     @staticmethod
     def vars_for_template(player: Player):
         participant = player.participant
@@ -300,7 +300,7 @@ class instructions_de(Page):
         return player.round_number == 1
  
      
-class risk_survey_de_2(Page):
+class risk_survey_en_2(Page):
     form_model = 'player'
     form_fields = ['q1_advisor', 'q2_advisor', 'q3_advisor', 'q4_advisor', 'q5_advisor']
 
@@ -310,7 +310,7 @@ class risk_survey_de_2(Page):
     
 
 
-class risk_tool_explanations(Page):
+class risk_tool_explanations_en(Page):
     @staticmethod
     def is_displayed(player: Player):
         return player.round_number == 1
@@ -341,7 +341,7 @@ class risk_tool(Page):
     
 
 
-class evaluation_example_de_3(Page):
+class evaluation_example_en_3(Page):
     form_model = 'player'
     form_fields = ['advice_example', 'offer', 'advice_certainty_example']
 
@@ -432,7 +432,7 @@ class evaluation_example_de_3(Page):
 
 
 
-class evaluation_de_3(Page):
+class evaluation_en_3(Page):
     form_model = 'player'
     form_fields = ['advice', 'offer', 'advice_certainty']
 
@@ -516,7 +516,7 @@ class evaluation_de_3(Page):
        }
     
 
-class payment_instructions_de(Page):  
+class payment_instructions_en(Page):  
     @staticmethod
     def vars_for_template(player: Player):
         participant = player.participant
@@ -529,7 +529,7 @@ class payment_instructions_de(Page):
         return player.round_number == C.NUM_ROUNDS 
 
 
-class payment_de(Page):
+class payment_en(Page):
     form_model = 'player'
     form_fields = ['selected_best_advice']
 
@@ -625,12 +625,8 @@ class payment_de(Page):
     def is_displayed(player: Player):
         return player.round_number == C.NUM_ROUNDS
 
-class iat_de(Page):
-    @staticmethod
-    def is_displayed(player: Player):
-        return player.round_number == C.NUM_ROUNDS
     
-class demos_de(Page):
+class demos_en(Page):
     form_model = 'player'
     form_fields = [#'name',
         'age', 'gender', 'profession', 'fieldofstudy', 'occupation', 'nationality', 'income',
@@ -646,7 +642,7 @@ class demos_de(Page):
             bilendi_id=player.participant.label
         )
     
-class groupy_de(Page):
+class groupy_en(Page):
     form_model = 'player'
     form_fields = ['groupy']
 
@@ -667,7 +663,7 @@ class groupy_de(Page):
     def is_displayed(player: Player):
         return player.round_number == C.NUM_ROUNDS
     
-class end_de(Page):
+class end_en(Page):
     @staticmethod
     def is_displayed(player: Player):
         return player.round_number == C.NUM_ROUNDS
@@ -679,17 +675,17 @@ class end_de(Page):
         )
     
 page_sequence = [
-    consent_de,
-    start_de,
-    instructions_de,
-    risk_survey_de_2,
-    risk_tool_explanations,
+    consent_en,
+    start_en,
+    instructions_en,
+    risk_survey_en_2,
+    risk_tool_explanations_en,
     risk_tool,
-    evaluation_example_de_3,
-    evaluation_de_3,
-    payment_instructions_de,
-    payment_de,
-    demos_de,
-    groupy_de,
-    end_de
+    evaluation_example_en_3,
+    evaluation_en_3,
+    payment_instructions_en,
+    payment_en,
+    demos_en,
+    groupy_en,
+    end_en
                    ]

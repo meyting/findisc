@@ -1,0 +1,42 @@
+
+{{ block title }}
+    The interactive risk tool
+{{ endblock }}
+
+{{ block content }}
+<p> 
+    With the help of an interactive program, the individuals were able to visualize the risks associated with different investment options before making their investment decision.
+</p>
+<hr>
+<p>
+    The individuals were tasked with imagining that they wanted to invest {{ C.budget_string }} dollars over a period of {{ C.Anlagehorizont }} years.
+    They could invest the money in two different types of investments:
+    <ul>
+    <li> <b>A traditional savings account</b> - a secure investment option with low but fixed interest rates.</li>
+    <li> <b>An investment in an ETF (exchange-traded fund) on the stock market</b> –  this allows you to benefit from potential capital gains and dividends, but also exposes you to the risk that the value of your investment may fluctuate or decrease.</li>
+    </ul>
+    You could decide <b>how to divide your money between these two options</b> – from putting everything into one of the two options to any combination in between.
+    To give you a better idea of how different allocations affect your final payment, we have developed a <b>simulated investment tool.</b>.
+    This tool showed you the results that were achieved in the past with similar investments.
+
+    </p>
+<!-- Helping to determine your personal risk tolerance, meaning the risk-return profile that you feel comfortable with.-->
+<hr>
+
+<p>
+    Every 50th participant in this study received the actual value of the simulated portfolio after an investment period of {{ C.Anlagehorizont }} years, paid out in cents.
+    </p>
+<p>Example: If the simulated final payment of a person was {{ C.budget_string }} dollars, they received {{ Auszahlung }} dollars as a payout.
+    <ul>
+        <li> The simulation was based on real historical market data.</li>
+        <li> The payout was made within one month after participation.</li>
+    </ul>
+
+</p>
+<p>
+    Please click "Next" to continue and familiarize yourself with the interactive program.
+</p>
+<br>
+    {% next_button %}
+
+{% endblock %}

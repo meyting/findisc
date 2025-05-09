@@ -50,7 +50,7 @@ class Player(BasePlayer):
 
     
 # PAGES
-class consent_de(Page):
+class consent_en(Page):
     form_model = 'player'
     form_fields = ['consent']
 
@@ -58,15 +58,15 @@ class consent_de(Page):
     def before_next_page(self, timeout_happened):
         self.prolific_id = self.participant.label
 
-class background_de(Page):
+class background_en(Page):
     pass
 
-class risk_survey_de_2(Page):
+class risk_survey_en_2(Page):
     form_model = 'player'
     form_fields = ['q1','q2','q3','q4','q5']
 
 
-class personal_de(Page):
+class personal_en(Page):
     form_model = 'player'
     form_fields = ['intro', 'look']
 
@@ -74,8 +74,8 @@ class personal_de(Page):
 
 
 page_sequence = [
-    consent_de,
-    personal_de,
-    background_de,
-    risk_survey_de_2,
+    consent_en,
+    personal_en,
+    background_en,
+    risk_survey_en_2,
                    ]

@@ -120,7 +120,7 @@ class Player(BasePlayer):
     selected_finpart = models.CharField(blank=True)
 # PAGES
 
-class risk_tool_accept_de2(Page):
+class risk_tool_accept_en2(Page):
     #@staticmethod
     #def vars_for_template(player: Player):
     #    suggestion = player.participant.suggestion
@@ -133,20 +133,20 @@ class risk_tool_accept_de2(Page):
 
 
 
-class personal_de(Page):
+class personal_en(Page):
     form_model = 'player'
     form_fields = ['name','age', 'gender', 'profession', 'fieldofstudy', 'occupation', 'nationality', 'income', 'attention_check',
                    'education_school', 'education_uni','religion', 'party', 'distract', 'easy', 'understood', 'feedback','selected_finpart']
 
 
-class end_de(Page):
+class end_en(Page):
     pass
 
 
 
 page_sequence = [
-    risk_tool_accept_de2,
-    personal_de,
-    end_de
+    risk_tool_accept_en2,
+    personal_en,
+    end_en
     
                  ]

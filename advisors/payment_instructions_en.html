@@ -1,0 +1,51 @@
+{{ block title }}
+    Your potential bonus payment
+{{ endblock }}
+{{ block content }}
+
+
+{% if variant == "bel" %}
+<p>
+    As a reminder: One of your recommendations will be selected after this survey for your payment.
+    On the next page, you will have the opportunity to pre-select {{C.numberselections}} of the recommendations you provided. 
+    One of these {{C.numberselections}} recommendations will then be randomly selected.
+    If your recommendation matches the actual risk tolerance of the individual, as measured by the interactive tool, you will receive a bonus payment of {{C.bonus}}.
+    (Specifically, your recommendation may not deviate by more than 10% from the individual's actual risk share (ETF share of the portfolio).)
+</p>
+{% elif variant == "pat" %}
+<p>
+    As a reminder: One of your recommendations will be randomly selected after this survey.
+    On the next page, you will have the opportunity to pre-select {{C.numberselections}} of the recommendations you provided. 
+    One of these {{C.numberselections}} recommendations will then be randomly selected and actually implemented in one out of 100 cases.
+    For submitting your recommendations, you will receive a fixed bonus of {{ C.fixedfee }}.
+</p>
+{% elif variant == "verypat" %}
+<p>
+    As a reminder: One of your recommendations will be randomly selected after this survey.
+    On the next page, you will have the opportunity to pre-select {{C.numberselections}} of the recommendations you provided.
+    One of these {{C.numberselections}} recommendations will then be randomly selected and actually implemented in one out of 100 cases.
+    For submitting your recommendations, you will receive a fixed bonus of {{ C.fixedfee }}.
+</p>
+{% elif variant == "pat_accept" %}
+<p>
+    As a reminder: One of your recommendations will be selected after this survey for your payment.
+    On the next page, you will have the opportunity to pre-select {{C.numberselections}} of the recommendations you provided.
+    One of these {{C.numberselections}} recommendations will then be randomly selected.
+    To do this, we have shown the respective person some recommendations in advance and asked which one they would accept.
+    If the person would accept the recommendation you provided, you will receive a bonus payment of {{C.bonus}}.
+    If not, you will not receive a bonus payment.
+</p>
+{% elif variant == "verypat_accept" %}
+<p>
+    As a reminder: One of your recommendations will be selected after this survey for your payment.
+    On the next page, you will have the opportunity to pre-select {{C.numberselections}} of the recommendations you provided.
+    One of these {{C.numberselections}} recommendations will then be randomly selected.
+    To do this, we have shown the respective person some recommendations in advance and asked which one they would accept.
+    If the person would accept the recommendation you provided, you will receive a bonus payment of {{C.bonus}}.
+    If not, you will not receive a bonus payment.
+{% endif %}
+
+<br>
+    {{ next_button }}
+
+{{ endblock }}

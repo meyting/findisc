@@ -1,0 +1,135 @@
+{{ block title }}
+Almost done!
+{{ endblock }}
+
+{{ block content }}
+
+       {%  formfield player.name %}
+       {%  formfield player.age %}
+       {%  formfield player.gender %}
+<hr>
+       {%  formfield player.nationality %}
+
+<hr>
+       {%  formfield player.attention_check %}
+       {%  formfield player.education_school %}
+       {%  formfield player.education_uni %}
+
+    <label for="occupation"> Which of the following best applies to you?</label>
+    <select onchange="yesnoCheck(this);" name="occupation" id="occ" class="form-control">
+        <option selected value> --------- </option>
+        <option  value="0">In school</option >
+        <option  value="1">In college/university</option >
+        <option  value="2">Employed or working (including apprentices, individuals on parental leave, or part-time workers)</option>
+        <option  value="3">Retired</option >
+        <option  value="4">Housewife/-husband</option >
+        <option  value="5">Unemployed</option >
+        <option  value="6">Other</option >
+    </select>
+<br>
+    <div style="display: none;" id="profession">
+         {%  formfield player.profession %}
+    </div>
+    {%  formfield player.income %}
+
+    <br>
+    <p>Please list all the investments you currently own or have owned in the past:</p>
+    <label>
+      <input type="checkbox" name="finpart" value="savingsaccount" class="finpartclass">
+      <span class="finpartoptions">A savings account</span>
+    </label><br>
+    <label>
+      <input type="checkbox" name="finpart" value="stocks" class="finpartclass">
+      <span class="finpartoptions">Stocks (individually or as ETFs/funds)</span>
+    </label><br>
+    <label>
+      <input type="checkbox" name="finpart" value="bonds" class="finpartclass">
+      <span class="finpartoptions">Bonds (individually or as ETFs/funds)</span>
+    </label><br>
+    <label>
+      <input type="checkbox" name="finpart" value="crypto" class="finpartclass">
+      <span class="finpartoptions">Crypto</span>
+    </label><br>
+
+
+
+    <div style="display: none;" id="fieldofstudy">
+        {%  formfield player.fieldofstudy %}
+    </div>
+<hr>
+       {%  formfield player.party %}
+       {%  formfield player.religion %}
+       <hr>
+
+       {%  formfield player.distract %}
+       <br />
+
+    {% next_button %}
+
+    <input type="hidden" name="selected_finpart" id="selected_finpart" value="">
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+function yesnoCheck(that) {
+    if (that.value == "1") {
+        document.getElementById("fieldofstudy").style.display = "block";
+        document.getElementById("profession").style.display = "none";
+    }
+    else if (that.value == "2") {
+        document.getElementById("profession").style.display = "block";
+        document.getElementById("fieldofstudy").style.display = "none";
+    } else {
+        document.getElementById("profession").style.display = "none";
+        document.getElementById("fieldofstudy").style.display = "none";
+    }
+};
+
+
+document.addEventListener('DOMContentLoaded', (event) => {
+        let hiddenField = document.getElementById('selected_finpart');
+        
+        function updateHiddenField() {
+            const checkedCheckboxes = document.querySelectorAll('.finpartclass:checked');
+            const selectedValues = Array.from(checkedCheckboxes).map(cb => cb.value);
+            hiddenField.value = selectedValues.join(',');
+            console.log(selectedValues);
+            console.log('Hidden field updated:', hiddenField.value); // Debugging line
+        }
+    
+    // Attach event listeners to checkboxes
+    const checkboxes = document.querySelectorAll('.finpartclass');
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', updateHiddenField);
+    });
+  
+        // Initialize the hidden field and button state
+        updateHiddenField();
+
+    });
+</script>
+
+
+{{ form.occupation.errors }}
+
+{% endblock %}
+
+{% block styles %}
+<style>
+.finpartclass {
+    cursor: pointer;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.finpartoptions {
+    position: relative;
+      top: -5px; /* Adjust this value to control vertical shift */
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+</style>
+{% endblock %}
+
+

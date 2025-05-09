@@ -1,0 +1,62 @@
+{{ block title }}
+Background
+{{ endblock }}
+{{ block content }}
+<hr>
+<p><i>Please read the following statements carefully.</i></p>
+<hr>
+<p>
+    Below, we will introduce you to different individuals whom you will help with an investment decision.
+    These individuals have participated in a previous survey and answered some questions about themselves and their risk tolerance.
+    Your task is to advise these individuals.
+    You can use the information you have about the individuals and the investment options available to you.
+    The recommendation relates to how an investment amount should be split between an investment in a risky ETF and a deposit in a risk-free savings account.
+</p>
+<p>
+    In addition, the individual risk tolerance was measured using an interactive tool.
+    Before you give your recommendations, you can first familiarize yourself with the questions posed and the interactive tool.
+</p>
+<h5>Your potential bonus payment</h5>
+
+{% if variant == "bel" %}
+<p>
+    One of your recommendations will be randomly selected after this survey for your payment.
+    If your recommendation matches the actual risk tolerance of the individual, as measured by the interactive tool, you will receive a bonus payment of {{C.bonus}}.
+    (Specifically, your recommendation may not deviate by more than 10% from the individual's actual risk tolerance.)
+</p>
+{% elif variant == "pat" %}
+<p>
+    One of your recommendations will be randomly selected after this survey.
+    In 1 out of 100 cases, the selected recommendation will be implemented for the respective person, so that the person will receive the simulated value of the portfolio after an investment period of {{ C.Anlagehorizont }} years, paid out in cents.
+    For submitting your recommendations, you will receive a fixed bonus of {{ C.fixedfee }}.
+</p>
+{% elif variant == "verypat" %}
+<p>
+    One of your recommendations will be randomly selected after this survey.
+    In 1 out of 100 cases, the selected recommendation will be implemented for the respective person, so that the person will receive the simulated value of the portfolio after an investment period of {{ C.Anlagehorizont }} years, paid out in cents.
+    For submitting your recommendations, you will receive a fixed bonus of {{ C.fixedfee }}.
+</p>
+{% elif variant == "pat_accept" %}
+<p>
+    One of your recommendations will be randomly selected after this survey for your payment.
+    To do this, we have shown the respective person some recommendations in advance and asked which one they would accept.
+    If the person would accept the recommendation you provided, you will receive a bonus payment of {{C.bonus}}. 
+    If not, you will not receive a bonus payment.
+</p>
+{% elif variant == "verypat_accept" %}
+<p>
+    One of your recommendations will be randomly selected after this survey for your payment.
+    To do this, we have shown the respective person some recommendations in advance and asked which one they would accept.
+    If the person would accept the recommendation you provided, you will receive a bonus payment of {{C.bonus}}.
+    If not, you will not receive a bonus payment.
+{% endif %}
+
+
+
+<br>
+
+
+    {{ next_button }}
+{{ endblock }}
+
+

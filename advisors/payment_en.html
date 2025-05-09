@@ -1,0 +1,210 @@
+{{ block title }}
+    Your best recommendation
+{{ endblock }}
+{{ block content }}
+<p>
+    Here you can see an overview of all the individuals you just advised, including the recommendations you provided.
+    Please now select the {{C.numberselections}} recommendations on the right that you consider to be your best ones.
+</p>
+<br>
+<form id="recommendationForm">
+<table>
+    <tr style="border-bottom: 1pt solid;">
+        <th>    
+        </th>
+        <th><h5>Name</h5></td>
+        <th><h5>Your recommendation</h5></th>
+        <th><h5>Best recommendation</h5></th>
+    </tr>
+    <tr style="border-bottom: 1pt solid;">
+        <td> 
+                <img class="avatarimg" src="{% static picpath1 %}"  />
+        </td>
+        <td>{{name1}}</td>
+        <td style="text-align: center; padding-right:10%">{{advice1}}% ETF-share</td>
+        <td style="text-align: center;"><input type="checkbox" name="best_advice" value="{{prolificid_client1}}" class="beste-empfehlung"></td>
+    </tr>
+    <tr style="border-bottom: 1pt solid;">
+        <td>
+            <img class="avatarimg" src="{% static picpath2 %}"  />
+        </td>
+        <td>{{name2}}</td>
+        <td style="text-align: center; padding-right:10%">{{advice2}}% ETF-share</td>
+        <td style="text-align: center;"><input type="checkbox" name="best_advice" value="{{prolificid_client2}}" class="beste-empfehlung"></td>
+    </tr>
+    <tr style="border-bottom: 1pt solid;">
+        <td>
+            <img class="avatarimg" src="{% static picpath3 %}"  />
+        </td>
+        <td>{{name3}}</td>
+        <td style="text-align: center; padding-right:10%">{{advice3}}% ETF-share</td>
+        <td style="text-align: center;"><input type="checkbox" name="best_advice" value="{{prolificid_client3}}" class="beste-empfehlung"></td>
+    </tr>
+    <tr style="border-bottom: 1pt solid;">
+        <td>
+            <img class="avatarimg" src="{% static picpath4 %}"  />
+        </td>
+        <td>{{name4}}</td>
+        <td style="text-align: center; padding-right:10%">{{advice4}}% ETF-share</td>
+        <td style="text-align: center;"><input type="checkbox" name="best_advice" value="{{prolificid_client4}}" class="beste-empfehlung"></td>
+    </tr>
+    <tr style="border-bottom: 1pt solid;">
+        <td>
+            <img class="avatarimg" src="{% static picpath5 %}"  />
+        </td>
+        <td>{{name5}}</td>
+        <td style="text-align: center; padding-right:10%">{{advice5}}% ETF-share</td>
+        <td style="text-align: center;"><input type="checkbox" name="best_advice" value="{{prolificid_client5}}" class="beste-empfehlung"></td>
+    </tr>
+    <tr style="border-bottom: 1pt solid;">
+        <td>
+            <img class="avatarimg" src="{% static picpath6 %}"  />
+        </td>
+        <td>{{name6}}</td>
+        <td style="text-align: center; padding-right:10%">{{advice6}}% ETF-share</td>
+        <td style="text-align: center;"><input type="checkbox" name="best_advice" value="{{prolificid_client6}}" class="beste-empfehlung"></td>
+    </tr>
+    <tr style="border-bottom: 1pt solid;">
+        <td>
+            <img class="avatarimg" src="{% static picpath7 %}"  />
+        </td>
+        <td>{{name7}}</td>
+        <td style="text-align: center; padding-right:10%">{{advice7}}% ETF-share</td>
+        <td style="text-align: center;"><input type="checkbox" name="best_advice" value="{{prolificid_client7}}" class="beste-empfehlung"></td>
+    </tr>
+    <tr style="border-bottom: 1pt solid;">
+        <td>
+            <img class="avatarimg" src="{% static picpath8 %}"  />
+        </td>
+        <td>{{name8}}</td>
+        <td style="text-align: center; padding-right:10%">{{advice8}}% ETF-share</td>
+        <td style="text-align: center;"><input type="checkbox" name="best_advice" value="{{prolificid_client8}}" class="beste-empfehlung"></td>
+    </tr>
+    <tr style="border-bottom: 1pt solid;">
+        <td>
+            <img class="avatarimg" src="{% static picpath9 %}"  />
+        </td>
+        <td>{{name9}}</td>
+        <td style="text-align: center; padding-right:10%">{{advice9}}% ETF-share</td>
+        <td style="text-align: center;"><input type="checkbox" name="best_advice" value="{{prolificid_client9}}" class="beste-empfehlung"></td>
+    </tr>
+    <tr style="border-bottom: 1pt solid;">
+        <td>
+            <img class="avatarimg" src="{% static picpath10 %}"  />
+        </td>
+        <td>{{name10}}</td>
+        <td style="text-align: center; padding-right:10%">{{advice10}}% ETF-share</td>
+        <td style="text-align: center;"><input type="checkbox" name="best_advice" value="{{prolificid_client10}}" class="beste-empfehlung"></td>
+    </tr>
+</table>
+<input type="hidden" name="selected_best_advice" id="selected_best_advice" value="">
+    <br>
+    
+    <div class="center">
+        <button id="next-button" class="button" disabled>Next</button>
+    </div>
+
+</form>
+
+{{ endblock }}
+
+{{ block styles}}
+<style>
+    
+    .center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50px;
+    }
+    
+    table {
+        width: 100%;
+    }
+    td {
+        width:25%;
+        padding: 8px;
+        text-align: left;
+        font-size: large;
+    }   
+
+    .avatarimg {
+        width: 25%;
+        height: auto;
+        border-radius: 50%;
+    }
+
+    .advice{
+        width: 100%;
+        background-color:rgb(218, 241, 218);
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .beste-empfehlung{
+        width: 2rem;
+        height: 2rem;
+    }
+    .beste-empfehlung:hover{
+        cursor: pointer;
+    }
+</style>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        let nextButton = document.getElementById('next-button');
+        let hiddenField = document.getElementById('selected_best_advice');
+    
+        function enablenextbutton() {
+            if (nextButton) {
+                nextButton.disabled = false;
+                nextButton.classList.remove('disabled-button');
+                nextButton.classList.add('enabled-button');
+                nextButton.classList.add('btn-primary');
+                nextButton.classList.add('otree-btn-next');
+                nextButton.classList.add('btn');
+            } else {
+                console.error('Next button not found in the DOM.');
+            }
+        }
+    
+        function updateHiddenField() {
+            const checkedCheckboxes = document.querySelectorAll('.beste-empfehlung:checked');
+            const selectedValues = Array.from(checkedCheckboxes).map(cb => cb.value);
+            hiddenField.value = selectedValues.join(',');
+        }
+    
+        const checkboxes = document.querySelectorAll('.beste-empfehlung');
+    
+        checkboxes.forEach(cb => {
+            cb.addEventListener('change', (e) => {
+                const checkedCheckboxes = document.querySelectorAll('.beste-empfehlung:checked');
+                if (checkedCheckboxes.length > 5) {
+                    e.target.checked = false;
+                    alert('Please do not select more than 5 individuals.');
+                }
+                updateHiddenField();
+                if (checkedCheckboxes.length === 5) {
+                    enablenextbutton();
+                    updateHiddenField();
+                } if (checkedCheckboxes.length < 5) {
+                    nextButton.disabled = true;
+                    nextButton.classList.remove('btn-primary');
+                    nextButton.classList.remove('otree-btn-next');
+                    nextButton.classList.remove('btn');
+                }
+            });
+        });
+    
+        // Initialize the hidden field and button state
+        updateHiddenField();
+
+    });
+
+    
+
+    </script>
+    
+    
+    
+{{ endblock }}

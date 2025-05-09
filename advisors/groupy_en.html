@@ -1,0 +1,451 @@
+{% block title %}
+    Last Page!
+{% endblock %}
+
+{% block content %}
+
+<style>
+
+    .slider_instruction_container{
+        margin-top: 5px;
+        margin-bottom: 5px;  /* Add some space between demographics and payment info */
+    }
+    .value-display-container {
+        margin-top: 5px;
+        font-weight: bold;
+        justify-content: space-between; /* Align items horizontally */
+        margin-bottom: 5px;  /* Add some space between demographics and payment info */
+        display: none; /* Initially hide the container */
+        }
+
+    .sliderhidden::-moz-range-thumb {
+            width: 25px;
+            height: 25px;
+            background: #0020FF;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+    }
+
+    .sliderhidden {
+            appearance: none;
+            width: 100%;
+            height: 15px;
+            border-radius: 5px;
+            background: #f1cb09;
+            outline: none;
+            opacity: 0.7;
+            -webkit-transition: .2s;
+            transition: opacity .2s;
+    }
+    .sliderhidden:hover {
+            cursor: pointer;;
+    }
+
+    .sliderhidden::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 10px;
+            height: 20px;
+            border-radius: 25%;
+            background: #0020FF;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+    }
+
+    .slidershown::-moz-range-thumb {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: #0020FF;
+            border: none;
+            cursor: pointer;
+    }
+
+    .slidershown {
+            appearance: none;
+            width: 100%;
+            height: 15px;
+            border-radius: 5px;
+            background: #d3d3d3;
+            outline: none;
+            opacity: 0.7;
+            -webkit-transition: .2s;
+            transition: opacity .2s;
+        }
+
+    .slidershown::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: #0020FF;
+            cursor: pointer;
+    }
+
+
+    .slidercontainer th {
+        vertical-align: middle;
+    }
+    .avatar-container {
+            display: flex;
+            justify-content: space-between; /* Distribute avatars evenly */
+            width: 100%; /* Make the container fill the available width */
+    }
+    .demographic-info {
+        margin-bottom: 10px;  /* Add some space between demographics and payment info */
+        text-align: center;  /* Align demographic info to the left */
+        text-transform: capitalize;
+    }
+    .avatar {
+            width: 200px; /* Increase width for larger avatars */
+            height: 200px; /* Increase height for larger avatars */
+            border-radius: 50%;
+            margin-bottom: 5px; /* Add margin between avatar and demographics */
+    }
+
+    .group {
+            width: 200px; /* Increase width for larger avatars */
+            height: 200px; /* Increase height for larger avatars */
+            border-radius: 00%;
+            margin-bottom: 5px; /* Add margin between avatar and demographics */
+    }
+    .you_other_heading{
+        font-size: 24px;
+        text-align: center
+    }
+    .enabled-button{
+    background-color: #0B60DB;
+    border: none;
+    border-radius: 7px;
+    color: white;
+    padding: 7px 14px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    position: relative;
+    }
+    #next-button:disabled {
+        background-color: #ECEDEF;
+        color: white;
+        cursor: not-allowed;
+        border: none;
+        border-radius: 7px;
+        color: white;
+        padding: 7px 14px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+    }
+    .button {
+        border-radius: 7px;
+        padding: 7px 14px;
+        /* background-color: #81DAF5; */
+    }
+    .button_normal{
+        background-color: #0B60DB;
+        border: none;
+        border-radius: 7px;
+        color: white;
+        padding: 7px 14px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .container {
+            display: block;
+            margin: 10px auto;
+            }
+
+          .hidden {
+            display:none;
+        }
+
+
+
+        .openbox {
+                cursor: pointer;
+                margin: 15px 0;
+                  }
+
+
+        .button_normal{
+            background-color: #0B60DB;
+            border: none;
+            border-radius: 7px;
+            color: white;
+            padding: 7px 14px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .button {
+            border-radius: 7px;
+            padding: 7px 14px;
+        }
+
+     .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+        }
+
+    #instructions_trigger:hover{
+        cursor: pointer;
+        }
+
+    #dict_trigger:hover{
+        cursor: pointer;
+        }
+
+    #re_trigger:hover{
+        cursor: pointer;
+        }
+
+    .modal-content {
+        margin: auto;
+        display: block;
+        width: 80%;
+        max-width: 700px;
+        }
+
+    #logiccaption {
+        margin: auto;
+        display: block;
+        width: 80%;
+        max-width: 700px;
+        color: black;
+        padding: 10px 0;
+        height: 150px;
+        }
+
+    .modal-content, #caption {
+        animation-name: zoom;
+        animation-duration: 0.6s;
+        }
+
+    @keyframes zoom {
+        from {transform:scale(0)}
+        to {transform:scale(1)}
+        }
+
+    .close {
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        transition: 0.3s;
+        }
+
+    .close:hover,
+    .close:focus {
+        color: #bbb;
+        text-decoration: none;
+        cursor: pointer;
+        }
+
+    @media only screen and (max-width: 700px){
+    .modal-content {
+        width: 100%;
+        }
+    }
+</style>
+
+
+<p class="instruction" id="instructions">
+    Finally, we would ask you to divide {{ C.groupybudget }} between two people.
+    {% if group == "triangle" %}
+    To do this, we have randomly divided all the people into two groups (Group Triangle and Group Circle).
+    {% else %}
+    To do this, we have randomly divided all the people into two groups (Group Circle and Group Triangle).
+    {% endif %} 
+    To do this, we have randomly divided all the people into two groups (Group Triangle and Group Circle).
+    You have also been assigned to one of the two groups. Please click the "Your Group" button to see which group you belong to.
+</p>
+
+ <p id="container1">
+     <b class="openbox" id="openbox1">
+         <button type="button" class="button_normal"> Your group </button>
+     </b>
+</p>
+<div class="infobox1 hidden" id="infobox1">
+        {% if group == "triangle" %}
+    <p>You belong to the <b>Triangle group</b>.</p>
+    <img class="group" src="{% static "global/triangle.png" %}" alt="Triangle" width="100px" height="auto">
+<br>
+    <p>We now ask you to divide {{ C.groupybudget }} between a randomly selected participant from the Triangle group and a randomly selected participant from the Circle group.
+
+    {% else %}
+    <p>You belong to the <b>Circle group</b>.</p>
+    <img class="group" src="{% static "global/circle.png" %}" alt="Circle" width="100px" height="auto">
+    <br>
+
+    <p>We now ask you to divide {{ C.groupybudget }} between a randomly selected participant from the Triangle group and a randomly selected participant from the Circle group.
+
+    {% endif %}
+    
+
+
+    <div id="container2">
+        <p> Please click on "Submit Division" to proceed.</p>
+
+        <b class="openbox" id="openbox2">
+            <button type="button" class="button_normal"> Submit Division </button>
+        </b>
+   </div>
+</div>
+
+
+<div class="infobox2 hidden" id="infobox2">
+<br><br>
+<div class="avatar-container">
+    <div class="decision-maker">
+        {% if group == "triangle" %}
+        <div class="you_other_heading"><b>Triangle</b></div>
+        <img class="group" src="{% static "global/triangle.png" %}" alt="Triangle" width="100px" height="auto">
+        {% else %}
+        <div class="you_other_heading"><b>Circle</b></div>
+        <img class="group" src="{% static "global/circle.png" %}" alt="Circle" width="100px" height="auto">
+        {% endif %}
+    </div>
+    <div class="outgroup">
+        {% if group == "triangle" %}
+        <div class="you_other_heading"><b>Circle</b></div>
+        <img class="group" src="{% static "global/circle.png" %}" alt="Circle" width="100px" height="auto">
+        {% else %}
+        <div class="you_other_heading"><b>Triangle</b></div>
+        <img class="group" src="{% static "global/triangle.png" %}" alt="Triangle" width="100px" height="auto">
+        {% endif %}
+    </div>
+</div>
+
+
+<input type="range" min="0" max="1" step="0.01" value="" class="sliderhidden" name="groupy" id="groupy"
+       oninput="updateValue('groupy', 'value')"
+        onclick="activateSlider()">
+
+<div class="slider_instruction_container">
+    <p id="slider_instruction"> <em>Click the yellow bar to reveal the slider.  </em></p>
+</div>
+
+
+
+<div class="value-display-container">
+    <div class="value-display">
+        {% if group == "triangle" %}
+        <i class="fas fa-user"></i> You are giving <span id="value"></span>$ to the person from the Triangle group.
+        {% else %}
+        <i class="fas fa-user"></i> You are giving <span id="value"></span>$ to the person from the Circle group.
+        {% endif %}
+    </div>
+    <div class="value-display-other-person">
+        {% if group == "triangle" %}
+        <i class="fas fa-user"></i> You are giving <span id="outgroup_value"></span>$ to the person from the Triangle group.
+        {% else %}
+        <i class="fas fa-user"></i> You are giving <span id="outgroup_value"></span>$ to the person from the Circle group.
+        {% endif %} 
+    </div>
+</div>
+
+
+{{ formfield_errors 'groupy' }}
+
+
+<!-- Next Button initially hidden -->
+<div class="center">
+    <button id="next-button" class="button-normal" disabled>Next</button>
+</div>
+
+
+</div>
+
+<script>
+    document.getElementById("openbox1").addEventListener("click", function(){
+        document.getElementById("infobox1").classList.remove("hidden");
+        document.getElementById("instructions").classList.add("hidden");
+        document.getElementById("container1").classList.add("hidden");
+});
+
+document.getElementById("openbox2").addEventListener("click", function(){
+        document.getElementById("infobox2").classList.remove("hidden");
+        document.getElementById("container2").classList.add("hidden");
+});
+</script>
+
+<script>
+    let sliderClicked = false; // Flag to track user interaction
+    function activateSlider() {
+        groupy.classList.remove('sliderhidden');
+        groupy.classList.add('slidershown');
+        sliderClicked = true;
+        //document.getElementById("slider_instruction").style.display = 'none';
+        enableNextButton();
+        updateValue('groupy', 'value')
+
+        document.querySelector('.value-display-container').style.display = 'flex'; // Use display: flex to show the container
+        document.getElementById("slider_instruction").textContent = "";
+    }
+    let nextButton = document.getElementById('next-button');
+    // Function to enable the next button
+    function enableNextButton() {
+        nextButton.disabled = false;
+        nextButton.classList.remove('disabled-button');
+        nextButton.classList.add('enabled-button');
+    }
+
+    function updateValue(sliderId, valueId) {
+        const slider = document.getElementById(sliderId);
+        const valueDisplay = document.getElementById(valueId);
+        const outgroupValueDisplay = document.getElementById('outgroup_' + valueId );
+
+        if (slider.value !== "") {
+            const value = parseFloat(slider.value); // Convert the value to a floating-point number
+            outgroupValueDisplay.textContent = (value).toFixed(2);
+            valueDisplay.textContent = (1 - value).toFixed(2);
+        }
+        // Get the hidden input element
+        const hiddenInput = document.getElementById("groupy");
+        console.log("Hidden input type:", typeof hiddenInput.value);
+        console.log("Hidden input value:", hiddenInput.value);        //console.log(valueDisplay.textContent)
+        //console.log(outgroupValueDisplay.textContent)
+    }
+    console.log(sliderClicked)
+
+
+</script>
+
+
+{% endblock %}

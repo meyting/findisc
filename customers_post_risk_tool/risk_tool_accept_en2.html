@@ -1,0 +1,383 @@
+{{ block title }}
+<div class="welcome-container">
+    Would you accept this investment proposal?
+{{ endblock }}
+
+{{ block content }}
+
+<p>
+    In another part of our study, participants are asked to provide an investment recommendation for you based on anonymized information.
+    You can now decide whether you would accept each respective recommendation or not.
+</p>
+
+
+<!--
+<p>
+if suggestion == 'laymansuggestion'
+    <b>These other participants are not professional financial advisors</b>.
+elif suggestion == 'expertsuggestion'
+    <b>These other participants are professional financial advisors</b>.
+endif
+</p>
+-->
+
+<p>
+    Remember, the recommended portfolio consists of two different types of investments:
+    <ul>
+        <li> A traditional savings account</li>
+        <li> An investment in an ETF (exchange-traded fund) on the stock market</li>
+        </ul>
+<!--
+    The portion invested in risk-free bonds will be guaranteed to earn an interest rate of 2% per year.
+    The portion invested in the broadly diversified asset is expected to yield an average return of approximately 8% per year, but is subject to fluctuations.
+-->
+</p>
+<p>
+    Please now indicate which recommendations regarding the proportion of the investment in an ETF you would be willing to accept.
+</p>
+
+<!--
+<p>
+    At the end, a portion of the participants will be selected, and their decision will be implemented.
+    If your preferred risky share (ETF investment) is higher than the recommended amount, your payout will be based on your chosen preference.
+    If it is lower, the payout will be based on a risk-free portfolio (everything in the savings account) with 2% interest.
+</p>
+-->
+
+
+
+    <input type="hidden" name="lowerbound" id="lowerbound" value="">
+    <input type="hidden" name="upperbound" id="upperbound" value="">
+
+<p id="question">
+    <b>We will now present you with various recommendations regarding what portion of your portfolio you could invest in an ETF instead of placing it in a savings account.
+         For each recommendation, please indicate whether you would accept or reject it.</b>
+</p>
+<hr>
+<br>
+<p style="font-size: 24px; font-weight: bold;">Would you accept the following recommendation?</p>
+
+<!-- Button container for 0% and 100% initially -->
+<div class="value-box-wrapper">
+    <div id="value-box" class="value-box">"Invest 50% in the ETF and 50% in the savings account."</div>
+</div>
+
+
+<div class="button-container" id="button-container">
+    <button id="accept-button" type="button" onclick="handleClick('accept')">Accept</button>
+
+    <button id="reject-button" type="button" onclick="handleClick('reject')">Reject</button>
+</div>
+
+
+
+<br>
+<div class="hidden" id="next_button">
+    {% next_button %}
+</div>
+
+
+
+<script>
+    const startValue = Math.floor(Math.random() * 10 + 1) * 10; // 10–100%
+    let currentValue = startValue;
+    let backwardTestValue = null;
+    let inReverseMode = false;
+    let firstClickWasAccept = null;
+    let interactionStarted = false;
+    let acceptcount = 0;
+    let upperbound = null;
+    let lowerbound = null;
+
+
+    const valueBox = document.getElementById('value-box');
+    const nextButton = document.getElementById('next_button');
+    const buttonContainer = document.getElementById('button-container');
+
+    // Initialize display
+    valueBox.textContent = `"Invest ${currentValue}% in the ETF and ${100 - currentValue}% in the savings account."`;
+
+    function handleClick(action) {
+        if (!interactionStarted) {
+            interactionStarted = true;
+            firstClickWasAccept = (action === 'accept');
+        }
+        if (firstClickWasAccept ===  true) {
+            if (!inReverseMode) {
+                if (action === 'accept') {
+                    // Accepting higher values
+                    if (currentValue < 100) {
+                        upperbound = currentValue;
+                        currentValue = Math.min(100, currentValue + 10);
+                        updateValueBox();
+                    } else {
+                        // Reached 100%, enter reverse phase
+                        console.log('Reached 100%');
+                        inReverseMode = true;
+                        upperbound = currentValue;
+                        currentValue = startValue - 10;
+                        askAboutLowerBound();
+                    }                    
+                } else if (action === 'reject') {
+                    // Move to reverse mode after first rejection
+                    inReverseMode = true;
+                    upperbound = currentValue - 10;
+                    currentValue = startValue - 10;
+                    askAboutLowerBound(); 
+                }
+            }
+            else if (inReverseMode) {
+                console.log('In reverse mode');
+                if (action === 'accept') {
+                console.log('Accepting in reverse mode');
+                // Accepting higher values
+                    if (currentValue > 0) {
+                        currentValue = Math.min(100, currentValue - 10);
+                        updateValueBox();
+                    } else {
+                    // Reached 0%, finalize
+                        lowerbound = currentValue;
+                        valueBox.textContent = `You would accept an ETF share between ${lowerbound}% and ${upperbound}%.`;
+                        finalize(currentValue);
+                    }
+                }      
+                else if (action === 'reject') {
+        // Rejecting higher values
+                    if (currentValue === upperbound -10) {
+                        lowerbound = currentValue + 10;
+                        valueBox.textContent = `You would accept an ETF share of ${lowerbound}%.`;
+                    } else {
+                        lowerbound = currentValue + 10;
+                        valueBox.textContent = `You would accept an ETF share between ${lowerbound}% and ${upperbound}%.`;
+                        finalize(currentValue);
+                    }
+                }
+            }
+        }
+    
+        if (firstClickWasAccept ===  false) {
+            if (!inReverseMode) {
+                if (action === 'reject') {
+                    // Accepting higher values
+                    if (acceptcount === 0) {
+                        if (currentValue > 0) {
+                            console.log('Rejecting in forward mode');
+                            currentValue = Math.min(100, currentValue - 10);
+                            updateValueBox();
+                        } else {
+                        // Reached 0%, enter reverse phase
+                            console.log('Reached 0%');
+                            inReverseMode = true;
+                            console.log('GOING INTO reverse mode');
+                            currentValue = startValue + 10;
+                            console.log('Current value:', currentValue);
+                            askAboutUpperBound();
+                        } 
+                    }
+                    if (acceptcount > 0) {
+                        console.log(upperbound);
+                        console.log(lowerbound);
+                        lowerbound = currentValue + 10;
+                        if (lowerbound !== null && lowerbound === upperbound) {
+                                valueBox.textContent = `You would accept an ETF share of ${lowerbound}%.`;
+                            } else {
+                                valueBox.textContent = `You would accept an ETF share between ${lowerbound}% and ${upperbound}%.`;
+                            }
+                        finalize(currentValue);
+                    }
+                } else if (action === 'accept') {
+                    acceptcount++;
+                    console.log(acceptcount)
+                    console.log(currentValue)
+                    if (acceptcount < 2) {
+                        upperbound = currentValue;
+                        console.log(upperbound, "UPPUERBOUSFA");
+                    // Move to reverse mode after first rejection
+                        if (currentValue > 0) {
+                            currentValue = Math.min(100, currentValue - 10);
+                            updateValueBox();
+                        } else {
+                            lowerbound = currentValue
+                            valueBox.textContent = `You would accept an ETF share of ${lowerbound}%.`;
+                            finalize(currentValue);
+                        }
+                     } else if (acceptcount >=2) {
+                        lowerbound = currentValue;
+                    // Move to reverse mode after first rejection
+                        if (currentValue > 0) {
+                            currentValue = Math.min(100, currentValue - 10);
+                            updateValueBox();
+                        } else {
+                            valueBox.textContent = `You would accept an ETF share between ${lowerbound}% and ${upperbound}%.`;;
+                            finalize(currentValue);
+                        }
+                    }
+                }
+            }
+            else if (inReverseMode) {
+                console.log('In reverse mode');
+                if (action === 'reject') {
+                    upperbound = currentValue - 10;
+                    console.log('Rejecting in reverse mode');
+                    if (acceptcount > 0) {
+                        console.log('Rejecting in reverse mode with acceptcount > 0');
+                        console.log(upperbound);
+                        console.log(lowerbound);
+                        if (lowerbound === upperbound) {
+                                valueBox.textContent = `You would accept an ETF share of ${lowerbound}%.`;
+                        } else {
+                        valueBox.textContent = `You would accept an ETF share between ${lowerbound}% and ${upperbound}%.`;
+                        }
+                        finalize(currentValue);
+                    } else if (acceptcount === 0) {
+                        if (currentValue < 100) {
+                            currentValue = Math.min(100, currentValue + 10);
+                            updateValueBox();
+                        } else {
+                    // Reached 0%, finalize
+                            valueBox.textContent = `You would not accept any of the given recommendations.`;
+                            finalize(currentValue);
+                        }
+                    }
+                }      
+                else if (action === 'accept') {
+                    acceptcount++;
+                    if (acceptcount < 2) {
+                       lowerbound = currentValue;
+                       if (currentValue < 100) {
+                            currentValue = Math.min(100, currentValue + 10);
+                            updateValueBox();
+                        } else {
+                            upperbound = currentValue;
+                            if (lowerbound === upperbound) {
+                                valueBox.textContent = `You would accept an ETF share of ${lowerbound}%.`;
+                            } else {
+                            valueBox.textContent = `You would accept an ETF share between ${lowerbound}% and ${upperbound}%.`
+                            finalize(currentValue);
+                            }   
+                        }
+                    } else {
+                        upperbound = currentValue;
+                        if (currentValue < 100) {
+                            currentValue = Math.min(100, currentValue + 10);
+                            updateValueBox();
+                        } else {
+                        valueBox.textContent = `You would accept an ETF share between ${lowerbound}% and ${upperbound}%.`;
+                        finalize(currentValue);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    
+    
+
+
+    function updateValueBox() {
+        valueBox.textContent = `"Invest ${currentValue}% in the ETF and ${100 - currentValue}% in the savings account."`;
+    }
+
+    function askAboutLowerBound() {
+        if (currentValue < 10) {
+            lowerbound = currentValue +10;
+            valueBox.textContent = `You would accept an ETF share between ${lowerbound}% and ${upperbound}%.`;
+            finalize(10);
+        } else if (currentValue >= 10) {
+            console.log('Asking about lower bound');
+                // Don't ask about 0%
+            valueBox.textContent = `"Invest ${currentValue}% in the ETF and ${100 - currentValue}% in the savings account."`;
+            console.log('Asked about lower bound');
+        }
+    }
+
+
+    function askAboutUpperBound() {
+        if (currentValue > 100) {
+            upperbound = 0
+            lowerbound = 0
+            valueBox.textContent = `You do not accept any ETF share and would prefer to invest everything in the savings account.`;
+            finalize(10);
+        } else if (currentValue <= 100) {
+            console.log('Asking about upper bound');
+                // Don't ask about 0%
+            valueBox.textContent = `"Invest ${currentValue}% in the ETF and ${100 - currentValue}% in the savings account."`;
+            console.log('Asked about upper bound');
+        }
+    }
+
+    function finalize(finalValue) {
+        buttonContainer.style.display = 'none';
+        nextButton.classList.remove('hidden');
+        document.getElementById('lowerbound').value = lowerbound;
+        document.getElementById('upperbound').value = upperbound;
+    }
+</script>
+
+
+
+
+
+
+
+<style>
+    .button-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 100px;
+        margin-top: 40px;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    #accept-button {
+        background-color: #28a745;
+    }
+
+    #reject-button {
+        background-color: #dc3545;
+    }
+
+    #accept-button,
+    #reject-button {
+        padding: 12px 24px;
+        font-size: 22px;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    #accept-button:hover {
+        background-color: #218838;
+    }
+
+    #reject-button:hover {
+        background-color: #c82333;
+    }
+
+    .value-box-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.value-box {
+    background-color: white;
+    padding: 10px 20px;
+    font-size: 24px;
+    font-weight: bold;
+    display: inline-block;     /* Make width fit content */
+    width: auto;               /* Ensure no fixed width */
+    text-align: center;
+    white-space: nowrap;       /* Prevent wrapping */
+    text-align: center;
+}
+</style>
+
+{% endblock %}
