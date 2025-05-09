@@ -324,7 +324,7 @@ class risk_tool_explanations_en(Page):
             'Auszahlung': int(C.budget / C.Auszahlungsfaktor),
         }
     
-class risk_tool(Page):
+class risk_tool_en(Page):
     form_model = 'player'
     form_fields = ['risky_share_end','clickstream']
 
@@ -683,7 +683,7 @@ page_sequence = [
     instructions_en,
     risk_survey_en_2,
     risk_tool_explanations_en,
-    risk_tool,
+    risk_tool_en,
     evaluation_example_en_3,
     evaluation_en_3,
     payment_instructions_en,
