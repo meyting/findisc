@@ -1,0 +1,88 @@
+
+{{ block title }}
+
+{{ endblock }}
+
+{{ block content }}
+
+<label for="screener"> 
+    <b>
+        Do you work full-time in financial product consulting? 
+        Please select the answer option that best fits you.
+    </b>
+</label>
+<br>
+<br>
+<table style="width:80%; margin:auto">
+    <tr>
+        <td style="width:10%"><input type="radio" class="radiobutton" name="screener" value="3"></td>
+        <td style="width:90%">Yes, I work in financial consulting and sell/intermediate financial products through personal consultations with clients.</td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td style="width:10%"><input type="radio" class="radiobutton" name="screener" value="2"></td>
+        <td style="width:90%">No, but I work part-time in financial product consulting through personal consultations with clients.</td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td style="width:10%"><input type="radio" class="radiobutton" name="screener" value="1"></td>
+        <td style="width:90%">No, I have worked in financial product consulting in the past, but now I work in a different field.</td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td style="width:10%"><input type="radio" class="radiobutton" name="screener" value="0"></td>
+        <td style="width:90%">No.</td>
+    </tr>
+</table>
+<br> <br>
+
+    <button id="next-button" class="nxt">Weiter</button>
+
+{{ endblock }}
+
+
+{% block styles %}
+<style>
+    .radiobutton{
+        cursor: pointer;
+        width: 2em;
+    }
+
+    .nxt{
+        background-color: #0B60DB;
+        border: none;
+        border-radius: 7px;
+        color: white;
+        padding: 7px 14px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    let bilendi_id = js_vars.bilendi_id;
+
+    document.getElementById("next-button").addEventListener("click", function(event) {
+        event.preventDefault();  // Stop the form from submitting immediately
+
+        var selected = document.querySelector('input[name="screener"]:checked');
+        if (selected && selected.value === "0") {
+            window.location.href = "https://survey.maximiles.com/screenout?p=147417_db7ec15f&m=" + bilendi_id;
+        } else {
+            // Let oTree submit the form if value is not 0
+            document.querySelector('form').submit();
+        }
+    });
+</script>
+
+{% endblock %}

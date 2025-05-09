@@ -1,29 +1,159 @@
 {{ block title }}
-Who are you?
+Finally, we have a few questions about you
 {{ endblock }}
 
 {{ block content }}
 <hr>
 <p>
-    <i>Based on your answers to the following questions, we will generate a personalized profile for you, including an AI-generated image. 
-	Your data will be anonymized and treated confidentially. </i>
+    <i>The answers to the following questions may also be used as a basis for generating your AI-generated profile.
+    Your data will be anonymized and treated confidentially. </i>
 </p>
 <hr>
 
-{%  formfield player.intro %}
-{%  formfield player.look %}
+       {%  formfield player.name %}
+       {%  formfield player.age %}
+       {%  formfield player.gender %}
+<hr>
+       {%  formfield player.nationality %}
 
+<hr>
+       {%  formfield player.attention_check %}
+       {%  formfield player.education_uni %}
 
+    <label for="occupation"> Which of the following best describes your current situation?</label>
+    <select onchange="yesnoCheck(this);" name="occupation" id="occ" class="form-control">
+        <option selected value> --------- </option>
+        <option  value="0">Student (high school)</option >
+        <option  value="1">Student (college)</option >
+        <option  value="2">Employed (including apprentices, people on parental leave or part-time work)</option>
+        <option  value="3">Retired</option >
+        <option  value="4">Homemaker</option >
+        <option  value="5">Unemployed</option >
+        <option  value="6">Other</option >
+    </select>
+<br>
+    <div style="display: none;" id="profession">
+         {%  formfield player.profession %}
+    </div>
+    {%  formfield player.income %}
+    <br>
+    <p>Please indicate all types of investments you currently hold or have held in the past:</p>
+    <label>
+      <input type="checkbox" name="finpart" value="sparkonto" class="finpartclass">
+      <span class="finpartoptions">A savings account</span>
+    </label><br>
+    <label>
+      <input type="checkbox" name="finpart" value="aktien" class="finpartclass">
+      <span class="finpartoptions">Stocks (individually or as ETFs/funds)</span>
+    </label><br>
+    <label>
+      <input type="checkbox" name="finpart" value="anleihen" class="finpartclass">
+      <span class="finpartoptions">Bonds (individually or as ETFs/funds)</span>
+    </label><br>
+    <label>
+      <input type="checkbox" name="finpart" value="krypto" class="finpartclass">
+      <span class="finpartoptions">Crypto</span>
+    </label><br>
 
+    <div style="display: none;" id="fieldofstudy">
+        {%  formfield player.fieldofstudy %}
+    </div>
+<hr>
+       {%  formfield player.party %}
+       {%  formfield player.religion %}
+
+<hr>
+
+{%  formfield player.distract %}
+
+<hr>
+<p>We’d greatly appreciate it if you could give us a bit of feedback on our survey. Specifically:</p>
+
+{%  formfield player.easy %}
+{%  formfield player.understood %}
+{%  formfield player.feedback %}
+<br />
 <br />
 
     {% next_button %}
 
+    {{ formfield_errors 'occupation' }}
+    {{ formfield_errors 'profession' }}
+    {{ formfield_errors 'fieldofstudy' }}
+    {{ formfield_errors 'income' }}
+    {{ formfield_errors 'party' }}
+    {{ formfield_errors 'religion' }}
+    {{ formfield_errors 'age'}}
+    {{ formfield_errors 'name'}}
+    {{ formfield_errors 'education_uni'}}
+    {{ formfield_errors 'party'}}
+    {{ formfield_errors 'age'}}
+    {{ formfield_errors 'nationality'}}
+    {{ formfield_errors 'distract'}}
+    {{ formfield_errors 'easy'}}
+    {{ formfield_errors 'understood'}}
+    {{ formfield_errors 'feedback'}}
 
+    <input type="hidden" name="selected_finpart" id="selected_finpart" value="">
 
-    {{ formfield_errors 'intro' }}
-    {{ formfield_errors 'look' }}
+{% endblock %}
+
+{% block scripts %}
+<script>
+function yesnoCheck(that) {
+    if (that.value == "1") {
+        document.getElementById("fieldofstudy").style.display = "block";
+        document.getElementById("profession").style.display = "none";
+    }
+    else if (that.value == "2") {
+        document.getElementById("profession").style.display = "block";
+        document.getElementById("fieldofstudy").style.display = "none";
+    } else {
+        document.getElementById("profession").style.display = "none";
+        document.getElementById("fieldofstudy").style.display = "none";
+    }
+};
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+        let hiddenField = document.getElementById('selected_finpart');
+        
+        function updateHiddenField() {
+            const checkedCheckboxes = document.querySelectorAll('.finpartclass:checked');
+            const selectedValues = Array.from(checkedCheckboxes).map(cb => cb.value);
+            hiddenField.value = selectedValues.join(',');
+            console.log(selectedValues);
+            console.log('Hidden field updated:', hiddenField.value); // Debugging line
+        }
     
+    // Attach event listeners to checkboxes
+    const checkboxes = document.querySelectorAll('.finpartclass');
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', updateHiddenField);
+    });
+  
+        // Initialize the hidden field and button state
+        updateHiddenField();
+
+    });
+
+</script>
+{% endblock %}
+
+{% block styles %}
+<style>
+.finpartclass {
+    cursor: pointer;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.finpartoptions {
+    position: relative;
+      top: -5px; /* Adjust this value to control vertical shift */
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+</style>
 {% endblock %}
 
 

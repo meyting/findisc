@@ -42,9 +42,9 @@ class Player(BasePlayer):
     q5 = models.IntegerField()
  
     intro = models.LongStringField(blank=False,
-                                   verbose_name='Bitte beschreiben Sie sich in 2-3 Sätzen. Gehen Sie dabei z.B. auf Ihre Hobbies, Interessen, Familie, etc. ein.')
+                                   verbose_name='Please describe yourself in 2-3 sentences. For example, mention your hobbies, interests, family, etc.')
     look = models.LongStringField(blank=False,
-                                  verbose_name='Bitte beschreiben Sie Ihr Aussehen in 2-3 Sätzen. Gehen Sie dabei z.B. auf Ihre Haarfarbe, Augenfarbe, Größe, Brille(?), etc. ein.')
+                                  verbose_name='Please describe your appearance in 2–3 sentences. For example, mention your hair color, eye color, height, glasses (if applicable), etc.')
 
     prolific_id = models.StringField(default=str(" "))
 

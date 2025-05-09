@@ -32,15 +32,15 @@ class Player(BasePlayer):
 
     name = models.CharField(blank=True,
                             initial=None,
-                            verbose_name='Wie lautet Ihr erster Vorname?')
-    age = models.IntegerField(verbose_name='Wie alt sind Sie?')
+                            verbose_name='What is your first name?')
+    age = models.IntegerField(verbose_name='How old are you?')
     gender = models.CharField(initial=None,
-                              choices=['weiblich', 'männlich', 'nicht-binär'],
-                              verbose_name='Was ist ihr Geschlecht?',
+                              choices=['female', 'male', 'non-binary'],
+                              verbose_name='What is your gender?',
                               widget=widgets.RadioSelect())
     nationality = models.CharField(initial=None,
                                     choices=nationalities,
-                                    verbose_name='Was ist ihre Nationalität? <br> <i>(Falls Sie mehrere Nationalitäten haben, geben Sie bitte die Nationalität an, mit der Sie sich am meisten identifizieren.)</i>')
+                                    verbose_name='What is your nationality? <br> <i>(In case you have multiple nationalities, indicate the one you identify with the most.)</i>')
 
 #    currentcountry = models.CharField(initial=None,
 #                                        verbose_name='In welchem Land wohnen Sie aktuell?',
@@ -48,73 +48,72 @@ class Player(BasePlayer):
 #    currentcountry_duration = models.IntegerField(initial=None,
 #                                        verbose_name='Seit welchem Jahr wohnen Sie schon in diesem Land?',
 #                                        choices = years,)
-    education_school = models.CharField(initial=None,
-                                        verbose_name='Was ist Ihr höchster Schulabschluss?',
-                                        choices = ['(noch) kein Schulabschluss', 'Volks-/Hauptschulabschluss',
-                                                   'Realschule (Mittlere Reife)', 'Fachhochschulreife', 'Gymnasium (Abitur)',
-                                                   'Sonstiger Bildungsabschluss'],)
+
     education_uni =  models.CharField(initial=None,
-                                      verbose_name='Was ist Ihr höchster Universität- oder Fachhochschulabschluss?',
-                                      choices=['Bachelor', 'Master', 'Diplom', 'Magister', 'Promotion', '1. Staatsexamen',
-                                               '2. Staatsexamen', '(noch) kein Uni- oder FH-Abschluss', 'Sonstiges'],)
+                                      verbose_name='What is your highest level of education?',
+                                      choices=['Bachelor', 'Master', 'PhD', 'None', 'Other'],)
     fieldofstudy = models.CharField(initial=None,
                                     blank = True,
-                                    verbose_name='Was studieren Sie?',
+                                    verbose_name='What do you study?',
                                     )
     income = models.CharField(initial=None,
                                     blank = True,
-                                    verbose_name='Wie hoch ist ihr monatliches Einkommen?',
-                                    choices = ['weniger als 1000€', '1000-1999€', '2000-2999€', '3000-3999€', 'mehr als 4000€']
+                                    verbose_name='What is your monthly net income?',
+                                    choices = ['less than $1000', '$1000-$1999', '$2000-$2999', '$3000-$3999', 'more than $4000']
                                     )
     occupation=models.IntegerField(initial=None)
     profession = models.CharField(initial = None,
                                   blank = True,
-                                  verbose_name='Was ist ihr Beruf?')
+                                  verbose_name='What is your profession?')
 
     religion = models.CharField(initial = None,
-                                verbose_name = 'Zu welcher Religionsgruppe fühlen Sie sich zugehörig?',
-                                choices = ['Katholiken', 'Protestanten', 'Orthodoxen',
-                                           'nicht gläubig', 'Moslem', 'Buddhisten', 'Juden',
-                                           'Hindu', 'Sonstiges'],)
+                                verbose_name = 'Which religious group do you identify with?',
+                                choices = ['Catholic', 'Protestant', 'Orthodox',
+                                           'Not religious', 'Muslim', 'Buddhist', 'Jewish',
+                                           'Hindu', 'Other'],)
     party = models.CharField(initial = None,
-                                verbose_name = 'Welche Partei würden Sie wählen, wenn heute Bundestagswahl wäre?',
-                                choices = ['CDU/CSU', 'SPD', 'Grüne', 'FDP', 'Linke', 'AFD', 'weiß nicht', 'Sonstiges', 'bin Nichtwähler'],)
+                                verbose_name = 'Which political party would you vote for if there were elections today?',
+                                choices = ['Democrats', 'Republicans', 'Independent', 'I dont vote'],)
 
     distract = models.CharField(initial = None,
-                                verbose_name = 'Hand aufs Herz: Können wir Ihre Daten bedenkenlos analysieren oder waren Sie während der Umfrage durch irgendwelche Einflüsse abgelenkt? <i>(Die Antwort auf diese Frage hat keinerlei Auswirkungen auf Ihre Auszahlung.)</i>',
-                                choices = [[1, 'Ich war sehr aufmerksam und gar nicht abgelenkt.'],
-                                          [2, 'Ich war größtenteils aufmerksam und fast gar nicht abgelenkt.'],
-                                          [3, 'Ich war eher nicht so aufmerksam, sondern etwas abgelenkt.'],
-                                          [4, 'Ich war gar nicht aufmerksam, sondern ziemlich abgelenkt.']],)
+                                verbose_name = 'Please tell us: Can we safely analyze your data, or were you distracted by any influences during the survey? <i>(Your answer to this question will have no impact on your payment.)</i>',
+                                choices = [
+                                    [1, 'I was very attentive and not distracted at all.'],
+                                    [2, 'I was mostly attentive and barely distracted.'],
+                                    [3, 'I was not very attentive and somewhat distracted.'],
+                                    [4, 'I was not attentive at all and quite distracted.'],
+                                    ],)
     attention_check = models.CharField(
         initial=None,
         choices=[
-            ['false1', 'blau'], ['true', 'orange'], ['false2', 'rot'], ['false3', 'gelb'], ['false4', 'grün'], ['false5', 'schwarz']
+            ['false1', 'blue'], ['true', 'orange'], ['false2', 'red'], ['false3', 'yellow'], ['false4', 'green'], ['false5', 'black']
         ],
-        label='Es ist wichtig für uns, dass sie aufmerksam sind. Bitte klicken Sie in der nachfolgenden Liste auf die zweite Option von oben.',
+        label = 'It is important to us that you pay attention. Please click on the second option from the top in the following list.',
         widget=widgets.RadioSelect(),
     )
 
     easy = models.CharField(
         initial=None,
         choices=[
-            [1, 'sehr einfach'], [2, 'eher einfach'], [3, 'eher schwierig'], [4, 'sehr schwierig']
+            [1, 'very simple'], [2, 'rather simple'], [3, 'rather difficult'], [4, 'very difficult']
         ],
-        verbose_name='Wie einfach fanden Sie es, diese Umfrage auszufüllen?',
+        verbose_name='How easy did you find it to complete this survey?',
         widget=widgets.RadioSelect(),
     )    
     understood = models.CharField(
         initial=None,
-        choices = [[1, 'Ich habe komplett verstanden, was gefragt war.'],
-                   [2, 'Ich habe größtenteils verstanden, was gefragt war.'],
-                   [3, 'Ich habe eher nicht verstanden, was gefragt war.'],
-                   [4, 'Ich habe nicht verstanden, was gefragt war.']],
-        verbose_name='Haben Sie vollständig verstanden, was von Ihnen verlangt wurde?',
-        widget=widgets.RadioSelect(),
-    )
+        choices = [
+            [1, 'I completely understood what was asked.'],
+            [2, 'I mostly understood what was asked.'],
+            [3, 'I didn’t fully understand what was asked.'],
+            [4, 'I didn’t understand what was asked at all.']
+            ],
+        verbose_name = 'Did you fully understand what was required of you?',
+        widget = widgets.RadioSelect(),)
+
     feedback = models.LongStringField(
         initial=None,
-        label='Falls Sie noch weiteres Feedback zu dieser Umfrage haben, sagen Sie uns gerne hier Bescheid - vielen Dank!',
+        label='If you have any further feedback about this survey, please let us know here – thank you!',
         blank=True,
     )
     selected_finpart = models.CharField(blank=True)
@@ -136,7 +135,7 @@ class risk_tool_accept_en2(Page):
 class personal_en(Page):
     form_model = 'player'
     form_fields = ['name','age', 'gender', 'profession', 'fieldofstudy', 'occupation', 'nationality', 'income', 'attention_check',
-                   'education_school', 'education_uni','religion', 'party', 'distract', 'easy', 'understood', 'feedback','selected_finpart']
+                   'education_uni','religion', 'party', 'distract', 'easy', 'understood', 'feedback','selected_finpart']
 
 
 class end_en(Page):

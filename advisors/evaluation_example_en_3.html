@@ -191,7 +191,8 @@
 
 {% if variant == "verypat" or variant == "verypat_accept" %}
 <div class="index-card-risktool">
-            <div class="text" style="color:red">TODO WHEN RISK TOOL IS PRESENT: The interactive tool has measured a portfolio with an X% risk share for {{name}}.</div>
+    <div class="text" style="text-align:center">{{name}} has chosen a distribution in the interactive tool.
+This distribution results in a risk share of {{ risktoolresult }}%.</div>
 </div>
 {% endif %}
 
@@ -206,7 +207,7 @@
             <span class="tooltip">What share of risky investments would you recommend to {{ name }}?</span>
             </div>
         </td>
-        <td style = "width:30%;text-align:right;font-weight:bold">  <input name="advice_example" class="rawfield" placeholder="profileexample" class="disabled-input" disabled/> </td>
+        <td style = "width:30%;text-align:right;font-weight:bold">  <input name="advice_example" class="rawfield" placeholder="example profile" class="disabled-input" disabled/> </td>
         <td style = "width:10%;text-align:left;"> </td>
     </tr>
     {% if form.advice_example.errors %}
@@ -219,7 +220,7 @@
     <table id="info" style="font-size:1.1rem; table-layout: fixed; width:100%; margin-left:auto; margin-right:auto;background-color:rgb(218, 241, 218)">
     <tr style="text-align:center" >
         <td style = "width:70%;text-align:center;font-weight:bold"> How confident are you in your recommendation? </td>
-        <td style = "width:30%;text-align:right;font-weight:bold">  <input name="advice_certainty_example" class="rawfield"  placeholder="profileexample"  class="disabled-input" disabled/> </td>
+        <td style = "width:30%;text-align:right;font-weight:bold">  <input name="advice_certainty_example" class="rawfield"  placeholder="example profile"  class="disabled-input" disabled/> </td>
         <td style = "width:10%;text-align:left;"> </td>
     </tr>
         {% if form.advice_certainty_example.errors %}

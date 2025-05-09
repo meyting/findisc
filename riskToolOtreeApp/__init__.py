@@ -31,7 +31,7 @@ class Player(BasePlayer):
 
 # PAGES
 
-class risk_tool_intro_de(Page):
+class risk_tool_intro_en(Page):
     
     @staticmethod
     def vars_for_template(player):
@@ -39,7 +39,7 @@ class risk_tool_intro_de(Page):
             'Auszahlung': int(C.budget / C.Auszahlungsfaktor),
         }
     
-class risk_tool_payment_de(Page):
+class risk_tool_payment_en(Page):
     
     @staticmethod
     def vars_for_template(player):
@@ -47,7 +47,7 @@ class risk_tool_payment_de(Page):
             'Auszahlung': int(C.budget / C.Auszahlungsfaktor),
         }
 
-class risk_tool(Page):
+class risk_tool_en(Page):
     form_model = 'player'
     form_fields = ['risky_share_end','clickstream']
 
@@ -64,7 +64,7 @@ class risk_tool(Page):
 
 
 page_sequence = [
-                risk_tool_intro_de,
-                risk_tool_payment_de,
-                risk_tool,
+                risk_tool_intro_en,
+                risk_tool_payment_en,
+                risk_tool_en,
                 ]

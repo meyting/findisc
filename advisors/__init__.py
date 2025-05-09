@@ -137,44 +137,44 @@ class Player(BasePlayer):
     riskgroup_example = models.IntegerField(blank=True)
     advice_example = models.IntegerField(blank=True,
                                              choices=[
-                                        [0, "Portfolio mit 0% Risikoanteil"],
-                                        [10, "Portfolio mit 10% Risikoanteil"], 
-                                        [20, "Portfolio mit 20% Risikoanteil"], 
-                                        [30, "Portfolio mit 30% Risikoanteil"], 
-                                        [40, "Portfolio mit 40% Risikoanteil"],
-                                        [50, "Portfolio mit 50% Risikoanteil"], 
-                                        [60, "Portfolio mit 60% Risikoanteil"], 
-                                        [70, "Portfolio mit 70% Risikoanteil"], 
-                                        [80, "Portfolio mit 80% Risikoanteil"], 
-                                        [90, "Portfolio mit 90% Risikoanteil"],
-                                        [100, "Portfolio mit 100% Risikoanteil"]],
+                                        [0, "Portfolio with 0% risky share"],
+                                        [10, "Portfolio with 10% risky share"], 
+                                        [20, "Portfolio with 20% risky share"], 
+                                        [30, "Portfolio with 30% risky share"], 
+                                        [40, "Portfolio with 40% risky share"],
+                                        [50, "Portfolio with 50% risky share"], 
+                                        [60, "Portfolio with 60% risky share"], 
+                                        [70, "Portfolio with 70% risky share"], 
+                                        [80, "Portfolio with 80% risky share"], 
+                                        [90, "Portfolio with 90% risky share"],
+                                        [100, "Portfolio with 100% risky share"]],
                                         verbose_name="""""")
     advice_certainty_example = models.IntegerField(blank=True,
-                                               choices=[[1, "sehr sicher"],
-                                                        [2, "ziemlich sicher"],
-                                                        [3, "ziemlich unsicher"], 
-                                                        [4, "sehr unsicher"]],
+                                               choices=[[1, "very confident"],
+                                                        [2, "rather confident"],
+                                                        [3, "rather not confident"], 
+                                                        [4, "not at all confident"]],
                                         verbose_name="""""")
     riskgroup = models.IntegerField(blank=False)
     advice = models.IntegerField(choices=[
-                                        [0, "Portfolio mit 0% Risikoanteil (ETF)"],
-                                        [10, "Portfolio mit 10% Risikoanteil (ETF)"], 
-                                        [20, "Portfolio mit 20% Risikoanteil (ETF)"], 
-                                        [30, "Portfolio mit 30% Risikoanteil (ETF)"], 
-                                        [40, "Portfolio mit 40% Risikoanteil (ETF)"],
-                                        [50, "Portfolio mit 50% Risikoanteil (ETF)"], 
-                                        [60, "Portfolio mit 60% Risikoanteil (ETF)"], 
-                                        [70, "Portfolio mit 70% Risikoanteil (ETF)"], 
-                                        [80, "Portfolio mit 80% Risikoanteil (ETF)"], 
-                                        [90, "Portfolio mit 90% Risikoanteil (ETF)"],
-                                        [100, "Portfolio mit 100% Risikoanteil (ETF)"]
+                                        [0, "Portfolio with 0% risky share (ETF)"],
+                                        [10, "Portfolio with 10% risky share (ETF)"], 
+                                        [20, "Portfolio with 20% risky share (ETF)"], 
+                                        [30, "Portfolio with 30% risky share (ETF)"], 
+                                        [40, "Portfolio with 40% risky share (ETF)"],
+                                        [50, "Portfolio with 50% risky share (ETF)"], 
+                                        [60, "Portfolio with 60% risky share (ETF)"], 
+                                        [70, "Portfolio with 70% risky share (ETF)"], 
+                                        [80, "Portfolio with 80% risky share (ETF)"], 
+                                        [90, "Portfolio with 90% risky share (ETF)"],
+                                        [100, "Portfolio with 100% risky share (ETF)"]
                                         ],
                                         verbose_name="""""")
     advice_certainty = models.IntegerField(blank=False,
-                                               choices=[[1, "sehr sicher"],
-                                                        [2, "ziemlich sicher"],
-                                                        [3, "ziemlich unsicher"], 
-                                                        [4, "sehr unsicher"]],
+                                               choices=[[1, "very confident"],
+                                                        [2, "rather confident"],
+                                                        [3, "rather not confident"], 
+                                                        [4, "not at all confident"]],
                                         verbose_name="""""")
 
     offer = models.CharField()
@@ -183,14 +183,14 @@ class Player(BasePlayer):
     #name = models.CharField(blank=True,
     #                        initial=None,
     #                        verbose_name='Wie lautet Ihr erster Vorname?')
-    age = models.IntegerField(verbose_name='Wie alt sind Sie?')
+    age = models.IntegerField(verbose_name='How old are you?')
     gender = models.CharField(initial=None,
-                              choices=['weiblich', 'männlich', 'nicht-binär'],
-                              verbose_name='Was ist ihr Geschlecht?',
+                              choices=['female', 'male', 'non-binary'],
+                              verbose_name='What is your gender?',
                               widget=widgets.RadioSelect())
     nationality = models.CharField(initial=None,
                                     choices=nationalities,
-                                    verbose_name='Was ist ihre Nationalität? <br><i>(Falls Sie mehrere Nationalitäten haben, geben Sie bitte die Nationalität an, mit der Sie sich am meisten identifizieren.)</i>')
+                                    verbose_name='What is your nationality? <br> <i>(In case you have multiple nationalities, indicate the one you identify with the most.)</i>')
 
 #    currentcountry = models.CharField(initial=None,
 #                                        verbose_name='In welchem Land wohnen Sie aktuell?',
@@ -198,40 +198,49 @@ class Player(BasePlayer):
 #    currentcountry_duration = models.IntegerField(initial=None,
 #                                        verbose_name='Seit welchem Jahr wohnen Sie schon in diesem Land?',
 #                                        choices = years,)
-    education_school = models.CharField(initial=None,
-                                        verbose_name='Was ist Ihr höchster Schulabschluss?',
-                                        choices = ['(noch) kein Schulabschluss', 'Volks-/Hauptschulabschluss',
-                                                   'Realschule (Mittlere Reife)', 'Fachhochschulreife', 'Gymnasium (Abitur)',
-                                                   'Sonstiger Bildungsabschluss'],)
+
     education_uni =  models.CharField(initial=None,
-                                      verbose_name='Was ist Ihr höchster Universität- oder Fachhochschulabschluss?',
-                                      choices=['Bachelor', 'Master', 'Diplom', 'Magister', 'Promotion', '1. Staatsexamen',
-                                               '2. Staatsexamen', '(noch) kein Uni- oder FH-Abschluss', 'Sonstiges'],)
+                                      verbose_name='What is your highest level of education?',
+                                      choices=['Bachelor', 'Master', 'PhD', 'None', 'Other'],)
     fieldofstudy = models.CharField(initial=None,
                                     blank = True,
-                                    verbose_name='Was studieren Sie?',
+                                    verbose_name='What do you study?',
+                                    )
+    income = models.CharField(initial=None,
+                                    blank = True,
+                                    verbose_name='What is your monthly net income?',
+                                    choices = ['less than $1000', '$1000-$1999', '$2000-$2999', '$3000-$3999', 'more than $4000']
                                     )
     occupation=models.IntegerField(initial=None)
     profession = models.CharField(initial = None,
                                   blank = True,
-                                  verbose_name='Was ist ihr Beruf?')
+                                  verbose_name='What is your profession?')
 
     religion = models.CharField(initial = None,
-                                verbose_name = 'Zu welcher Religionsgruppe fühlen Sie sich zugehörig?',
-                                choices = ['Katholiken', 'Protestanten', 'Orthodoxen',
-                                           'nicht gläubig', 'Moslem', 'Buddhisten', 'Juden',
-                                           'Hindu', 'Sonstiges'],)
+                                verbose_name = 'Which religious group do you identify with?',
+                                choices = ['Catholic', 'Protestant', 'Orthodox',
+                                           'Not religious', 'Muslim', 'Buddhist', 'Jewish',
+                                           'Hindu', 'Other'],)
     party = models.CharField(initial = None,
-                                verbose_name = 'Welche Partei würden Sie wählen, wenn heute Bundestagswahl wäre?',
-                                choices = ['CDU/CSU', 'SPD', 'Grüne', 'FDP', 'Linke', 'AFD', 'weiß nicht', 'Sonstiges', 'bin Nichtwähler'],)
+                                verbose_name = 'Which political party would you vote for if there were elections today?',
+                                choices = ['Democrats', 'Republicans', 'Independent', 'I dont vote'],)
 
     distract = models.CharField(initial = None,
-                                verbose_name = 'Hand aufs Herz: Können wir Ihre Daten bedenkenlos analysieren oder waren Sie während der Umfrage durch irgendwelche Einflüsse abgelenkt? <i>(Die Antwort auf diese Frage hat keinerlei Auswirkungen auf Ihre Auszahlung.)',
-                                choices = [[1, 'Ich war sehr aufmerksam und gar nicht abgelenkt.'],
-                                          [2, 'Ich war größtenteils aufmerksam und fast gar nicht abgelenkt.'],
-                                          [3, 'Ich war eher nicht so aufmerksam, sondern etwas abgelenkt.'],
-                                          [4, 'Ich war gar nicht aufmerksam, sondern ziemlich abgelenkt.']],)
-    attention_check = models.CharField()
+                                verbose_name = 'Please tell us: Can we safely analyze your data, or were you distracted by any influences during the survey? <i>(Your answer to this question will have no impact on your payment.)</i>',
+                                choices = [
+                                    [1, 'I was very attentive and not distracted at all.'],
+                                    [2, 'I was mostly attentive and barely distracted.'],
+                                    [3, 'I was not very attentive and somewhat distracted.'],
+                                    [4, 'I was not attentive at all and quite distracted.'],
+                                    ],)
+    attention_check = models.CharField(
+        initial=None,
+        choices=[
+            ['false1', 'blue'], ['true', 'orange'], ['false2', 'red'], ['false3', 'yellow'], ['false4', 'green'], ['false5', 'black']
+        ],
+        label = 'It is important to us that you pay attention. Please click on the second option from the top in the following list.',
+        widget=widgets.RadioSelect(),
+    )
 
     q1_advisor = models.IntegerField(blank=False)
     q2_advisor = models.IntegerField(blank=False)
@@ -247,12 +256,6 @@ class Player(BasePlayer):
     groupy = models.FloatField()
 
     selected_finpart = models.CharField(blank=True)
-
-    income = models.CharField(initial=None,
-                                    blank = True,
-                                    verbose_name='Wie hoch ist ihr monatliches Einkommen?',
-                                    choices = ['weniger als 1000€', '1000-1999€', '2000-2999€', '3000-3999€', 'mehr als 4000€']
-                                    )
     
     clickstream = models.StringField(blank=True)
     risky_share_end = models.FloatField()
@@ -630,7 +633,7 @@ class demos_en(Page):
     form_model = 'player'
     form_fields = [#'name',
         'age', 'gender', 'profession', 'fieldofstudy', 'occupation', 'nationality', 'income',
-                   'education_school', 'education_uni','religion', 'party', 'distract', 'attention_check', 'selected_finpart']
+                 'education_uni','religion', 'party', 'distract', 'attention_check', 'selected_finpart']
 
     @staticmethod
     def is_displayed(player: Player):
@@ -656,7 +659,7 @@ class groupy_en(Page):
     @staticmethod
     def error_message(player, values):
         if values['groupy'] is None:
-            return 'Bitte klicken Sie auf den Slider um eine Entscheidung zu treffen.'
+            return 'Please click on the slider to make your decision.'
         return None
     
     @staticmethod

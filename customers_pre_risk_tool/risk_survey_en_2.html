@@ -6,10 +6,9 @@
 
 {{ block content }}
 <p>
-    We have asked all clients the following questions.
-    Please answer these yourself to familiarize yourself with them.
-    For each of the following 5 statements, please indicate how much you agree with them.
-    For this, please click the corresponding number of boxes for each statement.
+We would now like to learn more about your personal attitude toward investing.
+For each of the following five statements, please indicate the extent to which you agree.
+The more boxes you check, the stronger your agreement.
 </p>
 
 <div class="index-card-back">
@@ -28,21 +27,21 @@
         <div class="text-cell-back">
             <!--<div class="text">Importance of preserving the investment capital</div>-->
             <div class="text">Preserving my investment capital is important to me.<br>
-                <div id="q1_advisor_error" class="error-message"></div>
+                <div id="q1_error" class="error-message"></div>
             </div>
         </div>        
         <div class="scale-cell-back">
             <div class="radio-group" id="q1">
                 <div class="radio-buttons">
-                <input type="radio" id="q1_radio1" name="q1_advisor"  value="1" onclick="updateButtons('q1', 1)">
+                <input type="radio" id="q1_radio1" name="q1"  value="1" onclick="updateButtons('q1', 1)">
                 <label for="q1_radio1" data-tooltip="strongly disagree"></label>
-                <input type="radio" id="q1_radio2" name="q1_advisor"  value="2" onclick="updateButtons('q1', 2)">
+                <input type="radio" id="q1_radio2" name="q1"  value="2" onclick="updateButtons('q1', 2)">
                 <label for="q1_radio2" data-tooltip="disagree"></label>
-                <input type="radio" id="q1_radio3" name="q1_advisor"  value="3" onclick="updateButtons('q1', 3)">
+                <input type="radio" id="q1_radio3" name="q1"  value="3" onclick="updateButtons('q1', 3)">
                 <label for="q1_radio3" data-tooltip="agree"></label>
-                <input type="radio" id="q1_radio4" name="q1_advisor"  value="4" onclick="updateButtons('q1', 4)">
+                <input type="radio" id="q1_radio4" name="q1"  value="4" onclick="updateButtons('q1', 4)">
                 <label for="q1_radio4" data-tooltip="strongly agree"></label>
-                <div id="q1_advisor_error" class="error-message"></div>
+                <div id="q1_error" class="error-message"></div>
                 </div>
         </div>
     </div>
@@ -54,21 +53,21 @@
         <div class="text-cell-back">
             <!--<div class="text">Importance of reliable returns vs. high return-risk profile</div>-->
             <div class="text">A reliable return is more important to me than taking risks to increase my yield.<br>
-                <div id="q2_advisor_error" class="error-message"></div>
+                <div id="q2_error" class="error-message"></div>
             </div>
         </div>
         <div class="scale-cell-back">
             <div class="radio-group" id="q2">
                 <div class="radio-buttons">
-                <input type="radio" id="q2_radio1" name="q2_advisor"  value="1" onclick="updateButtons('q2', 1)" >
+                <input type="radio" id="q2_radio1" name="q2"  value="1" onclick="updateButtons('q2', 1)" >
                 <label for="q2_radio1" data-tooltip="strongly disagree"></label>
-                <input type="radio" id="q2_radio2" name="q2_advisor"  value="2" onclick="updateButtons('q2', 2)">
+                <input type="radio" id="q2_radio2" name="q2"  value="2" onclick="updateButtons('q2', 2)">
                 <label for="q2_radio2"  data-tooltip="disagree"></label>
-                <input type="radio" id="q2_radio3" name="q2_advisor"  value="3" onclick="updateButtons('q2', 3)">
+                <input type="radio" id="q2_radio3" name="q2"  value="3" onclick="updateButtons('q2', 3)">
                 <label for="q2_radio3" data-tooltip="agree"></label>
-                <input type="radio" id="q2_radio4" name="q2_advisor"  value="4" onclick="updateButtons('q2', 4)">
+                <input type="radio" id="q2_radio4" name="q2"  value="4" onclick="updateButtons('q2', 4)">
                 <label for="q2_radio4" data-tooltip="strongly agree"></label>
-                <div id="q2_advisor_error" class="error-message"></div>
+                <div id="q2_error" class="error-message"></div>
                 </div>
             </div>
         </div>
@@ -80,21 +79,21 @@
         <div class="text-cell-back">
             <!--<div class="text">Nervousness at the smallest losses</div>-->
             <div class="text">Even the smallest losses make me nervous.<br>
-                <div id="q3_advisor_error" class="error-message"></div>
+                <div id="q3_error" class="error-message"></div>
             </div>
         </div>
         <div class="scale-cell-back">
             <div class="radio-group" id="q3">
                <div class="radio-buttons">
-                <input type="radio" id="q3_radio1" name="q3_advisor"  value="1" onclick="updateButtons('q3', 1)" >
+                <input type="radio" id="q3_radio1" name="q3"  value="1" onclick="updateButtons('q3', 1)" >
                 <label for="q3_radio1" data-tooltip="strongly disagree"></label>
-                <input type="radio" id="q3_radio2" name="q3_advisor"  value="2" onclick="updateButtons('q3', 2)">
+                <input type="radio" id="q3_radio2" name="q3"  value="2" onclick="updateButtons('q3', 2)">
                 <label for="q3_radio2" data-tooltip="disagree"></label>
-                <input type="radio" id="q3_radio3" name="q3_advisor"  value="3" onclick="updateButtons('q3', 3)">
+                <input type="radio" id="q3_radio3" name="q3"  value="3" onclick="updateButtons('q3', 3)">
                 <label for="q3_radio3" data-tooltip="agree"></label>
-                <input type="radio" id="q3_radio4" name="q3_advisor"  value="4" onclick="updateButtons('q3', 4)">
+                <input type="radio" id="q3_radio4" name="q3"  value="4" onclick="updateButtons('q3', 4)">
                 <label for="q3_radio4" data-tooltip="strongly agree"></label>
-                <div id="q3_advisor_error" class="error-message"></div>
+                <div id="q3_error" class="error-message"></div>
                 </div>
             </div>
         </div>
@@ -106,22 +105,22 @@
         <div class="text-cell-back">
             <!--<div class="text">Appeal of financial risks: Daring & Winning</div>-->
             <div class="text">Financial risks are appealing: Only those who dare greatly can also gain greatly.<br>
-                <div id="q4_advisor_error" class="error-message"></div>
+                <div id="q4_error" class="error-message"></div>
 
             </div>
         </div>
         <div class="scale-cell-back">
             <div class="radio-group" id="q4">
                 <div class="radio-buttons">
-                <input type="radio" id="q4_radio1" name="q4_advisor"  value="1" onclick="updateButtons('q4', 1)" >
+                <input type="radio" id="q4_radio1" name="q4"  value="1" onclick="updateButtons('q4', 1)" >
                 <label for="q4_radio1" data-tooltip="strongly disagree"></label>
-                <input type="radio" id="q4_radio2" name="q4_advisor"  value="2" onclick="updateButtons('q4', 2)">
+                <input type="radio" id="q4_radio2" name="q4"  value="2" onclick="updateButtons('q4', 2)">
                 <label for="q4_radio2" data-tooltip="disagree"></label>
-                <input type="radio" id="q4_radio3" name="q4_advisor"  value="3" onclick="updateButtons('q4', 3)">
+                <input type="radio" id="q4_radio3" name="q4"  value="3" onclick="updateButtons('q4', 3)">
                 <label for="q4_radio3" data-tooltip="agree"></label>
-                <input type="radio" id="q4_radio4" name="q4_advisor"  value="4" onclick="updateButtons('q4', 4)">
+                <input type="radio" id="q4_radio4" name="q4"  value="4" onclick="updateButtons('q4', 4)">
                 <label for="q4_radio4" data-tooltip="strongly agree"></label>
-                <div id="q4_advisor_error" class="error-message"></div>
+                <div id="q4_error" class="error-message"></div>
                 </div>
             </div>
         </div>
@@ -133,19 +132,19 @@
         <div class="text-cell-back">
             <!--<div class="text">Accepting losses for the chance of high profits</div>-->
             <div class="text">I am willing to accept the loss of my assets if it means I also have the chance to increase my gains. <br>
-                <div id="q5_advisor_error" class="error-message"></div>
+                <div id="q5_error" class="error-message"></div>
             </div>
         </div>        
         <div class="scale-cell-back">
             <div class="radio-group" id="q5">
                 <div class="radio-buttons">
-                <input type="radio" id="q5_radio1" name="q5_advisor"  value="1" onclick="updateButtons('q5', 1)" >
+                <input type="radio" id="q5_radio1" name="q5"  value="1" onclick="updateButtons('q5', 1)" >
                 <label for="q5_radio1" data-tooltip="strongly disagree"></label>
-                <input type="radio" id="q5_radio2" name="q5_advisor"  value="2" onclick="updateButtons('q5', 2)">
+                <input type="radio" id="q5_radio2" name="q5"  value="2" onclick="updateButtons('q5', 2)">
                 <label for="q5_radio2" data-tooltip="disagree"></label>
-                <input type="radio" id="q5_radio3" name="q5_advisor"  value="3" onclick="updateButtons('q5', 3)">
+                <input type="radio" id="q5_radio3" name="q5"  value="3" onclick="updateButtons('q5', 3)">
                 <label for="q5_radio3" data-tooltip="agree"></label>
-                <input type="radio" id="q5_radio4" name="q5_advisor"  value="4"  onclick="updateButtons('q5', 4)">
+                <input type="radio" id="q5_radio4" name="q5"  value="4"  onclick="updateButtons('q5', 4)">
                 <label for="q5_radio4" data-tooltip="strongly agree"></label>
                 </div>
             </div>
@@ -155,16 +154,12 @@
 
 
 
-    <br>
-    <p>
-        On the next page, you can familiarize yourself with the interactive risk tool that we used to measure the individuals’ risk preferences.
-    </p>
 </div>
-{{ formfield_errors 'q1_advisor' }}
-{{ formfield_errors 'q2_advisor' }}
-{{ formfield_errors 'q3_advisor' }}
-{{ formfield_errors 'q4_advisor' }}
-{{ formfield_errors 'q5_advisor' }}
+{{ formfield_errors 'q1' }}
+{{ formfield_errors 'q2' }}
+{{ formfield_errors 'q3' }}
+{{ formfield_errors 'q4' }}
+{{ formfield_errors 'q5' }}
 
 <br>
 
@@ -339,7 +334,7 @@ function updateButtons(groupId, selectedIndex) {
 }
 
 
-const questions = ['q1_advisor', 'q2_advisor', 'q3_advisor', 'q4_advisor', 'q5_advisor'];
+const questions = ['q1', 'q2', 'q3', 'q4', 'q5'];
 const nextButton = document.getElementById('next-button');
 
 // Check if all questions have answers selected

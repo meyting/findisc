@@ -1,0 +1,44 @@
+
+{{ block title }}
+    Ihre Anlageentscheidung
+{{ endblock }}
+
+{{ block content }}
+<p> 
+We would now like to illustrate the risks associated with different investment options using an interactive program, before you make your investment decision.</p>
+<hr>
+<p>
+    Imagine that you would like to invest ${{ C.budget_string }} over a period of {{ C.Anlagehorizont }} years. You can choose between two types of investments:
+    
+    <ul>
+    <li> <b>A traditional savings account</b> – a safe option with low but fixed interest rates.</li>
+    <li> <b>An investment in an ETF (exchange-traded fund) on the stock market </b> –  this allows you to benefit from potential price increases and dividends, but also involves the risk that the value of your investment may fluctuate or decrease.</li>
+    </ul>
+    You can decide <b>how to split your money between these two options</b> – from putting everything into one option to any combination in between.
+     To give you a better idea of how different allocations could affect your final wealth, we have developed a <b>simulated investment tool</b>.
+     It shows you what results similar investments have achieved in the past.
+
+    </p>
+<!-- Ihnen helfen Ihre persönliche Risikoeinstellung, also das Risiko-Ertrags-Profil, mit dem Sie sich wohlfühlen zu ermitteln.-->
+<hr>
+
+<b> Important: </b>
+<p>
+Every 50th participant in this study will receive a payout equal to the actual final value of the simulated portfolio, paid in cents.
+</p>
+<p>
+    Example: If your simulated final wealth is {{ C.budget_string }} euros, you will receive a payout of {{ Auszahlung }} euros.
+</p>
+<ul>
+    <li>The simulation is based on real historical market data.</li>
+    <li>The payout will be made within one month after your participation.</li>
+</ul>
+
+</p>
+<p>
+Please click "Next" to continue and specify your preferred allocation between the two investment options.
+</p>
+<br>
+    {% next_button %}
+
+{% endblock %}
