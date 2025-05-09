@@ -77,10 +77,10 @@ df.loc[(df["chance"]==3),"q5_short"] = "eher"
 df.loc[(df["chance"]==4),"q5_short"] = "voll und ganz"
 
 choices = pd.read_excel('_static/global/choices.xlsx', engine = 'openpyxl') # can also index sheet by name or fetch all sheets
-countries = choices['Land'][0:197].tolist()
+countries = choices['country'][0:197].tolist()
 years = choices['Jahr'][0:101].tolist()
 years = [int(year) for year in years]
-nationalities = choices['Nationalität'][0:199].tolist()
+nationalities = choices['nationality'][0:199].tolist()
 
 class C(BaseConstants):
     NAME_IN_URL = 'adv1'
