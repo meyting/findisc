@@ -105,8 +105,8 @@ def select_unique_risky_shares(data, n):
 
 def creating_session(subsession: Subsession):
     import itertools
-    #variant = itertools.cycle(['bel', 'pat', 'verypat', 'pat_accept', 'verypat_accept']) 
-    variant = itertools.cycle(['bel', 'pat', 'verypat']) # for bilendi
+    variant = itertools.cycle(['bel', 'pat', 'verypat', 'pat_accept', 'verypat_accept']) 
+    #variant = itertools.cycle(['bel', 'pat', 'verypat']) # for bilendi
     groups = itertools.cycle(['circle', 'triangle',])
     if subsession.round_number == 1:
         for p in subsession.get_players():
@@ -241,8 +241,8 @@ class Player(BasePlayer):
 
     risktoolresult = models.FloatField()
 
-    #prolific_id = models.StringField(default=str(" "))
-    bilendi_id = models.StringField(default=str(" "))
+    prolific_id = models.StringField(default=str(" "))
+    #bilendi_id = models.StringField(default=str(" "))
 
     groupy = models.FloatField()
 
@@ -270,8 +270,8 @@ class consent_de(Page):
     
     @staticmethod
     def before_next_page(player, timeout_happened):
-        # player.prolific_id = player.participant.label
-        player.bilendi_id = player.participant.label
+        player.prolific_id = player.participant.label
+        #player.bilendi_id = player.participant.label
 
 class start_de(Page):
     form_model = 'player'
@@ -280,7 +280,7 @@ class start_de(Page):
     @staticmethod
     def js_vars(player: Player):
         return dict(
-            bilendi_id=player.participant.label
+            prolific_id=player.participant.label
         )
         
     @staticmethod
@@ -640,11 +640,11 @@ class demos_de(Page):
     def is_displayed(player: Player):
         return player.round_number == C.NUM_ROUNDS
     
-    @staticmethod
-    def js_vars(player: Player):
-        return dict(
-            bilendi_id=player.participant.label
-        )
+    #@staticmethod
+    #def js_vars(player: Player):
+    #    return dict(
+    #        bilendi_id=player.participant.label
+    #    )
     
 class groupy_de(Page):
     form_model = 'player'
@@ -672,11 +672,11 @@ class end_de(Page):
     def is_displayed(player: Player):
         return player.round_number == C.NUM_ROUNDS
 
-    @staticmethod
-    def js_vars(player: Player):
-        return dict(
-            bilendi_id=player.participant.label
-        )
+    #@staticmethod
+    #def js_vars(player: Player):
+    #    return dict(
+    #        bilendi_id=player.participant.label
+    #    )
     
 page_sequence = [
     consent_de,

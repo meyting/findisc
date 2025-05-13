@@ -145,21 +145,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 
 
-    let bilendi_id = js_vars.bilendi_id;
 
-    document.getElementById("next-button").addEventListener("click", function(event) {
-        event.preventDefault();  // Stop the form from submitting immediately
-
-        var selected = document.querySelector('input[name="attention_check"]:checked');
-        console.log(selected);
-        console.log(selected.value);
-        if (selected && selected.value === "false") {
-            window.location.href = "https://survey.maximiles.com/screenout?p=147417_db7ec15f&m=" + bilendi_id;
-        } else {
-            // Let oTree submit the form if value is not 0
-            document.querySelector('form').submit();
-        }
-    });
 </script>
 {% endblock %}
 
