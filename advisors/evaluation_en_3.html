@@ -4,11 +4,9 @@
 
 {{ block content }}
 <p>
-    {% if gender == "female" %}
-    Please provide your investment recommendation for this client:
-{% elif gender == "male" %}
-Please provide your investment recommendation for this customer:
-{% endif %}
+
+Please provide your investment recommendation for this client:
+
 </p>
 
 <div class="index-card">
@@ -106,7 +104,7 @@ Please provide your investment recommendation for this customer:
         </div>
         <div class="text-cell-back">
             <!--<div class="text">Importance of preserving the investment capital</div>-->
-            <div class="text">Preserving my investment capital is important to me.</div>
+            <div class="text">Preserving my invested capital is important to me.</div>
         </div>        
         <div class="scale-cell-back">
             <img src="{% static scalepath1 %}"  alt={{ q1_text }} class="icon-back"/>
@@ -148,7 +146,7 @@ Please provide your investment recommendation for this customer:
         </div>  
         <div class="text-cell-back">
             <!--<div class="text">Appeal of financial risks: Daring & Winning</div>-->
-            <div class="text">Financial risks are appealing: Only those who dare greatly can also gain greatly.</div>
+            <div class="text">Financial risks are appealing: Nothing ventured, nothing gained.</div>
         </div>
         <div class="scale-cell-back">
             <img src="{% static scalepath4 %}"  alt={{ q4_text }} class="icon-back"/>
@@ -178,8 +176,8 @@ Please provide your investment recommendation for this customer:
 
 {% if variant == "verypat" or variant == "verypat_accept" %}
 <div class="index-card-risktool">
-    <div class="text" style="text-align:center">{{name}} has chosen a distribution in the interactive tool.
-This distribution results in a risk share of {{ risktoolresult }}%.</div>
+    <div class="text" style="text-align:center">{{name}} has selected a distribution in the interactive tool.
+This distribution corresponds to a risk share of {{ risktoolresult }}%.</div>
 </div>
 {% endif %}
 
@@ -189,7 +187,7 @@ This distribution results in a risk share of {{ risktoolresult }}%.</div>
 <table id="info" style="font-size:1.1rem; table-layout: fixed; width:100%; margin-left:auto; margin-right:auto;background-color:rgb(218, 241, 218)">
     <tr style="text-align:center" >
         <td style = "width:70%;text-align:center;font-weight:bold" class="product">
-        <div class="scale-cell-back" style="width:100%""> Which product would you recommend to this person?             
+        <div class="scale-cell-back" style="width:100%"> Which product would you recommend to this person?             
             <img src="{% static 'icons/information-button.png' %}" class="info-icon"/>
             <span class="tooltip">What share of risky investments would you recommend to {{ name }}?</span>
             </div>

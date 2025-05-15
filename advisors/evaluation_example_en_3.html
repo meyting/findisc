@@ -6,7 +6,7 @@
 
 <p class="instructions" id="instructions">
     Now to your task. You are to give the following clients an investment recommendation. 
-    You can use the information you have about the individuals to make your recommendations.
+    You can use the information you have about them to make your recommendations.
     As shown in the interactive tool, your recommendation should focus on how to split an investment amount between a risky ETF investment and a deposit in a risk-free savings account.
 <p>
 
@@ -18,11 +18,7 @@
     <div class="infobox hidden" id="infobox">
 <hr>
 </p>
-    {% if gender == "female" %}
-    Here you can see a <b>profile example</b> of a client.
-{% elif gender == "male" %}
-    Here you can see a <b>profile example</b> of a client.
-{% endif %}
+    Here you can see a <b>example profile</b> of a client.
     On this page, you <b>do not need to enter anything</b>. 
     Please review the provided information and familiarize yourself with your task – then click "Next" to begin with the first recommendation.
 </p>
@@ -121,7 +117,7 @@
         </div>
         <div class="text-cell-back">
             <!--<div class="text">Importance of preserving the investment capital</div>-->
-            <div class="text">Preserving my investment capital is important to me.</div>
+            <div class="text">Preserving my invested capital is important to me.</div>
         </div>        
         <div class="scale-cell-back">
             <img src="{% static scalepath1 %}"  alt={{ q1_text }} class="icon-back"/>
@@ -168,7 +164,7 @@
         <div class="scale-cell-back">
             <img src="{% static scalepath4 %}"  alt={{ q4_text }} class="icon-back"/>
             <img src="{% static 'icons/information-button.png' %}" class="info-icon"/>
-            <span class="tooltip">{{ name }} agreed to the statement "Financial risks are appealing: Only those who dare greatly can also gain greatly." {{q4_short}}</span>
+            <span class="tooltip">{{ name }} agreed to the statement "Financial risks are appealing: Nothing ventured, nothing gained." {{q4_short}}</span>
         </div>
     </div>
     <div class="grid-row-back">
@@ -191,8 +187,8 @@
 
 {% if variant == "verypat" or variant == "verypat_accept" %}
 <div class="index-card-risktool">
-    <div class="text" style="text-align:center">{{name}} has chosen a distribution in the interactive tool.
-This distribution results in a risk share of {{ risktoolresult }}%.</div>
+    <div class="text" style="text-align:center">{{name}} has selected a distribution in the interactive tool.
+This distribution corresponds to a risk share of {{ risktoolresult }}%.</div>
 </div>
 {% endif %}
 
@@ -202,7 +198,7 @@ This distribution results in a risk share of {{ risktoolresult }}%.</div>
 <table id="info" style="font-size:1.1rem; table-layout: fixed; width:100%; margin-left:auto; margin-right:auto;background-color:rgb(218, 241, 218)">
     <tr style="text-align:center" >
         <td style = "width:70%;text-align:center;font-weight:bold" class="product">
-            <div class="scale-cell-back" style="width:100%""> Which product would you recommend to this person?            
+            <div class="scale-cell-back" style="width:100%"> Which product would you recommend to this person?            
             <img src="{% static 'icons/information-button.png' %}" class="info-icon"/>
             <span class="tooltip">What share of risky investments would you recommend to {{ name }}?</span>
             </div>
