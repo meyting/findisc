@@ -12,7 +12,7 @@ class C(BaseConstants):
     NUM_ROUNDS = 1
     Auszahlungsfaktor = 100
     budget = 10000
-    budget_string = "10.000"
+    budget_string = "10,000"
     Anlagehorizont = 10
 
 
