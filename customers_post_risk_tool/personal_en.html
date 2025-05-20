@@ -35,6 +35,11 @@ Finally, we have a few questions about you
     <div style="display: none;" id="profession">
          {%  formfield player.profession %}
     </div>
+    
+    <div style="display: none;" id="fieldofstudy">
+        {%  formfield player.fieldofstudy %}
+    </div>
+    
     {%  formfield player.income %}
     <br>
     <p>Please indicate all types of investments you currently hold or have held in the past:</p>
@@ -55,9 +60,6 @@ Finally, we have a few questions about you
       <span class="finpartoptions">Crypto</span>
     </label><br>
 
-    <div style="display: none;" id="fieldofstudy">
-        {%  formfield player.fieldofstudy %}
-    </div>
 <hr>
        {%  formfield player.party %}
        {%  formfield player.religion %}
