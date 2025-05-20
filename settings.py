@@ -93,8 +93,8 @@ ROOMS = [
         #use_secure_urls=True,
     ),
         dict(
-        name='adrandmbil',
-        display_name='adrandmbil',
+        name='adrandmprol',
+        display_name='adrandmprol',
         # participant_label_file='_rooms/your_study.txt',
         #use_secure_urls=True,
     ),
@@ -114,7 +114,7 @@ SESSION_FIELDS = []
 LANGUAGE_CODE = 'en'
 
 # e.g. EUR, GBP, CNY, JPY
-REAL_WORLD_CURRENCY_CODE = 'EUR'
+REAL_WORLD_CURRENCY_CODE = 'USD'
 USE_POINTS = False
 
 AUTH_LEVEL = 'STUDY' # wieder löschen wenn Umgebungsvariable gesetzt			!!!!!!!!!!!!!!!
