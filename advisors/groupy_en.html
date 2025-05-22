@@ -10,85 +10,112 @@
         margin-top: 5px;
         margin-bottom: 5px;  /* Add some space between demographics and payment info */
     }
+
     .value-display-container {
         margin-top: 5px;
         font-weight: bold;
         justify-content: space-between; /* Align items horizontally */
         margin-bottom: 5px;  /* Add some space between demographics and payment info */
-        display: none; /* Initially hide the container */
         }
 
-    .sliderhidden::-moz-range-thumb {
-            width: 25px;
-            height: 25px;
-            background: #0020FF;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-    }
+.value-display-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 30px; /* Optional spacing between columns */
+}
 
-    .sliderhidden {
-            appearance: none;
-            width: 100%;
-            height: 15px;
-            border-radius: 5px;
-            background: #f1cb09;
-            outline: none;
-            opacity: 0.7;
-            -webkit-transition: .2s;
-            transition: opacity .2s;
-    }
-    .sliderhidden:hover {
-            cursor: pointer;;
-    }
+.value-display-left  {
+    text-align: left;
+    flex: 1;
+}
 
-    .sliderhidden::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 10px;
-            height: 20px;
-            border-radius: 25%;
-            background: #0020FF;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-    }
+.value-display-right {
+    text-align: right;
+    flex: 1;
+}
 
-    .slidershown::-moz-range-thumb {
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
-            background: #0020FF;
-            border: none;
-            cursor: pointer;
-    }
+.groupy {
+        -webkit-appearance: none;
+        width: 100%; /* Set the full width of the screen */
+        margin: 0 auto;
+        height: 12px;
+        border-radius: 4px;
+        background: #d3d3d3;
+        outline: none;
+        opacity: 0.7;
+        -webkit-transition: .2s;
+        transition: opacity .2s;
+}
 
-    .slidershown {
-            appearance: none;
-            width: 100%;
-            height: 15px;
-            border-radius: 5px;
-            background: #d3d3d3;
-            outline: none;
-            opacity: 0.7;
-            -webkit-transition: .2s;
-            transition: opacity .2s;
-        }
+.groupy::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #2E2E2E;
+  cursor: pointer;
+  /* opacity: 0; */
+}
 
-    .slidershown::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
-            background: #0020FF;
-            cursor: pointer;
-    }
+.groupy::-moz-range-thumb {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #2E2E2E;
+  cursor: pointer;
+  /* opacity: 0; */
+}
+.visible-thumb {
+    opacity: 1 !important;
+}
+
+.hidden-input {
+    color: white;
+    background-color: white;
+}
+
+.hidden{
+    display:none;
+}
 
 
-    .slidercontainer th {
+
+
+.slidercontainer th {
         vertical-align: middle;
     }
+
+input.notclicked[type=range]::-webkit-slider-thumb {
+  visibility: hidden;
+}
+
+input.notclicked[type=range]::-moz-range-thumb {
+  visibility: hidden;
+}
+
+input.notclicked[type=range]::-ms-thumb {
+  visibility: hidden;
+}
+
+.slider-wrapper {
+    flex: 5;
+    position: relative;
+    display: flex;
+    flex-direction: column; /* key: stack vertically */
+    align-items: center;
+    width: 100%; /* ensure it's same as slider */
+}
+
+#groupiness {
+    width: 80%;
+    height: 20px;
+    align-items: center;
+}
+
+
+
     .avatar-container {
             display: flex;
             justify-content: space-between; /* Distribute avatars evenly */
@@ -280,8 +307,13 @@
     @media only screen and (max-width: 700px){
     .modal-content {
         width: 100%;
-        }
+        }}
+    
+   .center {
+    text-align: center;
+    margin: 0 auto;
     }
+
 </style>
 
 
@@ -351,31 +383,35 @@
     </div>
 </div>
 
+<br>
+<div class="slider-wrapper">
+<input type="range" min="0" max="1" step="0.01" value="" name="groupy" id="groupiness" class="groupy notclicked"
+       oninput="updateValue()"
+        onclick="activateSlider('groupiness')">
+</div>
 
-<input type="range" min="0" max="1" step="0.01" value="" class="sliderhidden" name="groupy" id="groupy"
-       oninput="updateValue('groupy', 'value')"
-        onclick="activateSlider()">
-
-<div class="slider_instruction_container">
-    <p id="slider_instruction"> <em>Click the yellow bar to reveal the slider.  </em></p>
+<div id="slider-instruction-container" class="slider_instruction_container center">
+    <p id="slider_instruction"> <em>(Please click on the slider to activate it and move it to indicate your decision.)</em></p>
 </div>
 
 
 
-<div class="value-display-container">
-    <div class="value-display">
-        {% if group == "triangle" %}
-        <i class="fas fa-user"></i> You are giving <span id="value"></span>$ to the person from the Triangle group.
-        {% else %}
-        <i class="fas fa-user"></i> You are giving <span id="value"></span>$ to the person from the Circle group.
-        {% endif %}
-    </div>
-    <div class="value-display-other-person">
-        {% if group == "triangle" %}
-        <i class="fas fa-user"></i> You are giving <span id="outgroup_value"></span>$ to the person from the Circle group.
-        {% else %}
-        <i class="fas fa-user"></i> You are giving <span id="outgroup_value"></span>$ to the person from the Triangle group.
-        {% endif %} 
+<div class="value-display-container hidden" id="answer-display">
+    <div class="value-display-row">
+        <div class="value-display-left">
+            {% if group == "triangle" %}
+            <p>You are giving <span id="current-slider-value"></span>$ to the <br> person from the Triangle group.</p>
+            {% else %}
+            <p>You are giving <span id="current-slider-value"></span>$ to the <br> person from the Circle group.</p>
+            {% endif %}
+        </div>
+        <div class="value-display-right">
+            {% if group == "triangle" %}
+            <p>You are giving <span id="outgroup_value"></span>$ to the <br> person from the Circle group.</p>
+            {% else %}
+            <p>You are giving <span id="outgroup_value"></span>$ to the <br> person from the Triangle group.</p>
+            {% endif %} 
+        </div>
     </div>
 </div>
 
@@ -392,7 +428,25 @@
 </div>
 
 <script>
-    document.getElementById("openbox1").addEventListener("click", function(){
+
+let nextButton = document.getElementById('next-button');
+
+// Function to enable the next button
+function enableNextButton() {
+    nextButton.disabled = false;
+    nextButton.classList.remove('disabled-button');
+    nextButton.classList.add('enabled-button');
+}
+
+// Function to disable the Next button
+function disableNextButton() {
+    nextButton.disabled = true;
+    nextButton.classList.remove('enabled-button');
+    nextButton.classList.add('disabled-button');
+}
+
+
+document.getElementById("openbox1").addEventListener("click", function(){
         document.getElementById("infobox1").classList.remove("hidden");
         document.getElementById("instructions").classList.add("hidden");
         document.getElementById("container1").classList.add("hidden");
@@ -405,46 +459,54 @@ document.getElementById("openbox2").addEventListener("click", function(){
 </script>
 
 <script>
-    let sliderClicked = false; // Flag to track user interaction
-    function activateSlider() {
-        groupy.classList.remove('sliderhidden');
-        groupy.classList.add('slidershown');
-        sliderClicked = true;
-        //document.getElementById("slider_instruction").style.display = 'none';
-        enableNextButton();
-        updateValue('groupy', 'value')
+    // Initialize a flag to check if the slider has been interacted with
+   let sliderInteracted = false;
 
-        document.querySelector('.value-display-container').style.display = 'flex'; // Use display: flex to show the container
-        document.getElementById("slider_instruction").textContent = "";
-    }
-    let nextButton = document.getElementById('next-button');
-    // Function to enable the next button
-    function enableNextButton() {
-        nextButton.disabled = false;
-        nextButton.classList.remove('disabled-button');
-        nextButton.classList.add('enabled-button');
-    }
-
-    function updateValue(sliderId, valueId) {
-        const slider = document.getElementById(sliderId);
-        const valueDisplay = document.getElementById(valueId);
-        const outgroupValueDisplay = document.getElementById('outgroup_' + valueId );
-
-        if (slider.value !== "") {
-            const value = parseFloat(slider.value); // Convert the value to a floating-point number
-            outgroupValueDisplay.textContent = (value).toFixed(2);
-            valueDisplay.textContent = (1 - value).toFixed(2);
+//Function to update the current slider position display
+    function updateValue() {
+        // Check if the slider has been interacted with
+        if (!sliderInteracted) {
+        // If not, simply return without updating the fields
+            return;
         }
-        // Get the hidden input element
-        const hiddenInput = document.getElementById("groupy");
-        console.log("Hidden input type:", typeof hiddenInput.value);
-        console.log("Hidden input value:", hiddenInput.value);        //console.log(valueDisplay.textContent)
-        //console.log(outgroupValueDisplay.textContent)
+        const groupiness = parseFloat(document.getElementById('groupiness').value);
+        const groupy = groupiness;
+
+        // Update the slider value display for belief
+        document.getElementById('current-slider-value').textContent = (1-groupy).toFixed(2);
+        document.getElementById('outgroup_value').textContent = groupy.toFixed(2);
+        updateSliderColor();
+
     }
-    console.log(sliderClicked)
+
+
+    // This function sets the slider as interacted and updates the display
+    function activateSlider() {
+        sliderInteracted = true;
+        updateValue();
+        enableNextButton();
+        document.getElementById("groupiness").classList.remove('notclicked');
+        document.getElementById("answer-display").classList.remove("hidden");
+        document.getElementById("slider-instruction-container").classList.add("hidden");
+        updateSliderColor();
+    }
+
+    function updateSliderColor() {
+    const slider = document.getElementById("groupiness");
+    const value = slider.value;
+    const outgroup = 1 - slider.value;
+    const min = slider.min;
+    const max = slider.max;
+
+    // Update the background with a purple left side and gray right side
+    slider.style.background = `rgb(206, 211, 255)`;
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('current-slider-value').textContent = '\u00A0\u00A0';
+    });
 
 
 </script>
-
 
 {% endblock %}
