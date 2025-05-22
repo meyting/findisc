@@ -41,7 +41,9 @@ class Player(BasePlayer):
     nationality = models.CharField(initial=None,
                                     choices=nationalities,
                                     verbose_name='What is your nationality? <br> <i>(In case you have multiple nationalities, indicate the one you identify with the most.)</i>')
-
+    race = models.CharField(initial = None,
+                            verbose_name = "What is your race/ethnicity?",
+                            choices = ["Hispanic or Latin", "Asian", "White", "Black or African American", "American Indian", "other / prefer not to answer"])
 #    currentcountry = models.CharField(initial=None,
 #                                        verbose_name='In welchem Land wohnen Sie aktuell?',
 #                                        choices = countries,)
@@ -134,7 +136,7 @@ class risk_tool_accept_en2(Page):
 
 class personal_en(Page):
     form_model = 'player'
-    form_fields = ['name','age', 'gender', 'profession', 'fieldofstudy', 'occupation', 'nationality', 'income', 'attention_check',
+    form_fields = ['name','age', 'gender', 'profession', 'race', 'fieldofstudy', 'occupation', 'nationality', 'income', 'attention_check',
                    'education_uni','religion', 'party', 'distract', 'easy', 'understood', 'feedback','selected_finpart']
 
 
