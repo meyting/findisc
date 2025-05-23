@@ -241,7 +241,9 @@ class Player(BasePlayer):
         label = 'It is important to us that you pay attention. Please click on the second option from the top in the following list.',
         widget=widgets.RadioSelect(),
     )
-
+    race = models.CharField(initial = None,
+                            verbose_name = "What is your race/ethnicity?",
+                            choices = ["Hispanic or Latin", "Asian", "White", "Black or African American", "American Indian", "other / prefer not to answer"])
     q1_advisor = models.IntegerField(blank=False)
     q2_advisor = models.IntegerField(blank=False)
     q3_advisor = models.IntegerField(blank=False)
@@ -632,7 +634,7 @@ class payment_en(Page):
 class demos_en(Page):
     form_model = 'player'
     form_fields = [#'name',
-        'age', 'gender', 'profession', 'fieldofstudy', 'occupation', 'nationality', 'income',
+        'age', 'gender', 'profession', 'fieldofstudy', 'occupation', 'nationality', 'income', 'race',
                  'education_uni','religion', 'party', 'distract', 'attention_check', 'selected_finpart']
 
     @staticmethod
