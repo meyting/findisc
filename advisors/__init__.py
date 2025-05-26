@@ -119,7 +119,7 @@ def creating_session(subsession: Subsession):
             selected_profiles_male = select_unique_risky_shares(df[df["gender"] == "male"], 5)
             selected_profiles_female = select_unique_risky_shares(df[df["gender"] == "female"], 5)
             selected_profiles_test = select_unique_risky_shares(df, 1)
-            selected_profiles_df = pd.concat([selected_profiles_male, selected_profiles_female, selected_profiles_test])
+            selected_profiles_df = pd.concat([selected_profiles_test, selected_profiles_male, selected_profiles_female])
             first_row = selected_profiles_df.iloc[[0]]
             rest = selected_profiles_df.iloc[1:]
             shuffled_rest = rest.sample(frac=1, random_state=42)
