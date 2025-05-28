@@ -653,11 +653,6 @@ class demos_en(Page):
     def is_displayed(player: Player):
         return player.round_number == C.NUM_ROUNDS
     
-    @staticmethod
-    def js_vars(player: Player):
-        return dict(
-            prolific_id=player.participant.label
-        )
     
 class groupy_en(Page):
     form_model = 'player'
