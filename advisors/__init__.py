@@ -98,10 +98,14 @@ class C(BaseConstants):
 class Subsession(BaseSubsession):
     pass
 
-def select_unique_risky_shares(data, n):
-    shuffled_data = data.sample(frac=1).reset_index(drop=True)
-    unique_risky_shares = shuffled_data.drop_duplicates(subset=['riskyshare']).sample(n=n)
-    return unique_risky_shares
+def select_unique_risky_shares(data, n, used_riskyshares):
+    # Exclude already-used riskyshare values
+    data = data[~data['riskyshare'].isin(used_riskyshares)]
+    # Shuffle and drop duplicates
+    shuffled_data = data.sample(frac=1).drop_duplicates(subset='riskyshare')
+    # Sample n
+    return shuffled_data.head(n)
+
 
 def creating_session(subsession: Subsession):
     import itertools
@@ -116,10 +120,28 @@ def creating_session(subsession: Subsession):
                 p.participant.variant = next(variant)
             p.participant.group = next(groups)
             p.participant.profiles = []
-            selected_profiles_male = select_unique_risky_shares(df[df["gender"] == "male"], 5)
-            selected_profiles_female = select_unique_risky_shares(df[df["gender"] == "female"], 5)
-            selected_profiles_test = select_unique_risky_shares(df, 1)
-            selected_profiles_df = pd.concat([selected_profiles_test, selected_profiles_male, selected_profiles_female])
+            # Sample 1 test profile first
+            used_riskyshares = set()
+            selected_profiles_test = select_unique_risky_shares(df, 1, used_riskyshares)
+            used_riskyshares.update(selected_profiles_test['riskyshare'])
+            selected_profiles_black_male = select_unique_risky_shares(df[(df["gender"] == "male") & (df["race"] == "Black or African American")], 2, used_riskyshares)
+            used_riskyshares.update(selected_profiles_black_male['riskyshare'])
+            selected_profiles_black_female = select_unique_risky_shares(df[(df["gender"] == "female") & (df["race"] == "Black or African American")], 2, used_riskyshares)
+            used_riskyshares.update(selected_profiles_black_female['riskyshare'])
+            selected_profiles_white_male = select_unique_risky_shares(df[(df["gender"] == "male") & (df["race"] == "White")], 2, used_riskyshares)
+            used_riskyshares.update(selected_profiles_white_male['riskyshare'])
+            selected_profiles_white_female = select_unique_risky_shares(df[(df["gender"] == "female") & (df["race"] == "White")], 2, used_riskyshares)
+            used_riskyshares.update(selected_profiles_white_female['riskyshare'])
+            selected_profiles_random = select_unique_risky_shares(df, 2, used_riskyshares)
+            used_riskyshares.update(selected_profiles_random['riskyshare'])
+            selected_profiles_df = pd.concat([
+                                                selected_profiles_test,
+                                                selected_profiles_black_male,
+                                                selected_profiles_black_female,
+                                                selected_profiles_white_male,
+                                                selected_profiles_white_female,
+                                                selected_profiles_random
+                                             ]).reset_index(drop=True)
             first_row = selected_profiles_df.iloc[[0]]
             rest = selected_profiles_df.iloc[1:]
             shuffled_rest = rest.sample(frac=1, random_state=42)
