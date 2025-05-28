@@ -14,7 +14,6 @@ df["gender"] = df["gender"].astype(str)
 df["nationality"] = df["nationality"].astype(str)
 df["religion"] = df["religion"].astype(str)
 df["uni"] = df["uni"].astype(str)
-df["school"] = df["school"].astype(str)
 df["profession"] = df["profession"].astype(str)
 df["intro"] = df["intro"].astype(str)
 df["age"] = df["age"].astype(int)
@@ -386,7 +385,6 @@ class evaluation_example_en_3(Page):
         prolificid_client = profile["prolificid"]
         religion = profile["religion"]
         profession = profile["profession"]
-        education_school = profile["school"]
         education_uni = profile["uni"]
         income = profile["income"]
         q1_text = profile["q1_text"]
@@ -433,7 +431,6 @@ class evaluation_example_en_3(Page):
             'q5_short': q5_short,
             'nationality': nationality,
             'profession': profession,
-            'education_school': education_school,
             'education_uni': education_uni,
             'income':income,
             'nationality': nationality,
@@ -487,7 +484,6 @@ class evaluation_en_3(Page):
         q3_short = profile["q3_short"]
         q4_short = profile["q4_short"]
         q5_short = profile["q5_short"]
-        education_school = profile["school"]
         education_uni = profile["uni"]
         occupation = profile["occupation"]
         occupation_text = profile["occupation_text"]
@@ -520,7 +516,6 @@ class evaluation_en_3(Page):
             'q3_short': q3_short,
             'q4_short': q4_short,
             'q5_short': q5_short,
-            'education_school': education_school,
             'gender': gender,
             'education_uni': education_uni,
             'nationality': nationality,
