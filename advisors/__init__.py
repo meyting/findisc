@@ -108,8 +108,8 @@ def select_unique_risky_shares(data, n, used_riskyshares):
 
 def creating_session(subsession: Subsession):
     import itertools
-    #variant = itertools.cycle(['bel', 'pat', 'verypat', 'pat_accept', 'verypat_accept']) 
-    variant = itertools.cycle(['bel', 'pat', 'verypat']) # for bilendi
+    variant = itertools.cycle(['bel', 'pat', 'verypat', 'pat_accept', 'verypat_accept']) 
+    #variant = itertools.cycle(['bel', 'pat', 'verypat']) # for bilendi
     groups = itertools.cycle(['circle', 'triangle',])
     if subsession.round_number == 1:
         for p in subsession.get_players():
@@ -274,7 +274,7 @@ class Player(BasePlayer):
     risktoolresult = models.FloatField()
 
     #prolific_id = models.StringField(default=str(" "))
-    bilendi_id = models.StringField(default=str(" "))
+    prolific_id = models.StringField(default=str(" "))
 
     groupy = models.FloatField()
 
@@ -297,17 +297,12 @@ class consent_en(Page):
     @staticmethod
     def before_next_page(player, timeout_happened):
         # player.prolific_id = player.participant.label
-        player.bilendi_id = player.participant.label
+        player.prolific_id = player.participant.label
 
 class start_en(Page):
     form_model = 'player'
     form_fields = ['screener']
-    
-    @staticmethod
-    def js_vars(player: Player):
-        return dict(
-            bilendi_id=player.participant.label
-        )
+
         
     @staticmethod
     def is_displayed(player: Player):
@@ -661,7 +656,7 @@ class demos_en(Page):
     @staticmethod
     def js_vars(player: Player):
         return dict(
-            bilendi_id=player.participant.label
+            prolific_id=player.participant.label
         )
     
 class groupy_en(Page):
@@ -693,7 +688,7 @@ class end_en(Page):
     @staticmethod
     def js_vars(player: Player):
         return dict(
-            bilendi_id=player.participant.label
+            prolific_id= player.participant.label
         )
     
 page_sequence = [
