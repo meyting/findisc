@@ -333,7 +333,7 @@ input.notclicked[type=range]::-ms-thumb {
      </b>
 </p>
 <div class="infobox1 hidden" id="infobox1">
-        {% if group == "triangle" %}
+    {% if group == "triangle" %}
     <p>You belong to the <b>Triangle group</b>.</p>
     <img class="group" src="{% static "global/triangle.png" %}" alt="Triangle" width="100px" height="auto">
 <br>
@@ -344,7 +344,7 @@ input.notclicked[type=range]::-ms-thumb {
     <img class="group" src="{% static "global/circle.png" %}" alt="Circle" width="100px" height="auto">
     <br>
 
-    <p>We now ask you to divide {{ C.groupybudget }} between a randomly selected participant from the Triangle group and a randomly selected participant from the Circle group.
+    <p>We now ask you to divide {{ C.groupybudget }} between a randomly selected participant from the Circle group and a randomly selected participant from the Triangle group.
 
     {% endif %}
     

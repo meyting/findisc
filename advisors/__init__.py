@@ -17,64 +17,64 @@ df["uni"] = df["uni"].astype(str)
 df["profession"] = df["profession"].astype(str)
 df["intro"] = df["intro"].astype(str)
 df["age"] = df["age"].astype(int)
-df["party"] = df["party"].astype(int)
+df["party"] = df["party"].astype(str)
 #df["riskgroup"] = df["riskgroup"].astype(int)
 #df["riskgroup_text"] = df["riskgroup_text"].astype(str)
 df["prolificid"] = df["prolificid"].astype(str)
 df["income"] = df["income"].astype(str)
 df["occupation_text"] = df["occupation_text"].astype(str)
 
-df["q1_text"] = "Keine Antwort"
-df.loc[(df["capital"]==1),"q1_text"] = "Der Erhalt meiner Kapitalanlage ist mir gar nicht wichtig."
-df.loc[(df["capital"]==2),"q1_text"] = "Der Erhalt meiner Kapitalanlage ist mir eher nicht wichtig."
-df.loc[(df["capital"]==3),"q1_text"] = "Der Erhalt meiner Kapitalanlage ist mir eher wichtig."
-df.loc[(df["capital"]==4),"q1_text"] = "Der Erhalt meiner Kapitalanlage ist mir sehr wichtig."
-df["q2_text"] = "Keine Antwort"
-df.loc[(df["return"]==1),"q2_text"] = "Um meinen Ertrag zu erhöhen ist mir viel wichtiger Risiken einzugehen, als eine zuverlässige Rendite zu bekommen."
-df.loc[(df["return"]==2),"q2_text"] = "Um meinen Ertrag zu erhöhen ist mir eher wichtiger Risiken einzugehen, als eine zuverlässige Rendite zu bekommen."
-df.loc[(df["return"]==3),"q2_text"] = "Um meinen Ertrag zu erhöhen ist mir eher wichtiger eine zuverlässige Rendite zu bekommen, als Risiken einzugehen."
-df.loc[(df["return"]==4),"q2_text"] = "Um meinen Ertrag zu erhöhen ist mir viel wichtiger eine zuverlässige Rendite zu bekommen, als Risiken einzugehen."
-df["q3_text"] = "Keine Antwort"
-df.loc[(df["losses"]==1),"q3_text"] = "Kleinste Verluste machen mich gar nicht nervös."
-df.loc[(df["losses"]==2),"q3_text"] = "Kleinste Verluste machen mich eher nicht nervös."
-df.loc[(df["losses"]==3),"q3_text"] = "Kleinste Verluste machen mich bereits etwas nervös."
-df.loc[(df["losses"]==4),"q3_text"] = "Kleinste Verluste machen mich bereits sehr nervös."
-df["q4_text"] = "Keine Antwort"
-df.loc[(df["risks"]==1),"q4_text"] = "Finanzielle Risiken sind gar nicht reizvoll."
-df.loc[(df["risks"]==2),"q4_text"] = "Finanzielle Risiken sind eher nicht reizvoll."
-df.loc[(df["risks"]==3),"q4_text"] = "Finanzielle Risiken sind eher reizvoll."
-df.loc[(df["risks"]==4),"q4_text"] = "Finanzielle Risiken sind sehr reizvoll."
-df["q5_text"] = "Keine Antwort"
-df.loc[(df["chance"]==1),"q5_text"] = "Ich nehme den Verlust meines Vermögens nicht in Kauf wenn ich gleichzeitig die Chance habe, meine Gewinne zu erhöhen."
-df.loc[(df["chance"]==2),"q5_text"] = "Ich nehme den Verlust meines Vermögens eher nicht in Kauf wenn ich gleichzeitig die Chance habe, meine Gewinne zu erhöhen."
-df.loc[(df["chance"]==3),"q5_text"] = "Ich nehme den Verlust meines Vermögens eher in Kauf wenn ich gleichzeitig die Chance habe, meine Gewinne zu erhöhen."
-df.loc[(df["chance"]==4),"q5_text"] = "Ich nehme den Verlust meines Vermögens in Kauf wenn ich gleichzeitig die Chance habe, meine Gewinne zu erhöhen."
+df["q1_text"] = "No answer"
+df.loc[(df["capital"]==1),"q1_text"] = "Preserving my investment capital is not important to me at all."
+df.loc[(df["capital"]==2),"q1_text"] = "Preserving my investment capital is rather not important to me."
+df.loc[(df["capital"]==3),"q1_text"] = "Preserving my investment capital is rather important to me."
+df.loc[(df["capital"]==4),"q1_text"] = "Preserving my investment capital is very important to me."
+df["q2_text"] = "No answer"
+df.loc[(df["returns"]==1),"q2_text"] = "To increase my return, it is much more important to me to take risks than to get a reliable return."
+df.loc[(df["returns"]==2),"q2_text"] = "To increase my return, it is somewhat more important to me to take risks than to get a reliable return."
+df.loc[(df["returns"]==3),"q2_text"] = "To increase my return, it somewhat more important to me to get a reliable return than to take risks."
+df.loc[(df["returns"]==4),"q2_text"] = "To increase my return, it is much more important to me to get a reliable return than to take risks."
+df["q3_text"] = "No answer"
+df.loc[(df["losses"]==1),"q3_text"] = "Small losses do not make me nervous at all."
+df.loc[(df["losses"]==2),"q3_text"] = "Small losses do not really make me nervous."
+df.loc[(df["losses"]==3),"q3_text"] = "Even the smallest losses make me somewhat nervous."
+df.loc[(df["losses"]==4),"q3_text"] = "Even the smallest losses make me very nervous."
+df["q4_text"] = "No answer"
+df.loc[(df["risks"]==1),"q4_text"] = "Financial risks are not at all appealing."
+df.loc[(df["risks"]==2),"q4_text"] = "Financial risks are rather not appealing."
+df.loc[(df["risks"]==3),"q4_text"] = "Financial risks are appealing."
+df.loc[(df["risks"]==4),"q4_text"] = "Financial risks are very appealing."
+df["q5_text"] = "No answer"
+df.loc[(df["chance"]==1),"q5_text"] = "I am not at all willing to accept the loss of my assets if it means I also have the chance to increase my gains."
+df.loc[(df["chance"]==2),"q5_text"] = "I am rather not willing to accept the loss of my assets if it means I also have the chance to increase my gains."
+df.loc[(df["chance"]==3),"q5_text"] = "I am rather willing to accept the loss of my assets if it means I also have the chance to increase my gains."
+df.loc[(df["chance"]==4),"q5_text"] = "I am very willing to accept the loss of my assets if it means I also have the chance to increase my gains."
 
-df["q1_short"] = "Keine Antwort"
-df.loc[(df["capital"]==1),"q1_short"] = "gar nicht"
-df.loc[(df["capital"]==2),"q1_short"] = "eher nicht"
-df.loc[(df["capital"]==3),"q1_short"] = "eher"
-df.loc[(df["capital"]==4),"q1_short"] = "voll und ganz"
-df["q2_short"] = "Keine Antwort"
-df.loc[(df["return"]==1),"q2_short"] = "gar nicht"
-df.loc[(df["return"]==2),"q2_short"] = "eher nicht"
-df.loc[(df["return"]==3),"q2_short"] = "eher"
-df.loc[(df["return"]==4),"q2_short"] = "voll und ganz"
-df["q3_short"] = "Keine Antwort"
-df.loc[(df["losses"]==1),"q3_short"] = "gar nicht"
-df.loc[(df["losses"]==2),"q3_short"] = "eher nicht"
-df.loc[(df["losses"]==3),"q3_short"] = "eher"
-df.loc[(df["losses"]==4),"q3_short"] = "voll und ganz"
-df["q4_short"] = "Keine Antwort"
-df.loc[(df["risks"]==1),"q4_short"] = "gar nicht"
-df.loc[(df["risks"]==2),"q4_short"] = "eher nicht"
-df.loc[(df["risks"]==3),"q4_short"] = "eher"
-df.loc[(df["risks"]==4),"q4_short"] = "voll und ganz"
-df["q5_short"] = "Keine Antwort"
-df.loc[(df["chance"]==1),"q5_short"] = "gar nicht"
-df.loc[(df["chance"]==2),"q5_short"] = "eher nicht"
-df.loc[(df["chance"]==3),"q5_short"] = "eher"
-df.loc[(df["chance"]==4),"q5_short"] = "voll und ganz"
+df["q1_short"] = "No answer"
+df.loc[(df["capital"]==1),"q1_short"] = "not at all."
+df.loc[(df["capital"]==2),"q1_short"] = "only a bit."
+df.loc[(df["capital"]==3),"q1_short"] = "."
+df.loc[(df["capital"]==4),"q1_short"] = "very much."
+df["q2_short"] = "No answer"
+df.loc[(df["returns"]==1),"q2_short"] = "not at all."
+df.loc[(df["returns"]==2),"q2_short"] = "rather not."
+df.loc[(df["returns"]==3),"q2_short"] = "."
+df.loc[(df["returns"]==4),"q2_short"] = "very much."
+df["q3_short"] = "No answer"
+df.loc[(df["losses"]==1),"q3_short"] = "not at all."
+df.loc[(df["losses"]==2),"q3_short"] = "only a bit."
+df.loc[(df["losses"]==3),"q3_short"] = "."
+df.loc[(df["losses"]==4),"q3_short"] = "very much."
+df["q4_short"] = "No answer"
+df.loc[(df["risks"]==1),"q4_short"] = "not at all."
+df.loc[(df["risks"]==2),"q4_short"] = "only a bit."
+df.loc[(df["risks"]==3),"q4_short"] = "."
+df.loc[(df["risks"]==4),"q4_short"] = "very much."
+df["q5_short"] = "No answer"
+df.loc[(df["chance"]==1),"q5_short"] = "not at all."
+df.loc[(df["chance"]==2),"q5_short"] = "only a bit."
+df.loc[(df["chance"]==3),"q5_short"] = "."
+df.loc[(df["chance"]==4),"q5_short"] = "very much."
 
 choices = pd.read_excel('_static/global/choices.xlsx', engine = 'openpyxl') # can also index sheet by name or fetch all sheets
 countries = choices['country'][0:197].tolist()
@@ -403,7 +403,7 @@ class evaluation_example_en_3(Page):
         age = profile["age"]
         party = profile["party"]
         q1 = profile["capital"]
-        q2 = profile["return"]
+        q2 = profile["returns"]
         q3 = profile["losses"]
         q4 = profile["risks"]
         q5 = profile["chance"]
@@ -492,7 +492,7 @@ class evaluation_en_3(Page):
         age = profile["age"]
         party = profile["party"]
         q1 = profile["capital"]
-        q2 = profile["return"]
+        q2 = profile["returns"]
         q3 = profile["losses"]
         q4 = profile["risks"]
         q5 = profile["chance"]
