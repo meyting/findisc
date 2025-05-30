@@ -21,6 +21,7 @@ df["age"] = df["age"].astype(int)
 #df["riskgroup_text"] = df["riskgroup_text"].astype(str)
 df["prolificid"] = df["prolificid"].astype(str)
 df["income"] = df["income"].astype(str)
+df["party"] = df["party"].astype(str)
 df["occupation_text"] = df["occupation_text"].astype(str)
 
 df["q1_text"] = "Keine Antwort"
@@ -400,6 +401,7 @@ class evaluation_example_en_3(Page):
         #riskgroup = profile["riskgroup"]
         #riskgroup_text = profile["riskgroup_text"]
         age = profile["age"]
+        party = profile["party"]
         q1 = profile["capital"]
         q2 = profile["return"]
         q3 = profile["losses"]
@@ -438,6 +440,7 @@ class evaluation_example_en_3(Page):
             'introduction': introduction,
             'risktoolresult': risktoolresult,
             'age': age,
+            'party': party,
             'picpath': 'profilepics/' + prolificid_client + '.png',
             'scalepath1': 'scales/scale' + str(q1) + '.png',
             'scalepath2': 'scales/scale' + str(q2) + '.png',
@@ -487,6 +490,7 @@ class evaluation_en_3(Page):
         #riskgroup = profile["riskgroup"]
         #riskgroup_text = profile["riskgroup_text"]
         age = profile["age"]
+        party = profile["party"]
         q1 = profile["capital"]
         q2 = profile["return"]
         q3 = profile["losses"]
@@ -524,6 +528,7 @@ class evaluation_en_3(Page):
             #'riskgroup': riskgroup,	
             #'riskgroup_text': riskgroup_text,
             'age': age, 
+            'party': party,
             'picpath': 'profilepics/' + prolificid_client + '.png',
             'scalepath1': 'scales/scale' + str(q1) + '.png',
             'scalepath2': 'scales/scale' + str(q2) + '.png',
