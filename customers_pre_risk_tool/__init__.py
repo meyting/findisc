@@ -10,7 +10,7 @@ class C(BaseConstants):
     PLAYERS_PER_GROUP = None
     NUM_ROUNDS = 1
     budget = "10.000"
-    Anlagehorizont = 10
+    Anlagehorizont = 5
 
 
 class Subsession(BaseSubsession):

@@ -91,7 +91,7 @@ class C(BaseConstants):
     Auszahlungsfaktor = 100
     budget = 10000
     budget_string = "10.000"
-    Anlagehorizont = 10
+    Anlagehorizont = 5
     groupybudget = cu(1)
 
 class Subsession(BaseSubsession):
