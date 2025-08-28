@@ -1,0 +1,29 @@
+{{ block title }}
+Who are you?
+{{ endblock }}
+
+{{ block content }}
+<hr>
+<p>
+    <i>Based on your answers to the following questions, we will generate a personalized profile for you, including an AI-generated image. 
+	Your data will be anonymized and treated confidentially. </i>
+</p>
+<hr>
+
+{%  formfield player.intro %}
+{%  formfield player.look %}
+
+
+
+<br />
+
+    {% next_button %}
+
+
+
+    {{ formfield_errors 'intro' }}
+    {{ formfield_errors 'look' }}
+    
+{% endblock %}
+
+

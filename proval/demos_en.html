@@ -1,0 +1,73 @@
+{{ block title }}
+Almost done!
+{{ endblock }}
+
+{{ block content }}
+
+       {%  formfield player.age %}
+       {%  formfield player.gender %}
+<hr>
+       {%  formfield player.nationality %}
+       {%  formfield player.race %}
+
+<hr>
+       {%  formfield player.attention_check %}
+       {%  formfield player.education_uni %}
+
+    <label for="occupation"> Which of the following best applies to you?</label>
+    <select onchange="yesnoCheck(this);" name="occupation" id="occ" class="form-control">
+        <option selected value> --------- </option>
+        <option  value="0">In school</option >
+        <option  value="1">In college/university</option >
+        <option  value="2">Employed or working (including apprentices, individuals on parental leave, or part-time workers)</option>
+        <option  value="3">Retired</option >
+        <option  value="4">Housewife/-husband</option >
+        <option  value="5">Unemployed</option >
+        <option  value="6">Other</option >
+    </select>
+<br>
+    <div style="display: none;" id="profession">
+         {%  formfield player.profession %}
+    </div>
+    {%  formfield player.income %}
+
+
+    <div style="display: none;" id="fieldofstudy">
+        {%  formfield player.fieldofstudy %}
+    </div>
+<hr>
+       {%  formfield player.party %}
+       {%  formfield player.religion %}
+       <hr>
+
+       {%  formfield player.distract %}
+       <br />
+
+    {% next_button %}
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+function yesnoCheck(that) {
+    if (that.value == "1") {
+        document.getElementById("fieldofstudy").style.display = "block";
+        document.getElementById("profession").style.display = "none";
+    }
+    else if (that.value == "2") {
+        document.getElementById("profession").style.display = "block";
+        document.getElementById("fieldofstudy").style.display = "none";
+    } else {
+        document.getElementById("profession").style.display = "none";
+        document.getElementById("fieldofstudy").style.display = "none";
+    }
+};
+
+</script>
+
+
+{{ form.occupation.errors }}
+
+{% endblock %}
+
+

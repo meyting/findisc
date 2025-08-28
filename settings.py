@@ -44,7 +44,19 @@ SESSION_CONFIGS = [
                         'customers_post_risk_tool'],
          num_demo_participants=10,
      ),
-]
+    dict(
+         name='proval',
+         app_sequence=['proval',
+                       ],
+         num_demo_participants=10,
+     ),
+    dict(
+         name='statval',
+         app_sequence=['statval',
+                       ],
+         num_demo_participants=10,
+     ),
+               ]
 
 # if you set a property in SESSION_CONFIG_DEFAULTS, it will be inherited by all configs
 # in SESSION_CONFIGS, except those that explicitly override it.
@@ -104,6 +116,18 @@ ROOMS = [
         # participant_label_file='_rooms/your_study.txt',
         #use_secure_urls=True,
     ),
+        dict(
+        name='proval',
+        display_name='proval',
+        # participant_label_file='_rooms/your_study.txt',
+        #use_secure_urls=True,
+    ),
+        dict(
+        name='statval',
+        display_name='statval',
+        # participant_label_file='_rooms/your_study.txt',
+        #use_secure_urls=True,
+    )
 ]
 
 PARTICIPANT_FIELDS = ["variant", "profiles", "suggestion", "group"]

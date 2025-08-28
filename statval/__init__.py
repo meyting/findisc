@@ -1,0 +1,285 @@
+from otree.api import *
+
+import pandas as pd
+import random
+import numpy as np
+
+df = pd.read_excel('_static/global/profiles.xlsx', keep_default_na=False, engine='openpyxl')
+df["gender"] = df["gender"].astype(str)
+df["nationality"] = df["nationality"].astype(str)
+df["religion"] = df["religion"].astype(str)
+df["uni"] = df["uni"].astype(str)
+df["profession"] = df["profession"].astype(str)
+df["intro"] = df["intro"].astype(str)
+df["age"] = df["age"].astype(int)
+#df["riskgroup"] = df["riskgroup"].astype(int)
+#df["riskgroup_text"] = df["riskgroup_text"].astype(str)
+df["prolificid"] = df["prolificid"].astype(str)
+df["income"] = df["income"].astype(str)
+df["party"] = df["party"].astype(str)
+df["occupation_text"] = df["occupation_text"].astype(str)
+
+
+choices = pd.read_excel('_static/global/choices.xlsx', engine = 'openpyxl') # can also index sheet by name or fetch all sheets
+countries = choices['country'][0:197].tolist()
+years = choices['Jahr'][0:101].tolist()
+years = [int(year) for year in years]
+nationalities = choices['nationality'][0:199].tolist()
+
+
+class C(BaseConstants):
+    NAME_IN_URL = 'statval'
+    PLAYERS_PER_GROUP = None
+    NUM_ROUNDS = 10
+    bonus = cu(2)
+    fixedfee = cu(1)
+    numberselections = 5
+    Auszahlungsfaktor = 100
+    budget = 10000
+    budget_string = "10.000"
+    Anlagehorizont = 5
+    groupybudget = cu(1)
+
+
+class Subsession(BaseSubsession):
+    pass
+
+def select_unique_risky_shares(data, n, used_riskyshares):
+    # Exclude already-used riskyshare values
+    data = data[~data['riskyshare'].isin(used_riskyshares)]
+    # Shuffle and drop duplicates
+    shuffled_data = data.sample(frac=1).drop_duplicates(subset='riskyshare')
+    # Sample n
+    return shuffled_data.head(n)
+
+
+def creating_session(subsession: Subsession):
+    import itertools
+    variant = itertools.cycle(['a']) 
+    groups = itertools.cycle(['circle', 'triangle',])
+    if subsession.round_number == 1:
+        for p in subsession.get_players():
+            if 'variant' in subsession.session.config:
+                p.participant.variant = subsession.session.config['variant']
+            else:
+                p.participant.variant = next(variant)
+            p.participant.group = next(groups)
+            p.participant.profiles = []
+            # Sample 1 test profile first
+            used_riskyshares = set()
+            selected_profiles_test = select_unique_risky_shares(df, 1, used_riskyshares)
+            used_riskyshares.update(selected_profiles_test['riskyshare'])
+            selected_profiles_black_male = select_unique_risky_shares(df[(df["gender"] == "male") & (df["race"] == "Black or African American")], 2, used_riskyshares)
+            used_riskyshares.update(selected_profiles_black_male['riskyshare'])
+            selected_profiles_black_female = select_unique_risky_shares(df[(df["gender"] == "female") & (df["race"] == "Black or African American")], 2, used_riskyshares)
+            used_riskyshares.update(selected_profiles_black_female['riskyshare'])
+            selected_profiles_white_male = select_unique_risky_shares(df[(df["gender"] == "male") & (df["race"] == "White")], 2, used_riskyshares)
+            used_riskyshares.update(selected_profiles_white_male['riskyshare'])
+            selected_profiles_white_female = select_unique_risky_shares(df[(df["gender"] == "female") & (df["race"] == "White")], 2, used_riskyshares)
+            used_riskyshares.update(selected_profiles_white_female['riskyshare'])
+            selected_profiles_random = select_unique_risky_shares(df, 2, used_riskyshares)
+            used_riskyshares.update(selected_profiles_random['riskyshare'])
+            selected_profiles_df = pd.concat([
+                                                selected_profiles_test,
+                                                selected_profiles_black_male,
+                                                selected_profiles_black_female,
+                                                selected_profiles_white_male,
+                                                selected_profiles_white_female,
+                                                selected_profiles_random
+                                             ]).reset_index(drop=True)
+            first_row = selected_profiles_df.iloc[[0]]
+            rest = selected_profiles_df.iloc[1:]
+            shuffled_rest = rest.sample(frac=1, random_state=42)
+            shuffled_df = pd.concat([first_row, shuffled_rest]).reset_index(drop=True)
+            profiles = shuffled_df.to_dict(orient='records')
+            p.participant.profiles = profiles
+
+
+class Group(BaseGroup):
+    pass
+
+class Player(BasePlayer):
+    consent = models.BooleanField()
+    riskgroup_example = models.IntegerField(blank=True)
+    evaluation = models.IntegerField(blank=True, min=-50, max=50, verbose_name="""""")
+#    evaluation_certainty = models.IntegerField(blank=True,
+#                                               choices=[[1, "very confident"],
+#                                                        [2, "rather confident"],
+#                                                        [3, "rather not confident"], 
+#                                                        [4, "not at all confident"]],
+#                                        verbose_name="""""")
+    prolific_id = models.StringField()
+    screener = models.StringField()
+#    groupy = models.FloatField()
+
+
+    offer = models.CharField()
+    age = models.IntegerField(verbose_name='How old are you?')
+    gender = models.CharField(initial=None,
+                              choices=['female', 'male', 'non-binary'],
+                              verbose_name='What is your gender?',
+                              widget=widgets.RadioSelect())
+    nationality = models.CharField(initial=None,
+                                    choices=nationalities,
+                                    verbose_name='What is your nationality? <br> <i>(In case you have multiple nationalities, indicate the one you identify with the most.)</i>')
+
+    education_uni =  models.CharField(initial=None,
+                                      verbose_name='What is your highest level of education?',
+                                      choices=['Bachelor', 'Master', 'PhD', 'None', 'Other'],)
+    fieldofstudy = models.CharField(initial=None,
+                                    blank = True,
+                                    verbose_name='What do you study?',
+                                    )
+    income = models.CharField(initial=None,
+                                    blank = True,
+                                    verbose_name='What is your monthly net income?',
+                                    choices = ['less than $1000', '$1000-$1999', '$2000-$2999', '$3000-$3999', 'more than $4000']
+                                    )
+    occupation=models.IntegerField(initial=None)
+    profession = models.CharField(initial = None,
+                                  blank = True,
+                                  verbose_name='What is your profession?')
+
+    religion = models.CharField(initial = None,
+                                verbose_name = 'Which religious group do you identify with?',
+                                choices = ['Catholic', 'Protestant', 'Orthodox',
+                                           'Not religious', 'Muslim', 'Buddhist', 'Jewish',
+                                           'Hindu', 'Other'],)
+    party = models.CharField(initial = None,
+                                verbose_name = 'Which political party would you vote for if there were elections today?',
+                                choices = ['Democrats', 'Republicans', 'Independent', 'I dont vote'],)
+
+    distract = models.CharField(initial = None,
+                                verbose_name = 'Please tell us: Can we safely analyze your data, or were you distracted by any influences during the survey? <i>(Your answer to this question will have no impact on your payment.)</i>',
+                                choices = [
+                                    [1, 'I was very attentive and not distracted at all.'],
+                                    [2, 'I was mostly attentive and barely distracted.'],
+                                    [3, 'I was not very attentive and somewhat distracted.'],
+                                    [4, 'I was not attentive at all and quite distracted.'],
+                                    ],)
+    attention_check = models.CharField(
+        initial=None,
+        choices=[
+            ['false1', 'blue'], ['true', 'orange'], ['false2', 'red'], ['false3', 'yellow'], ['false4', 'green'], ['false5', 'black']
+        ],
+        label = 'It is important to us that you pay attention. Please click on the second option from the top in the following list.',
+        widget=widgets.RadioSelect(),
+    )
+    race = models.CharField(initial = None,
+                            verbose_name = "What is your race/ethnicity?",
+                            choices = ["Hispanic or Latin", "Asian", "White", "Black or African American", "American Indian", "other / prefer not to answer"])
+    
+
+class consent_en(Page):
+    form_model = 'player'
+    form_fields = ['consent']
+
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.round_number == 1
+    
+    @staticmethod
+    def before_next_page(player, timeout_happened):
+        # player.prolific_id = player.participant.label
+        player.prolific_id = player.participant.label
+
+
+class start_en(Page):
+    form_model = 'player'
+    form_fields = ['screener']
+
+        
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.round_number == 1
+
+
+class instructions_en(Page):
+    @staticmethod
+    def vars_for_template(player: Player):
+        participant = player.participant
+        return {
+            'variant': participant.variant,
+        }
+
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.round_number == 1
+    
+
+class intro_evaluation_en(Page):
+    form_model = 'player'
+    form_fields = ['evaluation', 'offer']
+
+    @staticmethod
+    def vars_for_template(player: Player):
+        participant = player.participant
+        print(participant.profiles)
+        print(player.round_number)
+        profile = participant.profiles[player.round_number]
+        prolificid_client = profile["prolificid"]
+        name = profile["name"]
+        introduction = profile["intro"]
+        return {
+            'variant': participant.variant,
+            'profile': profile,
+            'name': name,
+            'prolificid_client': prolificid_client,
+            'introduction': introduction,
+            'round_number': player.round_number,
+        }
+    
+    
+class demos_en(Page):
+    form_model = 'player'
+    form_fields = [#'name',
+        'age', 'gender', 'profession', 'fieldofstudy', 'occupation', 'nationality', 'income', 'race',
+                 'education_uni','religion', 'party', 'distract', 'attention_check']
+
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.round_number == C.NUM_ROUNDS
+    
+    
+#class groupy_en(Page):
+#    form_model = 'player'
+#    form_fields = ['groupy']
+
+#    @staticmethod
+#    def vars_for_template(player: Player):
+#        participant = player.participant
+#        return {
+#            'group': participant.group,
+#        }
+
+#    @staticmethod
+#    def error_message(player, values):
+#        if values['groupy'] is None:
+#            return 'Please click on the slider to make your decision.'
+#        return None
+    
+#    @staticmethod
+#    def is_displayed(player: Player):
+#        return player.round_number == C.NUM_ROUNDS
+    
+class end_en(Page):
+    @staticmethod
+    def is_displayed(player: Player):
+        return player.round_number == C.NUM_ROUNDS
+
+    @staticmethod
+    def js_vars(player: Player):
+        return dict(
+            prolific_id= player.participant.label
+        )
+    
+page_sequence = [
+    consent_en,
+    start_en,
+    instructions_en,
+    intro_evaluation_en,
+    demos_en,
+#    groupy_en,
+    end_en
+                   ]
+
