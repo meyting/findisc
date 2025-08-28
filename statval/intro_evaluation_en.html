@@ -1,0 +1,388 @@
+{{ block title }}
+{{ endblock }}
+
+
+{{ block content }}
+<p>
+<div class="text" style="width: 100%; background-color: white;  padding: 20px;  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1)">
+<p>
+How stereotypically female or male does this introduction seem to you?
+Use the slider below to rate the introduction, from 'very stereotypically female' (left) to 'very stereotypically male' (right).
+</p>
+<p>
+    This is not about guessing whether the introduction is from a woman or a man, but about judging how strongly the introduction reflects typical female or male characteristics.
+</p>
+</div>
+
+<br>
+
+<div class="index-card-back">
+    <div class="grid-row-back">
+        <div class="icon-cell-back">
+            <img src="{% static 'icons/intro.png' %}"  alt="Introduction" class="icon-back"/>
+        </div>
+        <div class="intro">
+            <div class="text">"{{introduction}}"</div>
+        </div>
+    </div>
+</div>
+<br>
+
+
+{% if variant == "verypat" or variant == "verypat_accept" %}
+<div class="index-card-risktool">
+    <div class="text" style="text-align:center">{{name}} has selected a distribution in the interactive tool.
+This distribution corresponds to a risk share of {{ risktoolresult }}%.</div>
+</div>
+{% endif %}
+
+
+
+<div class="advice">
+    <table id="info" class="text" style="table-layout: fixed; width:100%; margin-left:auto; margin-right:auto;background-color:rgb(218, 241, 218)">
+        <tr style="text-align:center">
+            <td style="width:100%;text-align:center;" class="product">
+                <div class="scale-cell-back" style="width:100%">
+                    How stereotypically female / male do you find this introduction?
+                    <img src="{% static 'icons/information-button.png' %}" class="info-icon"/>
+                    <span class="tooltip">How stereotypically female / male do you find this introduction?</span>
+                </div>
+            </td>
+            </tr>
+            <tr style="text-align:center">
+            <td style="width:100%;text-align:center;">
+                <!-- Modern slider -->
+                <div class="slider-container">
+                    <span class="label-left">Very Stereotypically Female</span>
+                    <input type="range" id="evaluation" name="evaluation" min="-50" max="50" step="1" value="" oninput="updateSliderValue(this)" required>
+                    <span class="label-right">Very Stereotypically Male</span>
+                </div>
+                <div class="slider-value" style="font-weight: bold;" id="sliderValue">neutral</div>
+            </td>
+            <td style="width:10%;text-align:left;"></td>
+        </tr>
+    </table>
+</div>
+
+
+
+    <br>
+
+    <div class="center">
+        {% next_button %}
+    </div>
+    
+    <div class="center">
+(evaluation {{round_number}} of {{ C.NUM_ROUNDS }})    
+    </div>
+<input type="hidden" name="offer" value="{{prolificid_client}}" id="offer"/>
+
+
+{{ formfield_errors 'evaluation' }}
+    {{ endblock }}
+
+
+
+
+{% block styles %}
+<style>
+
+.center {
+    text-align: center;
+}
+
+.slider-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 10px;
+}
+
+.slider-container input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 12px;
+    border-radius: 6px;
+    outline: none;
+    cursor: pointer;
+    background: linear-gradient(
+        to right,
+        #f8b6c6 0%,   /* rose on far left */
+        #ddd 50%,     /* neutral gray in the center */
+        #7dafff 100%  /* blue on far right */
+    );
+}
+
+.slider-container input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #333;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+.slider-container input[type="range"]::-webkit-slider-thumb:hover {
+    background: #000;
+}
+
+.label-left,
+.label-right {
+    font-size: 0.9rem;
+    width: 120px;
+    text-align: center;
+}
+
+.slider-value {
+    margin-top: 5px;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+
+.advice{
+    width: 100%;
+    background-color:rgb(218, 241, 218);
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.index-card {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    gap: 50px;
+    width: 100%;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.backside{
+    width: 100%;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.grid-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.avatar {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatarimg {
+    width: 80%;
+    height: auto;
+    border-radius: 50%;
+}
+
+.icon img {
+    width: 30%;
+    height: auto;
+}
+
+
+.icon-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.icon {
+    width: 80%;
+    height: auto;
+    margin-bottom: 5px; /* Adjust spacing between icon and text */
+}
+
+.icon-back {
+    width: 40%;
+    height: auto;
+    margin-bottom: 5px; /* Adjust spacing between icon and text */
+}
+
+.text {
+    margin-top: -5px;
+    font-size: 20px;
+    vertical-align: top;
+}
+.grid-row-back-headline {
+    display: flex;
+    align-items: center;
+    padding-top:2%;
+}
+
+.headline {
+    margin-top: -20px;
+    margin-bottom: -20px;
+    font-size: 20px;
+    vertical-align: top;
+}
+
+.index-card-back {
+    display: grid;
+    grid-template-rows: repeat(1, 1fr);
+    gap: 10px;
+    width: 100%;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.index-card-risktool {
+    gap: 10px;
+    width: 100%;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.grid-row-back {
+    display: flex;
+    align-items: center;
+}
+
+.intro{
+    width: 80%;
+    display: flex;
+    align-items: center;
+}
+
+.icon-cell-back {
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.text-cell-back {
+    width: 50%;
+    display: flex;
+    align-items: center;
+}
+
+.scale-cell-back {
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    position: relative; /* Ensure the tooltip is positioned relative to this container */
+}
+
+.info-icon {
+    width: 10px; /* Adjust size as needed */
+    height: 10px; /* Adjust size as needed */
+    margin-left: 5px;
+    margin-bottom: 5px; /* Adjust to position the icon slightly higher */
+    cursor: pointer;
+}
+
+.risksurvey_headline1 {
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.risksurvey_headline2 {
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tooltip {
+    visibility: hidden;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%; /* Position the tooltip above the icon */
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    width: 300px; /* Adjust width as needed */
+}
+
+.tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%; /* Bottom of the tooltip */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+}
+
+.scale-cell-back:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+    </style>
+
+{% endblock %}
+
+{% block scripts %}
+    <script>
+function updateSliderValue(slider) {
+    let val = slider.value;
+    if (val === "") {
+        document.getElementById("sliderValue").innerText = "neutral";
+    }  else if (val > 0 & val <= 10) { 
+        document.getElementById("sliderValue").innerText = "slightly male";
+    } else if (val > 10 & val <= 20) { 
+        document.getElementById("sliderValue").innerText = "somewhat male";
+    } else if (val > 20 & val <= 30) {
+        document.getElementById("sliderValue").innerText = "rather male";
+    } else if (val > 30 & val <= 40) {
+        document.getElementById("sliderValue").innerText = "strongly male";
+    } else if (val > 40 & val <= 50) {
+        document.getElementById("sliderValue").innerText = "very strongly male";
+    } else if (val < 0 & val >= -10) {
+        document.getElementById("sliderValue").innerText = "slightly female";
+    } else if (val < -10 & val >= -20) {
+        document.getElementById("sliderValue").innerText = "somewhat female";
+    } else if (val < -20 & val >= -30) {
+        document.getElementById("sliderValue").innerText = "rather female";
+    } else if (val < -30 & val >= -40) {
+        document.getElementById("sliderValue").innerText = "strongly female";
+    } else if (val < -40 & val >= -50) {
+        document.getElementById("sliderValue").innerText = "very strongly female";
+    }
+    else {
+        document.getElementById("sliderValue").innerText = "neutral";
+    }
+}
+
+// Force user interaction: disable until click
+document.addEventListener("DOMContentLoaded", function() {
+    let slider = document.getElementById("evaluation");
+    slider.value = ""; // no default
+    slider.addEventListener("mousedown", function() {
+        if (slider.value === "") slider.value = "0"; // activates at center when clicked
+        updateSliderValue(slider);
+    });
+});
+</script>
+
+
+{{ endblock }}
