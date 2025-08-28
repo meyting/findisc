@@ -44,55 +44,63 @@ class C(BaseConstants):
 class Subsession(BaseSubsession):
     pass
 
-def select_unique_risky_shares(data, n, used_riskyshares):
-    # Exclude already-used riskyshare values
-    data = data[~data['riskyshare'].isin(used_riskyshares)]
-    # Shuffle and drop duplicates
-    shuffled_data = data.sample(frac=1).drop_duplicates(subset='riskyshare')
-    # Sample n
-    return shuffled_data.head(n)
-
 
 def creating_session(subsession: Subsession):
+    global df  # tell Python to use the top-level df
     import itertools
     variant = itertools.cycle(['a']) 
     groups = itertools.cycle(['circle', 'triangle',])
     if subsession.round_number == 1:
+        df = df.copy()
+        rng = np.random.default_rng(42)
+        def reset_pool():
+            return df.sample(frac=1, random_state=rng.integers(1e9)).reset_index(drop=True)
+
+        # initialize the pool of "unused" profiles
+        available = reset_pool()
         for p in subsession.get_players():
             if 'variant' in subsession.session.config:
                 p.participant.variant = subsession.session.config['variant']
             else:
                 p.participant.variant = next(variant)
             p.participant.group = next(groups)
-            p.participant.profiles = []
-            # Sample 1 test profile first
-            used_riskyshares = set()
-            selected_profiles_test = select_unique_risky_shares(df, 1, used_riskyshares)
-            used_riskyshares.update(selected_profiles_test['riskyshare'])
-            selected_profiles_black_male = select_unique_risky_shares(df[(df["gender"] == "male") & (df["race"] == "Black or African American")], 2, used_riskyshares)
-            used_riskyshares.update(selected_profiles_black_male['riskyshare'])
-            selected_profiles_black_female = select_unique_risky_shares(df[(df["gender"] == "female") & (df["race"] == "Black or African American")], 2, used_riskyshares)
-            used_riskyshares.update(selected_profiles_black_female['riskyshare'])
-            selected_profiles_white_male = select_unique_risky_shares(df[(df["gender"] == "male") & (df["race"] == "White")], 2, used_riskyshares)
-            used_riskyshares.update(selected_profiles_white_male['riskyshare'])
-            selected_profiles_white_female = select_unique_risky_shares(df[(df["gender"] == "female") & (df["race"] == "White")], 2, used_riskyshares)
-            used_riskyshares.update(selected_profiles_white_female['riskyshare'])
-            selected_profiles_random = select_unique_risky_shares(df, 2, used_riskyshares)
-            used_riskyshares.update(selected_profiles_random['riskyshare'])
+            profiles = []
+
+            # if not enough left for a full 10, reset
+            if len(available) < 10:
+                available = reset_pool()
+
+            # draw 2 from each core category
+            def draw_from(cat_mask_func, n=2):
+                nonlocal available
+                subset = available[cat_mask_func(available)]  # compute mask on available
+                if len(subset) < n:
+                    available = reset_pool()
+                    subset = available[cat_mask_func(available)]
+                chosen = subset.sample(n=n, random_state=rng.integers(1e9))
+                available = available.drop(chosen.index)
+                return chosen
+
+            black_male   = draw_from(lambda df: (df.gender=="male") & (df.race=="Black or African American"))
+            black_female = draw_from(lambda df: (df.gender=="female") & (df.race=="Black or African American"))
+            white_male   = draw_from(lambda df: (df.gender=="male") & (df.race=="White"))
+            white_female = draw_from(lambda df: (df.gender=="female") & (df.race=="White"))
+
+            # now draw 2 random from what's left
+            if len(available) < 2:
+                available = reset_pool()
+            random_two = available.sample(n=2, random_state=rng.integers(1e9))
+            available = available.drop(random_two.index)
+
+            # shuffle the 10 profiles
             selected_profiles_df = pd.concat([
-                                                selected_profiles_test,
-                                                selected_profiles_black_male,
-                                                selected_profiles_black_female,
-                                                selected_profiles_white_male,
-                                                selected_profiles_white_female,
-                                                selected_profiles_random
-                                             ]).reset_index(drop=True)
-            first_row = selected_profiles_df.iloc[[0]]
-            rest = selected_profiles_df.iloc[1:]
-            shuffled_rest = rest.sample(frac=1, random_state=42)
-            shuffled_df = pd.concat([first_row, shuffled_rest]).reset_index(drop=True)
-            profiles = shuffled_df.to_dict(orient='records')
-            p.participant.profiles = profiles
+                black_male, black_female, white_male, white_female, random_two
+            ]).sample(frac=1, random_state=rng.integers(1e9))
+
+            p.participant.profiles = selected_profiles_df.to_dict(orient="records")
+            for i, profile in enumerate(p.participant.profiles,1):
+                print(f"Profile {i}: {profile['gender']},{profile['race']}")
+
 
 
 class Group(BaseGroup):
@@ -216,7 +224,7 @@ class intro_evaluation_en(Page):
         participant = player.participant
         print(participant.profiles)
         print(player.round_number)
-        profile = participant.profiles[player.round_number]
+        profile = participant.profiles[player.round_number-1]
         prolificid_client = profile["prolificid"]
         name = profile["name"]
         introduction = profile["intro"]
