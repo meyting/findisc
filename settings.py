@@ -48,13 +48,13 @@ SESSION_CONFIGS = [
          name='proval',
          app_sequence=['proval',
                        ],
-         num_demo_participants=10,
+         num_demo_participants=30,
      ),
     dict(
          name='statval',
          app_sequence=['statval',
                        ],
-         num_demo_participants=10,
+         num_demo_participants=30,
      ),
                ]
 
