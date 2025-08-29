@@ -104,7 +104,7 @@ class Subsession(BaseSubsession):
 def creating_session(subsession: Subsession):
     global df  # tell Python to use the top-level df
     import itertools
-    variant = itertools.cycle(['a']) 
+    variant = itertools.cycle(['race_first', 'gender_first']) 
     groups = itertools.cycle(['circle', 'triangle',])
     if subsession.round_number == 1:
         df = df.copy()
@@ -164,7 +164,8 @@ class Group(BaseGroup):
 class Player(BasePlayer):
     consent = models.BooleanField()
     riskgroup_example = models.IntegerField(blank=True)
-    evaluation = models.IntegerField(blank=True, min=-50, max=50, verbose_name="""""")
+    evaluation_gender = models.IntegerField(blank=True, min=-50, max=50, verbose_name="""""")
+    evaluation_race = models.IntegerField(blank=True, min=-50, max=50, verbose_name="""""")
 #    evaluation_certainty = models.IntegerField(blank=True,
 #                                               choices=[[1, "very confident"],
 #                                                        [2, "rather confident"],
@@ -272,7 +273,7 @@ class instructions_en(Page):
 
 class evaluation_en_3(Page):
     form_model = 'player'
-    form_fields = ['evaluation', 'offer']
+    form_fields = ['evaluation_gender','evaluation_race', 'offer']
 
     @staticmethod
     def vars_for_template(player: Player):

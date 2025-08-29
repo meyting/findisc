@@ -41,6 +41,7 @@ class C(BaseConstants):
     groupybudget = cu(1)
 
 
+
 class Subsession(BaseSubsession):
     pass
 
@@ -48,7 +49,7 @@ class Subsession(BaseSubsession):
 def creating_session(subsession: Subsession):
     global df  # tell Python to use the top-level df
     import itertools
-    variant = itertools.cycle(['a']) 
+    variant = itertools.cycle(['race_first', 'gender_first']) 
     groups = itertools.cycle(['circle', 'triangle',])
     if subsession.round_number == 1:
         df = df.copy()
@@ -101,15 +102,15 @@ def creating_session(subsession: Subsession):
             for i, profile in enumerate(p.participant.profiles,1):
                 print(f"Profile {i}: {profile['gender']},{profile['race']}")
 
-
-
 class Group(BaseGroup):
     pass
+
 
 class Player(BasePlayer):
     consent = models.BooleanField()
     riskgroup_example = models.IntegerField(blank=True)
-    evaluation = models.IntegerField(blank=True, min=-50, max=50, verbose_name="""""")
+    evaluation_gender = models.IntegerField(blank=True, min=-50, max=50, verbose_name="""""")
+    evaluation_race = models.IntegerField(blank=True, min=-50, max=50, verbose_name="""""")
 #    evaluation_certainty = models.IntegerField(blank=True,
 #                                               choices=[[1, "very confident"],
 #                                                        [2, "rather confident"],
@@ -217,7 +218,7 @@ class instructions_en(Page):
 
 class intro_evaluation_en(Page):
     form_model = 'player'
-    form_fields = ['evaluation', 'offer']
+    form_fields = ['evaluation_gender','evaluation_race', 'offer']
 
     @staticmethod
     def vars_for_template(player: Player):

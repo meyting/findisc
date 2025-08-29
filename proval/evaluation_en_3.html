@@ -5,13 +5,23 @@
 {{ block content }}
 <p>
 <div class="text" style="width: 100%; background-color: white;  padding: 20px;  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1)">
+{% if variant == "gender_first" %}
 <p>
-How stereotypically female or male does this profile seem to you?
-Use the slider below to rate the profile, from 'very stereotypically female' (left) to 'very stereotypically male' (right).
+How stereotypically female or male / black or white does this profile seem to you?
+Use the slider below to rate the profile, from 'very stereotypically female' (left) to 'very stereotypically male' (right) and from 'very stereotypically black' (left) to 'very stereotypically white' (right).
 </p>
 <p>
-<i>Remember: This is not about guessing whether the person is female or male, but about judging how strongly the overall profile reflects typical female or male characteristics.</i>
+<i>Remember: This is not about guessing whether the person is female or male or black or white, but about judging how strongly the overall profile reflects typical female or male characteristics and how strongly the overall profile reflects characteristics that are typical for black or white people.</i>
 </p>
+{% elif variant == "race_first" %}
+<p>
+How stereotypically black or white / female or male does this profile seem to you?
+Use the slider below to rate the profile, from 'very stereotypically black' (left) to 'very stereotypically white' (right) and from 'very stereotypically female' (left) to 'very stereotypically male' (right).
+</p>
+<p>
+<i>Remember: This is not about guessing whether the person is black or white / female or male, but about judging how strongly the overall profile reflects characteristics that are typical for black or white people and how stronly the overall profile reflects typical female or male characteristics.</i>
+</p>
+{% endif %}
 </div>
 
 <div class="index-card">
@@ -179,14 +189,9 @@ Use the slider below to rate the profile, from 'very stereotypically female' (le
 
 
 
-{% if variant == "verypat" or variant == "verypat_accept" %}
-<div class="index-card-risktool">
-    <div class="text" style="text-align:center">{{name}} has selected a distribution in the interactive tool.
-This distribution corresponds to a risk share of {{ risktoolresult }}%.</div>
-</div>
-{% endif %}
 
 
+{% if variant == "gender_first" %}
 <br>
 <div class="advice">
     <table id="info" style="font-size:1.1rem; table-layout: fixed; width:100%; margin-left:auto; margin-right:auto;background-color:rgb(218, 241, 218)">
@@ -202,12 +207,48 @@ This distribution corresponds to a risk share of {{ risktoolresult }}%.</div>
             <tr style="text-align:center">
             <td style="width:100%;text-align:center;font-weight:bold">
                 <!-- Modern slider -->
-                <div class="slider-container">
-                    <span class="label-left">Very Stereotypically Female</span>
-                    <input type="range" id="evaluation" name="evaluation" min="-50" max="50" step="1" value="" oninput="updateSliderValue(this)" required>
-                    <span class="label-right">Very Stereotypically Male</span>
+            <div class="slider-container">
+                <span class="label-left">Very Stereotypically Female</span>
+                <div class="slider-wrapper">
+                    <input type="range" id="evaluation_gender" name="evaluation_gender" min="-50" max="50" step="1" value="" oninput="updateSliderValueGender(this)" required>
+                    <div class="ticks">
+                        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                    </div>
                 </div>
-                <div class="slider-value" id="sliderValue">neutral</div>
+                <span class="label-right">Very Stereotypically Male</span>
+            </div>
+            <div class="slider-value" id="sliderValueGender">neutral</div>
+
+            </td>
+            <td style="width:10%;text-align:left;"></td>
+        </tr>
+    </table>
+</div>
+<br>
+<div class="advice">
+    <table id="info" style="font-size:1.1rem; table-layout: fixed; width:100%; margin-left:auto; margin-right:auto;background-color:rgb(218, 241, 218)">
+        <tr style="text-align:center">
+            <td style="width:100%;text-align:center;font-weight:bold" class="product">
+                <div class="scale-cell-back" style="width:100%">
+                    How stereotypical for a black / white person do you find this profile?
+                    <img src="{% static 'icons/information-button.png' %}" class="info-icon"/>
+                    <span class="tooltip">How stereotypical for a black / white person do you find the profile of {{ name }}?</span>
+                </div>
+            </td>
+            </tr>
+            <tr style="text-align:center">
+            <td style="width:100%;text-align:center;font-weight:bold">
+                <!-- Modern slider -->
+                <div class="slider-container">
+                    <span class="label-left">Very Stereotypically Black</span>
+                <div class="slider-wrapper">
+                    <input type="range" id="evaluation_race" name="evaluation_race" min="-50" max="50" step="1" value="" oninput="updateSliderValueRace(this)" required>
+                    <div class="ticks">
+                        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                    </div>
+                </div>                    <span class="label-right">Very Stereotypically White</span>
+                </div>
+                <div class="slider-value" id="sliderValueRace">neutral</div>
             </td>
             <td style="width:10%;text-align:left;"></td>
         </tr>
@@ -215,6 +256,72 @@ This distribution corresponds to a risk share of {{ risktoolresult }}%.</div>
 </div>
 
 
+
+{% elif variant == "race_first" %}
+<br>
+<div class="advice">
+    <table id="info" style="font-size:1.1rem; table-layout: fixed; width:100%; margin-left:auto; margin-right:auto;background-color:rgb(218, 241, 218)">
+        <tr style="text-align:center">
+            <td style="width:100%;text-align:center;font-weight:bold" class="product">
+                <div class="scale-cell-back" style="width:100%">
+                    How stereotypical for a black / white person do you find this profile?
+                    <img src="{% static 'icons/information-button.png' %}" class="info-icon"/>
+                    <span class="tooltip">How stereotypical for a black / white person do you find the profile of {{ name }}?</span>
+                </div>
+            </td>
+            </tr>
+            <tr style="text-align:center">
+            <td style="width:100%;text-align:center;font-weight:bold">
+                <!-- Modern slider -->
+                <div class="slider-container">
+                    <span class="label-left">Very Stereotypically Black</span>
+                <div class="slider-wrapper">
+                    <input type="range" id="evaluation_race" name="evaluation_race" min="-50" max="50" step="1" value="" oninput="updateSliderValueRace(this)" required>
+                    <div class="ticks">
+                        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                    </div>
+                </div>
+                <span class="label-right">Very Stereotypically White</span>
+                </div>
+                <div class="slider-value" id="sliderValueRace">neutral</div>
+            </td>
+            <td style="width:10%;text-align:left;"></td>
+        </tr>
+    </table>
+</div>
+<br>
+<div class="advice">
+    <table id="info" style="font-size:1.1rem; table-layout: fixed; width:100%; margin-left:auto; margin-right:auto;background-color:rgb(218, 241, 218)">
+        <tr style="text-align:center">
+            <td style="width:100%;text-align:center;font-weight:bold" class="product">
+                <div class="scale-cell-back" style="width:100%">
+                    How stereotypically female / male person do you find this profile?
+                    <img src="{% static 'icons/information-button.png' %}" class="info-icon"/>
+                    <span class="tooltip">How stereotypically female / male do you find the profile of {{ name }}?</span>
+                </div>
+            </td>
+            </tr>
+            <tr style="text-align:center">
+            <td style="width:100%;text-align:center;font-weight:bold">
+                <!-- Modern slider -->
+                <div class="slider-container">
+                    <span class="label-left">Very Stereotypically Female</span>
+                <div class="slider-wrapper">
+                    <input type="range" id="evaluation_gender" name="evaluation_gender" min="-50" max="50" step="1" value="" oninput="updateSliderValueGender(this)" required>
+                    <div class="ticks">
+                        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                    </div>
+                </div>
+                <span class="label-right">Very Stereotypically Male</span>
+                </div>
+                <div class="slider-value" id="sliderValueGender">neutral</div>
+            </td>
+            <td style="width:10%;text-align:left;"></td>
+        </tr>
+    </table>
+</div>
+
+{% endif %}
 
     <br>
 
@@ -228,7 +335,8 @@ This distribution corresponds to a risk share of {{ risktoolresult }}%.</div>
 <input type="hidden" name="offer" value="{{prolificid_client}}" id="offer"/>
 
 
-{{ formfield_errors 'evaluation' }}
+{{ formfield_errors 'evaluation_gender' }}
+{{ formfield_errors 'evaluation_race' }}
     {{ endblock }}
 
 
@@ -236,6 +344,27 @@ This distribution corresponds to a risk share of {{ risktoolresult }}%.</div>
 
 {% block styles %}
 <style>
+.slider-wrapper {
+    position: relative;
+    flex: 1; /* take all available width between labels */
+}
+
+.ticks {
+    position: absolute;
+    top: 75%;       /* place ticks just below the slider */
+    left: 0;
+    right: 0;
+    height: 8px;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none; /* allow slider interaction */
+}
+
+.ticks span {
+    width: 1px;
+    height: 8px;
+    background: #444;
+}
 
 .center {
     text-align: center;
@@ -254,7 +383,7 @@ This distribution corresponds to a risk share of {{ risktoolresult }}%.</div>
     appearance: none;
     width: 100%;
     height: 12px;
-    border-radius: 6px;
+    border-radius: 0px;
     outline: none;
     cursor: pointer;
     background: linear-gradient(
@@ -493,10 +622,10 @@ This distribution corresponds to a risk share of {{ risktoolresult }}%.</div>
 
 {% block scripts %}
     <script>
-function updateSliderValue(slider) {
+function updateSliderValueGender(slider) {
     let val = slider.value;
     if (val === "") {
-        document.getElementById("sliderValue").innerText = "neutral";
+        document.getElementById("sliderValueGender").innerText = "neutral";
 /*
     }
       else  if (val === "0") {
@@ -506,39 +635,87 @@ function updateSliderValue(slider) {
     }
 */
     }  else if (val > 0 & val <= 10) { 
-        document.getElementById("sliderValue").innerText = "slightly male";
+        document.getElementById("sliderValueGender").innerText = "slightly male";
     } else if (val > 10 & val <= 20) { 
-        document.getElementById("sliderValue").innerText = "somewhat male";
+        document.getElementById("sliderValueGender").innerText = "somewhat male";
     } else if (val > 20 & val <= 30) {
-        document.getElementById("sliderValue").innerText = "rather male";
+        document.getElementById("sliderValueGender").innerText = "rather male";
     } else if (val > 30 & val <= 40) {
-        document.getElementById("sliderValue").innerText = "strongly male";
+        document.getElementById("sliderValueGender").innerText = "strongly male";
     } else if (val > 40 & val <= 50) {
-        document.getElementById("sliderValue").innerText = "very strongly male";
+        document.getElementById("sliderValueGender").innerText = "very strongly male";
     } else if (val < 0 & val >= -10) {
-        document.getElementById("sliderValue").innerText = "slightly female";
+        document.getElementById("sliderValueGender").innerText = "slightly female";
     } else if (val < -10 & val >= -20) {
-        document.getElementById("sliderValue").innerText = "somewhat female";
+        document.getElementById("sliderValueGender").innerText = "somewhat female";
     } else if (val < -20 & val >= -30) {
-        document.getElementById("sliderValue").innerText = "rather female";
+        document.getElementById("sliderValueGender").innerText = "rather female";
     } else if (val < -30 & val >= -40) {
-        document.getElementById("sliderValue").innerText = "strongly female";
+        document.getElementById("sliderValueGender").innerText = "strongly female";
     } else if (val < -40 & val >= -50) {
-        document.getElementById("sliderValue").innerText = "very strongly female";
+        document.getElementById("sliderValueGender").innerText = "very strongly female";
     }
     else {
-        document.getElementById("sliderValue").innerText = "neutral";
+        document.getElementById("sliderValueGender").innerText = "neutral";
     }
 
 }
 
+
+
+function updateSliderValueRace(slider) {
+    let val = slider.value;
+    if (val === "") {
+        document.getElementById("sliderValueRace").innerText = "neutral";
+/*
+    }
+      else  if (val === "0") {
+        document.getElementById("sliderValue").innerText = "neutral";
+    }  else {
+        document.getElementById("sliderValue").innerText = slider.value;
+    }
+*/
+    }  else if (val > 0 & val <= 10) { 
+        document.getElementById("sliderValueRace").innerText = "slightly white";
+    } else if (val > 10 & val <= 20) { 
+        document.getElementById("sliderValueRace").innerText = "somewhat white";
+    } else if (val > 20 & val <= 30) {
+        document.getElementById("sliderValueRace").innerText = "rather white";
+    } else if (val > 30 & val <= 40) {
+        document.getElementById("sliderValueRace").innerText = "strongly white";
+    } else if (val > 40 & val <= 50) {
+        document.getElementById("sliderValueRace").innerText = "very strongly white";
+    } else if (val < 0 & val >= -10) {
+        document.getElementById("sliderValueRace").innerText = "slightly black";
+    } else if (val < -10 & val >= -20) {
+        document.getElementById("sliderValueRace").innerText = "somewhat black";
+    } else if (val < -20 & val >= -30) {
+        document.getElementById("sliderValueRace").innerText = "rather black";
+    } else if (val < -30 & val >= -40) {
+        document.getElementById("sliderValueRace").innerText = "strongly black";
+    } else if (val < -40 & val >= -50) {
+        document.getElementById("sliderValueRace").innerText = "very strongly black";
+    }
+    else {
+        document.getElementById("sliderValueRace").innerText = "neutral";
+    }
+
+}
+
+
 // Force user interaction: disable until click
 document.addEventListener("DOMContentLoaded", function() {
-    let slider = document.getElementById("evaluation");
-    slider.value = ""; // no default
-    slider.addEventListener("mousedown", function() {
-        if (slider.value === "") slider.value = "0"; // activates at center when clicked
-        updateSliderValue(slider);
+    let slider_gender = document.getElementById("evaluation_gender");
+    slider_gender.value = ""; // no default
+    slider_gender.addEventListener("mousedown", function() {
+        if (slider_gender.value === "") slider_gender.value = "0"; // activates at center when clicked
+        updateSliderValueGender(slider_gender);
+    });
+    let slider_race = document.getElementById("evaluation_race");
+    slider_race.value = ""; // no default
+    slider_race.addEventListener("mousedown", function() {
+        if (slider_race.value === "") slider_race.value = "0"; // activates at center when clicked
+        updateSliderValueRace(slider_race);
     });
 });
 </script>

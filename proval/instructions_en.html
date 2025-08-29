@@ -6,13 +6,19 @@ Background
     In this study, we will introduce you to different profiles of individuals who would like to make an investment decision.
     These individuals have participated in a previous survey and answered some questions about themselves and their risk tolerance.
 </p>
+{% if variant == "gender_first" %}
 <p>
-    Your task is to evaluate how stereotypically female or male you find the profiles. 
-    This is not about guessing whether the person is female or male, but about judging how strongly the profile reflects typical female or male characteristics.
+    Your task is to evaluate how (i) stereotypically female or male you find the profiles and (ii) stereotypically black or white you find the profiles. 
+    This is not about guessing whether the person is female or male / black or white, but about judging how strongly the profile reflects typical female or male characteristics and how strongly the profile reflects characteristics that are typical for black or white people.
     There is no “correct” answer – we are only interested in your personal impression of each profile.
 </p>
-<!-- EXAMPLE? -->
-
+{% elif variant == "race_first" %}
+<p>
+    Your task is to evaluate how (i) stereotypically black or white you find the profiles and (ii) stereotypically female or male you find the profiles. 
+    This is not about guessing whether the person is black or white / female or male, but about judging how strongly the profile reflects characteristics that are typical for black or white people and how strongly the profile reflects typical female or male characteristics.
+    There is no “correct” answer – we are only interested in your personal impression of each profile.
+</p>
+{% endif %}
 <br>
 
 

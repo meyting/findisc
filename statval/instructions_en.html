@@ -6,11 +6,22 @@ Background
     In this study, we will show you various answers that people gave when they were asked to describe themselves in 2-3 sentences, by, e.g. mentioning their your hobbies, interests, family, etc.
     These individuals have participated in a previous survey
 </p>
+</p>
+{% if variant == "gender_first" %}
 <p>
-    Your task is to evaluate how stereotypically female or male you find each description. 
-    This is not about guessing whether the description is from a woman or a man, but about judging how strongly the description reflects typical female or male characteristics.
+    Your task is to evaluate how (i) stereotypically female or male and (ii) how stereotypically black or white you find each description. 
+    This is not about guessing whether the person is female or male / black or white, but about judging how strongly the description reflects typical female or male characteristics and how strongly the description reflects characteristics that are typical for black or white people.
     There is no “correct” answer – we are only interested in your personal impression of each description.
 </p>
+{% elif variant == "race_first" %}
+<p>
+    Your task is to evaluate how (i) stereotypically black or white and (ii) how stereotypically female or male you find each description. 
+    This is not about guessing whether the person is black or white / female or male, but about judging how strongly the description reflects characteristics that are typical for black or white people and how strongly the description reflects typical female or male characteristics.
+    There is no “correct” answer – we are only interested in your personal impression of each description.
+</p>
+{% endif %}
+
+
 
 
 <br>
